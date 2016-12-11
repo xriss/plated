@@ -16,7 +16,9 @@ exports.create=function(opts){
 
 	plated.build=function()
 	{
+		ls(opts);
 
+		plated.files.empty_folder(opts.output);
 	};
 
 
