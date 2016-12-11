@@ -1,0 +1,19 @@
+{
+  "name": "plated",
+  "description": "plated static website builder",
+  "version": "0.0.1",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/xriss/plated.git"
+  },
+  "dependencies": {
+    "yargs": "*",
+    "marked": "*"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "build": "node cmd.js build",
+    "serv": "node cmd.js serv"
+  }
+}
+
