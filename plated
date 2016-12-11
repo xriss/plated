@@ -1,0 +1,2 @@
+node `dirname $0`/js/cmd $*
+

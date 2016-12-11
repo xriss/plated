@@ -7,7 +7,7 @@ var path=require('path');
 var ls=function(a) { console.log(util.inspect(a,{depth:null})); }
 
 // wrap so we can contain multiple environments without borking
-exports.create=function(){
+exports.create=function(opts){
 
 	var plated_files={};
 

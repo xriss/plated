@@ -30,7 +30,7 @@ var nl_to_br=function(t) // lets break markdown
 var ls=function(a) { console.log(util.inspect(a,{depth:null})); }
 
 // wrap so we can contain multiple environments without borking
-exports.create=function(){
+exports.create=function(opts){
 	
 	var plated_chunks={};
 
