@@ -5,8 +5,6 @@ var fs = require('fs');
 var util=require('util');
 var path=require('path');
 
-var json_iati_codes=require("../../dstore/json/iati_codes.json");
-
 var plated=require("plated.js");
 
 var ls=function(a) { console.log(util.inspect(a,{depth:null})); }

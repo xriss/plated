@@ -7,11 +7,18 @@ var path=require('path');
 
 var json_iati_codes=require("../../dstore/json/iati_codes.json");
 
-var plate=require("../../ctrack/js/plate.js");
+var plated_chunks=require("../../ctrack/js/plated_chunks.js").create();
 
 var ls=function(a) { console.log(util.inspect(a,{depth:null})); }
 
+
 plated.build=function()
+{
+
+};
+
+
+plated.build_old=function()
 {
 
 deleteFolderRecursive = function(path) {
@@ -31,8 +38,6 @@ deleteFolderRecursive = function(path) {
 };
 
 	deleteFolderRecursive("static");
-
-
 	try { fs.mkdirSync("static"); } catch(e){}
 
 	var tongues=[];
@@ -54,13 +59,13 @@ deleteFolderRecursive = function(path) {
 		{
 			var t=v.slice(0,3);
 			tongues[t]=tongues[t] || {};
-			plate.fill_chunks( fs.readFileSync(dirname+"/"+t+".txt",'utf8'),tongues[t]);
+			plated_chunks.fill_chunks( fs.readFileSync(dirname+"/"+t+".txt",'utf8'),tongues[t]);
 			console.log("Adding "+t+" tongue");
 		}
 		else // normal chunks
 		{
 			console.log("Reading "+"/"+v);
-			plate.fill_chunks(fs.readFileSync(dirname+"/"+v,'utf8'),chunks);
+			plated_chunks.fill_chunks(fs.readFileSync(dirname+"/"+v,'utf8'),chunks);
 		}
 	}
 	var pages={};
@@ -71,7 +76,7 @@ deleteFolderRecursive = function(path) {
 		try { s=fs.readFileSync("html/"+fname,'utf8'); } catch(e){}
 		if(s)
 		{
-			pages[fname]=plate.fill_chunks(s);
+			pages[fname]=plated_chunks.fill_chunks(s);
 		}
 		return pages[fname];
 	}
@@ -81,12 +86,12 @@ deleteFolderRecursive = function(path) {
 		var dirs=dir.split("/"); while( dirs[dirs.length-1]=="" ) { dirs.pop(); }
 		var ff=fs.readdirSync("html/"+dir);
 
-		plate.reset_namespace();
-		plate.push_namespace(chunkopts);
-		plate.push_namespace(chunks);
+		plated_chunks.reset_namespace();
+		plated_chunks.push_namespace(chunkopts);
+		plated_chunks.push_namespace(chunks);
 		
 //		console.log("namespace /");
-		plate.push_namespace( get_page_chunk("index.html") );
+		plated_chunks.push_namespace( get_page_chunk("index.html") );
 		for(var i=0;i<dirs.length;i++)
 		{
 			var dd=[];
@@ -95,7 +100,7 @@ deleteFolderRecursive = function(path) {
 			if(ds!="") // skip ""
 			{
 //				console.log("namespace /"+dd);
-				plate.push_namespace( get_page_chunk(dd+"/index.html") );
+				plated_chunks.push_namespace( get_page_chunk(dd+"/index.html") );
 			}
 		}
 
@@ -146,7 +151,7 @@ deleteFolderRecursive = function(path) {
 							page.it=page;
 							if(page[page._extension]) // only write if we have the main chunk
 							{
-								var html=plate.replace("{"+page._extension+"}",page);
+								var html=plated_chunks.replace("{"+page._extension+"}",page);
 								fs.writeFileSync("static/"+tonguedir+dir+name,html);
 							}
 						}
@@ -155,9 +160,9 @@ deleteFolderRecursive = function(path) {
 			}
 		}
 
-		if(tongues.eng) { plate.push_namespace(tongues.eng); }
+		if(tongues.eng) { plated_chunks.push_namespace(tongues.eng); }
 		dodir("eng");
-		if(tongues.eng) { plate.pop_namespace(); }
+		if(tongues.eng) { plated_chunks.pop_namespace(); }
 		
 		if(!blog) // not on blog scan
 		{
@@ -166,9 +171,9 @@ deleteFolderRecursive = function(path) {
 				if(n!="eng") // english is special default dealt with above
 				{
 					try { fs.mkdirSync("static/"+n); } catch(e){}
-					plate.push_namespace(tongues[n]);
+					plated_chunks.push_namespace(tongues[n]);
 					dodir(n);
-					plate.pop_namespace();
+					plated_chunks.pop_namespace();
 				}
 			}
 		}
@@ -277,4 +282,4 @@ deleteFolderRecursive = function(path) {
 	copyraw("./raw/","");
 	copyraw("./","art/");
 
-}
+};
