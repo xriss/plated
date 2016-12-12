@@ -30,7 +30,7 @@ var nl_to_br=function(t) // lets break markdown
 var ls=function(a) { console.log(util.inspect(a,{depth:null})); }
 
 // wrap so we can contain multiple environments without borking
-exports.create=function(opts){
+exports.create=function(opts,plated){
 	
 	var plated_chunks={};
 
@@ -222,6 +222,12 @@ exports.create=function(opts){
 	plated_chunks.reset_namespace=function()
 	{
 		plated_chunks.namespaces=[];
+	}
+
+	// set namespace
+	plated_chunks.set_namespace=function(n)
+	{
+		plated_chunks.namespaces=n;
 	}
 
 	// add this dat into the namespaces that we also check when filling in chunks

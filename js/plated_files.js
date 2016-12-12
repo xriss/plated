@@ -7,7 +7,7 @@ var path=require('path');
 var ls=function(a) { console.log(util.inspect(a,{depth:null})); }
 
 // wrap so we can contain multiple environments without borking
-exports.create=function(opts){
+exports.create=function(opts,plated){
 
 	var plated_files={};
 
@@ -58,7 +58,20 @@ exports.create=function(opts){
 		}
 	};
 
-
+	var cache={}
+	plated_files.file_to_chunks=function(root,fname)
+	{
+		if(!cache[fname])
+		{
+			var s;
+			try { s=fs.readFileSync(root+fname,'utf8'); } catch(e){}
+			if(s)
+			{
+				cache[fname]=plated.chunks.fill_chunks(s);
+			}
+		}
+		return cache[fname];
+	}
 
 	return plated_files;
 };

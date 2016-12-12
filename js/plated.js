@@ -12,9 +12,10 @@ exports.create=function(opts){
 
 	var plated={};
 	
-	var plated_files =plated.files =require("./plated_files.js" ).create(opts);
-	var plated_chunks=plated.chunks=require("./plated_chunks.js").create(opts);
-
+	var plated_files =plated.files =require("./plated_files.js" ).create(opts,plated);
+	var plated_chunks=plated.chunks=require("./plated_chunks.js").create(opts,plated);
+	
+	
 	plated.build=function()
 	{
 		ls(opts);
@@ -28,6 +29,8 @@ exports.create=function(opts){
 				try { fs.mkdirSync( path.dirname(opts.output+s) ); } catch(e){}
 				
 				fs.writeFileSync(opts.output+s, fs.readFileSync(opts.source+s));
+				
+				plated_files.file_to_chunks(opts.source,s);
 
 		});
 	};
