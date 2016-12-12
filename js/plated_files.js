@@ -11,6 +11,15 @@ exports.create=function(opts){
 
 	var plated_files={};
 
+
+// convert a source path into an output path
+	plated_files.source_to_output = function(path) {
+		var ps=path.replace(opts.source,opts.output);
+		if( ps.startsWith(opts.output) ) { return ps; }
+		return null;
+	};
+
+
 // empty the (output) folder or make it if it does not exist
 	plated_files.empty_folder = function(path) {
 		var files = [];
@@ -19,12 +28,12 @@ exports.create=function(opts){
 			files.forEach(function(file,index){
 				var curPath = path + "/" + file;
 				if(fs.lstatSync(curPath).isDirectory()) { // recurse
-					deleteFolderRecursive(curPath);
+					plated_files.empty_folder(curPath);
+					fs.rmdirSync(curPath);
 				} else { // delete file
 					fs.unlinkSync(curPath);
 				}
 			});
-			fs.rmdirSync(path);
 		}
 		else
 		{
@@ -32,6 +41,23 @@ exports.create=function(opts){
 		}
 	};
 	
+
+// call f with every file we find
+	plated_files.find_files = function(root,_path,f) {
+		var path = _path ? "/"+_path : "";
+		var files=fs.readdirSync(root+path);
+		for(var i in files){ var v=files[i];
+			if(fs.lstatSync(root+path+"/"+v).isDirectory())
+			{
+				plated_files.find_files(root,_path ? _path+"/"+v : v,f);
+			}
+			else
+			{
+				f(path+"/"+v);
+			}
+		}
+	};
+
 
 
 	return plated_files;

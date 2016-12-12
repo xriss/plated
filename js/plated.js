@@ -1,6 +1,8 @@
 
 
+var fs = require('fs');
 var util=require('util');
+var path=require('path');
 
 
 var ls=function(a) { console.log(util.inspect(a,{depth:null})); }
@@ -10,15 +12,24 @@ exports.create=function(opts){
 
 	var plated={};
 	
-	plated.files =require("./plated_files.js" ).create({});
-	plated.chunks=require("./plated_chunks.js").create({});
-
+	var plated_files =plated.files =require("./plated_files.js" ).create(opts);
+	var plated_chunks=plated.chunks=require("./plated_chunks.js").create(opts);
 
 	plated.build=function()
 	{
 		ls(opts);
 
-		plated.files.empty_folder(opts.output);
+		plated_files.empty_folder(opts.output);
+		
+		plated_files.find_files(opts.source,"",function(s){
+
+				console.log(opts.source+s , "->", opts.output+s);
+
+				try { fs.mkdirSync( path.dirname(opts.output+s) ); } catch(e){}
+				
+				fs.writeFileSync(opts.output+s, fs.readFileSync(opts.source+s));
+
+		});
 	};
 
 
