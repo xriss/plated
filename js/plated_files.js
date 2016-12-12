@@ -73,5 +73,69 @@ exports.create=function(opts,plated){
 		return cache[fname];
 	}
 
+
+// is this filename part of the basechunks for a dir
+	plated_files.filename_is_basechunk=function(fname)
+	{
+		var vv=path.basename(fname).split(".");
+		if( vv.length==2 && vv[0]==opts.plated )
+		{
+			return true
+		}
+		return false;
+	}
+
+// is this filename something we need to run through plated
+	plated_files.filename_is_plated=function(fname)
+	{
+		var vv=path.basename(fname).split(".");
+		if( vv.length>2 && vv[ vv.length-2 ]==opts.plated )
+		{
+			return true
+		}
+		return false;
+	}
+
+// output filename
+	plated_files.filename_to_output=function(fname)
+	{
+		var d=path.dirname(fname);
+		var vv=path.basename(fname).split(".");
+		if( vv.length>2 && vv[ vv.length-2 ]==opts.plated )
+		{
+			vv.splice(vv.length-2,1);
+			return path.join(d,vv.join("."));
+		}
+	}
+
+
+// check this directory and all directories above for generic chunks
+// build all of these into a namespace for this file
+	plated_files.parent_files_to_namespace=function(fname)
+	{
+		plated.chunks.reset_namespace();
+		
+		var list=[];
+		var rf=function(fn){
+			var d=path.dirname(fn);
+			var p=path.join(opts.source,d);
+			var files=fs.readdirSync(p);
+			files.sort();
+			for(var i in files){ var v=files[i];
+				if( plated_files.filename_is_basechunk(v) )
+				{
+					var p2=path.join(p,v);
+					list.push(p2);
+				}
+			}
+			if((d!=".")&&(d!="/")) { rf(d); } // next dir
+		};
+		rf(fname)
+
+		ls(fname);
+		ls(list);
+	}
+
+
 	return plated_files;
 };

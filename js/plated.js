@@ -23,17 +23,28 @@ exports.create=function(opts){
 		plated_files.empty_folder(opts.output);
 		
 		plated_files.find_files(opts.source,"",function(s){
-
-				console.log(opts.source+s , "->", opts.output+s);
-
-				try { fs.mkdirSync( path.dirname(opts.output+s) ); } catch(e){}
 				
-				fs.writeFileSync(opts.output+s, fs.readFileSync(opts.source+s));
-				
-				plated_files.file_to_chunks(opts.source,s);
+				if(!plated_files.filename_is_basechunk(s))
+				{
+					if(plated_files.filename_is_plated(s))
+					{
+						plated_files.parent_files_to_namespace(s);
 
+						var so=plated_files.filename_to_output(s);
+						console.log(so);
+						try { fs.mkdirSync( path.dirname( path.join(opts.output,so) ) ); } catch(e){}			
+						fs.writeFileSync( path.join(opts.output,so) , fs.readFileSync( path.join(opts.source,s) ));
+					}
+					else
+					{
+						try { fs.mkdirSync( path.dirname( path.join(opts.output,s) ) ); } catch(e){}				
+						fs.writeFileSync( path.join(opts.output,s), fs.readFileSync( path.join(opts.source,s) ));
+					}
+				}
 		});
+
 	};
+
 
 
 	plated.build_old=function()
