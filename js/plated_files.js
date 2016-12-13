@@ -19,61 +19,6 @@ exports.create=function(opts,plated){
 		return null;
 	};
 
-
-// empty the (output) folder or make it if it does not exist
-	plated_files.empty_folder = function(path) {
-		var files = [];
-		if( fs.existsSync(path) ) {
-			files = fs.readdirSync(path);
-			files.forEach(function(file,index){
-				var curPath = path + "/" + file;
-				if(fs.lstatSync(curPath).isDirectory()) { // recurse
-					plated_files.empty_folder(curPath);
-					fs.rmdirSync(curPath);
-				} else { // delete file
-					fs.unlinkSync(curPath);
-				}
-			});
-		}
-		else
-		{
-			try { fs.mkdirSync(path); } catch(e){} // create it
-		}
-	};
-	
-
-// call f with every file we find
-	plated_files.find_files = function(root,_path,f) {
-		var path = _path ? "/"+_path : "";
-		var files=fs.readdirSync(root+path);
-		for(var i in files){ var v=files[i];
-			if(fs.lstatSync(root+path+"/"+v).isDirectory())
-			{
-				plated_files.find_files(root,_path ? _path+"/"+v : v,f);
-			}
-			else
-			{
-				f(path+"/"+v);
-			}
-		}
-	};
-
-	var cache={}
-	plated_files.file_to_chunks=function(root,fname)
-	{
-		if(!cache[fname])
-		{
-			var s;
-			try { s=fs.readFileSync(root+fname,'utf8'); } catch(e){}
-			if(s)
-			{
-				cache[fname]=plated.chunks.fill_chunks(s);
-			}
-		}
-		return cache[fname];
-	}
-
-
 // is this filename part of the basechunks for a dir
 	plated_files.filename_is_basechunk=function(fname)
 	{
@@ -108,9 +53,62 @@ exports.create=function(opts,plated){
 		}
 	}
 
+// empty the (output) folder or make it if it does not exist
+	plated_files.empty_folder = function(path) {
+		var files = [];
+		if( fs.existsSync(path) ) {
+			files = fs.readdirSync(path);
+			files.forEach(function(file,index){
+				var curPath = path + "/" + file;
+				if(fs.lstatSync(curPath).isDirectory()) { // recurse
+					plated_files.empty_folder(curPath);
+					fs.rmdirSync(curPath);
+				} else { // delete file
+					fs.unlinkSync(curPath);
+				}
+			});
+		}
+		else
+		{
+			try { fs.mkdirSync(path); } catch(e){} // create it
+		}
+	};
+	
+
+// call f with every file we find
+	plated_files.find_files = function(root,name,f) {
+		var files=fs.readdirSync( path.join(root,name) );
+		for(var i in files){ var v=files[i];
+			if(fs.lstatSync( path.join(root,name,v) ).isDirectory())
+			{
+				plated_files.find_files(root,path.join(name,v),f);
+			}
+			else
+			{
+				f( path.join(name,v) );
+			}
+		}
+	};
+
+	var cache={}
+	plated_files.file_to_chunks=function(root,fname)
+	{
+		if(!cache[fname])
+		{
+			var s;
+			try { s=fs.readFileSync(path.join(root,fname),'utf8'); } catch(e){}
+			if(s)
+			{
+console.log( "+++"+path.join(fname) );
+				cache[fname]=plated.chunks.fill_chunks(s);
+			}
+		}
+		return cache[fname];
+	}
+
 
 // check this directory and all directories above for generic chunks
-// build all of these into a namespace for this file
+// build all of these into the current chunk namespace for this file
 	plated_files.parent_files_to_namespace=function(fname)
 	{
 		plated.chunks.reset_namespace();
@@ -125,7 +123,7 @@ exports.create=function(opts,plated){
 			for(var i in files){ var v=files[i];
 				if( plated_files.filename_is_basechunk(v) )
 				{
-					var p2=path.join(p,v);
+					var p2=path.join(d,v);
 					list.push(p2);
 				}
 			}
@@ -135,6 +133,10 @@ exports.create=function(opts,plated){
 
 		ls(fname);
 		ls(list);
+		
+		for(var i=list.length-1 ; i>=0 ; i--) { var v=list[i];
+			plated.chunks.push_namespace( plated_files.file_to_chunks(opts.source,v) );
+		}
 	}
 
 // build the given source filename, using chunks or maybe just a raw copy
@@ -145,9 +147,12 @@ exports.create=function(opts,plated){
 			plated_files.parent_files_to_namespace(fname);
 
 			var fname_out=plated_files.filename_to_output(fname);
-			console.log(fname_out);
+
 			try { fs.mkdirSync( path.dirname( path.join(opts.output,fname_out) ) ); } catch(e){}
-			fs.writeFileSync( path.join(opts.output,fname_out) , fs.readFileSync( path.join(opts.source,fname) ) );
+			
+			var it=plated_files.file_to_chunks(opts.source, path.join(opts.source,fname) ); // read chunks from this file
+
+			fs.writeFileSync( path.join(opts.output,fname_out) , plated.chunks.replace("{"+(fname.split('.').pop())+"}",it) );
 		}
 		else
 		{

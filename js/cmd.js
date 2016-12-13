@@ -17,11 +17,7 @@ argv.hashchar = argv.hashchar || "#";
 
 if( argv._[0]=="build" )
 {
-	var plated=require("./plated.js").create({
-		source: argv.source,
-		output: argv.output,
-		plated: argv.plated,
-	});
+	var plated=require("./plated.js").create(argv);
 	return plated.build();
 }
 
