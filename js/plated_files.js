@@ -64,7 +64,10 @@ exports.create=function(opts,plated){
 					plated_files.empty_folder(curPath);
 					fs.rmdirSync(curPath);
 				} else { // delete file
-					fs.unlinkSync(curPath);
+					if(file!=".git") // dont delete .git files
+					{
+						fs.unlinkSync(curPath);
+					}
 				}
 			});
 		}
