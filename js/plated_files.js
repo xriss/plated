@@ -121,6 +121,7 @@ exports.create=function(opts,plated){
 			var p=path.join(opts.source,d);
 			var files=fs.readdirSync(p);
 			files.sort();
+			files.reverse();
 			for(var i in files){ var v=files[i];
 				if( plated_files.filename_is_basechunk(v) )
 				{
@@ -136,6 +137,40 @@ exports.create=function(opts,plated){
 		ls(list);
 	}
 
+// build the given source filename, using chunks or maybe just a raw copy
+	plated_files.build_file=function(fname)
+	{
+		if(plated_files.filename_is_plated(fname))
+		{
+			plated_files.parent_files_to_namespace(fname);
+
+			var fname_out=plated_files.filename_to_output(fname);
+			console.log(fname_out);
+			try { fs.mkdirSync( path.dirname( path.join(opts.output,fname_out) ) ); } catch(e){}
+			fs.writeFileSync( path.join(opts.output,fname_out) , fs.readFileSync( path.join(opts.source,fname) ) );
+		}
+		else
+		{
+			try { fs.mkdirSync( path.dirname( path.join(opts.output,s) ) ); } catch(e){}				
+			fs.writeFileSync( path.join(opts.output,fname), fs.readFileSync( path.join(opts.source,fname) ));
+		}
+	}
+
+// build all files found in the source dir into the output dir 
+	plated_files.build=function()
+	{
+		ls(opts);
+
+		plated_files.empty_folder(opts.output);
+		
+		plated_files.find_files(opts.source,"",function(s){
+				
+				if(!plated_files.filename_is_basechunk(s))
+				{
+					plated_files.build_file(s);
+				}
+		});
+	}
 
 	return plated_files;
 };

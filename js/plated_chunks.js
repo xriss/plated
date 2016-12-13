@@ -39,7 +39,7 @@ exports.create=function(opts,plated){
 	// break a string into chunks ( can be merged or replace other chunks )
 	plated_chunks.fill_chunks=function(str,chunks)
 	{
-		var hashchar="#";
+		var hashchar=opts.hashchar || "#";
 		var chunks=chunks || {};
 		chunks.__flags__=chunks.__flags__ || {}; // special flags chunk chunk, if we have any flags
 
@@ -129,8 +129,6 @@ exports.create=function(opts,plated){
 				{
 					if( "string" == typeof (chunks[n]) )
 					{
-	//					console.log("parsing json chunk "+n);
-	//					console.log(chunks[n]);
 						chunks[n]=JSON.parse(chunks[n]);
 					}
 				}
