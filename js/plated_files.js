@@ -153,8 +153,8 @@ console.log( "+++"+path.join(fname) );
 
 			try { fs.mkdirSync( path.dirname( path.join(opts.output,fname_out) ) ); } catch(e){}
 			
-			var it=plated_files.file_to_chunks(opts.source, path.join(opts.source,fname) ); // read chunks from this file
-
+			var it=plated_files.file_to_chunks(opts.source, fname ); // read chunks from this file
+ls(it);
 			fs.writeFileSync( path.join(opts.output,fname_out) , plated.chunks.replace("{"+(fname.split('.').pop())+"}",it) );
 		}
 		else
