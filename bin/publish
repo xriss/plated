@@ -4,7 +4,7 @@ cd ../output
 
 echo "creating new orphan branch"
 
-git checkout --orphan _output_
+git checkout --orphan _gh-pages_
 
 echo "adding files to new branch"
 
@@ -12,8 +12,8 @@ git add . && git commit -m"publish output"
 
 echo "renaming/replacing branch"
 
-git branch -D output
-git branch -m output
+git branch -D gh-pages
+git branch -m gh-pages
 
 echo "force pushing"
 
