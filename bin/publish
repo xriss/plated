@@ -1,0 +1,30 @@
+
+cd `dirname $0`
+cd ../output
+
+echo "creating new orphan branch"
+
+git checkout --orphan _output_
+
+echo "adding files to new branch"
+
+git add . && git commit -m"publish output"
+
+echo "renaming/replacing branch"
+
+git branch -D output
+git branch -m output
+
+echo "force pushing"
+
+git push --set-upstream origin -f output
+
+echo "updating reference to new output"
+
+cd ..
+git commit -a -m"publish output"
+git pull
+git push
+
+
+
