@@ -17,7 +17,7 @@ git branch -m gh-pages
 
 echo "force pushing"
 
-git push --set-upstream origin -f output
+git push --set-upstream origin -f gh-pages
 
 echo "updating reference to new output"
 
