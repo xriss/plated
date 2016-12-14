@@ -94,7 +94,7 @@ exports.create=function(opts,plated){
 	};
 
 	var cache={}
-	plated_files.file_to_chunks=function(root,fname)
+	plated_files.file_to_chunks=function(root,fname,chunks)
 	{
 		if(!cache[fname])
 		{
@@ -103,16 +103,16 @@ exports.create=function(opts,plated){
 			if(s)
 			{
 console.log( "+++"+path.join(fname) );
-				cache[fname]=plated.chunks.fill_chunks(s);
+				cache[fname]=s;
 			}
 		}
-		return cache[fname];
+		return plated.chunks.fill_chunks( cache[fname] , chunks);
 	}
 
 
 // check this directory and all directories above for generic chunks
 // build all of these into the current chunk namespace for this file
-	plated_files.parent_files_to_namespace=function(fname)
+	plated_files.parent_files_to_chunks=function(fname)
 	{
 		plated.chunks.reset_namespace();
 		
@@ -134,12 +134,14 @@ console.log( "+++"+path.join(fname) );
 		};
 		rf(fname)
 
-		ls(fname);
-		ls(list);
+//		ls(fname);
+//		ls(list);
 		
+		var chunks={};
 		for(var i=list.length-1 ; i>=0 ; i--) { var v=list[i];
-			plated.chunks.push_namespace( plated_files.file_to_chunks(opts.source,v) );
+			plated_files.file_to_chunks(opts.source,v,chunks);
 		}
+		return chunks;
 	}
 
 // build the given source filename, using chunks or maybe just a raw copy
@@ -147,17 +149,17 @@ console.log( "+++"+path.join(fname) );
 	{
 		if(plated_files.filename_is_plated(fname))
 		{
-			plated_files.parent_files_to_namespace(fname);
+			var chunks=plated_files.parent_files_to_chunks(fname);
 
 			var fname_out=plated_files.filename_to_output(fname);
 
 			try { fs.mkdirSync( path.dirname( path.join(opts.output,fname_out) ) ); } catch(e){}
 			
-			var it=plated_files.file_to_chunks(opts.source, fname ); // read chunks from this file
-ls(it);
-			fs.writeFileSync( path.join(opts.output,fname_out) , plated.chunks.replace("{"+(fname.split('.').pop())+"}",it) );
+			plated_files.file_to_chunks(opts.source, fname , chunks); // read chunks from this file
+//ls(chunks);
+			fs.writeFileSync( path.join(opts.output,fname_out) , plated.chunks.replace("{"+(fname.split('.').pop())+"}",chunks) );
 
-			fs.writeFileSync( path.join(opts.output,fname_out)+".json" , JSON.stringify(it,null,1) );
+			fs.writeFileSync( path.join(opts.output,fname_out)+".json" , JSON.stringify(chunks,null,1) );
 		}
 		else
 		{
