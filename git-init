@@ -3,7 +3,7 @@ cd `dirname $0`
 echo " initializing git submodules "
 git submodule update --init --reference .
 
-git " installing node dependencies, if this fails you probably need node "
+echo " installing node dependencies, if this fails you probably need node "
 cd js
 npm install
 
