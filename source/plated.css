@@ -1,7 +1,7 @@
 #=^
-^css same=append
+^css same=append trim=ends
 
-.body {
+body {
 
 background:#888;
 
