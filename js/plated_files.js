@@ -196,13 +196,13 @@ console.log( "+++"+path.join(fname) );
 	{
 		plated_files.build(); // build once
 
-		var as=opts.source.split("/");
+		var as=opts.source.split(path.sep);
 		watch.watchTree(opts.source,{},function(f,curr,prev){
 			if(typeof f == "object" && prev === null && curr === null) {
 			}
 			else
 			{
-				var af=f.split("/");
+				var af=f.split(path.sep);
 				for(var i=0;i<as.length;i++)
 				{
 					if( as[i]==af[0] )
@@ -210,7 +210,7 @@ console.log( "+++"+path.join(fname) );
 						af.splice(0,1);
 					}
 				}
-				var s=af.join("/");
+				var s=af.join(path.sep);
 
 				plated_files.empty_cache();
 				if(plated_files.filename_is_basechunk(s)) // full build
