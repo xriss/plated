@@ -1,6 +1,5 @@
 
 cd `dirname $0`
-cd ..
 
 echo "performing a build"
 
