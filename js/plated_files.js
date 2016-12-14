@@ -156,6 +156,8 @@ console.log( "+++"+path.join(fname) );
 			var it=plated_files.file_to_chunks(opts.source, fname ); // read chunks from this file
 ls(it);
 			fs.writeFileSync( path.join(opts.output,fname_out) , plated.chunks.replace("{"+(fname.split('.').pop())+"}",it) );
+
+			fs.writeFileSync( path.join(opts.output,fname_out)+".json" , JSON.stringify(it,null,1) );
 		}
 		else
 		{
