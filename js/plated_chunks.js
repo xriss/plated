@@ -97,8 +97,15 @@ exports.create=function(opts,plated){
 							}
 							else // concat mutliple chunks
 							{
-	//							console.log("warning chunk name is used twice, "+name);
-								chunk=[ chunks[name] ];
+								if( flags.same=="append" )
+								{
+									chunk=[ chunks[name] ];
+								}
+								else // replace
+								{
+									chunk=[];
+									chunks[name]="";
+								}
 							}
 						}
 					}
@@ -142,48 +149,6 @@ exports.create=function(opts,plated){
 		}
 
 		return chunks;
-	}
-
-	// turn all chunks back into a string
-	// this is broken :)
-	plated_chunks.out_chunks=function(chunks)
-	{
-		var r=[];
-		
-		for(var n in chunks)
-		{
-			if(n=="__flags__") // special flags chunk name
-			{
-			}
-			else
-			{
-				var v=chunks[n];
-				var f=chunks.__flags__;
-				if(f){f=f[n];}
-				r.push("#"+n);
-				if(f) // and we need to include flags
-				{
-					for(var fn in f)
-					{
-						if(fn && f[fn])
-						{
-							r.push(" "+fn+"="+f[fn]);
-						}
-					}
-				}
-				else
-				{
-					r.push("\n");
-				}
-				str.split("\n").forEach(function(l){
-					if(l[0]=="#") { r.push("#"); } // use double escape
-					r.push(l);
-					r.push("\n");
-				});
-			}
-		}
-
-		return r.join("");
 	}
 
 	// break a string on {data} ready to replace
