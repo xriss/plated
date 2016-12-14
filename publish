@@ -1,8 +1,15 @@
 
 cd `dirname $0`
-cd ../output
+cd ..
+
+echo "performing a build"
+
+./plated build
+
 
 echo "creating new orphan branch"
+
+cd output
 
 git checkout --orphan _gh-pages_
 
