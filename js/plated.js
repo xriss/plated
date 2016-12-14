@@ -19,5 +19,10 @@ exports.create=function(opts,plated){
 		return plated_files.build();
 	};
 
+	plated.watch=function()
+	{
+		return plated_files.watch();
+	};
+
 	return plated;
 }

@@ -8,7 +8,8 @@
   },
   "dependencies": {
     "yargs": "*",
-    "marked": "*"
+    "marked": "*",
+    "watch": "*"
   },
   "devDependencies": {},
   "scripts": {

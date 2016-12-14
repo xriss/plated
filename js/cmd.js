@@ -20,7 +20,12 @@ if( argv._[0]=="build" )
 	var plated=require("./plated.js").create(argv);
 	return plated.build();
 }
-
+else
+if( argv._[0]=="watch" )
+{
+	var plated=require("./plated.js").create(argv);
+	return plated.watch();
+}
 
 // help text
 console.log(
@@ -32,5 +37,7 @@ console.log(
 	"\t\t--plated=plated -- choose the trigger string used in filenames.\n"+
 	"\t\t--hashchar=#    -- choose the trigger character used in chunk files.\n"+
 	"\n"+
+	"> plated watch \n"+
+	"\tBuild and then watch all files in source folder, rebuilding if they change.\n"+
 	"\n"+
 "");

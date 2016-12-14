@@ -2,6 +2,7 @@
 var fs = require('fs');
 var util=require('util');
 var path=require('path');
+var watch=require('watch');
 
 
 var ls=function(a) { console.log(util.inspect(a,{depth:null})); }
@@ -94,6 +95,12 @@ exports.create=function(opts,plated){
 	};
 
 	var cache={}
+
+	plated_files.empty_cache=function()
+	{
+		cache={};
+	}
+
 	plated_files.file_to_chunks=function(root,fname,chunks)
 	{
 		if(!cache[fname])
@@ -181,6 +188,41 @@ console.log( "+++"+path.join(fname) );
 				{
 					plated_files.build_file(s);
 				}
+		});
+	}
+
+// build all files found in the source dir into the output dir 
+	plated_files.watch=function()
+	{
+		plated_files.build(); // build once
+
+		var as=opts.source.split("/");
+		watch.watchTree(opts.source,{},function(f,curr,prev){
+			if(typeof f == "object" && prev === null && curr === null) {
+			}
+			else
+			{
+				var af=f.split("/");
+				for(var i=0;i<as.length;i++)
+				{
+					if( as[i]==af[0] )
+					{
+						af.splice(0,1);
+					}
+				}
+				var s=af.join("/");
+
+				plated_files.empty_cache();
+				if(plated_files.filename_is_basechunk(s)) // full build
+				{
+					plated_files.build();
+				}
+				else
+				{
+					plated_files.build_file(s);
+				}
+
+			}
 		});
 	}
 
