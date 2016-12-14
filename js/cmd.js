@@ -11,8 +11,8 @@ var argv = require('yargs').argv; global.argv=argv;
 
 argv.source   = argv.source   || "source";
 argv.output   = argv.output   || "output";
-argv.plated   = argv.plated   || "plated";
-argv.hashchar = argv.hashchar || "#";
+argv.plated   = argv.plated   || "^";
+argv.hashchar = argv.hashchar || "^";
 
 
 if( argv._[0]=="build" )
