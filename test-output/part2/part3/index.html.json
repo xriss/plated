@@ -1,0 +1,33 @@
+{
+ "__flags__": {
+  "css": {
+   "same": "append",
+   "trim": "ends"
+  },
+  "html": {
+   "trim": "ends"
+  },
+  "head": {
+   "trim": "ends"
+  },
+  "body": {
+   "trim": "ends"
+  },
+  "test": {
+   "trim": "ends"
+  },
+  "title": {
+   "trim": "ends"
+  }
+ },
+ "css": "body {\n\nbackground:^888;\n\n}",
+ "html": "<html>\n<head>{head}</head>\n<body>{body}</body>\n</html>",
+ "head": "<style>\n{css}\n</style>",
+ "body": "\n<h1>{title}</h1>\n\nWelcome to {test} a test page.\n\n",
+ "test": "\n\n10\n\n",
+ "__plated__": {
+  "source": "test/part2/part3/index.^.html",
+  "output": "test/part2/part3/index.html"
+ },
+ "title": "This is the title!"
+}

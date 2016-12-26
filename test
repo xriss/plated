@@ -1,0 +1,27 @@
+cd `dirname $0`
+
+echo
+echo " BUILDING "
+echo
+
+./plated build
+
+echo
+echo " TESTING "
+echo
+
+diff output/test test-output
+TEST=$?
+
+if [ $TEST = 0 ] ; then
+	echo
+	echo " PASSED "
+	echo
+	exit 0
+else
+	echo
+	echo " FAILED "
+	echo
+	exit 1
+fi
+
