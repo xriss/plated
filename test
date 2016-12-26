@@ -10,7 +10,7 @@ echo
 echo " TESTING "
 echo
 
-diff output/test test-output
+diff output/test test-expected
 TEST=$?
 
 if [ $TEST = 0 ] ; then
