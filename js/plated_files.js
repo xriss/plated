@@ -197,9 +197,9 @@ exports.create=function(opts,plated){
 			
 			plated_files.file_to_chunks(opts.source, fname , chunks); // read chunks from this file
 			
-			chunks._=chunks._||{};
-			chunks._.source=fname;
-			chunks._.output=plated_files.filename_to_output(fname);
+			chunks.__plated__=chunks.__plated__||{};
+			chunks.__plated__.source=fname;
+			chunks.__plated__.output=plated_files.filename_to_output(fname);
 			
 			plated.chunks.format_chunks( chunks);
 
@@ -209,14 +209,14 @@ exports.create=function(opts,plated){
 			}
 
 			// create output dir if necessary
-			try { fs.mkdirSync( path.dirname( path.join(opts.output,chunks._.output) ) ); } catch(e){}
+			try { fs.mkdirSync( path.dirname( path.join(opts.output,chunks.__plated__.output) ) ); } catch(e){}
 						
-			if(chunks._.output) // may have been told not to do the normal thing
+			if(chunks.__plated__.output) // may have been told not to do the normal thing
 			{
 				var merged_chunks=plated.chunks.merge_namespace(chunks);
 
-				fs.writeFileSync( path.join(opts.output,chunks._.output) , plated.chunks.replace("{"+(fname.split('.').pop())+"}",merged_chunks) );
-				fs.writeFileSync( path.join(opts.output,chunks._.output)+".json" , JSON.stringify(merged_chunks,null,1) );
+				fs.writeFileSync( path.join(opts.output,chunks.__plated__.output) , plated.chunks.replace("{"+(fname.split('.').pop())+"}",merged_chunks) );
+				fs.writeFileSync( path.join(opts.output,chunks.__plated__.output)+".json" , JSON.stringify(merged_chunks,null,1) );
 			}
 
 		}
@@ -230,7 +230,7 @@ exports.create=function(opts,plated){
 // build all files found in the source dir into the output dir 
 	plated_files.build=function()
 	{
-		ls(opts);
+//		ls(opts);
 
 		plated_files.empty_folder(opts.output);
 
@@ -241,8 +241,8 @@ exports.create=function(opts,plated){
 			
 			var chunks=plated_files.base_files_to_chunks(s+"/name.txt");
 
-			chunks._=chunks._||{};
-			chunks._.source=s+"/"; // add trailing slash so we know it is a dir not a file
+			chunks.__plated__=chunks.__plated__||{};
+			chunks.__plated__.source=s;
 			
 			plated.chunks.format_chunks( chunks );
 

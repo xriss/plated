@@ -219,9 +219,14 @@ exports.create=function(opts,plated){
 	{
 		var deepmerge=function(frm,too,__flags__){
 			for(var idx in frm) { var val=frm[idx];
-				if( ( typeof(val) == "object" ) || ( typeof(val) == "array" ) )
+				if( ( typeof(val) == "array" ) )
 				{
-					too[idx] = deepmerge(val,{}); // copy the object, recursively
+					too[idx] = deepmerge(val,{}); // copy the array, recursively
+				}
+				else
+				if( ( typeof(val) == "object" )  )
+				{
+					too[idx] = deepmerge(val,too[idx] || {}); // merge the object
 				}
 				else
 				if( (__flags__) && (__flags__[idx]) && (__flags__[idx].same=="append") ) // we should append
