@@ -1,0 +1,44 @@
+ ^base
+
+BASE
+
+^json form=json
+
+{
+
+	"hello":{
+		"world":true
+	}
+
+}
+
+^json_merge form=json same=merge
+
+{
+
+	"hello":{
+		"world":true
+	}
+
+}
+
+ 
+^not_json
+
+{
+
+	"hello":{
+		"world":true
+	}
+
+}
+
+^not_json_append same=append
+
+{
+
+	"hello":{
+		"world":true
+	}
+
+}

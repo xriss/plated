@@ -1,0 +1,45 @@
+ ^base
+
+BASE ONE
+
+^json form=json
+
+{
+
+	"extra":{
+		"data":true
+	}
+
+}
+
+^json_merge form=json same=merge
+
+{
+
+	"extra":{
+		"data":true
+	}
+
+}
+
+
+^not_json
+
+{
+
+	"extra":{
+		"data":true
+	}
+
+}
+
+^not_json_append same=append
+
+{
+
+	"extra":{
+		"data":true
+	}
+
+}
+

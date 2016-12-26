@@ -221,12 +221,19 @@ exports.create=function(opts,plated){
 			for(var idx in frm) { var val=frm[idx];
 				if( ( typeof(val) == "array" ) )
 				{
-					too[idx] = deepmerge(val,{}); // copy the array, recursively
+					too[idx] = deepmerge(val,{}); // recursive deep copy
 				}
 				else
 				if( ( typeof(val) == "object" )  )
 				{
-					too[idx] = deepmerge(val,too[idx] || {}); // merge the object
+					if( (__flags__) && (__flags__[idx]) && (__flags__[idx].same=="merge") ) // we should merge json data
+					{
+						too[idx] = deepmerge(val,too[idx] || {}); // merge the object
+					}
+					else
+					{
+						too[idx] = deepmerge(val,{}); // recursive deep copy
+					}
 				}
 				else
 				if( (__flags__) && (__flags__[idx]) && (__flags__[idx].same=="append") ) // we should append
@@ -256,6 +263,8 @@ exports.create=function(opts,plated){
 		}
 		
 		deepmerge(dat,chunks,dat.__flags__);
+		
+		chunks.__flags__=undefined; // no flags available after chunks have been merged
 
 		return chunks;
 	};

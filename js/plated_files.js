@@ -12,6 +12,11 @@ exports.create=function(opts,plated){
 
 	var plated_files={};
 
+// create parent dir if necessary and write data into this file
+	plated_files.write = function(filename,data) {
+			try { fs.mkdirSync( path.dirname(filename) ); } catch(e){} // ignore errors
+			fs.writeFileSync( filename , data );
+	};
 
 // convert a source path into an output path
 	plated_files.source_to_output = function(path) {
@@ -208,22 +213,18 @@ exports.create=function(opts,plated){
 				chunks = f( chunks ); // adjust and or output special chunks or files
 			}
 
-			// create output dir if necessary
-			try { fs.mkdirSync( path.dirname( path.join(opts.output,chunks.__plated__.output) ) ); } catch(e){}
-						
 			if(chunks.__plated__.output) // may have been told not to do the normal thing
 			{
 				var merged_chunks=plated.chunks.merge_namespace(chunks);
 
-				fs.writeFileSync( path.join(opts.output,chunks.__plated__.output) , plated.chunks.replace("{"+(fname.split('.').pop())+"}",merged_chunks) );
-				fs.writeFileSync( path.join(opts.output,chunks.__plated__.output)+".json" , JSON.stringify(merged_chunks,null,1) );
+				plated_files.write( path.join(opts.output,chunks.__plated__.output) , plated.chunks.replace("{"+(fname.split('.').pop())+"}",merged_chunks) );
+				plated_files.write( path.join(opts.output,chunks.__plated__.output)+".json" , JSON.stringify(merged_chunks,null,1) );
 			}
 
 		}
 		else
 		{
-			try { fs.mkdirSync( path.dirname( path.join(opts.output,s) ) ); } catch(e){}				
-			fs.writeFileSync( path.join(opts.output,fname), fs.readFileSync( path.join(opts.source,fname) ));
+			plated_files.write( path.join(opts.output,fname), fs.readFileSync( path.join(opts.source,fname) ));
 		}
 	}
 
@@ -258,6 +259,15 @@ exports.create=function(opts,plated){
 		for(var idx in plated.process_dirs) { var f=plated.process_dirs[idx];
 			plated.dirs = f( plated.dirs ); // adjust and or output special chunks or files
 		}
+
+
+		for(var d in plated.dirs){ var chunks=plated.dirs[d];
+
+			plated_files.prepare_namespace( path.join(d,".json") ); // prepare merged namespace
+
+			plated_files.write( path.join(opts.output,d,".json") , JSON.stringify( plated.chunks.merge_namespace({}) ,null,1) );
+		}
+
 //ls(plated.dirs);
 
 		plated_files.find_files(opts.source,"",function(s){
