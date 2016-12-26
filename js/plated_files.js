@@ -24,7 +24,7 @@ exports.create=function(opts,plated){
 	plated_files.filename_is_basechunk=function(fname)
 	{
 		var vv=path.basename(fname).split(".");
-		if( vv.length==2 && vv[0]==opts.plated )
+		if( vv[0]==opts.plated )
 		{
 			return true
 		}
@@ -94,6 +94,18 @@ exports.create=function(opts,plated){
 		}
 	};
 
+// call f with every dir we find
+	plated_files.find_dirs = function(root,name,f) {
+		f(name);
+		var files=fs.readdirSync( path.join(root,name) );
+		for(var i in files){ var v=files[i];
+			if(fs.lstatSync( path.join(root,name,v) ).isDirectory())
+			{
+				plated_files.find_dirs(root,path.join(name,v),f);
+			}
+		}
+	};
+
 	var cache={}
 
 	plated_files.empty_cache=function()
@@ -109,7 +121,7 @@ exports.create=function(opts,plated){
 			try { s=fs.readFileSync(path.join(root,fname),'utf8'); } catch(e){}
 			if(s)
 			{
-console.log( "+++"+path.join(fname) );
+//console.log( "+++"+path.join(fname) );
 				cache[fname]=s;
 			}
 		}
@@ -119,10 +131,37 @@ console.log( "+++"+path.join(fname) );
 
 // check this directory and all directories above for generic chunks
 // build all of these into the current chunk namespace for this file
-	plated_files.parent_files_to_chunks=function(fname)
+	plated_files.prepare_namespace=function(fname)
 	{
-		plated.chunks.reset_namespace();
+		var ns=[];
 		
+//		plated.chunks.reset_namespace();
+		
+		var list=[];
+		var rf=function(fn){
+			var d=path.dirname(fn);
+			if(d==".") { d=""; }
+			
+			var chunks=plated.dirs[d];
+			if( chunks ) { ns.push(chunks); }
+			
+//console.log("?",d)
+			if((d!="")&&(d!=".")&&(d!="/")) { rf(d); } // next dir
+		};
+		rf(fname)
+		
+		ns.reverse();
+		
+		plated.chunks.set_namespace(ns);
+
+//ls(ns)
+
+	}
+
+// check this directory and all directories above for generic chunks
+// build all of these into the current chunk namespace for this file
+	plated_files.base_files_to_chunks=function(fname)
+	{
 		var list=[];
 		var rf=function(fn){
 			var d=path.dirname(fn);
@@ -137,12 +176,8 @@ console.log( "+++"+path.join(fname) );
 					list.push(p2);
 				}
 			}
-			if((d!=".")&&(d!="/")) { rf(d); } // next dir
 		};
 		rf(fname)
-
-//		ls(fname);
-//		ls(list);
 		
 		var chunks={};
 		for(var i=list.length-1 ; i>=0 ; i--) { var v=list[i];
@@ -156,17 +191,34 @@ console.log( "+++"+path.join(fname) );
 	{
 		if(plated_files.filename_is_plated(fname))
 		{
-			var chunks=plated_files.parent_files_to_chunks(fname);
-
-			var fname_out=plated_files.filename_to_output(fname);
-
-			try { fs.mkdirSync( path.dirname( path.join(opts.output,fname_out) ) ); } catch(e){}
+			plated_files.prepare_namespace(fname); // prepare merged namespace
+			
+			var chunks={};
 			
 			plated_files.file_to_chunks(opts.source, fname , chunks); // read chunks from this file
-//ls(chunks);
-			fs.writeFileSync( path.join(opts.output,fname_out) , plated.chunks.replace("{"+(fname.split('.').pop())+"}",chunks) );
+			
+			chunks._=chunks._||{};
+			chunks._.source=fname;
+			chunks._.output=plated_files.filename_to_output(fname);
+			
+			plated.chunks.format_chunks( chunks);
 
-			fs.writeFileSync( path.join(opts.output,fname_out)+".json" , JSON.stringify(chunks,null,1) );
+			// run chunks through plugins, eg special blog handling
+			for(var idx in plated.process_file) { var f=plated.process_file[idx];
+				chunks = f( chunks ); // adjust and or output special chunks or files
+			}
+
+			// create output dir if necessary
+			try { fs.mkdirSync( path.dirname( path.join(opts.output,chunks._.output) ) ); } catch(e){}
+						
+			if(chunks._.output) // may have been told not to do the normal thing
+			{
+				var merged_chunks=plated.chunks.merge_namespace(chunks);
+
+				fs.writeFileSync( path.join(opts.output,chunks._.output) , plated.chunks.replace("{"+(fname.split('.').pop())+"}",merged_chunks) );
+				fs.writeFileSync( path.join(opts.output,chunks._.output)+".json" , JSON.stringify(merged_chunks,null,1) );
+			}
+
 		}
 		else
 		{
@@ -181,11 +233,38 @@ console.log( "+++"+path.join(fname) );
 		ls(opts);
 
 		plated_files.empty_folder(opts.output);
+
+		plated.dirs={};
 		
+		plated_files.find_dirs(opts.source,"",function(s){
+			console.log("DIR\t"+s)
+			
+			var chunks=plated_files.base_files_to_chunks(s+"/name.txt");
+
+			chunks._=chunks._||{};
+			chunks._.source=s;
+			
+			plated.chunks.format_chunks( chunks);
+
+			// run chunks through plugins, eg special blog handling
+			for(var idx in plated.process_file) { var f=plated.process_file[idx];
+				chunks = f( chunks ); // adjust and or output special chunks or files
+			}
+
+			plated.dirs[s]=chunks;
+		});
+
+		// run chunks through plugins, eg special blog handling
+		for(var idx in plated.process_dirs) { var f=plated.process_dirs[idx];
+			plated.dirs = f( plated.dirs ); // adjust and or output special chunks or files
+		}
+//ls(plated.dirs);
+
 		plated_files.find_files(opts.source,"",function(s){
 				
 				if(!plated_files.filename_is_basechunk(s))
 				{
+					console.log("FILE\t"+s)
 					plated_files.build_file(s);
 				}
 		});

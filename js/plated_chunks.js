@@ -120,6 +120,11 @@ exports.create=function(opts,plated){
 			chunks[name]=chunk.join("\n");
 		}
 
+		return chunks;
+	}
+
+	plated_chunks.format_chunks=function(chunks)
+	{
 		// apply flags to the formatting
 		for( n in chunks.__flags__ )
 		{
@@ -147,7 +152,7 @@ exports.create=function(opts,plated){
 				}
 			}
 		}
-
+		
 		return chunks;
 	}
 
@@ -208,18 +213,50 @@ exports.create=function(opts,plated){
 		return plated_chunks.namespaces.pop();
 	}
 
-	// lookup a str in dat or namespace
-	plated_chunks.lookup=function(str,dat)
+
+// merge all of the namespaces together, along with the dat, then return this new set of chunks for easy lookup
+	plated_chunks.merge_namespace=function(dat)
 	{
-		var r;
-		if(dat) { r=plated_chunks.lookup_single(str,dat); if(r!==undefined) { return r; } } // check dat first
-		for(var i=plated_chunks.namespaces.length-1;i>=0;i--) // last added has priority
+		var deepmerge=function(frm,too,__flags__){
+			for(var idx in frm) { var val=frm[idx];
+				if( ( typeof(val) == "object" ) || ( typeof(val) == "array" ) )
+				{
+					too[idx] = deepmerge(val,{}); // copy the object, recursively
+				}
+				else
+				if( (__flags__) && (__flags__[idx]) && (__flags__[idx].same=="append") ) // we should append
+				{
+					if(too[idx])
+					{
+						too[idx]=too[idx] + "" + val; // append strings
+					}
+					else
+					{
+						too[idx]=val;
+					}
+				}
+				else // replace
+				{
+					too[idx]=val;
+				}
+			}
+			return too;
+		};
+		
+		var chunks={};
+		
+		for(var i=0;i<plated_chunks.namespaces.length;i++) // last added has priority
 		{ 
-			r=plated_chunks.lookup_single(str,plated_chunks.namespaces[i]); if(r!==undefined) { return r; } // then look in all namespaces
+			deepmerge(plated_chunks.namespaces[i],chunks,plated_chunks.namespaces[i].__flags__);
 		}
-	}
+		
+		deepmerge(dat,chunks,dat.__flags__);
+
+		return chunks;
+	};
+
 	// lookup only in dat
-	plated_chunks.lookup_single=function(str,dat)
+	plated_chunks.lookup=function(str,dat)
 	{
 		if( dat[str] !== undefined ) // simple check
 		{
@@ -233,7 +270,7 @@ exports.create=function(opts,plated){
 			if("object" == typeof dat[a1] ) // try a sub lookup 
 			{
 				var a2=str.substring(i+1);
-				return plated_chunks.lookup_single(a2,dat[a1])
+				return plated_chunks.lookup(a2,dat[a1])
 			}
 		}
 	}
@@ -303,16 +340,18 @@ exports.create=function(opts,plated){
 	}
 
 	// repeatedly replace untill all things that can expand, have expanded, or we ran out of sanity
-	plated_chunks.replace=function(str,arr)
+	plated_chunks.replace=function(str,dat)
 	{
 		var check="";
 		var sanity=100;
 		while( str != check) //nothing changed on the last iteration so we are done
 		{
 			check=str;
-			str=plated_chunks.replace_once(str,arr);
+			str=plated_chunks.replace_once(str,dat);
 			if(--sanity<0) { break; }
 		}
+		
+// TODO: perform a final replace of chunks that should not recurse
 		
 		return str;
 	}

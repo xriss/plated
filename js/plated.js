@@ -13,6 +13,10 @@ exports.create=function(opts,plated){
 	
 	var plated_files =plated.files =require("./plated_files.js" ).create(opts,plated);
 	var plated_chunks=plated.chunks=require("./plated_chunks.js").create(opts,plated);
+	var plated_blog=plated.blog=require("./plated_blog.js").create(opts,plated);
+	
+	plated.process_dirs=[ plated_blog.process_dirs ];
+	plated.process_file=[ plated_blog.process_file ];
 	
 	plated.build=function()
 	{
