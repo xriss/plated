@@ -237,7 +237,7 @@ exports.create=function(opts,plated){
 		plated.dirs={};
 		
 		plated_files.find_dirs(opts.source,"",function(s){
-			console.log("DIR\t"+s)
+			console.log("DIR\t"+"/"+s)
 			
 			var chunks=plated_files.base_files_to_chunks(s+"/name.txt");
 
@@ -264,7 +264,7 @@ exports.create=function(opts,plated){
 				
 				if(!plated_files.filename_is_basechunk(s))
 				{
-					console.log("FILE\t"+s)
+					console.log("FILE\t"+"/"+s)
 					plated_files.build_file(s);
 				}
 		});
