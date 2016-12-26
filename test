@@ -4,13 +4,13 @@ echo
 echo " BUILDING "
 echo
 
-./plated build
+./plated build --source=test-source --output=test-output
 
 echo
 echo " TESTING "
 echo
 
-diff output/test test-expected
+diff test-output test-expected
 TEST=$?
 
 if [ $TEST = 0 ] ; then
