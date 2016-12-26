@@ -242,9 +242,9 @@ exports.create=function(opts,plated){
 			var chunks=plated_files.base_files_to_chunks(s+"/name.txt");
 
 			chunks._=chunks._||{};
-			chunks._.source=s;
+			chunks._.source=s+"/"; // add trailing slash so we know it is a dir not a file
 			
-			plated.chunks.format_chunks( chunks);
+			plated.chunks.format_chunks( chunks );
 
 			// run chunks through plugins, eg special blog handling
 			for(var idx in plated.process_file) { var f=plated.process_file[idx];
