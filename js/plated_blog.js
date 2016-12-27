@@ -82,15 +82,48 @@ exports.create=function(opts,plated){
 		{
 			if( "string" == typeof (chunk) ) { chunk=JSON.parse(chunk) || {}; } // auto json parse
 
-			if(!chunk.timestamp)
+			if(!chunk.unixtime)
 			{
-				var s=chunk.date || chunks.__plated__.source;
-				var a=s.split(/[^0-9]+/); 
-				var idx=0;
-				for(var i=0;i<a.length;a++)
+				var s=chunk.datetime || chunks.__plated__.source;
+				
+				if(typeof(s)=="string") // convert from string to array
 				{
-					console.log(a[i]);
+					var a=s.split(/[^0-9]+/); 
+//console.log(a);
+					var idx=0;
+					var dd=[1970,1,0,0,0,0]; // the beginning of time
+					for(var i=0;i<a.length;i++)
+					{
+						var v=a[i];
+						if(idx==0) // year
+						{
+							if(v.length==4)
+							{
+								dd[idx++]=parseInt(v);
+							}
+						}
+						else
+						if(idx>0) // month/day/hour/minute/second
+						{
+							if(v.length==2)
+							{
+								dd[idx++]=parseInt(v);
+							}
+							else
+							{
+								idx=0; // reset
+							}
+						}
+						else
+						{
+							idx=0; // reset
+						}
+					}
+//console.log(dd);
+					chunk.datetime=dd;
 				}
+
+				chunk.unixtime=Date.UTC(dd[0],dd[1]-1,dd[2],dd[3],dd[4],dd[5])/1000;
 			}
 
 			chunks[plated_blog.config.blog_post_json]=chunk;
