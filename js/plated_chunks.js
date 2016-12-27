@@ -39,7 +39,7 @@ exports.create=function(opts,plated){
 	// break a string into chunks ( can be merged or replace other chunks )
 	plated_chunks.fill_chunks=function(str,chunks)
 	{
-		var hashchar=opts.hashchar || "#";
+		var hashchar=(opts.hashchar || "#")[0];
 		var chunks=chunks || {};
 		chunks.__flags__=chunks.__flags__ || {}; // special flags chunk chunk, if we have any flags
 
@@ -215,6 +215,7 @@ exports.create=function(opts,plated){
 
 
 // merge all of the namespaces together, along with the dat, then return this new set of chunks for easy lookup
+// it should be safe to modify the output merged chunks without accidentally changing anything in the namespace.
 	plated_chunks.merge_namespace=function(dat)
 	{
 		var deepmerge=function(frm,too,__flags__){
@@ -289,7 +290,7 @@ exports.create=function(opts,plated){
 		}
 	}
 
-	// replace once only, using dat and any added namespaces
+	// replace once only using dat
 	plated_chunks.replace_once=function(str,dat)
 	{
 		var aa=plated_chunks.prepare(str);

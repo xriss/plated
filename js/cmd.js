@@ -34,8 +34,8 @@ console.log(
 	"\tBuild all files in source folder into output folder.\n"+
 	"\t\t--source=source -- choose the source folder.\n"+
 	"\t\t--output=output -- choose the output folder.\n"+
-	"\t\t--plated=plated -- choose the trigger string used in filenames.\n"+
-	"\t\t--hashchar=#    -- choose the trigger character used in chunk files.\n"+
+	"\t\t--plated=^      -- choose the trigger string used in filenames.\n"+
+	"\t\t--hashchar=^    -- choose the trigger character used in chunk files.\n"+
 	"\n"+
 	"> plated watch \n"+
 	"\tBuild and then watch all files in source folder, rebuilding if they change.\n"+
