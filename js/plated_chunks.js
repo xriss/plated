@@ -128,16 +128,16 @@ exports.create=function(opts,plated){
 		// apply flags to the formatting
 		for( n in chunks.__flags__ )
 		{
-			var f=chunks.__flags__[n];
+			var flags=chunks.__flags__[n];
 			
-			if(f.trim) // trim=ends
+			if(flags.trim) // trim=ends
 			{
 				chunks[n]=chunks[n].trim(); // remove whitespace from start/end
 			}
 			
-			if(f.form) // special format
+			if(flags.form) // special format
 			{
-				if(f.form=="json")
+				if(flags.form=="json")
 				{
 					if( "string" == typeof (chunks[n]) )
 					{
@@ -145,12 +145,13 @@ exports.create=function(opts,plated){
 					}
 				}
 				else
-				if(f.form=="markdown")
+				if(flags.form=="markdown")
 				{
 					
 					chunks[n]=marked(nl_to_br(chunks[n]));
 				}
 			}
+
 		}
 		
 		return chunks;
@@ -227,7 +228,11 @@ exports.create=function(opts,plated){
 				else
 				if( ( typeof(val) == "object" )  )
 				{
-					if( (__flags__) && (__flags__[idx]) && (__flags__[idx].same=="merge") ) // we should merge json data
+					if	(
+							( (__flags__) && (__flags__[idx]) && (__flags__[idx].same=="merge") ) // we should merge json data
+							||
+							( (__flags__) && (val==__flags__) ) // flags need merging
+						)
 					{
 						too[idx] = deepmerge(val,too[idx] || {}); // merge the object
 					}
@@ -265,7 +270,7 @@ exports.create=function(opts,plated){
 		
 		deepmerge(dat,chunks,dat.__flags__);
 		
-		chunks.__flags__=undefined; // no flags available after chunks have been merged
+//		chunks.__flags__=undefined; // no flags available after chunks have been merged
 
 		return chunks;
 	};
@@ -366,7 +371,7 @@ exports.create=function(opts,plated){
 			if(--sanity<0) { break; }
 		}
 		
-// TODO: perform a final replace of chunks that should not recurse
+// TODO: perform a final replace of chunks that should not recurse, these are included like so {.chunkname}
 		
 		return str;
 	}
