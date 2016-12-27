@@ -18,9 +18,9 @@ exports.create=function(opts,plated){
 // main settings that you can override in your blog_json config chunk
 	plated_blog.config.posts_per_page=5;
 
-// the following chunk names can be altered, if the conflict with chunk names already used.
+// the following chunk names can be altered, if they conflict with chunk names already used (opts)
 
-// special chunk names for blog, can override via commandline (opts)
+// special chunk names for blog
 	plated_blog.config.blog_json      = opts.blog_json      || "blog_json";
 	plated_blog.config.blog_body      = opts.blog_body      || "blog_body"; // this is used on the blogs main index.html ( AKA page1.html )
 	plated_blog.config.blog_page_json = opts.blog_page_json || "blog_page_json";
