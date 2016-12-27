@@ -20,15 +20,11 @@ exports.create=function(opts,plated){
 
 // the following chunk names can be altered, if the conflict with chunk names already used.
 
-// chunk names for blog info
-	plated_blog.config.blog_json = opts.blog_json || "blog_json";
-	plated_blog.config.blog_body = opts.blog_body || "blog_body"; // this is used on the blogs main index.html ( AKA page1.html )
-
-// chunk names for a page of blog posts
+// special chunk names for blog, can overide via commandline (opts)
+	plated_blog.config.blog_json      = opts.blog_json      || "blog_json";
+	plated_blog.config.blog_body      = opts.blog_body      || "blog_body"; // this is used on the blogs main index.html ( AKA page1.html )
 	plated_blog.config.blog_page_json = opts.blog_page_json || "blog_page_json";
 	plated_blog.config.blog_page_body = opts.blog_page_body || "blog_page_body"; // this is used for page2.html , page3.html , etc
-
-// chunk names for a single blog post
 	plated_blog.config.blog_post_json = opts.blog_post_json || "blog_post_json";
 	plated_blog.config.blog_post_body = opts.blog_post_body || "blog_post_body"; // this is used for each posts index.html	
 
