@@ -21,16 +21,16 @@ exports.create=function(opts,plated){
 // the following chunk names can be altered, if the conflict with chunk names already used.
 
 // chunk names for blog info
-	plated_blog.config.blog_json="blog_json";
-	plated_blog.config.blog_body="blog_body"; // this is used on the blogs main index.html ( AKA page1.html )
+	plated_blog.config.blog_json = opts.blog_json || "blog_json";
+	plated_blog.config.blog_body = opts.blog_body || "blog_body"; // this is used on the blogs main index.html ( AKA page1.html )
 
 // chunk names for a page of blog posts
-	plated_blog.config.blog_page_json="blog_page_json";
-	plated_blog.config.blog_page_body="blog_page_body"; // this is used for page2.html , page3.html , etc
+	plated_blog.config.blog_page_json = opts.blog_page_json || "blog_page_json";
+	plated_blog.config.blog_page_body = opts.blog_page_body || "blog_page_body"; // this is used for page2.html , page3.html , etc
 
 // chunk names for a single blog post
-	plated_blog.config.blog_post_json="blog_post_json";
-	plated_blog.config.blog_post_body="blog_post_body"; // this is used for each posts index.html	
+	plated_blog.config.blog_post_json = opts.blog_post_json || "blog_post_json";
+	plated_blog.config.blog_post_body = opts.blog_post_body || "blog_post_body"; // this is used for each posts index.html	
 
 // tweak all the base chunks grouped by dir name and pre cascaded/merged
 	plated_blog.process_dirs=function(dirs){
@@ -72,10 +72,7 @@ exports.create=function(opts,plated){
 		var chunk=chunks[plated_blog.config.blog_json];
 		if( chunk )
 		{
-			if( "string" == typeof (chunk) )
-			{
-				chunk=JSON.parse(chunk) || {};
-			}
+			if( "string" == typeof (chunk) ) { chunk=JSON.parse(chunk) || {}; } // auto json parse
 			chunk.dir            = chunk.dir            || chunks.__plated__.source ;
 			chunk.posts_per_page = chunk.posts_per_page || plated_blog.config.posts_per_page ;
 
@@ -87,10 +84,7 @@ exports.create=function(opts,plated){
 		var chunk=chunks[plated_blog.config.blog_post_json];
 		if( chunk )
 		{
-			if( "string" == typeof (chunk) )
-			{
-				chunk=JSON.parse(chunk) || {};
-			}
+			if( "string" == typeof (chunk) ) { chunk=JSON.parse(chunk) || {}; } // auto json parse
 
 			chunks[plated_blog.config.blog_post_json]=chunk;
 		}
