@@ -71,7 +71,7 @@ exports.create=function(opts,plated){
 			if( "string" == typeof (chunk) ) { chunk=JSON.parse(chunk) || {}; } // auto json parse
 			chunk.dir            = chunk.dir            || chunks.__plated__.source ;
 			chunk.posts_per_page = chunk.posts_per_page || plated_blog.config.posts_per_page ;
-
+			
 			chunks[plated_blog.config.blog_json]=chunk;
 		}
 		
@@ -81,6 +81,17 @@ exports.create=function(opts,plated){
 		if( chunk )
 		{
 			if( "string" == typeof (chunk) ) { chunk=JSON.parse(chunk) || {}; } // auto json parse
+
+			if(!chunk.timestamp)
+			{
+				var s=chunk.date || chunks.__plated__.source;
+				var a=s.split(/[^0-9]+/); 
+				var idx=0;
+				for(var i=0;i<a.length;a++)
+				{
+					console.log(a[i]);
+				}
+			}
 
 			chunks[plated_blog.config.blog_post_json]=chunk;
 		}
