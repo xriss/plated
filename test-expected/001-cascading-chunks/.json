@@ -2,6 +2,18 @@
  "__plated__": {
   "source": "001-cascading-chunks"
  },
+ "__flags__": {
+  "json": {
+   "form": "json"
+  },
+  "json_merge": {
+   "form": "json",
+   "same": "merge"
+  },
+  "not_json_append": {
+   "same": "append"
+  }
+ },
  "json": {
   "hello": {
    "world": true

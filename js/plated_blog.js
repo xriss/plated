@@ -13,6 +13,25 @@ exports.create=function(opts,plated){
 	var plated_blog={};
 	
 	
+	plated_blog.config={};
+
+// main settings that you can overide in your blog_json config chunk
+	plated_blog.config.posts_per_page=5;
+
+// the following chunk names can be altered, if the conflict with chunk names already used.
+
+// chunk names for blog info
+	plated_blog.config.blog_json="blog_json";
+	plated_blog.config.blog_html="blog_html"; // this is used on the blogs main index.html ( AKA page1.html )
+
+// chunk names for a page of blog posts
+	plated_blog.config.blog_page_json="blog_page_json";
+	plated_blog.config.blog_page_html="blog_page_html"; // this is used for page2.html , page3.html , etc
+
+// chunk names for a single blog post
+	plated_blog.config.blog_post_json="blog_post_json";
+	plated_blog.config.blog_post_html="blog_post_html"; // this is used for each posts index.html	
+
 // tweak all the base chunks grouped by dir name and pre cascaded/merged
 	plated_blog.process_dirs=function(dirs){
 		
@@ -20,51 +39,24 @@ exports.create=function(opts,plated){
 		
 		for( var dirname in dirs ) { var chunks=dirs[dirname];
 			
-			var found={};
 			
-			// check for special trigger chunks
-			for( n in chunks.__flags__ )
+			if(chunks[plated_blog.config.blog_json])
 			{
-				var flags=chunks.__flags__[n];
-				var chunk=chunks[n];
-				
-				if( flags.form=="blog_post" )
-				{
-					found.blog_post=chunk;
-				}
-				else
-				if( flags.form=="blog" )
-				{
-					found.blog=chunk;
-				}
-			}
-			
-			if(found.blog)
-			{
-				var blogdata={};
-				blogs[dirname]=blogdata;
-				blogdata.blog=found.blog
-				blogdata.chunks=chunks;
+				blogs[dirname]=[ chunks ];
 			}
 
-			if(found.blog_post) // add a new page
+			if(chunks[plated_blog.config.blog_post_json])
 			{
-				var blogdata;
-				for( var blogname in blogs )
+				for( var blogname in blogs ) // find blog we belong to
 				{
 					if( dirname.substr(0, blogname.length) == blogname ) // found
 					{
-						blogdata=blogs[blogname]
+						blogs[blogname].push( chunks ); // and add to array
 						break;
 					}
 				}
-				blogdata.posts=blogdata.posts || [];
-				var pagedata={};
-				pagedata.blog_post=found.blog_post;
-				pagedata.chunks=chunks;
-				blogdata.posts.push(pagedata)
-			}
 
+			}
 		}
 		
 		ls(blogs);
@@ -73,35 +65,33 @@ exports.create=function(opts,plated){
 	};
 
 
-// tweak a single file of chunks, all parent base chunks will have been cascaded/merged into this set of chunks and default formatting already applied
+// tweak a single file of chunks, only chunks found in this file will be available.
 	plated_blog.process_file=function(chunks){
 		
-		// apply flags to the formatting
-		for( n in chunks.__flags__ )
+// process blog_json
+		var chunk=chunks[plated_blog.config.blog_json];
+		if( chunk )
 		{
-			var flags=chunks.__flags__[n];
-			var chunk=chunks[n];
-
-			if( flags.form=="blog" )
+			if( "string" == typeof (chunk) )
 			{
-				if( "string" == typeof (chunk) )
-				{
-					chunk=JSON.parse(chunk);
-				}
-				chunk.base           = chunk.base           || chunks.__plated__.source ;
-				chunk.posts_per_page = chunk.posts_per_page || 5 ;
+				chunk=JSON.parse(chunk) || {};
 			}
-			else
-			if( flags.form=="blog_post" )
-			{
-				if( "string" == typeof (chunk) )
-				{
-					chunk=JSON.parse(chunk);
-				}
-			}
-
-			chunks[n]=chunk;
+			chunk.dir            = chunk.dir            || chunks.__plated__.source ;
+			chunk.posts_per_page = chunk.posts_per_page || plated_blog.config.posts_per_page ;
 		}
+		chunks[plated_blog.config.blog_json]=chunk;
+		
+
+// process blog_post_json
+		var chunk=chunks[plated_blog.config.blog_post_json];
+		if( chunk )
+		{
+			if( "string" == typeof (chunk) )
+			{
+				chunk=JSON.parse(chunk) || {};
+			}
+		}
+		chunks[plated_blog.config.blog_post_json]=chunk;
 		
 		
 		return chunks;
