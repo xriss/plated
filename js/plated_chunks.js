@@ -223,7 +223,7 @@ exports.create=function(opts,plated){
 			for(var idx in frm) { var val=frm[idx];
 				if( ( typeof(val) == "array" ) )
 				{
-					too[idx] = deepmerge(val,{}); // recursive deep copy
+					too[idx] = deepmerge(val,[]); // recursive deep copy
 				}
 				else
 				if( ( typeof(val) == "object" )  )

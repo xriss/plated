@@ -22,15 +22,15 @@ exports.create=function(opts,plated){
 
 // chunk names for blog info
 	plated_blog.config.blog_json="blog_json";
-	plated_blog.config.blog_html="blog_html"; // this is used on the blogs main index.html ( AKA page1.html )
+	plated_blog.config.blog_body="blog_body"; // this is used on the blogs main index.html ( AKA page1.html )
 
 // chunk names for a page of blog posts
 	plated_blog.config.blog_page_json="blog_page_json";
-	plated_blog.config.blog_page_html="blog_page_html"; // this is used for page2.html , page3.html , etc
+	plated_blog.config.blog_page_body="blog_page_body"; // this is used for page2.html , page3.html , etc
 
 // chunk names for a single blog post
 	plated_blog.config.blog_post_json="blog_post_json";
-	plated_blog.config.blog_post_html="blog_post_html"; // this is used for each posts index.html	
+	plated_blog.config.blog_post_body="blog_post_body"; // this is used for each posts index.html	
 
 // tweak all the base chunks grouped by dir name and pre cascaded/merged
 	plated_blog.process_dirs=function(dirs){
@@ -78,8 +78,9 @@ exports.create=function(opts,plated){
 			}
 			chunk.dir            = chunk.dir            || chunks.__plated__.source ;
 			chunk.posts_per_page = chunk.posts_per_page || plated_blog.config.posts_per_page ;
+
+			chunks[plated_blog.config.blog_json]=chunk;
 		}
-		chunks[plated_blog.config.blog_json]=chunk;
 		
 
 // process blog_post_json
@@ -90,8 +91,9 @@ exports.create=function(opts,plated){
 			{
 				chunk=JSON.parse(chunk) || {};
 			}
+
+			chunks[plated_blog.config.blog_post_json]=chunk;
 		}
-		chunks[plated_blog.config.blog_post_json]=chunk;
 		
 		
 		return chunks;
