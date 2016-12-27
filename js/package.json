@@ -9,7 +9,8 @@
   "dependencies": {
     "yargs": "*",
     "marked": "*",
-    "watch": "*"
+    "watch": "*",
+    "json5": "*"
   },
   "devDependencies": {},
   "scripts": {

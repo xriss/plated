@@ -3,18 +3,16 @@
 
 {
 	
-	"test":true
+	"title":"This is a test post!",
+	
 	
 }
 
-^blog_post_html
+^blog_post_body
 
 {blog_post_markdown}
 
 ^blog_post_markdown form=markdown
 
-#Title
-
-Testing 123
-
-This is a blog post.
+#Title trim=ends
+{blog_post_json.title}

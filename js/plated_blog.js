@@ -3,6 +3,7 @@ var fs = require('fs');
 var util=require('util');
 var path=require('path');
 var watch=require('watch');
+var JSON5=require('json5');
 
 
 var ls=function(a) { console.log(util.inspect(a,{depth:null})); }
@@ -68,7 +69,7 @@ exports.create=function(opts,plated){
 		var chunk=chunks[plated_blog.config.blog_json];
 		if( chunk )
 		{
-			if( "string" == typeof (chunk) ) { chunk=JSON.parse(chunk) || {}; } // auto json parse
+			if( "string" == typeof (chunk) ) { chunk=JSON5.parse(chunk) || {}; } // auto json parse
 			chunk.dir            = chunk.dir            || chunks.__plated__.source ;
 			chunk.posts_per_page = chunk.posts_per_page || plated_blog.config.posts_per_page ;
 			
@@ -80,7 +81,7 @@ exports.create=function(opts,plated){
 		var chunk=chunks[plated_blog.config.blog_post_json];
 		if( chunk )
 		{
-			if( "string" == typeof (chunk) ) { chunk=JSON.parse(chunk) || {}; } // auto json parse
+			if( "string" == typeof (chunk) ) { chunk=JSON5.parse(chunk) || {}; } // auto json parse
 
 			if(!chunk.unixtime)
 			{

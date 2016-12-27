@@ -1,6 +1,7 @@
 
 var util=require('util');
 var marked=require('marked');
+var JSON5=require('json5');
 
 // is this crap global?
 marked.setOptions({
@@ -141,7 +142,7 @@ exports.create=function(opts,plated){
 				{
 					if( "string" == typeof (chunks[n]) )
 					{
-						chunks[n]=JSON.parse(chunks[n]);
+						chunks[n]=JSON5.parse(chunks[n]);
 					}
 				}
 				else
