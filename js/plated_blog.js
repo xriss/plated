@@ -102,7 +102,7 @@ ls(blogs);
 
 			}
 
-			var pageidx=0;
+			var pageidx=1;
 			var pagename="index.html";
 			for( var postidx=0 ; postidx<posts.length ; postidx+=blog_json.posts_per_page )
 			{
