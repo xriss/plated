@@ -1,10 +1,17 @@
 {
   "name": "plated",
   "description": "Plated is a chunk based static website builder.",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "repository": {
     "type": "git",
-    "url": "https://github.com/xriss/plated.git"
+    "url": "git+https://github.com/xriss/plated.git"
+  },
+  "directories": {
+    "lib": "./js"
+  },
+  "main": "./js/plated.js",
+  "bin": {
+    "plated": "./js/cmd.js"
   },
   "dependencies": {
     "yargs": "*",
