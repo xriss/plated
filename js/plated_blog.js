@@ -25,7 +25,8 @@ exports.create=function(opts,plated){
 	plated_blog.config.blog_json      = opts.blog_json      || "blog_json";
 	plated_blog.config.blog_body      = opts.blog_body      || "blog_body";		 // this is used to wrap repeated blog_page_body chunks
 	plated_blog.config.blog_page_json = opts.blog_page_json || "blog_page_json";
-	plated_blog.config.blog_page_body = opts.blog_page_body || "blog_page_body"; // this is used repeatedly when building posts for pages	plated_blog.config.blog_post_json = opts.blog_post_json || "blog_post_json";
+	plated_blog.config.blog_page_body = opts.blog_page_body || "blog_page_body"; // this is used repeatedly when building posts for pages
+	plated_blog.config.blog_post_json = opts.blog_post_json || "blog_post_json";
 	plated_blog.config.blog_post_body = opts.blog_post_body || "blog_post_body"; // this is used for each posts index.html	
 
 // tweak all the base chunks grouped by dir name and pre cascaded/merged
@@ -55,9 +56,11 @@ exports.create=function(opts,plated){
 			}
 		}
 		
-		ls(blogs);
+ls(blogs);
 		
 		for(var blogname in blogs) { var blog=blogs[blogname];
+
+			var blog_json=blog[0][plated_blog.config.blog_json];
 			
 			var posts=[];
 			var posts_body=[];
@@ -97,6 +100,41 @@ exports.create=function(opts,plated){
 
 				posts_body[idx]=plated.chunks.replace("{"+plated_blog.config.blog_page_body+"}",merged_chunks);
 
+			}
+
+			var pageidx=0;
+			var pagename="index.html";
+			for( var postidx=0 ; postidx<posts.length ; postidx+=blog_json.posts_per_page )
+			{
+				var list=[];
+				
+				for(var i=postidx ; i<postidx+blog_json.posts_per_page ; i++ )
+				{
+					if(posts_body[i])
+					{
+						list.push(posts_body[i]);
+					}
+				}
+
+				var fname=blog[0].__plated__.source+"/"+pagename
+				var chunks={};
+				
+				chunks.__plated__=chunks.__plated__||{};
+				chunks.__plated__.source=fname;
+				chunks.__plated__.output=plated.files.filename_to_output(fname);
+				chunks.__plated__.list=list;
+				
+				chunks.body="{"+plated_blog.config.blog_body+"}";
+
+				plated.files.prepare_namespace(fname); // prepare merged namespace
+				var merged_chunks=plated.chunks.merge_namespace(chunks);
+
+				plated.files.write( path.join(opts.output,chunks.__plated__.output) , plated.chunks.replace("{html}",merged_chunks) );
+				plated.files.write( path.join(opts.output,chunks.__plated__.output)+".json" , JSON.stringify(merged_chunks,null,1) );
+
+
+				pageidx++;
+				pagename="page"+pageidx+".html";
 			}
 
 // write pages of multiple blog posts
