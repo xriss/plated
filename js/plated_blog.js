@@ -58,6 +58,43 @@ exports.create=function(opts,plated){
 		
 		ls(blogs);
 		
+		for(var blogname in blogs) { var blog=blogs[blogname];
+			
+			var posts=[];
+			
+			for(var idx=0;idx<blog.length;idx++)
+			{
+				if(blog[idx][plated_blog.config.blog_post_json]) // got a blogpost
+				{
+					posts.push(blog[idx]);
+				}
+			}
+	
+// sort new to old...	
+//			posts.sort(function(a,b){
+//			});
+			
+			
+			for(var idx=0;idx<posts.length;idx++) { post=posts[idx];7
+				
+				var blog_post_json=post[plated_blog.config.blog_post_json];
+
+				var fname=blog_post_json.__plated__.source+"/index.html"
+				var chunks={};
+				
+				chunks.__plated__=chunks.__plated__||{};
+				chunks.__plated__.source=fname;
+				chunks.__plated__.output=plated_files.filename_to_output(fname);
+				
+
+				var merged_chunks=plated.chunks.merge_namespace(chunks);
+
+				plated_files.write( path.join(opts.output,chunks.__plated__.output) , plated.chunks.replace("{body}",merged_chunks) );
+				plated_files.write( path.join(opts.output,chunks.__plated__.output)+".json" , JSON.stringify(merged_chunks,null,1) );
+
+			}
+		}
+		
 		return dirs;
 	};
 
