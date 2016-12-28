@@ -8,11 +8,18 @@
 	
 }
 
+^title trim=ends
+{blog_post_json.title}
+
 ^blog_post_body
 
 {blog_post_markdown}
 
 ^blog_post_markdown form=markdown
 
-#Title trim=ends
-{blog_post_json.title}
+{title}
+-------
+
+The title is {title} and this is an example blog post.
+
+
