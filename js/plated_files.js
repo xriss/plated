@@ -12,10 +12,25 @@ exports.create=function(opts,plated){
 
 	var plated_files={};
 
+	plated_files.mkdir = function(dir){
+		if (fs.existsSync(dir)){
+			return
+		}
+
+		try{
+			fs.mkdirSync(dir)
+		}catch(err){
+			if(err.code == 'ENOENT'){
+				plated_files.mkdir(path.dirname(dir)) //create parent dir
+				plated_files.mkdir(dir) //create dir
+			}
+		}
+	}
+
 // create parent dir if necessary and write data into this file
 	plated_files.write = function(filename,data) {
-			try { fs.mkdirSync( path.dirname(filename) ); } catch(e){} // ignore errors
-			fs.writeFileSync( filename , data );
+		plated_files.mkdir( path.dirname(filename) );
+		fs.writeFileSync( filename , data );
 	};
 
 // convert a source path into an output path
@@ -52,11 +67,14 @@ exports.create=function(opts,plated){
 	{
 		var d=path.dirname(fname);
 		var vv=path.basename(fname).split(".");
-		if( vv.length>2 && vv[ vv.length-2 ]==opts.plated )
+		for(var i=vv.length-1;i>0;i--)
 		{
-			vv.splice(vv.length-2,1);
-			return path.join(d,vv.join("."));
+			if( vv[i] == opts.plated )
+			{
+				vv.splice(i,1);
+			}
 		}
+		return path.join(d,vv.join("."));
 	}
 
 // empty the (output) folder or make it if it does not exist
