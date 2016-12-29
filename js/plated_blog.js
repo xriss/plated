@@ -22,12 +22,18 @@ exports.create=function(opts,plated){
 // the following chunk names can be altered, if they conflict with chunk names already used (opts)
 
 // special chunk names for blog
-	plated_blog.config.blog_json      = opts.blog_json      || "blog_json";
-	plated_blog.config.blog_body      = opts.blog_body      || "blog_body";		 // this is used to wrap repeated blog_page_body chunks
-	plated_blog.config.blog_page_json = opts.blog_page_json || "blog_page_json";
-	plated_blog.config.blog_page_body = opts.blog_page_body || "blog_page_body"; // this is used repeatedly when building posts for pages
-	plated_blog.config.blog_post_json = opts.blog_post_json || "blog_post_json";
-	plated_blog.config.blog_post_body = opts.blog_post_body || "blog_post_body"; // this is used for each posts index.html	
+	plated_blog.config.blog_json = opts.blog_json || "blog_json"; // json settings for the blog
+	plated_blog.config.blog_body = opts.blog_body || "blog_body"; // this is used to display a list of multiple blog posts, find them in {__plated__.list}
+
+// these control the generation of each single blog post
+	plated_blog.config.blog_post_json = opts.blog_post_json || "blog_post_json"; // json details for a single blog post
+	plated_blog.config.blog_post_body = opts.blog_post_body || "blog_post_body"; // the content of a single blog post ( probably markdown )
+	
+// these are used to render slightly different views of blog_post_body, for use in a single page or in a list
+	plated_blog.config.blog_post_body_one  = opts.blog_post_body_one  || "blog_post_body_one";  // wrap a single post for use in its own page
+	plated_blog.config.blog_post_body_many = opts.blog_post_body_many || "blog_post_body_many"; // wrap a single post for use in a list IE the main blog page.
+
+
 
 // tweak all the base chunks grouped by dir name and pre cascaded/merged
 	plated_blog.process_dirs=function(dirs){
@@ -90,7 +96,7 @@ ls(blogs);
 				chunks.__plated__.source=fname;
 				chunks.__plated__.output=plated.files.filename_to_output(fname);
 				
-				chunks.body="{"+plated_blog.config.blog_post_body+"}";
+				chunks.body="{"+plated_blog.config.blog_post_body_one+"}";
 
 				plated.files.prepare_namespace(fname); // prepare merged namespace
 				var merged_chunks=plated.chunks.merge_namespace(chunks);
@@ -98,7 +104,7 @@ ls(blogs);
 				plated.files.write( path.join(opts.output,chunks.__plated__.output) , plated.chunks.replace("{html}",merged_chunks) );
 				plated.files.write( path.join(opts.output,chunks.__plated__.output)+".json" , JSON.stringify(merged_chunks,null,1) );
 
-				posts_body[idx]=plated.chunks.replace("{"+plated_blog.config.blog_page_body+"}",merged_chunks);
+				posts_body[idx]=plated.chunks.replace("{"+plated_blog.config.blog_post_body_many+"}",merged_chunks);
 
 			}
 
