@@ -1,0 +1,38 @@
+{
+ "__plated__": {
+  "source": "002-blog/2016-12-25-this-is-a-test-post-3/index.html",
+  "output": "002-blog/2016-12-25-this-is-a-test-post-3/index.html"
+ },
+ "__flags__": {
+  "title": {
+   "trim": "ends"
+  },
+  "blog_post_body": {
+   "form": "markdown"
+  }
+ },
+ "title": "{blog_post_json.title}",
+ "html": "<html>\n\t<head>\n\t\t<title>{title}</title>\n\t</head>\n\t<body>{body}</body>\n</html>\n",
+ "blog_json": {
+  "posts_per_page": 2,
+  "dir": "002-blog"
+ },
+ "blog_body": "\n<div>start of list</div>\n\n{__plated__.list:blog_list_item}\n\n<div>end of list</div>\n\n",
+ "blog_list_item": "\n<div>item head</div>\n{__it__}\n<div>item tail</div>\n",
+ "blog_post_body_one": "\n{blog_post_body}\n\nSome comments belong here\n",
+ "blog_post_body_many": "\n{blog_post_body}\n",
+ "blog_post_json": {
+  "title": "This is test post 3",
+  "datetime": [
+   2016,
+   12,
+   25,
+   0,
+   0,
+   0
+  ],
+  "unixtime": 1482624000
+ },
+ "blog_post_body": "<h2 id=\"-title-\">{title}</h2>\n<p>The title is {title} and this is an example blog post number 3.\n<br/>\n<br/></p>\n",
+ "body": "{blog_post_body_one}"
+}
