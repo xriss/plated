@@ -122,8 +122,6 @@ exports.create=function(opts,plated){
 					}
 				}
 
-console.log(list);
-
 				var fname=blog[0].__plated__.source+"/"+pagename
 				var chunks={};
 				
