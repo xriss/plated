@@ -1,15 +1,13 @@
 {
- "__plated__": {
+ "_plated": {
   "source": "002-blog/2016-12-26-this-is-a-test-post-4/index.html",
-  "output": "002-blog/2016-12-26-this-is-a-test-post-4/index.html"
- },
- "__flags__": {
   "title": {
    "trim": "ends"
   },
   "blog_post_body": {
    "form": "markdown"
-  }
+  },
+  "output": "002-blog/2016-12-26-this-is-a-test-post-4/index.html"
  },
  "title": "{blog_post_json.title}",
  "html": "<html>\n\t<head>\n\t\t<title>{title}</title>\n\t</head>\n\t<body>{body}</body>\n</html>\n",
@@ -17,8 +15,8 @@
   "posts_per_page": 2,
   "dir": "002-blog"
  },
- "blog_body": "\n<div>start of list</div>\n\n{__plated__.list:blog_list_item}\n\n<div>end of list</div>\n\n",
- "blog_list_item": "\n<div>item head</div>\n{__it__}\n<div>item tail</div>\n",
+ "blog_body": "\n<div>start of list</div>\n\n{_plated.list:blog_list_item}\n\n<div>end of list</div>\n\n",
+ "blog_list_item": "\n<div>item head</div>\n{_it}\n<div>item tail</div>\n",
  "blog_post_body_one": "\n{blog_post_body}\n\nSome comments belong here\n",
  "blog_post_body_many": "\n{blog_post_body}\n",
  "blog_post_json": {

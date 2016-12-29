@@ -51,7 +51,7 @@ exports.create=function(opts,plated){
 	{
 		var platedstr=(opts.plated || "^");
 		var chunks=chunks || {};
-		chunks.__flags__=chunks.__flags__ || {}; // special flags chunk chunk, if we have any flags
+		chunks._plated=chunks._plated || {}; // special flags chunk chunk, if we have any flags
 
 		var name="";
 		var chunk=[];
@@ -80,11 +80,11 @@ exports.create=function(opts,plated){
 						{
 							if(words[1] && (words[1]!="")) // have some flags
 							{
-								flags=chunks.__flags__[name];
+								flags=chunks._plated[name];
 								if(!flags) // create
 								{
 									flags={};
-									chunks.__flags__[name]=flags;
+									chunks._plated[name]=flags;
 									for(var i=1;i<words.length;i++)
 									{
 										var aa=words[i].split("="); // flags must be -> flag=value 
@@ -136,9 +136,9 @@ exports.create=function(opts,plated){
 	plated_chunks.format_chunks=function(chunks)
 	{
 		// apply flags to the formatting
-		for( n in chunks.__flags__ )
+		for( n in chunks )
 		{
-			var flags=chunks.__flags__[n];
+			var flags=chunks._plated[n] || {};
 			
 			if(flags.trim) // trim=ends
 			{
@@ -229,7 +229,7 @@ exports.create=function(opts,plated){
 // it should be safe to modify the output merged chunks without accidentally changing anything in the namespace.
 	plated_chunks.merge_namespace=function(dat)
 	{
-		var deepmerge=function(frm,too,__flags__){
+		var deepmerge=function(frm,too,_plated){
 			for(var idx in frm) { var val=frm[idx];
 				if( isArray(val) )
 				{
@@ -239,9 +239,9 @@ exports.create=function(opts,plated){
 				if( ( typeof(val) == "object" )  )
 				{
 					if	(
-							( (__flags__) && (__flags__[idx]) && (__flags__[idx].same=="merge") ) // we should merge json data
+							( (_plated) && (_plated[idx]) && (_plated[idx].same=="merge") ) // we should merge json data
 							||
-							( (__flags__) && (val==__flags__) ) // flags need merging
+							( (_plated) && (val==_plated) ) // flags need merging
 						)
 					{
 						too[idx] = deepmerge(val,too[idx] || {}); // merge the object
@@ -252,7 +252,7 @@ exports.create=function(opts,plated){
 					}
 				}
 				else
-				if( (__flags__) && (__flags__[idx]) && (__flags__[idx].same=="append") ) // we should append
+				if( (_plated) && (_plated[idx]) && (_plated[idx].same=="append") ) // we should append
 				{
 					if(too[idx])
 					{
@@ -275,12 +275,12 @@ exports.create=function(opts,plated){
 		
 		for(var i=0;i<plated_chunks.namespaces.length;i++) // last added has priority
 		{ 
-			deepmerge(plated_chunks.namespaces[i],chunks,plated_chunks.namespaces[i].__flags__);
+			deepmerge(plated_chunks.namespaces[i],chunks,plated_chunks.namespaces[i]._plated);
 		}
 		
-		deepmerge(dat,chunks,dat.__flags__);
+		deepmerge(dat,chunks,dat._plated);
 		
-//		chunks.__flags__=undefined; // no flags available after chunks have been merged
+//		chunks._plated=undefined; // no flags available after chunks have been merged
 
 		return chunks;
 	};
@@ -333,12 +333,12 @@ exports.create=function(opts,plated){
 						{
 							for(var ii=0;ii<d.length;ii++)
 							{
-								dp.push( plated_chunks.replace_once(p,{__it__:d[ii],__idx__:ii+1}) );
+								dp.push( plated_chunks.replace_once(p,{_it:d[ii],_idx:ii+1}) );
 							}
 						}
 						else // just apply plate to this object
 						{
-							dp.push( plated_chunks.replace_once(p,{__it__:d,__idx__:1}) );
+							dp.push( plated_chunks.replace_once(p,{_it:d,_idx:1}) );
 						}
 						r.push( dp.join("") ); // join and push
 					}
