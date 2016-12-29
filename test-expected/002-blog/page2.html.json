@@ -1,14 +1,16 @@
 {
  "_plated": {
   "source": "002-blog/page2.html",
-  "title": {
-   "trim": "ends"
-  },
   "output": "002-blog/page2.html",
   "list": [
    "\n<h2 id=\"-title-\">This is test post 3</h2>\n<p>The title is This is test post 3 and this is an example blog post number 3.\n<br/>\n<br/></p>\n\n",
    "\n<h2 id=\"-title-\">This is test post 4</h2>\n<p>The title is This is test post 4 and this is an example blog post number 4.\n<br/>\n<br/></p>\n\n"
   ]
+ },
+ "_flags": {
+  "title": {
+   "trim": "ends"
+  }
  },
  "title": "Welcome to blog!",
  "html": "<html>\n\t<head>\n\t\t<title>{title}</title>\n\t</head>\n\t<body>{body}</body>\n</html>\n",

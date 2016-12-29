@@ -1,6 +1,8 @@
 {
  "_plated": {
-  "source": "002-blog/2016-12-27-this-is-a-test-post-5",
+  "source": "002-blog/2016-12-27-this-is-a-test-post-5"
+ },
+ "_flags": {
   "title": {
    "trim": "ends"
   },

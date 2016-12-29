@@ -1,6 +1,8 @@
 {
  "_plated": {
-  "source": "002-blog",
+  "source": "002-blog"
+ },
+ "_flags": {
   "title": {
    "trim": "ends"
   }
