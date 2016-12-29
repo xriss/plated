@@ -49,7 +49,7 @@ exports.create=function(opts,plated){
 	// break a string into chunks ( can be merged or replace other chunks )
 	plated_chunks.fill_chunks=function(str,chunks)
 	{
-		var hashchar=(opts.hashchar || "#")[0];
+		var platedstr=(opts.plated || "^");
 		var chunks=chunks || {};
 		chunks.__flags__=chunks.__flags__ || {}; // special flags chunk chunk, if we have any flags
 
@@ -57,16 +57,16 @@ exports.create=function(opts,plated){
 		var chunk=[];
 		var flags; // associated with this chunk
 		str.split("\n").forEach(function(l){
-				if(l[0]==hashchar)
+				if(l.substr(0,platedstr.length)==platedstr)
 				{
-					if(l[1]=="=") // change escape char
+					if(l[platedstr.length]=="=") // change escape char
 					{
-						hashchar=l[2]; // use this escape char from now on
+						platedstr=l.substr(platedstr.length+1).trim(); // use this escape char from now on
 					}
 					else
-					if(l[1]==hashchar) // double hash escape?
+					if(l.substr(platedstr.length,platedstr.length*2)==platedstr) // double hash escape?
 					{
-						chunk.push(l.slice(1)); // double ## escape, only keep one #
+						chunk.push(l.slice(platedstr.length)); // double ## escape, only keep one #
 					}
 					else
 					{
@@ -74,7 +74,7 @@ exports.create=function(opts,plated){
 						{					
 							chunks[name]=chunk.join("\n");
 						}
-						var words=l.substring(1).replace(/\s+/g, " ").split(" "); // allow any type of whitespace
+						var words=l.substring(platedstr.length).replace(/\s+/g, " ").split(" "); // allow any type of whitespace
 						name=words[0];
 						if(name)
 						{

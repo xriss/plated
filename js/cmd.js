@@ -10,10 +10,9 @@ var ls=function(a) { console.log(util.inspect(a,{depth:null})); }
 var argv = require('yargs').argv; global.argv=argv;
 
 
-argv.source   = argv.source   || "source";
-argv.output   = argv.output   || "output";
-argv.plated   = argv.plated   || "^";
-argv.hashchar = argv.hashchar || "^";
+argv.source   = argv.source    || "source";
+argv.output   = argv.output    || "output";
+argv.plated   = argv.platedstr || "^";
 
 
 if( argv._[0]=="build" )
@@ -35,8 +34,7 @@ console.log(
 	"\tBuild all files in source folder into output folder.\n"+
 	"\t\t--source=source -- choose the source folder.\n"+
 	"\t\t--output=output -- choose the output folder.\n"+
-	"\t\t--plated=^      -- choose the trigger string used in filenames.\n"+
-	"\t\t--hashchar=^    -- choose the trigger character used in chunk files.\n"+
+	"\t\t--plated=^      -- choose the magic string used in filenames and chunks.\n"+
 	"\n"+
 	"> plated watch \n"+
 	"\tBuild and then watch all files in source folder, rebuilding if they change.\n"+
