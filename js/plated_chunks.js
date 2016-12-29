@@ -15,6 +15,15 @@ marked.setOptions({
 	smartypants: false
 });
 
+var isArray = function (arg) {
+    if (typeof arg === 'object' &&
+            ('join' in arg && typeof arg.join === 'function') &&
+            ('length' in arg && typeof arg.length === 'number')) {
+        return true;
+    }
+    return false;
+}
+
 var nl_to_br=function(t) // lets break markdown
 {
 	return t.replace(/[\n]+/g,function(found)
@@ -222,7 +231,7 @@ exports.create=function(opts,plated){
 	{
 		var deepmerge=function(frm,too,__flags__){
 			for(var idx in frm) { var val=frm[idx];
-				if( ( typeof(val) == "array" ) )
+				if( isArray(val) )
 				{
 					too[idx] = deepmerge(val,[]); // recursive deep copy
 				}
@@ -320,16 +329,16 @@ exports.create=function(opts,plated){
 					if( ("object" == typeof d) && ("string" == typeof p) )
 					{
 						var dp=[];
-						if(d.length) // apply plate to all objects in array
+						if(isArray(d)) // apply plate to all objects in array
 						{
 							for(var ii=0;ii<d.length;ii++)
 							{
-								dp.push( plated_chunks.replace_once(p,{it:d[ii],idx:ii+1}) );
+								dp.push( plated_chunks.replace_once(p,{__it__:d[ii],__idx__:ii+1}) );
 							}
 						}
 						else // just apply plate to this object
 						{
-							dp.push( plated_chunks.replace_once(p,{it:d,idx:1}) );
+							dp.push( plated_chunks.replace_once(p,{__it__:d,__idx__:1}) );
 						}
 						r.push( dp.join("") ); // join and push
 					}

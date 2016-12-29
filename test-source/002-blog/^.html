@@ -1,7 +1,13 @@
 
+^title trim=ends
+
+Welcome to blog!
+
 ^html
 <html>
-	<head></head>
+	<head>
+		<title>{title}</title>
+	</head>
 	<body>{body}</body>
 </html>
 
@@ -23,7 +29,7 @@
 ^blog_list_item
 
 <div>item head</div>
-{it}
+{__it__}
 <div>item tail</div>
 
 ^blog_post_body_one

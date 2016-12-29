@@ -122,6 +122,8 @@ exports.create=function(opts,plated){
 					}
 				}
 
+console.log(list);
+
 				var fname=blog[0].__plated__.source+"/"+pagename
 				var chunks={};
 				
@@ -129,7 +131,7 @@ exports.create=function(opts,plated){
 				chunks.__plated__.source=fname;
 				chunks.__plated__.output=plated.files.filename_to_output(fname);
 				chunks.__plated__.list=list;
-				
+
 				chunks.body="{"+plated_blog.config.blog_body+"}";
 
 				plated.files.prepare_namespace(fname); // prepare merged namespace
