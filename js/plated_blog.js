@@ -62,7 +62,7 @@ exports.create=function(opts,plated){
 			}
 		}
 		
-ls(blogs);
+//ls(blogs);
 		
 		for(var blogname in blogs) { var blog=blogs[blogname];
 

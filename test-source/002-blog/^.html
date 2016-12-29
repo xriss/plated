@@ -1,4 +1,10 @@
 
+^html
+<html>
+	<head></head>
+	<body>{body}</body>
+</html>
+
 ^blog_json
 
 {
@@ -7,16 +13,25 @@
 
 ^blog_body
 
-{blog_page_body}
+<div>start of list</div>
 
-^blog_page_body
+{__plated__.list:blog_list_item}
 
-BLOG PAGE
+<div>end of list</div>
 
-^single_blog_post
 
-ONE BLOG POST
+^blog_list_item
 
-^multi_blog_posts
+<div>item head</div>
+{it}
+<div>item tail</div>
 
-A BLOG POST
+^blog_post_body_one
+
+{blog_post_body}
+
+Some comments belong here
+
+^blog_post_body_many
+
+{blog_post_body}
