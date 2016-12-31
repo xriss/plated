@@ -1,7 +1,5 @@
 {
- "_plated": {
-  "source": "001-cascading-chunks/one"
- },
+ "_source": "001-cascading-chunks/one",
  "_flags": {
   "json": {
    "form": "json"

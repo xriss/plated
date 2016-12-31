@@ -220,9 +220,8 @@ exports.create=function(opts,plated){
 			
 			plated_files.file_to_chunks(opts.source, fname , chunks); // read chunks from this file
 			
-			chunks._plated=chunks._plated||{};
-			chunks._plated.source=fname;
-			chunks._plated.output=plated_files.filename_to_output(fname);
+			chunks._source=fname;
+			chunks._output=plated_files.filename_to_output(fname);
 			
 			plated.chunks.format_chunks( chunks);
 
@@ -231,13 +230,13 @@ exports.create=function(opts,plated){
 				chunks = f( chunks ); // adjust and or output special chunks or files
 			}
 
-			if(chunks._plated.output) // may have been told not to do the normal thing
+			if(chunks._output) // may have been told not to do the normal thing
 			{
 				var merged_chunks=plated.chunks.merge_namespace(chunks);
 
-				plated_files.write( path.join(opts.output,chunks._plated.output) , plated.chunks.replace("{"+(fname.split('.').pop())+"}",merged_chunks) );
+				plated_files.write( path.join(opts.output,chunks._output) , plated.chunks.replace("{"+(fname.split('.').pop())+"}",merged_chunks) );
 				if(opts.dumpjson){
-					plated_files.write( path.join(opts.output,chunks._plated.output)+".json" , JSON.stringify(merged_chunks,null,1) );
+					plated_files.write( path.join(opts.output,chunks._output)+".json" , JSON.stringify(merged_chunks,null,1) );
 				}
 			}
 
@@ -262,8 +261,7 @@ exports.create=function(opts,plated){
 			
 			var chunks=plated_files.base_files_to_chunks(s+"/name.txt");
 
-			chunks._plated=chunks._plated||{};
-			chunks._plated.source=s;
+			chunks._source=s;
 			
 			plated.chunks.format_chunks( chunks );
 

@@ -23,7 +23,7 @@ exports.create=function(opts,plated){
 
 // special chunk names for blog
 	plated_blog.config.blog_json = opts.blog_json || "blog_json"; // json settings for the blog
-	plated_blog.config.blog_body = opts.blog_body || "blog_body"; // this is used to display a list of multiple blog posts, find them in {_plated.list}
+	plated_blog.config.blog_body = opts.blog_body || "blog_body"; // this is used to display a list of multiple blog posts, find them in {_list}
 
 // these control the generation of each single blog post
 	plated_blog.config.blog_post_json = opts.blog_post_json || "blog_post_json"; // json details for a single blog post
@@ -89,21 +89,20 @@ exports.create=function(opts,plated){
 				
 				var blog_post_json=post[plated_blog.config.blog_post_json];
 
-				var fname=post._plated.source+"/index.html"
+				var fname=post._source+"/index.html"
 				var chunks={};
 				
-				chunks._plated=chunks._plated||{};
-				chunks._plated.source=fname;
-				chunks._plated.output=plated.files.filename_to_output(fname);
+				chunks._source=fname;
+				chunks._output=plated.files.filename_to_output(fname);
 				
 				chunks.body="{"+plated_blog.config.blog_post_body_one+"}";
 
 				plated.files.prepare_namespace(fname); // prepare merged namespace
 				var merged_chunks=plated.chunks.merge_namespace(chunks);
 
-				plated.files.write( path.join(opts.output,chunks._plated.output) , plated.chunks.replace("{html}",merged_chunks) );
+				plated.files.write( path.join(opts.output,chunks._output) , plated.chunks.replace("{html}",merged_chunks) );
 				if(opts.dumpjson){
-					plated.files.write( path.join(opts.output,chunks._plated.output)+".json" , JSON.stringify(merged_chunks,null,1) );
+					plated.files.write( path.join(opts.output,chunks._output)+".json" , JSON.stringify(merged_chunks,null,1) );
 				}
 				posts_body[idx]=plated.chunks.replace("{"+plated_blog.config.blog_post_body_many+"}",merged_chunks);
 
@@ -123,22 +122,21 @@ exports.create=function(opts,plated){
 					}
 				}
 
-				var fname=blog[0]._plated.source+"/"+pagename
+				var fname=blog[0]._source+"/"+pagename
 				var chunks={};
 				
-				chunks._plated=chunks._plated||{};
-				chunks._plated.source=fname;
-				chunks._plated.output=plated.files.filename_to_output(fname);
-				chunks._plated.list=list;
+				chunks._source=fname;
+				chunks._output=plated.files.filename_to_output(fname);
+				chunks._list=list;
 
 				chunks.body="{"+plated_blog.config.blog_body+"}";
 
 				plated.files.prepare_namespace(fname); // prepare merged namespace
 				var merged_chunks=plated.chunks.merge_namespace(chunks);
 
-				plated.files.write( path.join(opts.output,chunks._plated.output) , plated.chunks.replace("{html}",merged_chunks) );
+				plated.files.write( path.join(opts.output,chunks._output) , plated.chunks.replace("{html}",merged_chunks) );
 				if(opts.dumpjson){
-					plated.files.write( path.join(opts.output,chunks._plated.output)+".json" , JSON.stringify(merged_chunks,null,1) );
+					plated.files.write( path.join(opts.output,chunks._output)+".json" , JSON.stringify(merged_chunks,null,1) );
 				}
 
 				pageidx++;
@@ -160,7 +158,7 @@ exports.create=function(opts,plated){
 		if( chunk )
 		{
 			if( "string" == typeof (chunk) ) { chunk=JSON5.parse(chunk) || {}; } // auto json parse
-			chunk.dir            = chunk.dir            || chunks._plated.source ;
+			chunk.dir            = chunk.dir            || chunks._source ;
 			chunk.posts_per_page = chunk.posts_per_page || plated_blog.config.posts_per_page ;
 			
 			chunks[plated_blog.config.blog_json]=chunk;
@@ -175,7 +173,7 @@ exports.create=function(opts,plated){
 
 			if(!chunk.unixtime)
 			{
-				var s=chunk.datetime || chunks._plated.source;
+				var s=chunk.datetime || chunks._source;
 				
 				if(typeof(s)=="string") // convert from string to array
 				{

@@ -1,8 +1,5 @@
 {
- "_plated": {
-  "source": "002-blog/2016-12-23-this-is-a-test-post-1/index.html",
-  "output": "002-blog/2016-12-23-this-is-a-test-post-1/index.html"
- },
+ "_source": "002-blog/2016-12-23-this-is-a-test-post-1/index.html",
  "_flags": {
   "title": {
    "trim": "ends"
@@ -17,7 +14,7 @@
   "posts_per_page": 2,
   "dir": "002-blog"
  },
- "blog_body": "\n<div>start of list</div>\n\n{_plated.list:blog_list}\n\n<div>end of list</div>\n\n",
+ "blog_body": "\n<div>start of list</div>\n\n{_list:blog_list}\n\n<div>end of list</div>\n\n",
  "blog_list": "\n<div>item head</div>\n{_it}\n<div>item tail</div>\n",
  "blog_post_body_one": "\n{blog_post_body}\n\nSome comments belong here\n",
  "blog_post_body_many": "\n{blog_post_body}\n",
@@ -34,5 +31,6 @@
   "unixtime": 1482451200
  },
  "blog_post_body": "<h2 id=\"-title-\">{title}</h2>\n<p>The title is {title} and this is an example blog post number 1.\n<br/>\n<br/></p>\n",
+ "_output": "002-blog/2016-12-23-this-is-a-test-post-1/index.html",
  "body": "{blog_post_body_one}"
 }
