@@ -1,9 +1,9 @@
 
-^title trim=ends
+#^title trim=ends
 
 Welcome to blog!
 
-^html
+#^html
 <html>
 	<head>
 		<title>{title}</title>
@@ -11,13 +11,13 @@ Welcome to blog!
 	<body>{body}</body>
 </html>
 
-^blog_json
+#^blog_json
 
 {
 	posts_per_page:2,
 }
 
-^blog_body
+#^blog_body
 
 <div>start of list</div>
 
@@ -26,18 +26,18 @@ Welcome to blog!
 <div>end of list</div>
 
 
-^blog_list
+#^blog_list
 
 <div>item head</div>
 {_it}
 <div>item tail</div>
 
-^blog_post_body_one
+#^blog_post_body_one
 
 {blog_post_body}
 
 Some comments belong here
 
-^blog_post_body_many
+#^blog_post_body_many
 
 {blog_post_body}

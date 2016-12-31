@@ -10,10 +10,11 @@ var ls=function(a) { console.log(util.inspect(a,{depth:null})); }
 var argv = require('yargs').argv; global.argv=argv;
 
 
-argv.source   = argv.source    || "source";
-argv.output   = argv.output    || "output";
-argv.plated   = argv.platedstr || "^";
-argv.dumpjson = argv.dumpjson ;
+argv.source    = argv.source    || "source";
+argv.output    = argv.output    || "output";
+argv.hashfile  = argv.hashfile  || "^";
+argv.hashchunk = argv.hashchunk || "#^";
+argv.dumpjson  = argv.dumpjson ;
 
 
 if( argv._[0]=="build" )
@@ -35,7 +36,8 @@ console.log(
 	"\tBuild all files in source folder into output folder.\n"+
 	"\t\t--source=source -- choose the source folder.\n"+
 	"\t\t--output=output -- choose the output folder.\n"+
-	"\t\t--plated=^      -- choose the magic string used in filenames and chunks.\n"+
+	"\t\t--hashfile=^    -- choose the magic string used in filenames.\n"+
+	"\t\t--hashchunk=#^  -- choose the magic string used in chunks.\n"+
 	"\t\t--dumpjson=     -- Enable json output of chunks when parsing.\n"+
 	"\n"+
 	"> plated watch \n"+

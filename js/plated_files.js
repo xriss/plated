@@ -44,7 +44,7 @@ exports.create=function(opts,plated){
 	plated_files.filename_is_basechunk=function(fname)
 	{
 		var vv=path.basename(fname).split(".");
-		if( vv[0]==opts.plated )
+		if( vv[0]==opts.hashfile )
 		{
 			return true
 		}
@@ -55,7 +55,7 @@ exports.create=function(opts,plated){
 	plated_files.filename_is_plated=function(fname)
 	{
 		var vv=path.basename(fname).split(".");
-		if( vv.length>2 && vv[ vv.length-2 ]==opts.plated )
+		if( vv.length>2 && vv[ vv.length-2 ]==opts.hashfile )
 		{
 			return true
 		}
@@ -69,7 +69,7 @@ exports.create=function(opts,plated){
 		var vv=path.basename(fname).split(".");
 		for(var i=vv.length-1;i>0;i--)
 		{
-			if( vv[i] == opts.plated )
+			if( vv[i] == opts.hashfile )
 			{
 				vv.splice(i,1);
 			}

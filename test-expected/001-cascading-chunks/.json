@@ -12,6 +12,7 @@
   }
  },
  "_source": "001-cascading-chunks",
+ "base": "\nBASE\n",
  "json": {
   "hello": {
    "world": true
