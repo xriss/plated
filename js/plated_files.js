@@ -32,7 +32,9 @@ exports.create=function(opts,plated){
 	{
 		chunks._filename=plated.files.filename_to_output(source);
 		chunks._dirname=path.dirname(source);
-		if( chunks._dirname=="." ) { chunks._dirname=""; } // fix the bad top parent case
+		if( chunks._dirname =="." ) { chunks._dirname =""; }
+		if( chunks._dirname =="/" ) { chunks._dirname =""; }
+		if( chunks._filename=="/" ) { chunks._filename=""; }
 		return chunks;
 	}
 
