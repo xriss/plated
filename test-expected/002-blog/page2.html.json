@@ -1,1 +1,24 @@
-{"_flags":{"title":{"trim":"ends"}},"_list":["\n<h2 id=\"-title-\">This is test post 3</h2>\n<p>The title is This is test post 3 and this is an example blog post number 3.\n<br/>\n<br/></p>\n\n","\n<h2 id=\"-title-\">This is test post 4</h2>\n<p>The title is This is test post 4 and this is an example blog post number 4.\n<br/>\n<br/></p>\n\n"],"_output":"002-blog/page2.html","_source":"002-blog/page2.html","blog_body":"\n<div>start of list</div>\n\n{_list:blog_list}\n\n<div>end of list</div>\n\n","blog_json":{"dir":"002-blog","posts_per_page":2},"blog_list":"\n<div>item head</div>\n{_it}\n<div>item tail</div>\n","blog_post_body_many":"\n{blog_post_body}\n","blog_post_body_one":"\n{blog_post_body}\n\nSome comments belong here\n","body":"{blog_body}","html":"<html>\n\t<head>\n\t\t<title>{title}</title>\n\t</head>\n\t<body>{body}</body>\n</html>\n","title":"Welcome to blog!"}
+{
+ "_flags": {
+  "title": {
+   "trim": "ends"
+  }
+ },
+ "_list": [
+  "\n<h2 id=\"-title-\">This is test post 3</h2>\n<p>The title is This is test post 3 and this is an example blog post number 3.\n<br/>\n<br/></p>\n\n",
+  "\n<h2 id=\"-title-\">This is test post 4</h2>\n<p>The title is This is test post 4 and this is an example blog post number 4.\n<br/>\n<br/></p>\n\n"
+ ],
+ "_output": "002-blog/page2.html",
+ "_source": "002-blog/page2.html",
+ "blog_body": "\n<div>start of list</div>\n\n{_list:blog_list}\n\n<div>end of list</div>\n\n",
+ "blog_json": {
+  "dir": "002-blog",
+  "posts_per_page": 2
+ },
+ "blog_list": "\n<div>item head</div>\n{_it}\n<div>item tail</div>\n",
+ "blog_post_body_many": "\n{blog_post_body}\n",
+ "blog_post_body_one": "\n{blog_post_body}\n\nSome comments belong here\n",
+ "body": "{blog_body}",
+ "html": "<html>\n\t<head>\n\t\t<title>{title}</title>\n\t</head>\n\t<body>{body}</body>\n</html>\n",
+ "title": "Welcome to blog!"
+}

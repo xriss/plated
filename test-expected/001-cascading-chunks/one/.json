@@ -1,1 +1,30 @@
-{"_flags":{"json":{"form":"json"},"json_merge":{"form":"json","same":"merge"},"not_json_append":{"same":"append"}},"_source":"001-cascading-chunks/one","json":{"extra":{"data":true}},"json_merge":{"extra":{"data":true},"hello":{"world":true}},"not_json":"\n{\n\n\t\"extra\":{\n\t\t\"data\":true\n\t}\n\n}\n","not_json_append":"\n{\n\n\t\"hello\":{\n\t\t\"world\":true\n\t}\n\n}\n\n{\n\n\t\"extra\":{\n\t\t\"data\":true\n\t}\n\n}\n\n"}
+{
+ "_flags": {
+  "json": {
+   "form": "json"
+  },
+  "json_merge": {
+   "form": "json",
+   "same": "merge"
+  },
+  "not_json_append": {
+   "same": "append"
+  }
+ },
+ "_source": "001-cascading-chunks/one",
+ "json": {
+  "extra": {
+   "data": true
+  }
+ },
+ "json_merge": {
+  "extra": {
+   "data": true
+  },
+  "hello": {
+   "world": true
+  }
+ },
+ "not_json": "\n{\n\n\t\"extra\":{\n\t\t\"data\":true\n\t}\n\n}\n",
+ "not_json_append": "\n{\n\n\t\"hello\":{\n\t\t\"world\":true\n\t}\n\n}\n\n{\n\n\t\"extra\":{\n\t\t\"data\":true\n\t}\n\n}\n\n"
+}

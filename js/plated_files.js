@@ -236,7 +236,7 @@ exports.create=function(opts,plated){
 
 				plated_files.write( path.join(opts.output,chunks._output) , plated.chunks.replace("{"+(fname.split('.').pop())+"}",merged_chunks) );
 				if(opts.dumpjson){
-					plated_files.write( path.join(opts.output,chunks._output)+".json" , JSON_stringify(merged_chunks,null,1) );
+					plated_files.write( path.join(opts.output,chunks._output)+".json" , JSON_stringify(merged_chunks,{space:1}) );
 				}
 			}
 
@@ -283,7 +283,7 @@ exports.create=function(opts,plated){
 
 			plated_files.prepare_namespace( path.join(d,".json") ); // prepare merged namespace
 			if(opts.dumpjson){
-				plated_files.write( path.join(opts.output,d,".json") , JSON_stringify( plated.chunks.merge_namespace({}) ,null,1) );
+				plated_files.write( path.join(opts.output,d,".json") , JSON_stringify( plated.chunks.merge_namespace({}) ,{space:1}) );
 			}
 		}
 

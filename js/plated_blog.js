@@ -103,7 +103,7 @@ exports.create=function(opts,plated){
 
 				plated.files.write( path.join(opts.output,chunks._output) , plated.chunks.replace("{html}",merged_chunks) );
 				if(opts.dumpjson){
-					plated.files.write( path.join(opts.output,chunks._output)+".json" , JSON_stringify(merged_chunks,null,1) );
+					plated.files.write( path.join(opts.output,chunks._output)+".json" , JSON_stringify(merged_chunks,{space:1}) );
 				}
 				posts_body[idx]=plated.chunks.replace("{"+plated_blog.config.blog_post_body_many+"}",merged_chunks);
 
@@ -137,7 +137,7 @@ exports.create=function(opts,plated){
 
 				plated.files.write( path.join(opts.output,chunks._output) , plated.chunks.replace("{html}",merged_chunks) );
 				if(opts.dumpjson){
-					plated.files.write( path.join(opts.output,chunks._output)+".json" , JSON_stringify(merged_chunks,null,1) );
+					plated.files.write( path.join(opts.output,chunks._output)+".json" , JSON_stringify(merged_chunks,{space:1}) );
 				}
 
 				pageidx++;
