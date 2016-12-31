@@ -17,7 +17,8 @@
     "yargs": "*",
     "marked": "*",
     "watch": "*",
-    "json5": "*"
+    "json5": "*",
+    "json-stable-stringify": "*"
   },
   "devDependencies": {},
   "scripts": {
