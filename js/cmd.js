@@ -13,6 +13,7 @@ var argv = require('yargs').argv; global.argv=argv;
 argv.source   = argv.source    || "source";
 argv.output   = argv.output    || "output";
 argv.plated   = argv.platedstr || "^";
+argv.dumpjson = argv.dumpjson ;
 
 
 if( argv._[0]=="build" )
@@ -35,6 +36,7 @@ console.log(
 	"\t\t--source=source -- choose the source folder.\n"+
 	"\t\t--output=output -- choose the output folder.\n"+
 	"\t\t--plated=^      -- choose the magic string used in filenames and chunks.\n"+
+	"\t\t--dumpjson=     -- Enable json output of chunks when parsing.\n"+
 	"\n"+
 	"> plated watch \n"+
 	"\tBuild and then watch all files in source folder, rebuilding if they change.\n"+

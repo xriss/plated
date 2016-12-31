@@ -18,8 +18,8 @@
   "posts_per_page": 2,
   "dir": "002-blog"
  },
- "blog_body": "\n<div>start of list</div>\n\n{_plated.list:blog_list_item}\n\n<div>end of list</div>\n\n",
- "blog_list_item": "\n<div>item head</div>\n{_it}\n<div>item tail</div>\n",
+ "blog_body": "\n<div>start of list</div>\n\n{_plated.list:blog_list}\n\n<div>end of list</div>\n\n",
+ "blog_list": "\n<div>item head</div>\n{_it}\n<div>item tail</div>\n",
  "blog_post_body_one": "\n{blog_post_body}\n\nSome comments belong here\n",
  "blog_post_body_many": "\n{blog_post_body}\n",
  "body": "{blog_body}"

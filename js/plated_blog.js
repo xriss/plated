@@ -102,8 +102,9 @@ exports.create=function(opts,plated){
 				var merged_chunks=plated.chunks.merge_namespace(chunks);
 
 				plated.files.write( path.join(opts.output,chunks._plated.output) , plated.chunks.replace("{html}",merged_chunks) );
-				plated.files.write( path.join(opts.output,chunks._plated.output)+".json" , JSON.stringify(merged_chunks,null,1) );
-
+				if(opts.dumpjson){
+					plated.files.write( path.join(opts.output,chunks._plated.output)+".json" , JSON.stringify(merged_chunks,null,1) );
+				}
 				posts_body[idx]=plated.chunks.replace("{"+plated_blog.config.blog_post_body_many+"}",merged_chunks);
 
 			}
@@ -136,8 +137,9 @@ exports.create=function(opts,plated){
 				var merged_chunks=plated.chunks.merge_namespace(chunks);
 
 				plated.files.write( path.join(opts.output,chunks._plated.output) , plated.chunks.replace("{html}",merged_chunks) );
-				plated.files.write( path.join(opts.output,chunks._plated.output)+".json" , JSON.stringify(merged_chunks,null,1) );
-
+				if(opts.dumpjson){
+					plated.files.write( path.join(opts.output,chunks._plated.output)+".json" , JSON.stringify(merged_chunks,null,1) );
+				}
 
 				pageidx++;
 				pagename="page"+pageidx+".html";

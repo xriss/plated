@@ -4,7 +4,7 @@ echo
 echo " BUILDING "
 echo
 
-./plated build --source=test-source --output=test-output
+./plated build --source=test-source --output=test-output --dumpjson
 
 echo
 echo " TESTING "
