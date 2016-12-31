@@ -10,6 +10,7 @@
   "\n<h2 id=\"-title-\">This is test post 1</h2>\n<p>The title is This is test post 1 and this is an example blog post number 1.\n<br/>\n<br/></p>\n\n",
   "\n<h2 id=\"-title-\">This is test post 2</h2>\n<p>The title is This is test post 2 and this is an example blog post number 2.\n<br/>\n<br/></p>\n\n"
  ],
+ "_root": "/",
  "blog_body": "\n<div>start of list</div>\n\n{_list:blog_list}\n\n<div>end of list</div>\n\n",
  "blog_json": {
   "dir": "002-blog",

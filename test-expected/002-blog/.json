@@ -6,6 +6,7 @@
    "trim": "ends"
   }
  },
+ "_root": "/",
  "blog_body": "\n<div>start of list</div>\n\n{_list:blog_list}\n\n<div>end of list</div>\n\n",
  "blog_json": {
   "dir": "002-blog",
