@@ -31,10 +31,13 @@ exports.create=function(opts,plated){
 	plated_files.set_source=function(chunks,source)
 	{
 		chunks._filename=plated.files.filename_to_output(source);
+		if( chunks._filename=="/" ) { chunks._filename=""; }
 		chunks._dirname=path.dirname(source);
 		if( chunks._dirname =="." ) { chunks._dirname =""; }
 		if( chunks._dirname =="/" ) { chunks._dirname =""; }
-		if( chunks._filename=="/" ) { chunks._filename=""; }
+		
+		chunks._root=opts.root;
+		
 		return chunks;
 	}
 

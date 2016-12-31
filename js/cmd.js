@@ -10,6 +10,7 @@ var ls=function(a) { console.log(util.inspect(a,{depth:null})); }
 var argv = require('yargs').argv; global.argv=argv;
 
 
+argv.root      = argv.root      || "/";
 argv.source    = argv.source    || "source";
 argv.output    = argv.output    || "output";
 argv.hashfile  = argv.hashfile  || "^";
@@ -34,13 +35,16 @@ console.log(
 	"\n"+
 	"> plated build \n"+
 	"\tBuild all files in source folder into output folder.\n"+
-	"\t\t--source=source -- choose the source folder.\n"+
-	"\t\t--output=output -- choose the output folder.\n"+
-	"\t\t--hashfile=^    -- choose the magic string used in filenames.\n"+
-	"\t\t--hashchunk=#^  -- choose the magic string used in chunks.\n"+
-	"\t\t--dumpjson=     -- Enable json output of chunks when parsing.\n"+
+	"\t\t--root=/                -- root dir of site.\n"+
+	"\t\t--source=source         -- choose the source folder.\n"+
+	"\t\t--source=source         -- choose the source folder.\n"+
+	"\t\t--output=output         -- choose the output folder.\n"+
+	"\t\t--hashfile=^            -- choose the magic string used in filenames.\n"+
+	"\t\t--hashchunk=#^          -- choose the magic string used in chunks.\n"+
+	"\t\t--dumpjson=             -- Enable json output of chunks when parsing.\n"+
 	"\n"+
 	"> plated watch \n"+
 	"\tBuild and then watch all files in source folder, rebuilding if they change.\n"+
+	"\t\t...same options as build\n"+
 	"\n"+
 "");
