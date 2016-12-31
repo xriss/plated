@@ -1,4 +1,6 @@
 {
+ "_dirname": "002-blog/2016-12-24-this-is-a-test-post-2",
+ "_filename": "002-blog/2016-12-24-this-is-a-test-post-2",
  "_flags": {
   "blog_post_body": {
    "form": "markdown"
@@ -7,7 +9,6 @@
    "trim": "ends"
   }
  },
- "_source": "002-blog/2016-12-24-this-is-a-test-post-2",
  "blog_body": "\n<div>start of list</div>\n\n{_list:blog_list}\n\n<div>end of list</div>\n\n",
  "blog_json": {
   "dir": "002-blog",

@@ -27,6 +27,15 @@ exports.create=function(opts,plated){
 		}
 	}
 
+// fill in _source and related chunks
+	plated_files.set_source=function(chunks,source)
+	{
+		chunks._filename=plated.files.filename_to_output(source);
+		chunks._dirname=path.dirname(source);
+		if( chunks._dirname=="." ) { chunks._dirname=""; } // fix the bad top parent case
+		return chunks;
+	}
+
 // create parent dir if necessary and write data into this file
 	plated_files.write = function(filename,data) {
 		plated_files.mkdir( path.dirname(filename) );
@@ -220,8 +229,7 @@ exports.create=function(opts,plated){
 			
 			plated_files.file_to_chunks(opts.source, fname , chunks); // read chunks from this file
 			
-			chunks._source=fname;
-			chunks._output=plated_files.filename_to_output(fname);
+			plated_files.set_source(chunks,fname)
 			
 			plated.chunks.format_chunks( chunks);
 
@@ -230,13 +238,13 @@ exports.create=function(opts,plated){
 				chunks = f( chunks ); // adjust and or output special chunks or files
 			}
 
-			if(chunks._output) // may have been told not to do the normal thing
+			if(chunks._filename) // may have been told not to do the normal thing
 			{
 				var merged_chunks=plated.chunks.merge_namespace(chunks);
 
-				plated_files.write( path.join(opts.output,chunks._output) , plated.chunks.replace("{"+(fname.split('.').pop())+"}",merged_chunks) );
+				plated_files.write( path.join(opts.output,chunks._filename) , plated.chunks.replace("{"+(fname.split('.').pop())+"}",merged_chunks) );
 				if(opts.dumpjson){
-					plated_files.write( path.join(opts.output,chunks._output)+".json" , JSON_stringify(merged_chunks,{space:1}) );
+					plated_files.write( path.join(opts.output,chunks._filename)+".json" , JSON_stringify(merged_chunks,{space:1}) );
 				}
 			}
 
@@ -261,7 +269,7 @@ exports.create=function(opts,plated){
 			
 			var chunks=plated_files.base_files_to_chunks(s+"/name.txt");
 
-			chunks._source=s;
+			plated_files.set_source(chunks,s+"/.")
 			
 			plated.chunks.format_chunks( chunks );
 

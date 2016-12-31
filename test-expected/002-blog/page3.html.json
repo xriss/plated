@@ -1,4 +1,6 @@
 {
+ "_dirname": "002-blog",
+ "_filename": "002-blog/page3.html",
  "_flags": {
   "title": {
    "trim": "ends"
@@ -8,8 +10,6 @@
   "\n<h2 id=\"-title-\">This is test post 5</h2>\n<p>The title is This is test post 5 and this is an example blog post number 5.\n<br/>\n<br/></p>\n\n",
   "\n<h2 id=\"-title-\">This is test post 6</h2>\n<p>The title is This is test post 6 and this is an example blog post number 6.\n<br/>\n<br/></p>\n\n"
  ],
- "_output": "002-blog/page3.html",
- "_source": "002-blog/page3.html",
  "blog_body": "\n<div>start of list</div>\n\n{_list:blog_list}\n\n<div>end of list</div>\n\n",
  "blog_json": {
   "dir": "002-blog",

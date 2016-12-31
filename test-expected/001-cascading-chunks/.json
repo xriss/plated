@@ -1,4 +1,6 @@
 {
+ "_dirname": "001-cascading-chunks",
+ "_filename": "001-cascading-chunks",
  "_flags": {
   "json": {
    "form": "json"
@@ -11,7 +13,6 @@
    "same": "append"
   }
  },
- "_source": "001-cascading-chunks",
  "base": "\nBASE\n",
  "json": {
   "hello": {
