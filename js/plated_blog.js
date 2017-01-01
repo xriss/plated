@@ -81,11 +81,26 @@ exports.create=function(opts,plated){
 			}
 	
 // sort new to old...	
-//			posts.sort(function(a,b){
-//			});
+			posts.sort(function(a,b){
+				var aj=a[plated_blog.config.blog_post_json];
+				var bj=b[plated_blog.config.blog_post_json];
+				
+				return bj.unixtime - aj.unixtime;
+			});
 			
+			for(var i=0;i<posts.length;i++) {
+				
+				var post=posts[i];
+				var blog_post_json=post[plated_blog.config.blog_post_json];
 
-// write individual blog posts			
+				var post_newer=posts[i-1];
+				var post_older=posts[i+1];
+				
+				blog_post_json.newer=post_newer && post_newer._filename+"/index.html";
+				blog_post_json.older=post_older && post_older._filename+"/index.html";
+			}
+
+// write individual blog posts and cache the merged chunks for paged output
 			for(var idx=0;idx<posts.length;idx++) { post=posts[idx];
 				
 				var blog_post_json=post[plated_blog.config.blog_post_json];
@@ -104,14 +119,23 @@ exports.create=function(opts,plated){
 				if(opts.dumpjson){
 					plated.files.write( path.join(opts.output,chunks._filename)+".json" , JSON_stringify(merged_chunks,{space:1}) );
 				}
-				posts_body[idx]=plated.chunks.replace("{"+plated_blog.config.blog_post_body_many+"}",merged_chunks);
+				posts_body[idx]=merged_chunks;
+				merged_chunks._body=plated.chunks.replace("{"+plated_blog.config.blog_post_body_many+"}",merged_chunks); // prebuild body
 
 			}
 
 			var pageidx=1;
 			var pagename="index.html";
+			var pagename_older;
+			var pagename_newer;
 			for( var postidx=0 ; postidx<posts.length ; postidx+=blog_json.posts_per_page )
 			{
+				pageidx++;
+				pagename_older="page"+pageidx+".html";
+				if( postidx+blog_json.posts_per_page >= posts.length) // no more pages
+				{
+					pagename_older=undefined;
+				}
 				var list=[];
 				
 				for(var i=postidx ; i<postidx+blog_json.posts_per_page ; i++ )
@@ -128,6 +152,8 @@ exports.create=function(opts,plated){
 				plated.files.set_source(chunks,fname)
 
 				chunks._list=list;
+				chunks._page_older=pagename_older;
+				chunks._page_newer=pagename_newer;
 
 				chunks.body="{"+plated_blog.config.blog_body+"}";
 
@@ -139,8 +165,8 @@ exports.create=function(opts,plated){
 					plated.files.write( path.join(opts.output,chunks._filename)+".json" , JSON_stringify(merged_chunks,{space:1}) );
 				}
 
-				pageidx++;
-				pagename="page"+pageidx+".html";
+				pagename_newer=pagename;
+				pagename=pagename_older;
 			}
 
 // write pages of multiple blog posts

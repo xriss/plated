@@ -12,7 +12,7 @@
   "dir": "002-blog",
   "posts_per_page": 2
  },
- "blog_list": "\n<div>item head</div>\n{_it}\n<div>item tail</div>\n",
+ "blog_list": "\n<div>item head</div>\n{_it._body}\n<div>item tail</div>\n",
  "blog_post_body_many": "\n{blog_post_body}\n",
  "blog_post_body_one": "\n{blog_post_body}\n\nSome comments belong here\n",
  "html": "<html>\n\t<head>\n\t\t<title>{title}</title>\n\t</head>\n\t<body>{body}</body>\n</html>\n",

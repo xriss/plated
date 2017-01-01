@@ -10,6 +10,7 @@ var ls=function(a) { console.log(util.inspect(a,{depth:null})); }
 var argv = require('yargs').argv; global.argv=argv;
 
 
+argv.site      = argv.site      || "http://localhost";
 argv.root      = argv.root      || "/";
 argv.source    = argv.source    || "source";
 argv.output    = argv.output    || "output";
@@ -35,6 +36,7 @@ console.log(
 	"\n"+
 	"> plated build \n"+
 	"\tBuild all files in source folder into output folder.\n"+
+	"\t\t--site=http://localhost -- site name, for external use eg links in rss.\n"+
 	"\t\t--root=/                -- root dir of site.\n"+
 	"\t\t--source=source         -- choose the source folder.\n"+
 	"\t\t--source=source         -- choose the source folder.\n"+
