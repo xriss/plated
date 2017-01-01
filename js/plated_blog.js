@@ -96,8 +96,8 @@ exports.create=function(opts,plated){
 				var post_newer=posts[i-1];
 				var post_older=posts[i+1];
 				
-				blog_post_json.newer=post_newer && post_newer._filename+"/index.html";
-				blog_post_json.older=post_older && post_older._filename+"/index.html";
+				posts._post_newer=post_newer && post_newer._filename+"/index.html";
+				posts._post_older=post_older && post_older._filename+"/index.html";
 			}
 
 // write individual blog posts and cache the merged chunks for paged output
