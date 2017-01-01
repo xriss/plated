@@ -8,7 +8,7 @@ echo "performing a build"
 
 echo "creating new orphan branch"
 
-cd output
+cd output/plated
 
 git checkout --orphan _gh-pages_
 
@@ -27,7 +27,7 @@ git push --set-upstream origin -f gh-pages
 
 echo "updating reference to new output"
 
-cd ..
+cd ../..
 git commit -a -m"publish output"
 git pull
 git push
