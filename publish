@@ -3,7 +3,7 @@ cd `dirname $0`
 
 echo "performing a build"
 
-./plated build
+./build
 
 
 echo "creating new orphan branch"
