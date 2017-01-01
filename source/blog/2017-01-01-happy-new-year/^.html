@@ -1,0 +1,31 @@
+
+#^blog_post_json
+{
+	"title":"Happy new year!",
+}
+
+#^title trim=ends
+{blog_post_json.title}
+
+#^blog_post_body form=markdown
+
+{title}
+-------
+
+This is the first blog post to test that the blogging system for plated 
+is setup and functioning. It was written on the morning of the first 
+day of 2017.
+
+So far we have cascading chunk system setup and working along with a 
+simple plugin management which contains a blog plugin for doing blog type 
+things. Organising a bunch of posts by time and displaying multiple 
+posts on index pages.
+
+I'm not bothering to break the blog system down even further into a 
+list system, I figure that should just be a separate thing and should 
+be built to deal with needs rather than trying to be ultra generic.
+
+As it is I think we have enough bits working now that this can replace 
+the static site generation in d-portal, which is where this JavaScript 
+code came from originally. Will have to do some tests and see how it 
+all goes.

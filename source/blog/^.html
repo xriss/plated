@@ -1,0 +1,43 @@
+
+#^title trim=ends
+
+Welcome to the Plated Dev blog!
+
+#^html
+<html>
+	<head>
+		<title>{title}</title>
+	</head>
+	<body>{body}</body>
+</html>
+
+#^blog_json
+
+{
+	posts_per_page:5,
+}
+
+#^blog_body
+
+<div>some blog posts</div>
+
+{_list:blog_list}
+
+<div> <a href="{_page_older}">older posts</a> <a href="{_page_newer}">newer posts</a> </div>
+
+
+#^blog_list
+
+<div>item head</div>
+{_it._body}
+<div>item tail</div>
+
+#^blog_post_body_one
+
+{blog_post_body}
+
+Some comments belong here
+
+#^blog_post_body_many
+
+{blog_post_body}
