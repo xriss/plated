@@ -1,0 +1,12 @@
+{
+ "_dirname": "003-operators",
+ "_filename": "003-operators/index.html",
+ "_flags": {
+  "body": {
+   "form": "markdown"
+  }
+ },
+ "_root": "/",
+ "body": "<p>#test 1</p>\n<p>{test1}</p>\n<p>#test 2</p>\n<p>{test2}</p>\n<p>#test 3</p>\n<p>{test3}</p>\n",
+ "html": "<html>\n\t<body>{body}</body>\n</html>\n"
+}

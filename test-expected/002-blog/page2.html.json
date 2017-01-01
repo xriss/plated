@@ -38,8 +38,6 @@
      0,
      0
     ],
-    "newer": "002-blog/2016-12-27-this-is-a-test-post-5/index.html",
-    "older": "002-blog/2016-12-25-this-is-a-test-post-3/index.html",
     "title": "This is test post 4",
     "unixtime": 1482710400
    },
@@ -78,8 +76,6 @@
      0,
      0
     ],
-    "newer": "002-blog/2016-12-26-this-is-a-test-post-4/index.html",
-    "older": "002-blog/2016-12-24-this-is-a-test-post-2/index.html",
     "title": "This is test post 3",
     "unixtime": 1482624000
    },

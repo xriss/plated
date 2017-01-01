@@ -1,5 +1,16 @@
 cd `dirname $0`
 
+if [ $1 = "copy" ] ; then
+
+echo
+echo " COPY OUTPUT TO EXPECTED "
+echo
+
+rm -rf test-expected
+cp test-output test-expected -r
+
+else
+
 echo
 echo " BUILDING "
 echo
@@ -25,3 +36,4 @@ else
 	exit 1
 fi
 
+fi
