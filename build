@@ -1,4 +1,4 @@
 cd `dirname $0`
 
-./plated build --dumpjson
+./plated build --dumpjson --root=/plated/
 
