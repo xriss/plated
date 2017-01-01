@@ -110,7 +110,7 @@ exports.create=function(opts,plated){
 				
 				plated.files.set_source(chunks,fname)
 				
-				chunks.body="{"+plated_blog.config.blog_post_body_one+"}";
+				chunks.body=plated.chunks.delimiter_wrap_str(plated_blog.config.blog_post_body_one);
 
 				plated.files.prepare_namespace(fname); // prepare merged namespace
 				var merged_chunks=plated.chunks.merge_namespace(chunks);
@@ -120,7 +120,7 @@ exports.create=function(opts,plated){
 					plated.files.write( path.join(opts.output,chunks._filename)+".json" , JSON_stringify(merged_chunks,{space:1}) );
 				}
 				posts_body[idx]=merged_chunks;
-				merged_chunks._body=plated.chunks.replace("{"+plated_blog.config.blog_post_body_many+"}",merged_chunks); // prebuild body
+				merged_chunks._body=plated.chunks.replace( plated.chunks.delimiter_wrap_str(plated_blog.config.blog_post_body_many),merged_chunks); // prebuild body
 
 			}
 
@@ -155,7 +155,7 @@ exports.create=function(opts,plated){
 				chunks._page_older=pagename_older;
 				chunks._page_newer=pagename_newer;
 
-				chunks.body="{"+plated_blog.config.blog_body+"}";
+				chunks.body=plated.chunks.delimiter_wrap_str(plated_blog.config.blog_body);
 
 				plated.files.prepare_namespace(fname); // prepare merged namespace
 				var merged_chunks=plated.chunks.merge_namespace(chunks);

@@ -16,6 +16,7 @@ argv.source    = argv.source    || "source";
 argv.output    = argv.output    || "output";
 argv.hashfile  = argv.hashfile  || "^";
 argv.hashchunk = argv.hashchunk || "#^";
+argv.delimiter = argv.delimiter || "{}";
 argv.dumpjson  = argv.dumpjson ;
 
 
@@ -43,6 +44,7 @@ console.log(
 	"\t\t--output=output         -- choose the output folder.\n"+
 	"\t\t--hashfile=^            -- choose the magic string used in filenames.\n"+
 	"\t\t--hashchunk=#^          -- choose the magic string used in chunks.\n"+
+	"\t\t--delimiter={}          -- choose the magic string used for wrapping tags.\n"+
 	"\t\t--dumpjson=             -- Enable json output of chunks when parsing.\n"+
 	"\n"+
 	"> plated watch \n"+

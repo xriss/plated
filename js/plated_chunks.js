@@ -43,6 +43,18 @@ var ls=function(a) { console.log(util.inspect(a,{depth:null})); }
 exports.create=function(opts,plated){
 	
 	var plated_chunks={};
+	
+	plated_chunks.delimiter_open_str=function(){
+		return opts.delimiter.substr(0,opts.delimiter.length/2);
+	};
+
+	plated_chunks.delimiter_close_str=function(){
+		return opts.delimiter.substr(opts.delimiter.length/2);
+	};
+	
+	plated_chunks.delimiter_wrap_str=function(s){
+		return plated_chunks.delimiter_open_str()+s+plated_chunks.delimiter_close_str();
+	};
 
 	plated_chunks.namespaces=[]; // array of public namespaces to lookup in
 
@@ -171,26 +183,26 @@ exports.create=function(opts,plated){
 	{
 		if(!str) { return undefined; }
 
-		var aa=str.split("{");
+		var aa=str.split( plated_chunks.delimiter_open_str() );
 		var ar=[];
 		
 		ar.push(aa[0]);
 		for(var i=1;i<aa.length;i++)
 		{
-			var av=aa[i].split("}");
+			var av=aa[i].split( plated_chunks.delimiter_close_str() );
 			if(av.length>=2)
 			{
-				ar.push("{"); // this string is used to mark the following string as something to replace
+				ar.push( plated_chunks.delimiter_open_str() ); // this string is used to mark the following string as something to replace
 				ar.push(av[0]);
 				ar.push(av[1]);
 				for(var j=2;j<av.length;j++) // multiple close tags?
 				{
-					ar.push("}"+av[j]); // then missing open so just leave it as it was
+					ar.push( plated_chunks.delimiter_close_str() +av[j]); // then missing open so just leave it as it was
 				}
 			}
 			else
 			{
-				ar.push("{"+aa[i]); // missing close so just leave it as it was
+				ar.push( plated_chunks.delimiter_open_str() +aa[i]); // missing close so just leave it as it was
 			}
 		}
 		return ar;
@@ -316,7 +328,7 @@ exports.create=function(opts,plated){
 		for(var i=0;i<aa.length;i++)
 		{
 			var v=aa[i];
-			if( v=="{" ) // next string should be replaced
+			if( v==plated_chunks.delimiter_open_str() ) // next string should be replaced
 			{
 				i++;
 				v=aa[i];
@@ -343,7 +355,7 @@ exports.create=function(opts,plated){
 					}
 					else // fail lookup
 					{
-						r.push( "{"+v+"}" );
+						r.push( plated_chunks.delimiter_open_str() +v+ plated_chunks.delimiter_close_str() );
 					}
 				}
 				else
@@ -351,7 +363,7 @@ exports.create=function(opts,plated){
 					var d=plated_chunks.lookup( v,dat );
 					if( d == undefined )
 					{
-						r.push( "{"+v+"}" );
+						r.push( plated_chunks.delimiter_open_str() +v+ plated_chunks.delimiter_close_str() );
 					}
 					else // fail lookup
 					{

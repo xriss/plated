@@ -247,7 +247,7 @@ exports.create=function(opts,plated){
 			{
 				var merged_chunks=plated.chunks.merge_namespace(chunks);
 
-				plated_files.write( path.join(opts.output,chunks._filename) , plated.chunks.replace("{"+(fname.split('.').pop())+"}",merged_chunks) );
+				plated_files.write( path.join(opts.output,chunks._filename) , plated.chunks.replace( plated.chunks.delimiter_wrap_str(fname.split('.').pop()),merged_chunks) );
 				if(opts.dumpjson){
 					plated_files.write( path.join(opts.output,chunks._filename)+".json" , JSON_stringify(merged_chunks,{space:1}) );
 				}
