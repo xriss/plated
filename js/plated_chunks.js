@@ -330,46 +330,7 @@ exports.create=function(opts,plated){
 			var v=aa[i];
 			if( v==plated_chunks.delimiter_open_str() ) // next string should be replaced
 			{
-				i++;
-				v=aa[i];
-				var v2 = v.split(":");
-				if( v2[1] ) // have a : split, need both data and plate
-				{
-					var d=plated_chunks.lookup( v2[0],dat );
-					var p=plated_chunks.lookup( v2[1],dat );
-					if( ("object" == typeof d) && ("string" == typeof p) )
-					{
-						var dp=[];
-						if(isArray(d)) // apply plate to all objects in array
-						{
-							for(var ii=0;ii<d.length;ii++)
-							{
-								dp.push( plated_chunks.replace_once(p,{_it:d[ii],_idx:ii+1}) );
-							}
-						}
-						else // just apply plate to this object
-						{
-							dp.push( plated_chunks.replace_once(p,{_it:d,_idx:1}) );
-						}
-						r.push( dp.join("") ); // join and push
-					}
-					else // fail lookup
-					{
-						r.push( plated_chunks.delimiter_open_str() +v+ plated_chunks.delimiter_close_str() );
-					}
-				}
-				else
-				{
-					var d=plated_chunks.lookup( v,dat );
-					if( d == undefined )
-					{
-						r.push( plated_chunks.delimiter_open_str() +v+ plated_chunks.delimiter_close_str() );
-					}
-					else // fail lookup
-					{
-						r.push( d );
-					}
-				}
+				r.push( plated_chunks.expand_tag(aa[ ++i ],dat) );
 			}
 			else
 			{
@@ -378,6 +339,49 @@ exports.create=function(opts,plated){
 		}
 
 		return r.join("");
+	}
+	
+	plated_chunks.expand_tag=function(v,dat)
+	{
+		var v2 = v.split(":");
+		if( v2[1] ) // have a : split, need both data and plate
+		{
+			var d=plated_chunks.lookup( v2[0],dat );
+			var p=plated_chunks.lookup( v2[1],dat );
+			if( ("object" == typeof d) && ("string" == typeof p) )
+			{
+				var dp=[];
+				if(isArray(d)) // apply plate to all objects in array
+				{
+					for(var ii=0;ii<d.length;ii++)
+					{
+						dp.push( plated_chunks.replace_once(p,{_it:d[ii],_idx:ii+1}) );
+					}
+				}
+				else // just apply plate to this object
+				{
+					dp.push( plated_chunks.replace_once(p,{_it:d,_idx:1}) );
+				}
+				return ( dp.join("") ); // join and push
+			}
+			else // fail lookup
+			{
+				return ( plated_chunks.delimiter_open_str() +v+ plated_chunks.delimiter_close_str() );
+			}
+		}
+		else
+		{
+			var d=plated_chunks.lookup( v,dat );
+			if( d == undefined )
+			{
+				return ( plated_chunks.delimiter_open_str() +v+ plated_chunks.delimiter_close_str() );
+			}
+			else // fail lookup
+			{
+				return ( d );
+			}
+		}
+		return (v)
 	}
 
 	// repeatedly replace untill all things that can expand, have expanded, or we ran out of sanity
