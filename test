@@ -1,6 +1,6 @@
 cd `dirname $0`
 
-if [ $1 = "copy" ] ; then
+if [ "$1" = "copy" ] ; then
 
 echo
 echo " COPY OUTPUT TO EXPECTED "

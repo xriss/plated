@@ -299,11 +299,12 @@ exports.create=function(opts,plated){
 	// lookup only in dat
 	plated_chunks.lookup=function(str,dat)
 	{
+		if(str=="") { return ""; } // empty string always finds self		
 		if( dat[str] !== undefined ) // simple check
 		{
 			return dat[str];
 		}
-		//todo add sub array . notation split and lookup
+		
 		var i=str.indexOf('.');
 		if(i>=0)
 		{
@@ -311,6 +312,7 @@ exports.create=function(opts,plated){
 			if("object" == typeof dat[a1] ) // try a sub lookup 
 			{
 				var a2=str.substring(i+1);
+				if(a2[0]=="-") { a2=a1.length+Number(a2); } // so -1 can get last from an array
 				return plated_chunks.lookup(a2,dat[a1])
 			}
 		}
@@ -343,45 +345,81 @@ exports.create=function(opts,plated){
 	
 	plated_chunks.expand_tag=function(v,dat)
 	{
-		var v2 = v.split(":");
-		if( v2[1] ) // have a : split, need both data and plate
+		var aa=v.split(/([^0-9a-zA-Z_\-\.]+)/g); // valid chars for chunk names and indexes
+//		if(aa[0]=="") { aa.splice(0,1); } // remove empty strings at start
+//		if(aa[aa.length-1]=="") { aa.splice(aa.length-1,1); } // and at end
+
+		var last,next;
+		var opp="replace";
+		for(var i=0;i<aa.length;i++)
 		{
-			var d=plated_chunks.lookup( v2[0],dat );
-			var p=plated_chunks.lookup( v2[1],dat );
-			if( ("object" == typeof d) && ("string" == typeof p) )
+			var a=aa[i];
+			if(a.match(/^[0-9a-zA-Z_\-\.]+$/)) // a chunk name
 			{
-				var dp=[];
-				if(isArray(d)) // apply plate to all objects in array
+//				console.log("str",a);
+				switch(opp)
 				{
-					for(var ii=0;ii<d.length;ii++)
-					{
-						dp.push( plated_chunks.replace_once(p,{_it:d[ii],_idx:ii+1}) );
-					}
+					case "replace":
+						last=plated_chunks.lookup(a,dat);
+					break;
+					case "and":
+						if(last)
+						{
+							last=plated_chunks.lookup(a,dat);
+						}
+					break;
+					case "or":
+						if(!last)
+						{
+							last=plated_chunks.lookup(a,dat);
+						}
+					break;
+					case "plate":
+						next=plated_chunks.lookup(a,dat);
+						var dp=[];
+						if(isArray(last)) // apply plate to all objects in array
+						{
+							for(var ii=0;ii<last.length;ii++)
+							{
+								dp.push( plated_chunks.replace_once(next,{_it:last[ii],_idx:ii+1}) );
+							}
+						}
+						else // just apply plate to this single object or string
+						{
+							dp.push( plated_chunks.replace_once(next,{_it:last,_idx:1}) );
+						}
+						last=( dp.join("") ); // join all items
+					break;
+					default: // error
+					break;
 				}
-				else // just apply plate to this object
+			}
+			else // an operator
+			{
+//				console.log("opp",a);
+				switch(a)
 				{
-					dp.push( plated_chunks.replace_once(p,{_it:d,_idx:1}) );
+					case "&&":
+						opp="and";
+					break;
+					case "||":
+						opp="or";
+					break;
+					case ":":
+						opp="plate";
+					break;
+					default: // error
+						opp="error";
+					break;
 				}
-				return ( dp.join("") ); // join and push
+				
 			}
-			else // fail lookup
-			{
-				return ( plated_chunks.delimiter_open_str() +v+ plated_chunks.delimiter_close_str() );
-			}
+			if(opp=="error") { last=null; break; } // giveup
 		}
-		else
-		{
-			var d=plated_chunks.lookup( v,dat );
-			if( d == undefined )
-			{
-				return ( plated_chunks.delimiter_open_str() +v+ plated_chunks.delimiter_close_str() );
-			}
-			else // fail lookup
-			{
-				return ( d );
-			}
-		}
-		return (v)
+//		console.log("result",last);
+
+		if(last==="") { return ""; } // can return empty string
+		return last || ( plated_chunks.delimiter_open_str() +v+ plated_chunks.delimiter_close_str() );
 	}
 
 	// repeatedly replace untill all things that can expand, have expanded, or we ran out of sanity
