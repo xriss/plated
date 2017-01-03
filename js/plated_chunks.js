@@ -299,7 +299,6 @@ exports.create=function(opts,plated){
 	// lookup only in dat
 	plated_chunks.lookup=function(str,dat)
 	{
-		if(str=="") { return ""; } // empty string always finds self		
 		if( dat[str] !== undefined ) // simple check
 		{
 			return dat[str];
@@ -345,7 +344,8 @@ exports.create=function(opts,plated){
 	
 	plated_chunks.expand_tag=function(v,dat)
 	{
-		var aa=v.split(/([^0-9a-zA-Z_\-\.]+)/g); // valid chars for chunk names and indexes
+		var v_unesc=v.split("&amp;").join("&"); //turn html escaped & back into just & so we can let markdown break out tags
+		var aa=v_unesc.split(/([^0-9a-zA-Z_\-\.]+)/g); // valid chars for chunk names and indexes
 //		if(aa[0]=="") { aa.splice(0,1); } // remove empty strings at start
 //		if(aa[aa.length-1]=="") { aa.splice(aa.length-1,1); } // and at end
 
@@ -354,6 +354,31 @@ exports.create=function(opts,plated){
 		for(var i=0;i<aa.length;i++)
 		{
 			var a=aa[i];
+			if(a=="") // when we want to spit out nothing if a value is unset we can end on an empty string eg {value|}
+			{
+				switch(opp)
+				{
+					case "replace":
+						last=a;
+					break;
+					case "and":
+						if(last)
+						{
+							last=a;
+						}
+					break;
+					case "or":
+						if(!last)
+						{
+							last=a;
+						}
+					break;
+					default: // error
+						opp="error";
+					break;
+				}
+			}
+			else
 			if(a.match(/^[0-9a-zA-Z_\-\.]+$/)) // a chunk name
 			{
 //				console.log("str",a);
@@ -391,6 +416,7 @@ exports.create=function(opts,plated){
 						last=( dp.join("") ); // join all items
 					break;
 					default: // error
+						opp="error";
 					break;
 				}
 			}
@@ -399,10 +425,10 @@ exports.create=function(opts,plated){
 //				console.log("opp",a);
 				switch(a)
 				{
-					case "&&":
+					case "&":
 						opp="and";
 					break;
-					case "||":
+					case "|":
 						opp="or";
 					break;
 					case ":":
@@ -418,7 +444,7 @@ exports.create=function(opts,plated){
 		}
 //		console.log("result",last);
 
-		if(last==="") { return ""; } // can return empty string
+		if(last==="") { return ""; } // so we can return an empty string
 		return last || ( plated_chunks.delimiter_open_str() +v+ plated_chunks.delimiter_close_str() );
 	}
 

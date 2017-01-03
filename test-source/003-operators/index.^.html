@@ -4,17 +4,49 @@
 	<body>{body}</body>
 </html>
 
+
+#^wrap_square trim=ends
+
+[[ {_it} ]]
+
+#^wrap_curve trim=ends
+
+(( {_it} ))
+
+#^data trim=ends
+
+DATADATADATA
+
+#^true trim=ends
+
+true
+
+
 #^body form=markdown
 
-#test 1
+test 1
+------
 
-{test1}
+{data}
 
-#test 2
+{data:wrap_square}
 
-{test2}
+{data:wrap_square:wrap_curve}
 
-#test 3
+test 2
+------
+
+{missing&data|}
+
+{missing|data}
+
+{true|data}
+
+{missing|}
+
+
+test 3
+------
 
 {test3}
 

@@ -4,9 +4,25 @@
  "_flags": {
   "body": {
    "form": "markdown"
+  },
+  "data": {
+   "trim": "ends"
+  },
+  "true": {
+   "trim": "ends"
+  },
+  "wrap_curve": {
+   "trim": "ends"
+  },
+  "wrap_square": {
+   "trim": "ends"
   }
  },
  "_root": "/",
- "body": "<p>#test 1</p>\n<p>{test1}</p>\n<p>#test 2</p>\n<p>{test2}</p>\n<p>#test 3</p>\n<p>{test3}</p>\n",
- "html": "<html>\n\t<body>{body}</body>\n</html>\n"
+ "body": "<h2 id=\"test-1\">test 1</h2>\n<p>{data}</p>\n<p>{data:wrap_square}</p>\n<p>{data:wrap_square:wrap_curve}</p>\n<h2 id=\"test-2\">test 2</h2>\n<p>{missing&amp;data|}</p>\n<p>{missing|data}</p>\n<p>{true|data}</p>\n<p>{missing|}\n<br/>\n<br/></p>\n<h2 id=\"test-3\">test 3</h2>\n<p>{test3}</p>\n",
+ "data": "DATADATADATA",
+ "html": "<html>\n\t<body>{body}</body>\n</html>\n\n",
+ "true": "true",
+ "wrap_curve": "(( {_it} ))",
+ "wrap_square": "[[ {_it} ]]"
 }
