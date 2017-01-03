@@ -40,7 +40,6 @@ console.log(
 	"\t\t--site=http://localhost -- site name, for external use eg links in rss.\n"+
 	"\t\t--root=/                -- root dir of site.\n"+
 	"\t\t--source=source         -- choose the source folder.\n"+
-	"\t\t--source=source         -- choose the source folder.\n"+
 	"\t\t--output=output         -- choose the output folder.\n"+
 	"\t\t--hashfile=^            -- choose the magic string used in filenames.\n"+
 	"\t\t--hashchunk=#^          -- choose the magic string used in chunks.\n"+
