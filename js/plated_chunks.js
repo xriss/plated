@@ -70,6 +70,10 @@ exports.create=function(opts,plated){
 		str.split("\n").forEach(function(l){
 				if(l.substr(0,opts.hashchunk.length)==opts.hashchunk)
 				{
+					if(l[opts.hashchunk.length]=="-") // a comment, ignore
+					{
+					}
+					else
 					if(l[opts.hashchunk.length]=="=") // change escape char
 					{
 						opts.hashchunk=l.substr(opts.hashchunk.length+1).trim(); // use this escape char from now on
@@ -85,9 +89,13 @@ exports.create=function(opts,plated){
 						{					
 							chunks[name]=chunk.join("\n");
 						}
-						var words=l.substring(opts.hashchunk.length).replace(/\s+/g, " ").split(" "); // allow any type of whitespace
-						name=words[0];
-						if(name)
+						var words=l.substring(opts.hashchunk.length).split(/\s+/); // split on whitespace
+						name="";
+						if( (words[0]) && words[0].match(/^[0-9a-zA-Z_\-\.]+$/) ) // a valid chunk name, 
+						{
+							name=words[0];
+						}
+						if(name) // ignore if there is nowhere to save it
 						{
 							if(words[1] && (words[1]!="")) // have some flags
 							{
