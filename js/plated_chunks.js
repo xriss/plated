@@ -95,7 +95,7 @@ exports.create=function(opts,plated){
 						{
 							name=words[0];
 						}
-						if(name) // ignore if there is nowhere to save it
+						if(name) // ignore this line if the chunkname was invalid
 						{
 							if(words[1] && (words[1]!="")) // have some flags
 							{
@@ -311,7 +311,6 @@ exports.create=function(opts,plated){
 		{
 			return dat[str];
 		}
-		
 		var i=str.indexOf('.');
 		if(i>=0)
 		{
@@ -319,7 +318,7 @@ exports.create=function(opts,plated){
 			if("object" == typeof dat[a1] ) // try a sub lookup 
 			{
 				var a2=str.substring(i+1);
-				if(a2[0]=="-") { a2=a1.length+Number(a2); } // so -1 can get last from an array
+				if(a2[0]=="-") { a2=""+(dat[a1].length+Number(a2)); } // so -1 can get last from an array
 				return plated_chunks.lookup(a2,dat[a1])
 			}
 		}

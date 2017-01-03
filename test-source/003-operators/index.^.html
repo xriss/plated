@@ -4,6 +4,13 @@
 	<body>{body}</body>
 </html>
 
+#^json form=json
+
+[
+	"first_item",
+	"middle_item",
+	"last_item",
+]
 
 #^wrap_square trim=ends
 
@@ -22,7 +29,7 @@ DATADATADATA
 true
 
 
-#^body form=markdown
+#^body form=markdown trim=ends
 
 test 1
 ------
@@ -48,5 +55,13 @@ test 2
 test 3
 ------
 
-{test3}
+
+FIRST -> {json.0}
+
+LAST -> {json.-1}
+
+MIDDLE -> {json.1}
+
+
+
 
