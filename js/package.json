@@ -1,7 +1,7 @@
 {
   "name": "plated",
   "description": "Plated is a chunk based static website builder.",
-  "version": "0.0.13",
+  "version": "0.0.14",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/xriss/plated.git"
