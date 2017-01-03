@@ -1,25 +1,13 @@
 {
- "_dirname": "002-blog/2016-12-25-this-is-a-test-post-3",
- "_filename": "002-blog/2016-12-25-this-is-a-test-post-3",
- "_flags": {
-  "blog_post_body": {
-   "form": "markdown"
-  },
-  "title": {
-   "trim": "ends"
-  }
- },
- "_root": "/",
- "blog_body": "\n<div>start of list</div>\n\n{_list:blog_list}\n\n<div>end of list</div>\n\n",
- "blog_json": {
+ "_blog_json": {
   "dir": "002-blog",
   "posts_per_page": 2
  },
- "blog_list": "\n<div>item head</div>\n{_it._body}\n<div>item tail</div>\n",
- "blog_post_body": "<h2 id=\"-title-\">{title}</h2>\n<p>The title is {title} and this is an example blog post number 3.\n<br/>\n<br/></p>\n",
- "blog_post_body_many": "\n{blog_post_body}\n",
- "blog_post_body_one": "\n{blog_post_body}\n\nSome comments belong here\n",
- "blog_post_json": {
+ "_blog_page_body": "\n<div>start of list</div>\n\n{_list:blog_page_list}\n\n<div>end of list</div>\n\n",
+ "_blog_post_body": "<h2 id=\"-title-\">{title}</h2>\n<p>The title is {title} and this is an example blog post number 3.\n<br/>\n<br/></p>\n",
+ "_blog_post_body_many": "\n{_blog_post_body}\n",
+ "_blog_post_body_one": "\n{_blog_post_body}\n\nSome comments belong here\n",
+ "_blog_post_json": {
   "datetime": [
    2016,
    12,
@@ -31,6 +19,22 @@
   "title": "This is test post 3",
   "unixtime": 1482624000
  },
+ "_dirname": "002-blog/2016-12-25-this-is-a-test-post-3",
+ "_filename": "002-blog/2016-12-25-this-is-a-test-post-3",
+ "_flags": {
+  "_blog_post_body": {
+   "form": "markdown"
+  },
+  "_title": {
+   "trim": "ends"
+  },
+  "title": {
+   "trim": "ends"
+  }
+ },
+ "_root": "/",
+ "_title": "{blog_post_json.title}",
+ "blog_page_list": "\n<div>item head</div>\n{_it._body}\n<div>item tail</div>\n",
  "html": "<html>\n\t<head>\n\t\t<title>{title}</title>\n\t</head>\n\t<body>{body}</body>\n</html>\n",
- "title": "{blog_post_json.title}"
+ "title": "Welcome to blog!"
 }

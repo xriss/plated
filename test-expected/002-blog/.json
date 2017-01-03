@@ -1,4 +1,11 @@
 {
+ "_blog_json": {
+  "dir": "002-blog",
+  "posts_per_page": 2
+ },
+ "_blog_page_body": "\n<div>start of list</div>\n\n{_list:blog_page_list}\n\n<div>end of list</div>\n\n",
+ "_blog_post_body_many": "\n{_blog_post_body}\n",
+ "_blog_post_body_one": "\n{_blog_post_body}\n\nSome comments belong here\n",
  "_dirname": "002-blog",
  "_filename": "002-blog",
  "_flags": {
@@ -7,14 +14,7 @@
   }
  },
  "_root": "/",
- "blog_body": "\n<div>start of list</div>\n\n{_list:blog_list}\n\n<div>end of list</div>\n\n",
- "blog_json": {
-  "dir": "002-blog",
-  "posts_per_page": 2
- },
- "blog_list": "\n<div>item head</div>\n{_it._body}\n<div>item tail</div>\n",
- "blog_post_body_many": "\n{blog_post_body}\n",
- "blog_post_body_one": "\n{blog_post_body}\n\nSome comments belong here\n",
+ "blog_page_list": "\n<div>item head</div>\n{_it._body}\n<div>item tail</div>\n",
  "html": "<html>\n\t<head>\n\t\t<title>{title}</title>\n\t</head>\n\t<body>{body}</body>\n</html>\n",
  "title": "Welcome to blog!"
 }

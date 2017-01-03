@@ -11,33 +11,33 @@ Welcome to blog!
 	<body>{body}</body>
 </html>
 
-#^blog_json
+#^_blog_json
 
 {
 	posts_per_page:2,
 }
 
-#^blog_body
+#^_blog_page_body
 
 <div>start of list</div>
 
-{_list:blog_list}
+{_list:blog_page_list}
 
 <div>end of list</div>
 
 
-#^blog_list
+#^blog_page_list
 
 <div>item head</div>
 {_it._body}
 <div>item tail</div>
 
-#^blog_post_body_one
+#^_blog_post_body_one
 
-{blog_post_body}
+{_blog_post_body}
 
 Some comments belong here
 
-#^blog_post_body_many
+#^_blog_post_body_many
 
-{blog_post_body}
+{_blog_post_body}

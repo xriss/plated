@@ -20,19 +20,26 @@ exports.create=function(opts,plated){
 // main settings that you can override in your blog_json config chunk
 	plated_blog.config.posts_per_page=5;
 
-// the following chunk names can be altered, if they conflict with chunk names already used (opts)
 
-// special chunk names for blog
-	plated_blog.config.blog_json = opts.blog_json || "blog_json"; // json settings for the blog
-	plated_blog.config.blog_body = opts.blog_body || "blog_body"; // this is used to display a list of multiple blog posts, find them in {_list}
+// special chunk names that trigger blog processing
 
-// these control the generation of each single blog post
-	plated_blog.config.blog_post_json = opts.blog_post_json || "blog_post_json"; // json details for a single blog post
-	plated_blog.config.blog_post_body = opts.blog_post_body || "blog_post_body"; // the content of a single blog post ( probably markdown )
-	
-// these are used to render slightly different views of blog_post_body, for use in a single page or in a list
-	plated_blog.config.blog_post_body_one  = opts.blog_post_body_one  || "blog_post_body_one";  // wrap a single post for use in its own page
-	plated_blog.config.blog_post_body_many = opts.blog_post_body_many || "blog_post_body_many"; // wrap a single post for use in a list IE the main blog page.
+// json settings for the blog
+//		_blog_json
+
+// json details for a single blog post
+//		_blog_post_json
+
+// the content of a single blog post ( probably markdown )
+//		_blog_post_body
+
+// this is used to display a list of multiple blog posts, find them in {_list}
+//		_blog_page_body
+
+// wrap a single post for use in its own page
+//		_blog_post_body_one
+
+// wrap a single post for use in a list IE the main blog page.
+//		_blog_post_body_many
 
 
 
@@ -44,12 +51,12 @@ exports.create=function(opts,plated){
 		for( var dirname in dirs ) { var chunks=dirs[dirname];
 			
 			
-			if(chunks[plated_blog.config.blog_json])
+			if(chunks._blog_json)
 			{
 				blogs[dirname]=[ chunks ];
 			}
 
-			if(chunks[plated_blog.config.blog_post_json])
+			if(chunks._blog_post_json)
 			{
 				for( var blogname in blogs ) // find blog we belong to
 				{
@@ -67,14 +74,14 @@ exports.create=function(opts,plated){
 		
 		for(var blogname in blogs) { var blog=blogs[blogname];
 
-			var blog_json=blog[0][plated_blog.config.blog_json];
+			var blog_json=blog[0]._blog_json;
 			
 			var posts=[];
 			var posts_body=[];
 			
 			for(var idx=0;idx<blog.length;idx++)
 			{
-				if(blog[idx][plated_blog.config.blog_post_json]) // got a blogpost
+				if(blog[idx]._blog_post_json) // got a blogpost
 				{
 					posts.push(blog[idx]);
 				}
@@ -82,8 +89,8 @@ exports.create=function(opts,plated){
 	
 // sort new to old...	
 			posts.sort(function(a,b){
-				var aj=a[plated_blog.config.blog_post_json];
-				var bj=b[plated_blog.config.blog_post_json];
+				var aj=a._blog_post_json;
+				var bj=b._blog_post_json;
 				
 				return bj.unixtime - aj.unixtime;
 			});
@@ -91,36 +98,34 @@ exports.create=function(opts,plated){
 			for(var i=0;i<posts.length;i++) {
 				
 				var post=posts[i];
-				var blog_post_json=post[plated_blog.config.blog_post_json];
 
 				var post_newer=posts[i-1];
 				var post_older=posts[i+1];
 				
-				posts._post_newer=post_newer && post_newer._filename+"/index.html";
-				posts._post_older=post_older && post_older._filename+"/index.html";
+				posts._blog_post_newer=post_newer && post_newer._filename+"/index.html";
+				posts._blog_post_older=post_older && post_older._filename+"/index.html";
 			}
 
 // write individual blog posts and cache the merged chunks for paged output
 			for(var idx=0;idx<posts.length;idx++) { post=posts[idx];
 				
-				var blog_post_json=post[plated_blog.config.blog_post_json];
 
 				var fname=post._dirname+"/index.html"
 				var chunks={};
 				
 				plated.files.set_source(chunks,fname)
 				
-				chunks.body=plated.chunks.delimiter_wrap_str(plated_blog.config.blog_post_body_one);
+				chunks.body=plated.chunks.delimiter_wrap_str("_blog_post_body_one");
 
 				plated.files.prepare_namespace(fname); // prepare merged namespace
 				var merged_chunks=plated.chunks.merge_namespace(chunks);
 
-				plated.files.write( path.join(opts.output,chunks._filename) , plated.chunks.replace("{html}",merged_chunks) );
+				plated.files.write( path.join(opts.output,chunks._filename) , plated.chunks.replace( plated.chunks.delimiter_wrap_str("html"),merged_chunks) );
 				if(opts.dumpjson){
 					plated.files.write( path.join(opts.output,chunks._filename)+".json" , JSON_stringify(merged_chunks,{space:1}) );
 				}
 				posts_body[idx]=merged_chunks;
-				merged_chunks._body=plated.chunks.replace( plated.chunks.delimiter_wrap_str(plated_blog.config.blog_post_body_many),merged_chunks); // prebuild body
+				merged_chunks._body=plated.chunks.replace( plated.chunks.delimiter_wrap_str("_blog_post_body_many"),merged_chunks); // prebuild body
 
 			}
 
@@ -152,15 +157,15 @@ exports.create=function(opts,plated){
 				plated.files.set_source(chunks,fname)
 
 				chunks._list=list;
-				chunks._page_older=pagename_older;
-				chunks._page_newer=pagename_newer;
+				chunks._blog_page_older=pagename_older;
+				chunks._blog_page_newer=pagename_newer;
 
-				chunks.body=plated.chunks.delimiter_wrap_str(plated_blog.config.blog_body);
+				chunks.body=plated.chunks.delimiter_wrap_str("_blog_page_body");
 
 				plated.files.prepare_namespace(fname); // prepare merged namespace
 				var merged_chunks=plated.chunks.merge_namespace(chunks);
 
-				plated.files.write( path.join(opts.output,chunks._filename) , plated.chunks.replace("{html}",merged_chunks) );
+				plated.files.write( path.join(opts.output,chunks._filename) , plated.chunks.replace( plated.chunks.delimiter_wrap_str("html"),merged_chunks) );
 				if(opts.dumpjson){
 					plated.files.write( path.join(opts.output,chunks._filename)+".json" , JSON_stringify(merged_chunks,{space:1}) );
 				}
@@ -180,19 +185,19 @@ exports.create=function(opts,plated){
 	plated_blog.process_file=function(chunks){
 		
 // process blog_json
-		var chunk=chunks[plated_blog.config.blog_json];
+		var chunk=chunks._blog_json;
 		if( chunk )
 		{
 			if( "string" == typeof (chunk) ) { chunk=JSON5.parse(chunk) || {}; } // auto json parse
 			chunk.dir            = chunk.dirname        || chunks._dirname ;
 			chunk.posts_per_page = chunk.posts_per_page || plated_blog.config.posts_per_page ;
 			
-			chunks[plated_blog.config.blog_json]=chunk;
+			chunks._blog_json=chunk;
 		}
 		
 
 // process blog_post_json
-		var chunk=chunks[plated_blog.config.blog_post_json];
+		var chunk=chunks._blog_post_json;
 		if( chunk )
 		{
 			if( "string" == typeof (chunk) ) { chunk=JSON5.parse(chunk) || {}; } // auto json parse
@@ -241,7 +246,7 @@ exports.create=function(opts,plated){
 				chunk.unixtime=Date.UTC(dd[0],dd[1]-1,dd[2],dd[3],dd[4],dd[5])/1000;
 			}
 
-			chunks[plated_blog.config.blog_post_json]=chunk;
+			chunks._blog_post_json=chunk;
 		}
 		
 		

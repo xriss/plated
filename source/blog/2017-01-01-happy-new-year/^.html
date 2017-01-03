@@ -1,15 +1,15 @@
 
-#^blog_post_json
+#^title trim=ends
+{_blog_post_json.title}
+
+#^_blog_post_json
 {
 	"title":"Happy new year!",
 }
 
-#^title trim=ends
-{blog_post_json.title}
+#^_blog_post_body form=markdown
 
-#^blog_post_body form=markdown
-
-{title}
+{_blog_post_json.title}
 -------
 
 This is the first blog post to test that the blogging system for plated 

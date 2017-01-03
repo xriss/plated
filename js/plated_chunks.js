@@ -344,7 +344,7 @@ exports.create=function(opts,plated){
 	
 	plated_chunks.expand_tag=function(v,dat)
 	{
-		var v_unesc=v.split("&amp;").join("&"); //turn html escaped & back into just & so we can let markdown break out tags
+		var v_unesc=v.split("&amp;").join("&"); //turn html escaped & back into just & so we can let markdown break our tags
 		var aa=v_unesc.split(/([^0-9a-zA-Z_\-\.]+)/g); // valid chars for chunk names and indexes
 //		if(aa[0]=="") { aa.splice(0,1); } // remove empty strings at start
 //		if(aa[aa.length-1]=="") { aa.splice(aa.length-1,1); } // and at end
@@ -401,19 +401,31 @@ exports.create=function(opts,plated){
 					break;
 					case "plate":
 						next=plated_chunks.lookup(a,dat);
-						var dp=[];
-						if(isArray(last)) // apply plate to all objects in array
+						if(!next)
 						{
-							for(var ii=0;ii<last.length;ii++)
+							opp="error"; // template must be valid
+						}
+						else
+						{
+							var dp=[];
+							if(isArray(last)) // apply plate to all objects in array
 							{
-								dp.push( plated_chunks.replace_once(next,{_it:last[ii],_idx:ii+1}) );
+								for(var ii=0;ii<last.length;ii++)
+								{
+									dp.push( plated_chunks.replace_once(next,{_it:last[ii],_idx:ii+1}) );
+								}
 							}
+							else
+							if(!last)
+							{
+								dp.push(""); // false in, is an empty string out
+							}
+							else // just apply plate to this single object or string
+							{
+								dp.push( plated_chunks.replace_once(next,{_it:last,_idx:1}) );
+							}
+							last=( dp.join("") ); // join all items
 						}
-						else // just apply plate to this single object or string
-						{
-							dp.push( plated_chunks.replace_once(next,{_it:last,_idx:1}) );
-						}
-						last=( dp.join("") ); // join all items
 					break;
 					default: // error
 						opp="error";
@@ -460,7 +472,7 @@ exports.create=function(opts,plated){
 			if(--sanity<0) { break; }
 		}
 		
-// TODO: perform a final replace of chunks that should not recurse, these are included like so {.chunkname}
+// TODO: perform a final replace of chunks that should not recurse, these are included like so {[chunkname]}
 		
 		return str;
 	}

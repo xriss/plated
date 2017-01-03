@@ -11,19 +11,19 @@ Welcome to the Plated Dev blog!
 	<body>{body}</body>
 </html>
 
-#^blog_json
+#^_blog_json
 
 {
 	posts_per_page:5,
 }
 
-#^blog_body
+#^_blog_page_body
 
 <div>some blog posts</div>
 
 {_list:blog_list}
 
-<div> <a href="{_root}{_page_older}">older posts</a> <a href="{_root}{_page_newer}">newer posts</a> </div>
+<div> <a href="{_root}{_blog_page_older}">older posts</a> <a href="{_root}{_blog_page_newer}">newer posts</a> </div>
 
 
 #^blog_list
@@ -32,15 +32,15 @@ Welcome to the Plated Dev blog!
 {_it._body}
 <div>item tail</div>
 
-#^blog_post_body_one
+#^_blog_post_body_one
 
-{blog_post_body}
+{_blog_post_body}
 
-<div> <a href="{_root}{_post_older}">older post</a> <a href="{_root}{_post_newer}">newer post</a> </div>
+<div> <a href="{_root}{_blog_post_older}">older post</a> <a href="{_root}{_blog_post_newer}">newer post</a> </div>
 
 Some comments belong here
 
-#^blog_post_body_many
+#^_blog_post_body_many
 
 <a href="{_root}{_dirname}">link</a>
-{blog_post_body}
+{_blog_post_body}
