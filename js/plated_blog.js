@@ -70,8 +70,6 @@ exports.create=function(opts,plated){
 			}
 		}
 		
-//ls(blogs);
-		
 		for(var blogname in blogs) { var blog=blogs[blogname];
 
 			var blog_json=blog[0]._blog_json;
@@ -209,7 +207,6 @@ exports.create=function(opts,plated){
 				if(typeof(s)=="string") // convert from string to array
 				{
 					var a=s.split(/[^0-9]+/); 
-//console.log(a);
 					var idx=0;
 					var dd=[1970,1,0,0,0,0]; // the beginning of time
 					for(var i=0;i<a.length;i++)
@@ -239,7 +236,6 @@ exports.create=function(opts,plated){
 							idx=0; // reset
 						}
 					}
-//console.log(dd);
 					chunk.datetime=dd;
 				}
 

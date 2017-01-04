@@ -298,8 +298,6 @@ exports.create=function(opts,plated){
 		}
 		
 		deepmerge(dat,chunks,dat._flags);
-		
-//		chunks._flags=undefined; // no flags available after chunks have been merged
 
 		return chunks;
 	};
@@ -366,8 +364,6 @@ exports.create=function(opts,plated){
 		}
 		
 		var aa=v_unesc.split(/([^0-9a-zA-Z_\-\.]+)/g); // valid chars for chunk names and indexes
-//		if(aa[0]=="") { aa.splice(0,1); } // remove empty strings at start
-//		if(aa[aa.length-1]=="") { aa.splice(aa.length-1,1); } // and at end
 
 		var last,next;
 		var opp="replace";
@@ -378,9 +374,6 @@ exports.create=function(opts,plated){
 			{
 				switch(opp)
 				{
-					case "replace":
-						last=a;
-					break;
 					case "and":
 						if(last)
 						{
@@ -401,7 +394,6 @@ exports.create=function(opts,plated){
 			else
 			if(a.match(/^[0-9a-zA-Z_\-\.]+$/)) // a chunk name
 			{
-//				console.log("str",a);
 				switch(opp)
 				{
 					case "replace":
@@ -454,7 +446,6 @@ exports.create=function(opts,plated){
 			}
 			else // an operator
 			{
-//				console.log("opp",a);
 				switch(a)
 				{
 					case "&":
@@ -474,7 +465,6 @@ exports.create=function(opts,plated){
 			}
 			if(opp=="error") { last=null; break; } // giveup
 		}
-//		console.log("result",last);
 
 		if(last==="") { return ""; } // so we can return an empty string
 		return last || ( plated_chunks.delimiter_open_str() +v+ plated_chunks.delimiter_close_str() );

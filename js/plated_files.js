@@ -100,7 +100,6 @@ exports.create=function(opts,plated){
 				var curPath = path + "/" + file;
 				if(fs.lstatSync(curPath).isDirectory()) { // recurse
 					plated_files.empty_folder(curPath);
-//					fs.rmdirSync(curPath);
 				} else { // delete file
 					if(file!=".git") // dont delete .git files
 					{
@@ -158,7 +157,6 @@ exports.create=function(opts,plated){
 			try { s=fs.readFileSync(path.join(root,fname),'utf8'); } catch(e){}
 			if(s)
 			{
-//console.log( "+++"+path.join(fname) );
 				cache[fname]=s;
 			}
 		}
@@ -172,8 +170,6 @@ exports.create=function(opts,plated){
 	{
 		var ns=[];
 		
-//		plated.chunks.reset_namespace();
-		
 		var list=[];
 		var rf=function(fn){
 			var d=path.dirname(fn);
@@ -182,7 +178,6 @@ exports.create=function(opts,plated){
 			var chunks=plated.dirs[d];
 			if( chunks ) { ns.push(chunks); }
 			
-//console.log("?",d)
 			if((d!="")&&(d!=".")&&(d!="/")) { rf(d); } // next dir
 		};
 		rf(fname)
@@ -190,8 +185,6 @@ exports.create=function(opts,plated){
 		ns.reverse();
 		
 		plated.chunks.set_namespace(ns);
-
-//ls(ns)
 
 	}
 
@@ -263,7 +256,6 @@ exports.create=function(opts,plated){
 // build all files found in the source dir into the output dir 
 	plated_files.build=function()
 	{
-//		ls(opts);
 
 		plated_files.empty_folder(opts.output);
 
@@ -299,8 +291,6 @@ exports.create=function(opts,plated){
 				plated_files.write( path.join(opts.output,d,".json") , JSON_stringify( plated.chunks.merge_namespace({}) ,{space:1}) );
 			}
 		}
-
-//ls(plated.dirs);
 
 		plated_files.find_files(opts.source,"",function(s){
 				
