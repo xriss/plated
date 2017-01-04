@@ -38,7 +38,7 @@ exports.create=function(opts,plated){
 // wrap a single post for use in its own page
 //		_blog_post_body_one
 
-// wrap a single post for use in a list IE the main blog page.
+// wrap a single post for use in a list IE the main blog page {_blog_page_body}.
 //		_blog_post_body_many
 
 

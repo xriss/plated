@@ -40,6 +40,11 @@ DATADATADATA
 
 true
 
+#^------------------------------
+#^expand trim=ends
+#^------------------------------
+
+This is {true}
 
 #^------------------------------
 #^body form=markdown trim=ends
@@ -69,12 +74,18 @@ test 2
 test 3
 ------
 
-
 FIRST -> {json.0}
 
 LAST -> {json.-1}
 
 MIDDLE -> {json.1}
+
+test 4
+------
+
+{expand}
+
+{^expand}
 
 
 

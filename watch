@@ -1,4 +1,4 @@
 cd `dirname $0`
 
-./plated watch
+./plated watch --dumpjson --root=/plated/ --output=output/plated
 

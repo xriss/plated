@@ -10,23 +10,36 @@ var ls=function(a) { console.log(util.inspect(a,{depth:null})); }
 
 exports.create=function(opts,plated){
 	plated=plated || {};
+
+	plated.setup=function(opts)
+	{
+		plated.files =require("./plated_files.js" ).create(opts,plated);
+		plated.chunks=require("./plated_chunks.js").create(opts,plated);
+		plated.process_dirs=[];
+		plated.process_file=[];
+	};
 	
-	var plated_files =plated.files =require("./plated_files.js" ).create(opts,plated);
-	var plated_chunks=plated.chunks=require("./plated_chunks.js").create(opts,plated);
-	var plated_blog=plated.blog=require("./plated_blog.js").create(opts,plated);
-	
-	plated.process_dirs=[ plated_blog.process_dirs ];
-	plated.process_file=[ plated_blog.process_file ];
-	
+	plated.plugin=function(it)
+	{
+		if(it.process_dirs) { plated.process_dirs.push(it.process_dirs); }
+		if(it.process_file) { plated.process_file.push(it.process_file); }
+	}
+		
 	plated.build=function()
 	{
-		return plated_files.build();
+		return plated.files.build();
 	};
 
 	plated.watch=function()
 	{
-		return plated_files.watch();
+		return plated.files.watch();
 	};
+
+
+// load default plugins
+
+	plated.setup(opts);
+	plated.plugin(require("./plated_blog.js").create(opts,plated));
 
 	return plated;
 }

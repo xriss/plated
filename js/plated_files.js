@@ -100,7 +100,7 @@ exports.create=function(opts,plated){
 				var curPath = path + "/" + file;
 				if(fs.lstatSync(curPath).isDirectory()) { // recurse
 					plated_files.empty_folder(curPath);
-					fs.rmdirSync(curPath);
+//					fs.rmdirSync(curPath);
 				} else { // delete file
 					if(file!=".git") // dont delete .git files
 					{
