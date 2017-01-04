@@ -87,10 +87,7 @@ exports.create=function(opts,plated){
 	
 // sort new to old...	
 			posts.sort(function(a,b){
-				var aj=a._blog_post_json;
-				var bj=b._blog_post_json;
-				
-				return bj.unixtime - aj.unixtime;
+				return b._blog_post_json.unixtime - a._blog_post_json.unixtime;
 			});
 			
 			for(var i=0;i<posts.length;i++) {
@@ -100,10 +97,9 @@ exports.create=function(opts,plated){
 				var post_newer=posts[i-1];
 				var post_older=posts[i+1];
 				
-				posts._blog_post_newer=post_newer && post_newer._filename+"/index.html";
-				posts._blog_post_older=post_older && post_older._filename+"/index.html";
+				post._blog_post_newer=post_newer && post_newer._filename+"/";
+				post._blog_post_older=post_older && post_older._filename+"/";
 			}
-
 // write individual blog posts and cache the merged chunks for paged output
 			for(var idx=0;idx<posts.length;idx++) { post=posts[idx];
 				
@@ -128,13 +124,13 @@ exports.create=function(opts,plated){
 			}
 
 			var pageidx=1;
-			var pagename="index.html";
+			var pagename=blog[0]._dirname+"/index.html";
 			var pagename_older;
 			var pagename_newer;
 			for( var postidx=0 ; postidx<posts.length ; postidx+=blog_json.posts_per_page )
 			{
 				pageidx++;
-				pagename_older="page"+pageidx+".html";
+				pagename_older=blog[0]._dirname+"/page"+pageidx+".html";
 				if( postidx+blog_json.posts_per_page >= posts.length) // no more pages
 				{
 					pagename_older=undefined;
@@ -149,7 +145,7 @@ exports.create=function(opts,plated){
 					}
 				}
 
-				var fname=blog[0]._dirname+"/"+pagename
+				var fname=pagename
 				var chunks={};
 				
 				plated.files.set_source(chunks,fname)

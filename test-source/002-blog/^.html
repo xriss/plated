@@ -17,27 +17,44 @@ Welcome to blog!
 	posts_per_page:2,
 }
 
+#^link_older_page
+<a href="{_root}{_it}">older posts</a>
+
+#^link_newer_page
+<a href="{_root}{_it}">newer posts</a>
+
 #^_blog_page_body
 
-<div>start of list</div>
+<div>some blog posts</div>
 
-{_list:blog_page_list}
+{_list:blog_list}
 
-<div>end of list</div>
+<div> {_blog_page_older:link_older_page} {_blog_page_newer:link_newer_page} </div>
 
 
-#^blog_page_list
+#^blog_list
 
 <div>item head</div>
 {_it._body}
 <div>item tail</div>
 
+
+#^link_older_post
+<a href="{_root}{_it}">older post</a>
+
+#^link_newer_post
+<a href="{_root}{_it}">newer post</a>
+
 #^_blog_post_body_one
 
 {_blog_post_body}
+
+<div> {_blog_post_older:link_older_post} {_blog_post_newer:link_newer_post} </div>
 
 Some comments belong here
 
 #^_blog_post_body_many
 
+<a href="{_root}{_dirname}">link</a>
 {_blog_post_body}
+
