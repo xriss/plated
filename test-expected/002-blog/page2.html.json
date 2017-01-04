@@ -37,8 +37,8 @@
     "title": "This is test post 4",
     "unixtime": 1482710400
    },
-   "_blog_post_newer": "002-blog/2016-12-27-this-is-a-test-post-5",
-   "_blog_post_older": "002-blog/2016-12-25-this-is-a-test-post-3",
+   "_blog_post_newer": "002-blog/2016-12-27-this-is-a-test-post-5/",
+   "_blog_post_older": "002-blog/2016-12-25-this-is-a-test-post-3/",
    "_body": "\n<a href=\"/002-blog/2016-12-26-this-is-a-test-post-4\">link</a>\n<h2 id=\"-title-\">This is test post 4</h2>\n<p>The title is This is test post 4 and this is an example blog post number 4.\n<br/>\n<br/></p>\n\n\n",
    "_dirname": "002-blog/2016-12-26-this-is-a-test-post-4",
    "_filename": "002-blog/2016-12-26-this-is-a-test-post-4/index.html",
@@ -81,24 +81,20 @@
     "title": "This is test post 3",
     "unixtime": 1482624000
    },
-   "_blog_post_newer": "002-blog/2016-12-26-this-is-a-test-post-4",
-   "_blog_post_older": "002-blog/2016-12-24-this-is-a-test-post-2",
-   "_body": "\n<a href=\"/002-blog/2016-12-25-this-is-a-test-post-3\">link</a>\n<h2 id=\"-title-\">Welcome to blog!</h2>\n<p>The title is Welcome to blog! and this is an example blog post number 3.\n<br/>\n<br/></p>\n\n\n",
+   "_blog_post_newer": "002-blog/2016-12-26-this-is-a-test-post-4/",
+   "_blog_post_older": "002-blog/2016-12-24-this-is-a-test-post-2/",
+   "_body": "\n<a href=\"/002-blog/2016-12-25-this-is-a-test-post-3\">link</a>\n<h2 id=\"-title-\">This is test post 3</h2>\n<p>The title is This is test post 3 and this is an example blog post number 3.\n<br/>\n<br/></p>\n\n\n",
    "_dirname": "002-blog/2016-12-25-this-is-a-test-post-3",
    "_filename": "002-blog/2016-12-25-this-is-a-test-post-3/index.html",
    "_flags": {
     "_blog_post_body": {
      "form": "markdown"
     },
-    "_title": {
-     "trim": "ends"
-    },
     "title": {
      "trim": "ends"
     }
    },
    "_root": "/",
-   "_title": "{blog_post_json.title}",
    "blog_list": "\n<div>item head</div>\n{_it._body}\n<div>item tail</div>\n\n",
    "body": "{_blog_post_body_one}",
    "html": "<html>\n\t<head>\n\t\t<title>{title}</title>\n\t</head>\n\t<body>{body}</body>\n</html>\n",
@@ -106,7 +102,7 @@
    "link_newer_post": "<a href=\"{_root}{_it}\">newer post</a>\n",
    "link_older_page": "<a href=\"{_root}{_it}\">older posts</a>\n",
    "link_older_post": "<a href=\"{_root}{_it}\">older post</a>\n",
-   "title": "Welcome to blog!"
+   "title": "{_blog_post_json.title}"
   }
  ],
  "_root": "/",

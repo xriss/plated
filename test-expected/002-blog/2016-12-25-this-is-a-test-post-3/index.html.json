@@ -19,23 +19,19 @@
   "title": "This is test post 3",
   "unixtime": 1482624000
  },
- "_blog_post_newer": "002-blog/2016-12-26-this-is-a-test-post-4",
- "_blog_post_older": "002-blog/2016-12-24-this-is-a-test-post-2",
+ "_blog_post_newer": "002-blog/2016-12-26-this-is-a-test-post-4/",
+ "_blog_post_older": "002-blog/2016-12-24-this-is-a-test-post-2/",
  "_dirname": "002-blog/2016-12-25-this-is-a-test-post-3",
  "_filename": "002-blog/2016-12-25-this-is-a-test-post-3/index.html",
  "_flags": {
   "_blog_post_body": {
    "form": "markdown"
   },
-  "_title": {
-   "trim": "ends"
-  },
   "title": {
    "trim": "ends"
   }
  },
  "_root": "/",
- "_title": "{blog_post_json.title}",
  "blog_list": "\n<div>item head</div>\n{_it._body}\n<div>item tail</div>\n\n",
  "body": "{_blog_post_body_one}",
  "html": "<html>\n\t<head>\n\t\t<title>{title}</title>\n\t</head>\n\t<body>{body}</body>\n</html>\n",
@@ -43,5 +39,5 @@
  "link_newer_post": "<a href=\"{_root}{_it}\">newer post</a>\n",
  "link_older_page": "<a href=\"{_root}{_it}\">older posts</a>\n",
  "link_older_post": "<a href=\"{_root}{_it}\">older post</a>\n",
- "title": "Welcome to blog!"
+ "title": "{_blog_post_json.title}"
 }

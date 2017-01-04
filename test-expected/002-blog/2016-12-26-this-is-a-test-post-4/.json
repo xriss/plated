@@ -19,8 +19,8 @@
   "title": "This is test post 4",
   "unixtime": 1482710400
  },
- "_blog_post_newer": "002-blog/2016-12-27-this-is-a-test-post-5",
- "_blog_post_older": "002-blog/2016-12-25-this-is-a-test-post-3",
+ "_blog_post_newer": "002-blog/2016-12-27-this-is-a-test-post-5/",
+ "_blog_post_older": "002-blog/2016-12-25-this-is-a-test-post-3/",
  "_dirname": "002-blog/2016-12-26-this-is-a-test-post-4",
  "_filename": "002-blog/2016-12-26-this-is-a-test-post-4",
  "_flags": {
