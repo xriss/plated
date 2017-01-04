@@ -325,7 +325,7 @@ exports.create=function(opts,plated){
 	}
 
 	// replace once only using dat
-	plated_chunks.replace_once=function(str,dat,last)
+	plated_chunks.replace_once=function(str,dat,lastpass)
 	{
 		var aa=plated_chunks.prepare(str);
 		
@@ -338,7 +338,7 @@ exports.create=function(opts,plated){
 			var v=aa[i];
 			if( v==plated_chunks.delimiter_open_str() ) // next string should be replaced
 			{
-				r.push( plated_chunks.expand_tag(aa[ ++i ],dat,last) );
+				r.push( plated_chunks.expand_tag(aa[ ++i ],dat,lastpass) );
 			}
 			else
 			{
@@ -349,13 +349,13 @@ exports.create=function(opts,plated){
 		return r.join("");
 	}
 	
-	plated_chunks.expand_tag=function(v,dat,last)
+	plated_chunks.expand_tag=function(v,dat,lastpass)
 	{
 		var v_unesc=v.split("&amp;").join("&"); //turn html escaped & back into just & so we can let markdown break our tags
 		
 		if(v_unesc[0]=="^") // only expand once, on last pass, 
 		{
-			if(last)
+			if(lastpass)
 			{
 				v_unesc=v_unesc.substring(1);
 			}
@@ -484,7 +484,7 @@ exports.create=function(opts,plated){
 	plated_chunks.replace=function(str,dat)
 	{
 		var check="";
-		var sanity=100;
+		var sanity=100; // maximum depth of recursion
 		while( str != check) //nothing changed on the last iteration so we are done
 		{
 			check=str;
@@ -492,7 +492,7 @@ exports.create=function(opts,plated){
 			if(--sanity<0) { break; }
 		}
 		
-// TODO: perform a final replace of chunks that should not recurse, these are included like so {^chunkname}
+// perform a final replace of chunks that should not recurse, these are included like so {^chunkname}
 		str=plated_chunks.replace_once(str,dat,true);
 		
 		return str;
