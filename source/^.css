@@ -1,7 +1,10 @@
 #^css same=append
 
-body {
+*		{box-sizing:border-box;}
+body	{background:#f7f4fd; font-family:mono, sans-serif; font-size:16px; line-height:24px; color:#3a3a3a; width:100%; padding:50px;}
+h1		{font-size:4em; font-weight:normal; color:#1400ff;}
 
-background:#888;
+a		{color:#1400ff;}
 
-}
+
+.line	{border-top:1px dashed #1400ff; margin-top:40px; margin-bottom:40px;}

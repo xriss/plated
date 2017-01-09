@@ -1,15 +1,8 @@
 
 #^title trim=ends
 
-Welcome to the Plated Dev blog!
+plated^ updates
 
-#^html
-<html>
-	<head>
-		<title>{title}</title>
-	</head>
-	<body>{body}</body>
-</html>
 
 #^_blog_json
 
@@ -34,7 +27,7 @@ Welcome to the Plated Dev blog!
 
 #^blog_list
 
-<div>item head</div>
+<div>{_it._blog_post_json._unixtime}</div>
 {_it._body}
 <div>item tail</div>
 
