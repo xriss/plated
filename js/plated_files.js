@@ -225,6 +225,8 @@ exports.create=function(opts,plated){
 	{
 		if(plated_files.filename_is_plated(fname))
 		{
+			var output_filename = path.join( opts.output , plated.files.filename_to_output(fname) );
+			
 			plated_files.prepare_namespace(fname); // prepare merged namespace
 			
 			var chunks={};
@@ -240,13 +242,13 @@ exports.create=function(opts,plated){
 				chunks = f( chunks ); // adjust and or output special chunks or files
 			}
 
-			if(chunks._filename) // may have been told not to do the normal thing
+			if(chunks._filename) // may have been told not to do the normal output thing?
 			{
 				var merged_chunks=plated.chunks.merge_namespace(chunks);
 
-				plated_files.write( path.join(opts.output,chunks._filename) , plated.chunks.replace( plated.chunks.delimiter_wrap_str(fname.split('.').pop()),merged_chunks) );
+				plated_files.write( output_filename , plated.chunks.replace( plated.chunks.delimiter_wrap_str(fname.split('.').pop()),merged_chunks) );
 				if(opts.dumpjson){
-					plated_files.write( path.join(opts.output,chunks._filename)+".json" , JSON_stringify(merged_chunks,{space:1}) );
+					plated_files.write( output_filename+".json" , JSON_stringify(merged_chunks,{space:1}) );
 				}
 			}
 

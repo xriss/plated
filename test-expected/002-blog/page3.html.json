@@ -25,6 +25,7 @@
    "_blog_post_body_many": "\n<a href=\"{_root}{_dirname}\">link</a>\n{_blog_post_body}\n\n",
    "_blog_post_body_one": "\n{_blog_post_body}\n\n<div> {_blog_post_older:link_older_post} {_blog_post_newer:link_newer_post} </div>\n\nSome comments belong here\n",
    "_blog_post_json": {
+    "datedash": "2016-12-24",
     "datetime": [
      2016,
      12,
@@ -69,6 +70,7 @@
    "_blog_post_body_many": "\n<a href=\"{_root}{_dirname}\">link</a>\n{_blog_post_body}\n\n",
    "_blog_post_body_one": "\n{_blog_post_body}\n\n<div> {_blog_post_older:link_older_post} {_blog_post_newer:link_newer_post} </div>\n\nSome comments belong here\n",
    "_blog_post_json": {
+    "datedash": "2016-12-23",
     "datetime": [
      2016,
      12,
