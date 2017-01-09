@@ -11,4 +11,5 @@ a.bar	{color:#f7f4fd; background-color:#3a3a3a; border-radius:4px; padding:5px; 
 a.bar:hover	{background-color:#1400ff; border-bottom:none;}
 
 
-.line	{border-top:1px dashed #1400ff; margin-top:40px; margin-bottom:40px;}
+.line, .blog_wrap	{border-top:1px dashed #1400ff; margin-top:40px; margin-bottom:40px; position:relative;}
+.blog_info	{position:absolute; right:10px; top:10px;}
