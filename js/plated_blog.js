@@ -105,6 +105,7 @@ exports.create=function(opts,plated){
 				
 
 				var fname=post._dirname+"/index.html"
+				var output_filename = path.join( opts.output , plated.files.filename_to_output(fname) );
 				var chunks={};
 				
 				plated.files.set_source(chunks,fname)
@@ -114,9 +115,9 @@ exports.create=function(opts,plated){
 				plated.files.prepare_namespace(fname); // prepare merged namespace
 				var merged_chunks=plated.chunks.merge_namespace(chunks);
 
-				plated.files.write( path.join(opts.output,chunks._filename) , plated.chunks.replace( plated.chunks.delimiter_wrap_str("html"),merged_chunks) );
+				plated.files.write( output_filename , plated.chunks.replace( plated.chunks.delimiter_wrap_str("html"),merged_chunks) );
 				if(opts.dumpjson){
-					plated.files.write( path.join(opts.output,chunks._filename)+".json" , JSON_stringify(merged_chunks,{space:1}) );
+					plated.files.write( output_filename+".json" , JSON_stringify(merged_chunks,{space:1}) );
 				}
 				posts_body[idx]=merged_chunks;
 				merged_chunks._body=plated.chunks.replace( plated.chunks.delimiter_wrap_str("_blog_post_body_many"),merged_chunks); // prebuild body
@@ -146,6 +147,7 @@ exports.create=function(opts,plated){
 				}
 
 				var fname=pagename
+				var output_filename = path.join( opts.output , plated.files.filename_to_output(fname) );
 				var chunks={};
 				
 				plated.files.set_source(chunks,fname)
@@ -159,9 +161,9 @@ exports.create=function(opts,plated){
 				plated.files.prepare_namespace(fname); // prepare merged namespace
 				var merged_chunks=plated.chunks.merge_namespace(chunks);
 
-				plated.files.write( path.join(opts.output,chunks._filename) , plated.chunks.replace( plated.chunks.delimiter_wrap_str("html"),merged_chunks) );
+				plated.files.write( output_filename , plated.chunks.replace( plated.chunks.delimiter_wrap_str("html"),merged_chunks) );
 				if(opts.dumpjson){
-					plated.files.write( path.join(opts.output,chunks._filename)+".json" , JSON_stringify(merged_chunks,{space:1}) );
+					plated.files.write( output_filename+".json" , JSON_stringify(merged_chunks,{space:1}) );
 				}
 
 				pagename_newer=pagename;

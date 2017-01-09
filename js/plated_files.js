@@ -39,8 +39,8 @@ exports.create=function(opts,plated){
 		if( chunks._dirname =="/" ) { chunks._dirname =""; }
 		
 		chunks._root=opts.root;
-//		chunks._filename=opts.root+chunks._filename;
-//		chunks._dirname=opts.root+chunks._dirname;
+		chunks._filename=opts.root+chunks._filename;
+		chunks._dirname=opts.root+chunks._dirname;
 		
 		return chunks;
 	}
@@ -242,14 +242,11 @@ exports.create=function(opts,plated){
 				chunks = f( chunks ); // adjust and or output special chunks or files
 			}
 
-			if(chunks._filename) // may have been told not to do the normal output thing?
-			{
-				var merged_chunks=plated.chunks.merge_namespace(chunks);
+			var merged_chunks=plated.chunks.merge_namespace(chunks);
 
-				plated_files.write( output_filename , plated.chunks.replace( plated.chunks.delimiter_wrap_str(fname.split('.').pop()),merged_chunks) );
-				if(opts.dumpjson){
-					plated_files.write( output_filename+".json" , JSON_stringify(merged_chunks,{space:1}) );
-				}
+			plated_files.write( output_filename , plated.chunks.replace( plated.chunks.delimiter_wrap_str(fname.split('.').pop()),merged_chunks) );
+			if(opts.dumpjson){
+				plated_files.write( output_filename+".json" , JSON_stringify(merged_chunks,{space:1}) );
 			}
 
 		}
