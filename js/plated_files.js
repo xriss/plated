@@ -330,6 +330,7 @@ exports.create=function(opts,plated){
 				}
 				else
 				{
+					console.log("FILE\t"+"/"+s)
 					plated_files.build_file(s);
 				}
 
