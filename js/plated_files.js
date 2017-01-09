@@ -9,6 +9,8 @@ var ls=function(a) { console.log(util.inspect(a,{depth:null})); }
 
 // wrap so we can contain multiple environments without borking
 exports.create=function(opts,plated){
+	
+	var timestr=function(){ return new Date().toISOString().replace(/^.+T/, "").replace(/\..+/, ""); }
 
 	var plated_files={};
 
@@ -262,7 +264,7 @@ exports.create=function(opts,plated){
 		plated.dirs={};
 		
 		plated_files.find_dirs(opts.source,"",function(s){
-			console.log("DIR\t"+"/"+s)
+			console.log(timestr()+" DIR  "+"/"+s)
 			
 			var chunks=plated_files.base_files_to_chunks(s+"/name.txt");
 
@@ -296,7 +298,7 @@ exports.create=function(opts,plated){
 				
 				if(!plated_files.filename_is_basechunk(s))
 				{
-					console.log("FILE\t"+"/"+s)
+					console.log(timestr()+" FILE "+"/"+s)
 					plated_files.build_file(s);
 				}
 		});
@@ -330,7 +332,7 @@ exports.create=function(opts,plated){
 				}
 				else
 				{
-					console.log("FILE\t"+"/"+s)
+					console.log(timestr()+" FILE "+"/"+s)
 					plated_files.build_file(s);
 				}
 
