@@ -32,15 +32,13 @@ exports.create=function(opts,plated){
 // fill in _source and related chunks
 	plated_files.set_source=function(chunks,source)
 	{
-		chunks._sourcename=source;
-		if( chunks._sourcename=="/" ) { chunks._sourcename=""; }
+		chunks._sourcename=plated_files.filename_fixup(source);
 
 		chunks._filename=plated_files.filename_to_output(chunks._sourcename);
-		if( chunks._filename=="/" ) { chunks._filename=""; }
 
 		chunks._dirname=plated_files.filename_to_dirname(chunks._sourcename);
 		
-		chunks._root=opts.root;
+		chunks._root=opts.root; // probably just "/"
 		chunks._filename=opts.root+chunks._filename;
 		chunks._dirname=opts.root+chunks._dirname;
 
@@ -54,11 +52,16 @@ exports.create=function(opts,plated){
 	};
 
 // get the dirname of this filename
+	plated_files.filename_fixup = function(filename) {
+		if( filename =="." ) { filename =""; }
+		if( filename =="/." ) { filename =""; }
+		if( filename =="/" ) { filename =""; }
+		return filename;
+	}
+
+// get the dirname of this filename
 	plated_files.filename_to_dirname = function(filename) {
-		var dirname=path.dirname(filename);
-		if( dirname =="." ) { dirname =""; }
-		if( dirname =="/" ) { dirname =""; }
-		return dirname;
+		return plated_files.filename_fixup(path.dirname(filename));
 	}
 
 
@@ -103,7 +106,7 @@ exports.create=function(opts,plated){
 				vv.splice(i,1);
 			}
 		}
-		return path.join(d,vv.join("."));
+		return plated_files.filename_fixup( path.join(d,vv.join(".")) );
 	}
 
 // empty the (output) folder or make it if it does not exist
