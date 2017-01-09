@@ -6,14 +6,16 @@
  "_blog_page_body": "\n<div>some blog posts</div>\n\n{_list:blog_list}\n\n<div> {_blog_page_older:link_older_page} {_blog_page_newer:link_newer_page} </div>\n\n",
  "_blog_post_body_many": "\n<a href=\"{_root}{_dirname}\">link</a>\n{_blog_post_body}\n\n",
  "_blog_post_body_one": "\n{_blog_post_body}\n\n<div> {_blog_post_older:link_older_post} {_blog_post_newer:link_newer_post} </div>\n\nSome comments belong here\n",
+ "_dir": "/002-blog",
  "_dirname": "002-blog",
- "_filename": "002-blog",
+ "_filename": "/undefined",
  "_flags": {
   "title": {
    "trim": "ends"
   }
  },
  "_root": "/",
+ "_sourcename": "002-blog/.",
  "blog_list": "\n<div>item head</div>\n{_it._body}\n<div>item tail</div>\n\n",
  "html": "<html>\n\t<head>\n\t\t<title>{title}</title>\n\t</head>\n\t<body>{body}</body>\n</html>\n",
  "link_newer_page": "<a href=\"{_root}{_it}\">newer posts</a>\n",

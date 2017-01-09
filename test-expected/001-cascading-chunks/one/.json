@@ -1,6 +1,7 @@
 {
+ "_dir": "/001-cascading-chunks/one",
  "_dirname": "001-cascading-chunks/one",
- "_filename": "001-cascading-chunks/one",
+ "_filename": "/undefined",
  "_flags": {
   "json": {
    "form": "json"
@@ -14,6 +15,7 @@
   }
  },
  "_root": "/",
+ "_sourcename": "001-cascading-chunks/one/.",
  "base": "\nBASE ONE\n",
  "json": {
   "extra": {

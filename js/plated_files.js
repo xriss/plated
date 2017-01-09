@@ -32,7 +32,7 @@ exports.create=function(opts,plated){
 // fill in _source and related chunks
 	plated_files.set_source=function(chunks,source)
 	{
-		chunks._filename=plated.files.filename_to_output(source);
+		chunks._sourcename=source;
 		if( chunks._filename=="/" ) { chunks._filename=""; }
 		chunks._dirname=path.dirname(source);
 		if( chunks._dirname =="." ) { chunks._dirname =""; }
@@ -40,7 +40,7 @@ exports.create=function(opts,plated){
 		
 		chunks._root=opts.root;
 		chunks._filename=opts.root+chunks._filename;
-		chunks._dirname=opts.root+chunks._dirname;
+		chunks._dir=opts.root+chunks._dirname;
 		
 		return chunks;
 	}

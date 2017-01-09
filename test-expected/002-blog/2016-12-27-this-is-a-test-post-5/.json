@@ -8,22 +8,23 @@
  "_blog_post_body_many": "\n<a href=\"{_root}{_dirname}\">link</a>\n{_blog_post_body}\n\n",
  "_blog_post_body_one": "\n{_blog_post_body}\n\n<div> {_blog_post_older:link_older_post} {_blog_post_newer:link_newer_post} </div>\n\nSome comments belong here\n",
  "_blog_post_json": {
-  "datedash": "2016-12-27",
+  "datedash": "1970-01-00",
   "datetime": [
-   2016,
-   12,
-   27,
+   1970,
+   1,
+   0,
    0,
    0,
    0
   ],
   "title": "This is test post 5",
-  "unixtime": 1482796800
+  "unixtime": -86400
  },
- "_blog_post_newer": "002-blog/2016-12-28-this-is-a-test-post-6/",
- "_blog_post_older": "002-blog/2016-12-26-this-is-a-test-post-4/",
+ "_blog_post_newer": "/undefined/",
+ "_blog_post_older": "/undefined/",
+ "_dir": "/002-blog/2016-12-27-this-is-a-test-post-5",
  "_dirname": "002-blog/2016-12-27-this-is-a-test-post-5",
- "_filename": "002-blog/2016-12-27-this-is-a-test-post-5",
+ "_filename": "/undefined",
  "_flags": {
   "_blog_post_body": {
    "form": "markdown"
@@ -33,6 +34,7 @@
   }
  },
  "_root": "/",
+ "_sourcename": "002-blog/2016-12-27-this-is-a-test-post-5/.",
  "blog_list": "\n<div>item head</div>\n{_it._body}\n<div>item tail</div>\n\n",
  "html": "<html>\n\t<head>\n\t\t<title>{title}</title>\n\t</head>\n\t<body>{body}</body>\n</html>\n",
  "link_newer_page": "<a href=\"{_root}{_it}\">newer posts</a>\n",
