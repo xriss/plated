@@ -132,6 +132,7 @@ exports.create=function(opts,plated){
 			{
 				pageidx++;
 				pagename_older=plated.files.filename_to_dirname(blog[0]._sourcename)+"/page"+pageidx+".html";
+
 				if( postidx+blog_json.posts_per_page >= posts.length) // no more pages
 				{
 					pagename_older=undefined;
@@ -153,8 +154,8 @@ exports.create=function(opts,plated){
 				plated.files.set_source(chunks,fname)
 
 				chunks._list=list;
-				chunks._blog_page_older=pagename_older;
-				chunks._blog_page_newer=pagename_newer;
+				chunks._blog_page_older=pagename_older && (opts.root+pagename_older);
+				chunks._blog_page_newer=pagename_newer && (opts.root+pagename_newer);
 
 				chunks.body=plated.chunks.delimiter_wrap_str("_blog_page_body");
 
