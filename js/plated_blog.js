@@ -104,7 +104,7 @@ exports.create=function(opts,plated){
 			for(var idx=0;idx<posts.length;idx++) { post=posts[idx];
 				
 
-				var fname=post._dirname+"/index.html"
+				var fname=plated.files.filename_to_dirname(post._sourcename)+"/index.html"
 				var output_filename = path.join( opts.output , plated.files.filename_to_output(fname) );
 				var chunks={};
 				
@@ -125,13 +125,13 @@ exports.create=function(opts,plated){
 			}
 
 			var pageidx=1;
-			var pagename=blog[0]._dirname+"/index.html";
+			var pagename=plated.files.filename_to_dirname(blog[0]._sourcename)+"/index.html";
 			var pagename_older;
 			var pagename_newer;
 			for( var postidx=0 ; postidx<posts.length ; postidx+=blog_json.posts_per_page )
 			{
 				pageidx++;
-				pagename_older=blog[0]._dirname+"/page"+pageidx+".html";
+				pagename_older=plated.files.filename_to_dirname(blog[0]._sourcename)+"/page"+pageidx+".html";
 				if( postidx+blog_json.posts_per_page >= posts.length) // no more pages
 				{
 					pagename_older=undefined;
@@ -185,7 +185,7 @@ exports.create=function(opts,plated){
 		if( chunk )
 		{
 			if( "string" == typeof (chunk) ) { chunk=JSON5.parse(chunk) || {}; } // auto json parse
-			chunk.dir            = chunk.dirname        || chunks._dirname ;
+			chunk.dir            = chunk.dirname        || chunks._sourcename ;
 			chunk.posts_per_page = chunk.posts_per_page || plated_blog.config.posts_per_page ;
 			
 			chunks._blog_json=chunk;

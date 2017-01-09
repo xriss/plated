@@ -33,15 +33,17 @@ exports.create=function(opts,plated){
 	plated_files.set_source=function(chunks,source)
 	{
 		chunks._sourcename=source;
+		if( chunks._sourcename=="/" ) { chunks._sourcename=""; }
+
+		chunks._filename=plated_files.filename_to_output(chunks._sourcename);
 		if( chunks._filename=="/" ) { chunks._filename=""; }
-		chunks._dirname=path.dirname(source);
-		if( chunks._dirname =="." ) { chunks._dirname =""; }
-		if( chunks._dirname =="/" ) { chunks._dirname =""; }
+
+		chunks._dirname=plated_files.filename_to_dirname(chunks._sourcename);
 		
 		chunks._root=opts.root;
 		chunks._filename=opts.root+chunks._filename;
-		chunks._dir=opts.root+chunks._dirname;
-		
+		chunks._dirname=opts.root+chunks._dirname;
+
 		return chunks;
 	}
 
@@ -50,6 +52,15 @@ exports.create=function(opts,plated){
 		plated_files.mkdir( path.dirname(filename) );
 		fs.writeFileSync( filename , data );
 	};
+
+// get the dirname of this filename
+	plated_files.filename_to_dirname = function(filename) {
+		var dirname=path.dirname(filename);
+		if( dirname =="." ) { dirname =""; }
+		if( dirname =="/" ) { dirname =""; }
+		return dirname;
+	}
+
 
 // convert a source path into an output path
 	plated_files.source_to_output = function(path) {
