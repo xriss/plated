@@ -7,3 +7,6 @@ echo " installing node dependencies, if this fails you probably need node "
 cd js
 npm install
 
+echo " installing node test server , dont worry about warnings "
+cd ..
+npm install http-server
