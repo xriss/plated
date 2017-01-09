@@ -39,6 +39,8 @@ exports.create=function(opts,plated){
 		if( chunks._dirname =="/" ) { chunks._dirname =""; }
 		
 		chunks._root=opts.root;
+//		chunks._filename=opts.root+chunks._filename;
+//		chunks._dirname=opts.root+chunks._dirname;
 		
 		return chunks;
 	}
