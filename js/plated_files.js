@@ -119,7 +119,7 @@ exports.create=function(opts,plated){
 				if(fs.lstatSync(curPath).isDirectory()) { // recurse
 					plated_files.empty_folder(curPath);
 				} else { // delete file
-					if(file!=".git") // dont delete .git files
+					if(file!=".git") // dont delete .git files // TODO:make generic rule? We need t keep .git for submodules
 					{
 						fs.unlinkSync(curPath);
 					}
@@ -137,7 +137,8 @@ exports.create=function(opts,plated){
 	plated_files.find_files = function(root,name,f) {
 		var files=fs.readdirSync( path.join(root,name) );
 		for(var i in files){ var v=files[i];
-			if(fs.lstatSync( path.join(root,name,v) ).isDirectory())
+			var st=fs.lstatSync( path.join(root,name,v) );
+			if( st.isDirectory() || st.isSymbolicLink() )
 			{
 				plated_files.find_files(root,path.join(name,v),f);
 			}
@@ -153,7 +154,8 @@ exports.create=function(opts,plated){
 		f(name);
 		var files=fs.readdirSync( path.join(root,name) );
 		for(var i in files){ var v=files[i];
-			if(fs.lstatSync( path.join(root,name,v) ).isDirectory())
+			var st=fs.lstatSync( path.join(root,name,v) );
+			if( st.isDirectory() || st.isSymbolicLink() )
 			{
 				plated_files.find_dirs(root,path.join(name,v),f);
 			}
