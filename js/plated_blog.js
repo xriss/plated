@@ -47,6 +47,7 @@ exports.create=function(opts,plated){
 	plated_blog.process_dirs=function(dirs){
 		
 		var blogs={};
+		var drafts=[];
 		
 		for( var dirname in dirs ) { var chunks=dirs[dirname];
 			
@@ -57,7 +58,11 @@ exports.create=function(opts,plated){
 
 			if(chunks._blog_post_json)
 			{
-				if(!chunks._blog_post_json.draft) //ignore draft posts
+				if(chunks._blog_post_json.draft) //ignore draft posts from lists
+				{
+					drafts.push( chunks ); // but we still publish the page for testing
+				}
+				else
 				{
 					for( var blogname in blogs ) // find blog we belong to
 					{
@@ -72,6 +77,27 @@ exports.create=function(opts,plated){
 			}
 		}
 		
+// write drafts
+		for(var idx=0;idx<drafts.length;idx++) { var post=drafts[idx];
+
+			var fname=plated.files.filename_to_dirname(post._sourcename)+"/index.html"
+			var output_filename = path.join( opts.output , plated.files.filename_to_output(fname) );
+			var chunks={};
+			
+			plated.files.set_source(chunks,fname)
+			
+			chunks.body=plated.chunks.delimiter_wrap_str("_blog_post_body_one");
+
+			plated.files.prepare_namespace(fname); // prepare merged namespace
+			var merged_chunks=plated.chunks.merge_namespace(chunks);
+
+			plated.files.write( output_filename , plated.chunks.replace( plated.chunks.delimiter_wrap_str("html"),merged_chunks) );
+			if(opts.dumpjson){
+				plated.files.write( output_filename+".json" , JSON_stringify(merged_chunks,{space:1}) );
+			}
+
+		}
+
 		for(var blogname in blogs) { var blog=blogs[blogname];
 
 			var blog_json=blog[0]._blog_json;
@@ -103,7 +129,7 @@ exports.create=function(opts,plated){
 				post._blog_post_older=post_older && post_older._filename+"/";
 			}
 // write individual blog posts and cache the merged chunks for paged output
-			for(var idx=0;idx<posts.length;idx++) { post=posts[idx];
+			for(var idx=0;idx<posts.length;idx++) { var post=posts[idx];
 				
 
 				var fname=plated.files.filename_to_dirname(post._sourcename)+"/index.html"
