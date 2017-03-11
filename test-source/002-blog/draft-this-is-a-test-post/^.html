@@ -1,0 +1,20 @@
+
+#^_blog_post_json
+
+{
+	
+	"title":"This is a draft post",
+	
+}
+
+#^title trim=ends
+{_blog_post_json.title}
+
+#^_blog_post_body form=markdown
+
+{title}
+-------
+
+The title is {title}.
+
+

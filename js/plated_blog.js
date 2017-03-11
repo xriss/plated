@@ -50,7 +50,6 @@ exports.create=function(opts,plated){
 		
 		for( var dirname in dirs ) { var chunks=dirs[dirname];
 			
-			
 			if(chunks._blog_json)
 			{
 				blogs[dirname]=[ chunks ];
@@ -58,12 +57,15 @@ exports.create=function(opts,plated){
 
 			if(chunks._blog_post_json)
 			{
-				for( var blogname in blogs ) // find blog we belong to
+				if(!chunks._blog_post_json.draft) //ignore draft posts
 				{
-					if( dirname.substr(0, blogname.length) == blogname ) // found
+					for( var blogname in blogs ) // find blog we belong to
 					{
-						blogs[blogname].push( chunks ); // and add to array
-						break;
+						if( dirname.substr(0, blogname.length) == blogname ) // found
+						{
+							blogs[blogname].push( chunks ); // and add to array
+							break;
+						}
 					}
 				}
 
@@ -199,6 +201,15 @@ exports.create=function(opts,plated){
 		{
 			if( "string" == typeof (chunk) ) { chunk=JSON5.parse(chunk) || {}; } // auto json parse
 
+			if(chunk.draft===undefined)
+			{
+				var s=chunks._filename.split("/"); s=s[s.length-1];
+				if( s.substr(0,6) == "draft-" )
+				{
+					chunk.draft=true;
+				}
+			}
+			
 			if(!chunk.unixtime)
 			{
 				var s=chunk.datetime || chunks._filename;
