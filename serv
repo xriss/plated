@@ -1,5 +1,5 @@
 cd `dirname $0`
 
 cd output
-../node_modules/.bin/http-server
+../js/node_modules/.bin/http-server
 

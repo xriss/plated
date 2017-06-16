@@ -39,7 +39,8 @@ exports.create=function(opts,plated){
 // load default plugins
 
 	plated.setup(opts);
-	plated.plugin(require("./plated_blog.js").create(opts,plated));
+	plated.plugin(require("./plated_blog.js"    ).create(opts,plated));
+	plated.plugin(require("./plated_redirect.js").create(opts,plated));
 
 	return plated;
 }
