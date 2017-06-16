@@ -11,6 +11,8 @@ var ls=function(a) { console.log(util.inspect(a,{depth:null})); }
 // wrap so we can contain multiple environments without borking
 exports.create=function(opts,plated){
 
+	var timestr=function(){ return new Date().toISOString().replace(/^.+T/, "").replace(/\..+/, ""); }
+
 	var plated_redirect={};
 	
 	
@@ -77,6 +79,8 @@ exports.create=function(opts,plated){
 					if(opts.dumpjson){
 						plated.files.write( output_filename+".json" , JSON_stringify(merged_chunks,{space:1}) );
 					}
+
+					console.log(timestr()+" REDIRECT "+merged_chunks._redirect_from+" -> "+merged_chunks._redirect_to)
 
 				}
 			}

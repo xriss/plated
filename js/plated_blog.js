@@ -12,6 +12,8 @@ var ls=function(a) { console.log(util.inspect(a,{depth:null})); }
 // wrap so we can contain multiple environments without borking
 exports.create=function(opts,plated){
 
+	var timestr=function(){ return new Date().toISOString().replace(/^.+T/, "").replace(/\..+/, ""); }
+
 	var plated_blog={};
 	
 	
@@ -194,6 +196,8 @@ exports.create=function(opts,plated){
 				if(opts.dumpjson){
 					plated.files.write( output_filename+".json" , JSON_stringify(merged_chunks,{space:1}) );
 				}
+
+				console.log(timestr()+" BLOGPOST "+fname)
 
 				pagename_newer=pagename;
 				pagename=pagename_older;
