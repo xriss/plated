@@ -1,0 +1,7 @@
+cd `dirname $0`
+
+echo
+echo " starting server and watching for changed files to auto rebuild "
+echo
+
+./serv 1>&2 | ./watch

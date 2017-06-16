@@ -1,0 +1,5 @@
+cd `dirname $0`
+
+cd test-output
+../js/node_modules/.bin/http-server
+

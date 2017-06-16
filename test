@@ -15,6 +15,7 @@ echo
 echo " BUILDING "
 echo
 
+rm -rf test-output
 ./plated build --source=test-source --output=test-output --dumpjson
 
 echo

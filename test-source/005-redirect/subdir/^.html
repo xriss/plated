@@ -1,0 +1,19 @@
+
+#^------------------------------
+#^html
+#^------------------------------
+<html>
+	<body>{body}</body>
+</html>
+
+
+#^------------------------------
+#^_redirect_json
+#^------------------------------
+{
+	files:{
+		"{_dirname}/badname.html"        : "{_dirname}/../index.html",
+		"{_dirname}/redirect.html"       : "{_dirname}/../index.html",
+		"{_dirname}/barename/index.html" : "{_dirname}/../index.html",
+	},
+}
