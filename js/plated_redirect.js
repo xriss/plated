@@ -70,7 +70,7 @@ exports.create=function(opts,plated){
 					var merged_chunks=plated.chunks.merge_namespace(chunks);
 
 					merged_chunks.html=plated_redirect.config.html
-					merged_chunks._redirect_from=plated.chunks.replace( n , merged_chunks )
+					merged_chunks._redirect_from=path.join( dirname , n )
 					merged_chunks._redirect_to=plated.chunks.replace( v , merged_chunks )
 
 					var output_filename = path.join( opts.output , merged_chunks._redirect_from );

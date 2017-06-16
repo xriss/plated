@@ -152,6 +152,7 @@ exports.create=function(opts,plated){
 				posts_body[idx]=merged_chunks;
 				merged_chunks._body=plated.chunks.replace( plated.chunks.delimiter_wrap_str("_blog_post_body_many"),merged_chunks); // prebuild body
 
+				console.log(timestr()+" BLOGPOST "+fname)
 			}
 
 			var pageidx=1;
@@ -197,7 +198,7 @@ exports.create=function(opts,plated){
 					plated.files.write( output_filename+".json" , JSON_stringify(merged_chunks,{space:1}) );
 				}
 
-				console.log(timestr()+" BLOGPOST "+fname)
+				console.log(timestr()+" BLOG "+fname)
 
 				pagename_newer=pagename;
 				pagename=pagename_older;
