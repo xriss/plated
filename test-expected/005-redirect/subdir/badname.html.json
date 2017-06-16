@@ -1,0 +1,18 @@
+{
+ "_dirname": "/005-redirect/subdir",
+ "_filename": "/005-redirect/subdir",
+ "_flags": {
+ },
+ "_redirect_from": "/005-redirect/subdir/badname.html",
+ "_redirect_json": {
+  "files": {
+   "{_dirname}/badname.html": "{_dirname}/../index.html",
+   "{_dirname}/barename/index.html": "{_dirname}/../index.html",
+   "{_dirname}/redirect.html": "{_dirname}/../index.html"
+  }
+ },
+ "_redirect_to": "/005-redirect/subdir/../index.html",
+ "_root": "/",
+ "_sourcename": "005-redirect/subdir/.",
+ "html": "<html>\n\t<head>\n\t\t<link rel=\"canonical\" href=\"{_redirect_to}\">\n\t\t<meta http-equiv=\"refresh\" content=\"0; url={_redirect_to}\">\n\t</head>\n\t<body>\n\t\t<div class=\"redirect\">\n\t\t\t<h1>Redirecting…</h1>\n\t\t\t<a href=\"{_redirect_to}\">Click here if you are not redirected.</a>\n\t\t\t<script>location=\"{_redirect_to}\"</script>\n\t\t</div>\n\t</body>\n</html>\n"
+}

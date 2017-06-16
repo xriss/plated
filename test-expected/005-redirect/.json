@@ -1,0 +1,16 @@
+{
+ "_dirname": "/005-redirect",
+ "_filename": "/005-redirect",
+ "_flags": {
+ },
+ "_redirect_json": {
+  "files": {
+   "{_dirname}/badname.html": "{_dirname}/index.html",
+   "{_dirname}/barename/index.html": "{_dirname}/index.html",
+   "{_dirname}/redirect.html": "{_dirname}/index.html"
+  }
+ },
+ "_root": "/",
+ "_sourcename": "005-redirect/.",
+ "html": "<html>\n\t<body>{body}</body>\n</html>\n\n"
+}
