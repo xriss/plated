@@ -328,7 +328,19 @@ exports.create=function(opts,plated){
 
 		var as=opts.source.split(path.sep);
 		watch.watchTree(opts.source,{},function(f,curr,prev){
-			if(typeof f == "object" && prev === null && curr === null) {
+			if(typeof f == "object" && prev === null && curr === null)
+			{
+				// finished
+			}
+			else
+			if(curr.nlink===0) // f was removed
+			{
+				plated_files.build(); // rebuild everything
+			}
+			else
+			if(prev === null) // f is a new file
+			{
+				plated_files.build(); // rebuild everything
 			}
 			else
 			{
