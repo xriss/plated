@@ -244,6 +244,18 @@ exports.create=function(opts,plated){
 	}
 
 
+	plated_chunks.remove_underscorechunks=function(chunks)
+	{
+		var newchunks=[]
+		for(var idx in chunks) { var val=chunks[idx];
+			if(!idx.startsWith("_"))
+			{
+				newchunks[idx]=val
+			}
+		}
+		return newchunks
+	}
+
 	plated_chunks.deepmerge=function(frm,too,_flags){
 		for(var idx in frm) { var val=frm[idx];
 			if( isArray(val) )

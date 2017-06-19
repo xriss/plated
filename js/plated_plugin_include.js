@@ -100,8 +100,8 @@ exports.create=function(opts,plated){
 				var output_filename=filename
 				var output_chunkname=chunks._output_chunkname
 				
-				var newchunks=plated.chunks.deepmerge(chunks,[])
-				plated.chunks.deepmerge(include_chunks,newchunks)
+				var newchunks=plated.chunks.deepmerge(chunks,{})
+				plated.chunks.deepmerge( plated.chunks.remove_underscorechunks(include_chunks),newchunks)
 
 				if(output_chunkname)
 				{
