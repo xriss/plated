@@ -13,17 +13,21 @@ exports.create=function(opts,plated){
 
 	plated.setup=function(opts)
 	{
+		plated.output={};
+
 		plated.files =require("./plated_files.js" ).create(opts,plated);
 		plated.chunks=require("./plated_chunks.js").create(opts,plated);
 		plated.output=require("./plated_output.js").create(opts,plated);
 		plated.process_dirs=[];
 		plated.process_file=[];
+		plated.process_output=[];
 	};
 	
 	plated.plugin=function(it)
 	{
-		if(it.process_dirs) { plated.process_dirs.push(it.process_dirs); }
-		if(it.process_file) { plated.process_file.push(it.process_file); }
+		if(it.process_dirs  ) { plated.process_dirs.push(  it.process_dirs  ); }
+		if(it.process_file  ) { plated.process_file.push(  it.process_file  ); }
+		if(it.process_output) { plated.process_output.push(it.process_output); }
 	}
 		
 	plated.build=function()

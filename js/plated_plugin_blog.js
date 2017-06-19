@@ -83,7 +83,7 @@ exports.create=function(opts,plated){
 		for(var idx=0;idx<drafts.length;idx++) { var post=drafts[idx];
 
 			var fname=plated.files.filename_to_dirname(post._sourcename)+"/index.html"
-			var output_filename = path.join( opts.output , plated.files.filename_to_output(fname) );
+//			var output_filename = path.join( opts.output , plated.files.filename_to_output(fname) );
 			var chunks={};
 			
 			plated.files.set_source(chunks,fname)
@@ -93,10 +93,14 @@ exports.create=function(opts,plated){
 			plated.files.prepare_namespace(fname); // prepare merged namespace
 			var merged_chunks=plated.chunks.merge_namespace(chunks);
 
-			plated.files.write( output_filename , plated.chunks.replace( plated.chunks.delimiter_wrap_str("html"),merged_chunks) );
-			if(opts.dumpjson){
-				plated.files.write( output_filename+".json" , JSON_stringify(merged_chunks,{space:1}) );
-			}
+			merged_chunks._output_filename=plated.files.filename_to_output(fname)
+			merged_chunks._output_chunkname="html"
+			plated.output.remember_and_write( merged_chunks )
+
+//			plated.files.write( output_filename , plated.chunks.replace( plated.chunks.delimiter_wrap_str("html"),merged_chunks) );
+//			if(opts.dumpjson){
+//				plated.files.write( output_filename+".json" , JSON_stringify(merged_chunks,{space:1}) );
+//			}
 
 			console.log(timestr()+" BLOGDRAFT "+fname)
 		}
@@ -136,7 +140,7 @@ exports.create=function(opts,plated){
 				
 
 				var fname=plated.files.filename_to_dirname(post._sourcename)+"/index.html"
-				var output_filename = path.join( opts.output , plated.files.filename_to_output(fname) );
+//				var output_filename = path.join( opts.output , plated.files.filename_to_output(fname) );
 				var chunks={};
 				
 				plated.files.set_source(chunks,fname)
@@ -146,12 +150,17 @@ exports.create=function(opts,plated){
 				plated.files.prepare_namespace(fname); // prepare merged namespace
 				var merged_chunks=plated.chunks.merge_namespace(chunks);
 
-				plated.files.write( output_filename , plated.chunks.replace( plated.chunks.delimiter_wrap_str("html"),merged_chunks) );
-				if(opts.dumpjson){
-					plated.files.write( output_filename+".json" , JSON_stringify(merged_chunks,{space:1}) );
-				}
-				posts_body[idx]=merged_chunks;
-				merged_chunks._body=plated.chunks.replace( plated.chunks.delimiter_wrap_str("_blog_post_body_many"),merged_chunks); // prebuild body
+				merged_chunks._output_filename=plated.files.filename_to_output(fname)
+				merged_chunks._output_chunkname="html"
+				plated.output.remember_and_write( merged_chunks )
+
+//				plated.files.write( output_filename , plated.chunks.replace( plated.chunks.delimiter_wrap_str("html"),merged_chunks) );
+//				if(opts.dumpjson){
+//					plated.files.write( output_filename+".json" , JSON_stringify(merged_chunks,{space:1}) );
+//				}
+
+				chunks._body=plated.chunks.replace( plated.chunks.delimiter_wrap_str("_blog_post_body_many"),merged_chunks); // prebuild body
+				posts_body[idx]=plated.chunks.merge_namespace(chunks);
 
 				console.log(timestr()+" BLOGPOST "+fname)
 			}
@@ -180,7 +189,7 @@ exports.create=function(opts,plated){
 				}
 
 				var fname=pagename
-				var output_filename = path.join( opts.output , plated.files.filename_to_output(fname) );
+//				var output_filename = path.join( opts.output , plated.files.filename_to_output(fname) );
 				var chunks={};
 				
 				plated.files.set_source(chunks,fname)
@@ -194,10 +203,14 @@ exports.create=function(opts,plated){
 				plated.files.prepare_namespace(fname); // prepare merged namespace
 				var merged_chunks=plated.chunks.merge_namespace(chunks);
 
-				plated.files.write( output_filename , plated.chunks.replace( plated.chunks.delimiter_wrap_str("html"),merged_chunks) );
-				if(opts.dumpjson){
-					plated.files.write( output_filename+".json" , JSON_stringify(merged_chunks,{space:1}) );
-				}
+				merged_chunks._output_filename=plated.files.filename_to_output(fname)
+				merged_chunks._output_chunkname="html"
+				plated.output.remember_and_write( merged_chunks )
+
+//				plated.files.write( output_filename , plated.chunks.replace( plated.chunks.delimiter_wrap_str("html"),merged_chunks) );
+//				if(opts.dumpjson){
+//					plated.files.write( output_filename+".json" , JSON_stringify(merged_chunks,{space:1}) );
+//				}
 
 				console.log(timestr()+" BLOG "+fname)
 

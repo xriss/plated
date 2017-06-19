@@ -73,12 +73,16 @@ exports.create=function(opts,plated){
 					merged_chunks._redirect_from=path.join( dirname , n )
 					merged_chunks._redirect_to=plated.chunks.replace( v , merged_chunks )
 
-					var output_filename = path.join( opts.output , merged_chunks._redirect_from );
+//					var output_filename = path.join( opts.output , merged_chunks._redirect_from );
+					
+					merged_chunks._output_filename=merged_chunks._redirect_from
+					merged_chunks._output_chunkname="html"
+					plated.output.remember_and_write( merged_chunks )
 
-					plated.files.write( output_filename , plated.chunks.replace( merged_chunks.html , merged_chunks ) );
-					if(opts.dumpjson){
-						plated.files.write( output_filename+".json" , JSON_stringify(merged_chunks,{space:1}) );
-					}
+//					plated.files.write( output_filename , plated.chunks.replace( merged_chunks.html , merged_chunks ) );
+//					if(opts.dumpjson){
+//						plated.files.write( output_filename+".json" , JSON_stringify(merged_chunks,{space:1}) );
+//					}
 
 					console.log(timestr()+" REDIRECT "+merged_chunks._redirect_from+" -> "+merged_chunks._redirect_to)
 

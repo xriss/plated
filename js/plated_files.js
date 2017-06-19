@@ -259,11 +259,15 @@ exports.create=function(opts,plated){
 			}
 
 			var merged_chunks=plated.chunks.merge_namespace(chunks);
+			
+			merged_chunks._output_filename=plated.files.filename_to_output(fname)
+			merged_chunks._output_chunkname=fname.split('.').pop()
+			plated.output.remember_and_write( merged_chunks )
 
-			plated_files.write( output_filename , plated.chunks.replace( plated.chunks.delimiter_wrap_str(fname.split('.').pop()),merged_chunks) );
-			if(opts.dumpjson){
-				plated_files.write( output_filename+".json" , JSON_stringify(merged_chunks,{space:1}) );
-			}
+//			plated_files.write( output_filename , plated.chunks.replace( plated.chunks.delimiter_wrap_str(fname.split('.').pop()),merged_chunks) );
+//			if(opts.dumpjson){
+//				plated_files.write( output_filename+".json" , JSON_stringify(merged_chunks,{space:1}) );
+//			}
 
 		}
 		else
@@ -306,9 +310,15 @@ exports.create=function(opts,plated){
 		for(var d in plated.dirs){ var chunks=plated.dirs[d];
 
 			plated_files.prepare_namespace( path.join(d,".json") ); // prepare merged namespace
-			if(opts.dumpjson){
-				plated_files.write( path.join(opts.output,d,".json") , JSON_stringify( plated.chunks.merge_namespace({}) ,{space:1}) );
-			}
+			var merged_chunks=plated.chunks.merge_namespace({});
+
+			merged_chunks._output_filename=d+"/"
+			merged_chunks._output_chunkname=undefined
+			plated.output.remember_and_write( merged_chunks )
+
+//			if(opts.dumpjson){
+//				plated_files.write( path.join(opts.output,d,".json") , JSON_stringify( plated.chunks.merge_namespace({}) ,{space:1}) );
+//			}
 		}
 
 		plated_files.find_files(opts.source,"",function(s){
