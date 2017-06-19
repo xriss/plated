@@ -2,11 +2,16 @@
  "_dirname": "/006-include/spa",
  "_filename": "/006-include/spa",
  "_flags": {
+  "txt_hello_world": {
+   "trim": "ends"
+  },
+  "txt_root": {
+   "trim": "ends"
+  }
  },
  "_include_json": {
   "dirname": "006-include/spa",
   "exclude": [
-   "art",
    "fra",
    "spa"
   ],
@@ -17,5 +22,7 @@
  "_output_filename": "006-include/spa/",
  "_root": "/",
  "_sourcename": "006-include/spa/.",
- "html": "<html>\n\t<body>{body}</body>\n</html>\n"
+ "html": "<html>\n\t<body>{body}</body>\n</html>\n",
+ "txt_hello_world": "HOLA MUNDO",
+ "txt_root": "{_root}spa/"
 }

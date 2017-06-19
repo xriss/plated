@@ -2,9 +2,17 @@
  "_dirname": "/006-include",
  "_filename": "/006-include",
  "_flags": {
+  "txt_hello_world": {
+   "trim": "ends"
+  },
+  "txt_root": {
+   "trim": "ends"
+  }
  },
  "_output_filename": "006-include/",
  "_root": "/",
  "_sourcename": "006-include/.",
- "html": "<html>\n\t<body>{body}</body>\n</html>\n"
+ "html": "<html>\n\t<body>{body}</body>\n</html>\n",
+ "txt_hello_world": "BONJOUR LE MONDE",
+ "txt_root": "{_root}fra/"
 }

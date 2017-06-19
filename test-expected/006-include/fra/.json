@@ -2,11 +2,16 @@
  "_dirname": "/006-include/fra",
  "_filename": "/006-include/fra",
  "_flags": {
+  "txt_hello_world": {
+   "trim": "ends"
+  },
+  "txt_root": {
+   "trim": "ends"
+  }
  },
  "_include_json": {
   "dirname": "006-include/fra",
   "exclude": [
-   "art",
    "fra",
    "spa"
   ],
@@ -17,5 +22,7 @@
  "_output_filename": "006-include/fra/",
  "_root": "/",
  "_sourcename": "006-include/fra/.",
- "html": "<html>\n\t<body>{body}</body>\n</html>\n"
+ "html": "<html>\n\t<body>{body}</body>\n</html>\n",
+ "txt_hello_world": "BONJOUR LE MONDE",
+ "txt_root": "{_root}fra/"
 }
