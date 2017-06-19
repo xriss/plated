@@ -16,7 +16,7 @@
    "spa"
   ],
   "include": [
-   "006-include"
+   "006-include/"
   ]
  },
  "_output_filename": "006-include/spa/",

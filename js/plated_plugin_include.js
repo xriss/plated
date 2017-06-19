@@ -78,7 +78,7 @@ exports.create=function(opts,plated){
 				if( filename.startsWith(include_name) )
 				{
 					active=true
-					filename=filename.substr( include_name.length+1 )
+					filename=filename.substr( include_name.length )
 					break
 				}
 			}
