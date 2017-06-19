@@ -13,7 +13,7 @@ exports.create=function(opts,plated){
 
 	plated.setup=function(opts)
 	{
-		plated.output={};
+		plated.output_chunks={};
 
 		plated.files =require("./plated_files.js" ).create(opts,plated);
 		plated.chunks=require("./plated_chunks.js").create(opts,plated);

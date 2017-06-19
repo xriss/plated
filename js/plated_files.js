@@ -329,6 +329,8 @@ exports.create=function(opts,plated){
 					plated_files.build_file(s);
 				}
 		});
+
+		plated.output.write_all()
 	}
 
 // build all files found in the source dir into the output dir 

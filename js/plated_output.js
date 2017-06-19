@@ -16,13 +16,13 @@ exports.create=function(opts,plated){
 
 	plated_output.remember=function( chunks )
 	{
-		plated.output[ chunks._output_filename ]=chunks
+		plated.output_chunks[ chunks._output_filename ]=chunks
 		return chunks
 	}
 
 	plated_output.remember_and_write=function( chunks )
 	{
-		plated.output[ chunks._output_filename ]=chunks
+		plated.output_chunks[ chunks._output_filename ]=chunks
 		plated_output.write(chunks)
 		return chunks
 	}
@@ -44,13 +44,19 @@ exports.create=function(opts,plated){
 			var data=JSON_stringify(chunks,{space:1})
 			plated.files.write( filename , data )
 		}
+		
+		// run chunks through plugins, eg special blog handling
+		for(var idx in plated.process_output) { var f=plated.process_output[idx];
+			f( chunks ); // output special extra files
+		}
+
 	}
 
 	plated_output.write_all=function()
 	{
-		for( var n in plated.output )
+		for( var n in plated.output_chunks )
 		{
-			var chunks=plated.output[n]
+			var chunks=plated.output_chunks[n]
 			plated_output.write(chunks)
 		}
 	}
