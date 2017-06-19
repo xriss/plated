@@ -3,12 +3,12 @@
  "_filename": "/005-redirect",
  "_flags": {
  },
- "_redirect_from": "/005-redirect/redirect.html",
+ "_redirect_from": "005-redirect/redirect.html",
  "_redirect_json": {
   "files": {
-   "{_dirname}/badname.html": "{_dirname}/index.html",
-   "{_dirname}/barename/index.html": "{_dirname}/index.html",
-   "{_dirname}/redirect.html": "{_dirname}/index.html"
+   "badname.html": "{_dirname}/index.html",
+   "barename/index.html": "{_dirname}/index.html",
+   "redirect.html": "{_dirname}/index.html"
   }
  },
  "_redirect_to": "/005-redirect/index.html",

@@ -1,0 +1,10 @@
+{
+ "_dirname": "/006-include",
+ "_filename": "/006-include/index.html",
+ "_flags": {
+ },
+ "_root": "/",
+ "_sourcename": "006-include/index.^.html",
+ "body": "\n<h1>HELLO WORLD</h1>\n\n",
+ "html": "<html>\n\t<body>{body}</body>\n</html>\n"
+}
