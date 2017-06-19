@@ -244,60 +244,61 @@ exports.create=function(opts,plated){
 	}
 
 
-// merge all of the namespaces together, along with the dat, then return this new set of chunks for easy lookup
-// it should be safe to modify the output merged chunks without accidentally changing anything in the namespace.
-	plated_chunks.merge_namespace=function(dat)
-	{
-		var deepmerge=function(frm,too,_flags){
-			for(var idx in frm) { var val=frm[idx];
-				if( isArray(val) )
+	plated_chunks.deepmerge=function(frm,too,_flags){
+		for(var idx in frm) { var val=frm[idx];
+			if( isArray(val) )
+			{
+				too[idx] = plated_chunks.deepmerge(val,[]); // recursive deep copy
+			}
+			else
+			if( ( typeof(val) == "object" )  )
+			{
+				if	(
+						( (_flags) && (_flags[idx]) && (_flags[idx].same=="merge") ) // we should merge json data
+						||
+						( (_flags) && (val==_flags) ) // flags need merging
+					)
 				{
-					too[idx] = deepmerge(val,[]); // recursive deep copy
+					too[idx] = plated_chunks.deepmerge(val,too[idx] || {}); // merge the object
 				}
 				else
-				if( ( typeof(val) == "object" )  )
 				{
-					if	(
-							( (_flags) && (_flags[idx]) && (_flags[idx].same=="merge") ) // we should merge json data
-							||
-							( (_flags) && (val==_flags) ) // flags need merging
-						)
-					{
-						too[idx] = deepmerge(val,too[idx] || {}); // merge the object
-					}
-					else
-					{
-						too[idx] = deepmerge(val,{}); // recursive deep copy
-					}
+					too[idx] = plated_chunks.deepmerge(val,{}); // recursive deep copy
+				}
+			}
+			else
+			if( (_flags) && (_flags[idx]) && (_flags[idx].same=="append") ) // we should append
+			{
+				if(too[idx])
+				{
+					too[idx]=too[idx] + "" + val; // append strings
 				}
 				else
-				if( (_flags) && (_flags[idx]) && (_flags[idx].same=="append") ) // we should append
-				{
-					if(too[idx])
-					{
-						too[idx]=too[idx] + "" + val; // append strings
-					}
-					else
-					{
-						too[idx]=val;
-					}
-				}
-				else // replace
 				{
 					too[idx]=val;
 				}
 			}
-			return too;
-		};
-		
+			else // replace
+			{
+				too[idx]=val;
+			}
+		}
+		return too;
+	};
+
+
+// merge all of the namespaces together, along with the dat, then return this new set of chunks for easy lookup
+// it should be safe to modify the output merged chunks without accidentally changing anything in the namespace.
+	plated_chunks.merge_namespace=function(dat)
+	{		
 		var chunks={};
 		
 		for(var i=0;i<plated_chunks.namespaces.length;i++) // last added has priority
 		{ 
-			deepmerge(plated_chunks.namespaces[i],chunks,plated_chunks.namespaces[i]._flags);
+			plated_chunks.deepmerge(plated_chunks.namespaces[i],chunks,plated_chunks.namespaces[i]._flags);
 		}
 		
-		deepmerge(dat,chunks,dat._flags);
+		plated_chunks.deepmerge(dat,chunks,dat._flags);
 
 		return chunks;
 	};
