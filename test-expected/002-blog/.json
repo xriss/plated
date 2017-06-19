@@ -13,6 +13,7 @@
    "trim": "ends"
   }
  },
+ "_output_filename": "002-blog/",
  "_root": "/",
  "_sourcename": "002-blog/.",
  "blog_list": "\n<div>item head</div>\n{_it._body}\n<div>item tail</div>\n\n",

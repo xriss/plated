@@ -3,6 +3,7 @@
  "_filename": "/005-redirect",
  "_flags": {
  },
+ "_output_filename": "005-redirect/",
  "_redirect_json": {
   "files": {
    "badname.html": "{_dirname}/index.html",

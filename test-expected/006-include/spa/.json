@@ -3,7 +3,18 @@
  "_filename": "/006-include/spa",
  "_flags": {
  },
- "_include_json": "{\n\tinclude:[\n\t\t\"/006-tongue\",\n\t],\n\texclude:[\n\t\t\"/006-tongue/art\",\n\t\t\"/006-tongue/fra\",\n\t\t\"/006-tongue/spa\",\n\t],\n}\n",
+ "_include_json": {
+  "dirname": "006-include/spa",
+  "exclude": [
+   "art",
+   "fra",
+   "spa"
+  ],
+  "include": [
+   "006-include"
+  ]
+ },
+ "_output_filename": "006-include/spa/",
  "_root": "/",
  "_sourcename": "006-include/spa/.",
  "html": "<html>\n\t<body>{body}</body>\n</html>\n"

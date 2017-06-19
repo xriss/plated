@@ -3,6 +3,8 @@
  "_filename": "/005-redirect/subdir",
  "_flags": {
  },
+ "_output_chunkname": "html",
+ "_output_filename": "005-redirect/subdir/redirect.html",
  "_redirect_from": "005-redirect/subdir/redirect.html",
  "_redirect_json": {
   "files": {

@@ -3,6 +3,7 @@
  "_filename": "/006-include/art",
  "_flags": {
  },
+ "_output_filename": "006-include/art/",
  "_root": "/",
  "_sourcename": "006-include/art/.",
  "html": "<html>\n\t<body>{body}</body>\n</html>\n"

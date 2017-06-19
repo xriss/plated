@@ -3,6 +3,8 @@
  "_filename": "/004-symlinks/symlink/index.html",
  "_flags": {
  },
+ "_output_chunkname": "html",
+ "_output_filename": "004-symlinks/symlink/index.html",
  "_root": "/",
  "_sourcename": "004-symlinks/symlink/index.^.html",
  "body": "\n<h1>HELLO WORLD</h1>\n\n",

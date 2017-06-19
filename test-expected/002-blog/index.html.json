@@ -107,6 +107,8 @@
    "title": "{_blog_post_json.title}"
   }
  ],
+ "_output_chunkname": "html",
+ "_output_filename": "002-blog/index.html",
  "_root": "/",
  "_sourcename": "002-blog/index.html",
  "blog_list": "\n<div>item head</div>\n{_it._body}\n<div>item tail</div>\n\n",
