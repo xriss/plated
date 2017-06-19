@@ -14,13 +14,13 @@ exports.create=function(opts,plated){
 
 	var timestr=function(){ return new Date().toISOString().replace(/^.+T/, "").replace(/\..+/, ""); }
 
-	var plated_blog={};
+	var plated_plugin_blog={};
 	
 	
-	plated_blog.config={};
+	plated_plugin_blog.config={};
 
 // main settings that you can override in your blog_json config chunk
-	plated_blog.config.posts_per_page=5;
+	plated_plugin_blog.config.posts_per_page=5;
 
 
 // special chunk names that trigger blog processing
@@ -46,7 +46,7 @@ exports.create=function(opts,plated){
 
 
 // tweak all the base chunks grouped by dir name and pre cascaded/merged
-	plated_blog.process_dirs=function(dirs){
+	plated_plugin_blog.process_dirs=function(dirs){
 		
 		var blogs={};
 		var drafts=[];
@@ -98,6 +98,7 @@ exports.create=function(opts,plated){
 				plated.files.write( output_filename+".json" , JSON_stringify(merged_chunks,{space:1}) );
 			}
 
+			console.log(timestr()+" BLOGDRAFT "+fname)
 		}
 
 		for(var blogname in blogs) { var blog=blogs[blogname];
@@ -212,7 +213,7 @@ exports.create=function(opts,plated){
 
 
 // tweak a single file of chunks, only chunks found in this file will be available.
-	plated_blog.process_file=function(chunks){
+	plated_plugin_blog.process_file=function(chunks){
 		
 // process blog_json
 		var chunk=chunks._blog_json;
@@ -220,7 +221,7 @@ exports.create=function(opts,plated){
 		{
 			if( "string" == typeof (chunk) ) { chunk=JSON5.parse(chunk) || {}; } // auto json parse
 			chunk.dir            = chunk.dirname        || chunks._sourcename ;
-			chunk.posts_per_page = chunk.posts_per_page || plated_blog.config.posts_per_page ;
+			chunk.posts_per_page = chunk.posts_per_page || plated_plugin_blog.config.posts_per_page ;
 			
 			chunks._blog_json=chunk;
 		}
@@ -293,5 +294,5 @@ exports.create=function(opts,plated){
 	};
 
 
-	return plated_blog;
+	return plated_plugin_blog;
 };

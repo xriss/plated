@@ -15,6 +15,7 @@ exports.create=function(opts,plated){
 	{
 		plated.files =require("./plated_files.js" ).create(opts,plated);
 		plated.chunks=require("./plated_chunks.js").create(opts,plated);
+		plated.output=require("./plated_output.js").create(opts,plated);
 		plated.process_dirs=[];
 		plated.process_file=[];
 	};
@@ -39,8 +40,9 @@ exports.create=function(opts,plated){
 // load default plugins
 
 	plated.setup(opts);
-	plated.plugin(require("./plated_blog.js"    ).create(opts,plated));
-	plated.plugin(require("./plated_redirect.js").create(opts,plated));
+	plated.plugin(require("./plated_plugin_blog.js"    ).create(opts,plated));
+	plated.plugin(require("./plated_plugin_redirect.js").create(opts,plated));
+	plated.plugin(require("./plated_plugin_include.js" ).create(opts,plated));
 
 	return plated;
 }

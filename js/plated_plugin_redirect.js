@@ -13,16 +13,16 @@ exports.create=function(opts,plated){
 
 	var timestr=function(){ return new Date().toISOString().replace(/^.+T/, "").replace(/\..+/, ""); }
 
-	var plated_redirect={};
+	var plated_plugin_redirect={};
 	
 	
-	plated_redirect.config={};
+	plated_plugin_redirect.config={};
 
 // if this flag is set then we will create html files to perform browser side redirection
-	plated_redirect.config.browser=true;
+	plated_plugin_redirect.config.browser=true;
 
 // the html template that will be used for browser side redirections
-	plated_redirect.config.html=""+
+	plated_plugin_redirect.config.html=""+
 "<html>\n"+
 "	<head>\n"+
 "		<link rel=\"canonical\" href=\"{_redirect_to}\">\n"+
@@ -40,7 +40,7 @@ exports.create=function(opts,plated){
 
 
 // if this flag is set then we will create config files to perform server side redirection
-//	plated_redirect.config.server=true;
+//	plated_plugin_redirect.config.server=true;
 
 // not currently implemented, depends a lot on the server and if we publish to github
 // then we have no choice but to use html only redirects so currently safest to make that
@@ -57,7 +57,7 @@ exports.create=function(opts,plated){
 
 
 // tweak all the base chunks grouped by dir name and pre cascaded/merged
-	plated_redirect.process_dirs=function(dirs){
+	plated_plugin_redirect.process_dirs=function(dirs){
 				
 		for( var dirname in dirs ) { var chunks=dirs[dirname];
 			if(chunks._redirect_json)
@@ -69,7 +69,7 @@ exports.create=function(opts,plated){
 					plated.files.prepare_namespace(dirname); // prepare merged namespace
 					var merged_chunks=plated.chunks.merge_namespace(chunks);
 
-					merged_chunks.html=plated_redirect.config.html
+					merged_chunks.html=plated_plugin_redirect.config.html
 					merged_chunks._redirect_from=path.join( dirname , n )
 					merged_chunks._redirect_to=plated.chunks.replace( v , merged_chunks )
 
@@ -92,7 +92,7 @@ exports.create=function(opts,plated){
 
 
 // tweak a single file of chunks, only chunks found in this file will be available.
-	plated_redirect.process_file=function(chunks){
+	plated_plugin_redirect.process_file=function(chunks){
 		
 // process redirect_json
 		var chunk=chunks._redirect_json;
@@ -107,5 +107,5 @@ exports.create=function(opts,plated){
 	};
 
 
-	return plated_redirect;
+	return plated_plugin_redirect;
 };
