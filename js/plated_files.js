@@ -272,7 +272,12 @@ exports.create=function(opts,plated){
 		}
 		else
 		{
-			plated_files.write( path.join(opts.output,fname), fs.readFileSync( path.join(opts.source,fname) ));
+			var s=null; // ignore bad files
+			try { s=fs.readFileSync( path.join(opts.source,fname) ); } catch(e){}
+			if(s!==null)
+			{
+				plated_files.write( path.join(opts.output,fname), s );
+			}
 		}
 	}
 
