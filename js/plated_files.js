@@ -350,6 +350,10 @@ exports.create=function(opts,plated){
 				// finished
 			}
 			else
+			if(!curr) // Probably a temp file blinked into existence and is now gone.
+			{
+			}
+			else
 			if(curr.nlink===0) // f was removed
 			{
 				plated_files.build(); // rebuild everything
