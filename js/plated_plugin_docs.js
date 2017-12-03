@@ -97,7 +97,7 @@ exports.create=function(opts,plated){
 				for(var name in docs)
 				{
 //					console.log(timestr()+" DOCS "+"/"+dirname+" #"+name)
-					list.push({name:name,html:docs[name]})
+					list.push({name:name,body:docs[name]})
 					var aa=name.split(".")
 					while(aa.length>0)
 					{
@@ -136,11 +136,11 @@ exports.create=function(opts,plated){
 					var fname					
 					if(page=="")
 					{
-						fname=chunks._filename+"/index.html";
+						fname=chunks._sourcename+"/index.html";
 					}
 					else
 					{
-						fname=chunks._filename+"/"+page+"/index.html";
+						fname=chunks._sourcename+"/"+page+"/index.html";
 					}
 					var newchunks={}
 					
