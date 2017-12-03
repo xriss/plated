@@ -1,0 +1,26 @@
+
+#^title trim=ends
+
+Welcome to docs!
+
+#^html
+<html>
+	<head>
+		<title>{title}</title>
+	</head>
+	<body>{body}</body>
+</html>
+
+#^_docs_json
+
+{
+	ignore:{
+		"node_modules":true,
+	},
+
+	dirs:{
+		"../js":".js",
+		"../../gamecake/lua":".lua",
+	},
+
+}
