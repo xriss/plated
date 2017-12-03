@@ -92,7 +92,7 @@ exports.create=function(opts,plated){
 				}
 				
 				
-				var pages={"":true}
+				var pages={"":0}
 				var list=[]
 				for(var name in docs)
 				{
@@ -101,11 +101,13 @@ exports.create=function(opts,plated){
 					var aa=name.split(".")
 					while(aa.length>0)
 					{
-						pages[ aa.join(".") ]=true
+						var n=aa.join(".")
+						pages[n]=(pages[n]||0)+1 // count
 						aa.pop()
 					}
+					pages[""]++ // all count
 				}
-				ls(pages)
+
 				list.sort( function(aa,bb){
 					var a=aa.name
 					var b=bb.name
@@ -131,6 +133,15 @@ exports.create=function(opts,plated){
 
 				} )
 				
+				chunks._list=list
+				chunks._docs=[]; // list of all available docs and their counts
+				for(var i in list)
+				{
+					list[i].count=pages[ list[i].name ]
+					chunks._docs.push( { name:list[i].name , count:list[i].count } )
+				}
+
+
 				for(var page in pages)
 				{
 					var fname					
@@ -166,7 +177,6 @@ exports.create=function(opts,plated){
 					console.log(timestr()+" DOCS "+fname)
 				}
 				
-				chunks._list=list
 			}
 
 		}

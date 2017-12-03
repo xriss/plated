@@ -412,6 +412,31 @@ exports.create=function(opts,plated){
 					case "replace":
 						last=plated_chunks.lookup(a,dat);
 					break;
+					case "lt":
+						next=plated_chunks.lookup(a,dat)
+						if(next===undefined) { next=a }
+						last=last < next
+					break;
+					case "lteq":
+						next=plated_chunks.lookup(a,dat)
+						if(next===undefined) { next=a }
+						last=(last <= next)
+					break;
+					case "gt":
+						next=plated_chunks.lookup(a,dat)
+						if(next===undefined) { next=a }
+						last=(last >  next)
+					break;
+					case "gteq":
+						next=plated_chunks.lookup(a,dat)
+						if(next===undefined) { next=a }
+						last=(last >= next)
+					break;
+					case "eq":
+						next=plated_chunks.lookup(a,dat)
+						if(next===undefined) { next=a }
+						last=(last == next)
+					break;
 					case "and":
 						if(last)
 						{
@@ -437,7 +462,9 @@ exports.create=function(opts,plated){
 							{
 								for(var ii=0;ii<last.length;ii++)
 								{
-									dp.push( plated_chunks.replace_once(next,{_it:last[ii],_idx:ii+1}) );
+									dp.push( plated_chunks.replace_once(next,
+										plated_chunks.deepmerge(dat,{_it:last[ii],_idx:ii+1},dat._flags)
+									) );
 								}
 							}
 							else
@@ -447,7 +474,9 @@ exports.create=function(opts,plated){
 							}
 							else // just apply plate to this single object or string
 							{
-								dp.push( plated_chunks.replace_once(next,{_it:last,_idx:1}) );
+								dp.push( plated_chunks.replace_once(next,
+									plated_chunks.deepmerge(dat,{_it:last,_idx:1},dat._flags)
+								) );
 							}
 							last=( dp.join("") ); // join all items
 						}
@@ -461,6 +490,21 @@ exports.create=function(opts,plated){
 			{
 				switch(a)
 				{
+					case "<":
+						opp="lt";
+					break;
+					case "<=":
+						opp="lteq";
+					break;
+					case ">":
+						opp="gt";
+					break;
+					case ">=":
+						opp="gteq";
+					break;
+					case "=":
+						opp="eq";
+					break;
 					case "&":
 						opp="and";
 					break;

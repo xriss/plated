@@ -17,6 +17,61 @@
 ]
 
 #^------------------------------
+#^objs form=json
+#^------------------------------
+
+[
+	{
+		name:"one",
+		number:1,
+	},
+	{
+		name:"two",
+		number:2,
+	},
+	{
+		name:"three",
+		number:3,
+	},
+	{
+		name:"four",
+		number:4,
+	},
+	{
+		name:"five",
+		number:5,
+	},
+	{
+		name:"six",
+		number:6,
+	},
+]
+
+#^------------------------------
+#^objs_plate trim=ends
+#^------------------------------
+
+<pre> {_it.number} is {_it.name} </pre>
+
+#^------------------------------
+#^objs_plate1 trim=ends
+#^------------------------------
+
+{_it.number<3&_it:objs_plate}
+
+#^------------------------------
+#^objs_plate2 trim=ends
+#^------------------------------
+
+{_it.number=3&_it:objs_plate}
+
+#^------------------------------
+#^objs_plate3 trim=ends
+#^------------------------------
+
+{_it.number>3&_it:objs_plate}
+
+#^------------------------------
 #^wrap_square trim=ends
 #^------------------------------
 
@@ -87,6 +142,16 @@ test 4
 
 {^expand}
 
+test 5
+------
 
+less than three
+{objs:objs_plate1}
+
+equal to three
+{objs:objs_plate2}
+
+more than three
+{objs:objs_plate3}
 
 
