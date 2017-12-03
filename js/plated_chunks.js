@@ -500,6 +500,12 @@ exports.create=function(opts,plated){
 		
 		return str;
 	}
+	
+	plated_chunks.markdown=function(s)
+	{
+		return marked(nl_to_br(s));
+	}
+		
 
 	return plated_chunks;
 };

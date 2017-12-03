@@ -1,4 +1,17 @@
 
+/***************************************************************************
+--[[#plated.test
+
+PLATED
+======
+
+This is some test markdown to see if it is found.
+
+
+]]*/
+
+
+
 
 var fs = require('fs');
 var util=require('util');
@@ -44,6 +57,7 @@ exports.create=function(opts,plated){
 // load default plugins
 
 	plated.setup(opts);
+	plated.plugin(require("./plated_plugin_docs.js"    ).create(opts,plated));
 	plated.plugin(require("./plated_plugin_blog.js"    ).create(opts,plated));
 	plated.plugin(require("./plated_plugin_redirect.js").create(opts,plated));
 	plated.plugin(require("./plated_plugin_include.js" ).create(opts,plated));

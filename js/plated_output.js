@@ -29,6 +29,11 @@ exports.create=function(opts,plated){
 
 	plated_output.write=function( chunks )
 	{
+		// run chunks through plugins, eg special blog handling
+		for(var idx in plated.process_output) { var f=plated.process_output[idx];
+			f( chunks ); // output special extra files
+		}
+
 		var output_filename=chunks._output_filename
 		var output_chunkname=chunks._output_chunkname
 
@@ -45,11 +50,6 @@ exports.create=function(opts,plated){
 			plated.files.write( filename , data )
 		}
 		
-		// run chunks through plugins, eg special blog handling
-		for(var idx in plated.process_output) { var f=plated.process_output[idx];
-			f( chunks ); // output special extra files
-		}
-
 	}
 
 	plated_output.write_all=function()
