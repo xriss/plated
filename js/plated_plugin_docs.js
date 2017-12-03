@@ -92,20 +92,20 @@ exports.create=function(opts,plated){
 				}
 				
 				
-				var groups={}
+				var pages={"":true}
 				var list=[]
 				for(var name in docs)
 				{
-					console.log(timestr()+" DOCS "+"/"+dirname+" #"+name)
+//					console.log(timestr()+" DOCS "+"/"+dirname+" #"+name)
 					list.push({name:name,html:docs[name]})
 					var aa=name.split(".")
-					while(aa.length>1)
+					while(aa.length>0)
 					{
+						pages[ aa.join(".") ]=true
 						aa.pop()
-						groups[ aa.join() ]=true
 					}
 				}
-				ls(groups)
+				ls(pages)
 				list.sort( function(aa,bb){
 					var a=aa.name
 					var b=bb.name
@@ -131,7 +131,42 @@ exports.create=function(opts,plated){
 
 				} )
 				
-				chunks._docs=list
+				for(var page in pages)
+				{
+					var fname					
+					if(page=="")
+					{
+						fname=chunks._filename+"/index.html";
+					}
+					else
+					{
+						fname=chunks._filename+"/"+page+"/index.html";
+					}
+					var newchunks={}
+					
+					plated.files.set_source(newchunks,fname)
+
+					newchunks._list=[];
+					for(var i in list)
+					{
+						var v=list[i]
+						if(v.name.startsWith(page))
+						{
+							newchunks._list.push(v)
+						}
+					}
+
+					plated.files.prepare_namespace(fname); // prepare merged namespace
+					var merged_chunks=plated.chunks.merge_namespace(newchunks);
+
+					merged_chunks._output_filename=plated.files.filename_to_output(fname)
+					merged_chunks._output_chunkname="html"
+					plated.output.remember_and_write( merged_chunks )
+
+					console.log(timestr()+" DOCS "+fname)
+				}
+				
+				chunks._list=list
 			}
 
 		}
