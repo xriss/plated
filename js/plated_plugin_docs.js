@@ -92,13 +92,21 @@ exports.create=function(opts,plated){
 				}
 				
 				
-				chunks._docs=[]
+				var groups={}
+				var list=[]
 				for(var name in docs)
 				{
 					console.log(timestr()+" DOCS "+"/"+dirname+" #"+name)
-					chunks._docs.push({name:name,html:docs[name]})
+					list.push({name:name,html:docs[name]})
+					var aa=name.split(".")
+					while(aa.length>1)
+					{
+						aa.pop()
+						groups[ aa.join() ]=true
+					}
 				}
-				chunks._docs.sort( function(aa,bb){
+				ls(groups)
+				list.sort( function(aa,bb){
 					var a=aa.name
 					var b=bb.name
   					if(a.length<b.length)
@@ -122,6 +130,8 @@ exports.create=function(opts,plated){
 					}
 
 				} )
+				
+				chunks._docs=list
 			}
 
 		}
