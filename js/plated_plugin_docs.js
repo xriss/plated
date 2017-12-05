@@ -38,17 +38,18 @@ exports.create=function(opts,plated){
 			var chunk=chunks._docs_json;
 			if( chunk )
 			{
+				chunk.dirname=chunks._dirname // remember the root dirname
 				var docs={}
 				
 				for(var docdir in chunk.dirs)
 				{
 					var test=chunk.dirs[docdir]
 
-					plated_files.find_files(opts.source,docdir,function(s){
-						for(var x in chunk.ignore) { if(s.indexOf(x)>-1) return; } // ignore paths containing
-						if(s.endsWith(test))
+					plated_files.find_files(path.join(opts.source,docdir),"",function(fn){
+						for(var x in chunk.ignore) { if(fn.indexOf(x)>-1) return; } // ignore paths containing
+						if(fn.endsWith(test))
 						{
-							var fname=path.join(opts.source,docdir,s) // the file to process
+							var fname=path.join(opts.source,docdir,fn) // the file to process
 							var s;
 							try { s=fs.readFileSync(fname,'utf8'); } catch(e){}
 							if(s)
@@ -56,7 +57,10 @@ exports.create=function(opts,plated){
 								var mode="look"
 								var name=""
 								var lines=[]
+								var idx=0
+								var linenum=0
 								s.split("\n").forEach(function(l){
+									idx++
 									if(mode=="look")
 									{
 										if(l.startsWith("--[[#"))
@@ -68,6 +72,7 @@ exports.create=function(opts,plated){
 												name=words[0];
 												mode="read"
 												lines=[]
+												linenum=idx
 											}
 										}
 									}
@@ -77,7 +82,12 @@ exports.create=function(opts,plated){
 										if(l.startsWith("]]"))
 										{
 											mode="look"
-											docs[name]=plated_chunks.markdown( lines.join("\n") );
+											docs[name]={
+												name:name,
+												body:plated_chunks.markdown( lines.join("\n") ),
+												line:linenum,
+												file:fname,
+											};
 										}
 										else
 										{
@@ -97,7 +107,7 @@ exports.create=function(opts,plated){
 				for(var name in docs)
 				{
 //					console.log(timestr()+" DOCS "+"/"+dirname+" #"+name)
-					list.push({name:name,body:docs[name]})
+					list.push(docs[name])
 					var aa=name.split(".")
 					while(aa.length>0)
 					{
@@ -147,15 +157,15 @@ exports.create=function(opts,plated){
 					var fname					
 					if(page=="")
 					{
-						fname=chunks._sourcename+"/index.html";
+						fname=plated_files.filename_to_dirname(chunks._sourcename)+"/index.html";
 					}
 					else
 					{
-						fname=chunks._sourcename+"/"+page+"/index.html";
+						fname=plated_files.filename_to_dirname(chunks._sourcename)+"/"+page+"/index.html";
 					}
 					var newchunks={}
 					
-					plated.files.set_source(newchunks,fname)
+					plated_files.set_source(newchunks,fname)
 
 					newchunks._list=[];
 					for(var i in list)
@@ -167,10 +177,10 @@ exports.create=function(opts,plated){
 						}
 					}
 
-					plated.files.prepare_namespace(fname); // prepare merged namespace
-					var merged_chunks=plated.chunks.merge_namespace(newchunks);
+					plated_files.prepare_namespace(fname); // prepare merged namespace
+					var merged_chunks=plated_chunks.merge_namespace(newchunks);
 
-					merged_chunks._output_filename=plated.files.filename_to_output(fname)
+					merged_chunks._output_filename=plated_files.filename_to_output(fname)
 					merged_chunks._output_chunkname="html"
 					plated.output.remember_and_write( merged_chunks )
 

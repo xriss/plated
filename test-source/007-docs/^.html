@@ -7,6 +7,7 @@ Welcome to docs!
 <html>
 	<head>
 		<title>{title}</title>
+		<link rel='stylesheet' href='{_docs_json.dirname}/docs.css' />
 	</head>
 	<body>{body}</body>
 </html>
@@ -28,10 +29,26 @@ Welcome to docs!
 #^wrap
 
 <div>
-<h1>{_it.name}<h1>
+<h1>{_it.name}</h1>
 <div>{_it.body}</div>
 </div>
 
-#^body
+#^menuwrap trim=ends
 
-{_list:wrap}
+{_it.count>1&_it:menuwrap_link}
+
+#^menuwrap_link trim=ends
+
+<a style="display:block;" href="{_docs_json.dirname}/{_it.name}">/{_it.name}</a>
+
+#^body
+<div style="width:90%;margin:auto;min-width:960px;"><div style="width:30%;display:inline-block;min-width:320px;">
+
+	<a style="display:block;" href="{_docs_json.dirname}">/</a>
+	{_docs:menuwrap}
+
+</div><div style="width:60%;display:inline-block;min-width:640px;">
+
+	{^_list:wrap}
+
+</div></div>
