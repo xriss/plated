@@ -502,13 +502,13 @@ exports.create=function(opts,plated){
 					case ">=":
 						opp="gteq";
 					break;
-					case "=":
+					case "==":
 						opp="eq";
 					break;
-					case "&":
+					case "&&":
 						opp="and";
 					break;
-					case "|":
+					case "||":
 						opp="or";
 					break;
 					case ":":
