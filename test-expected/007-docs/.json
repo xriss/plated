@@ -8,6 +8,14 @@
   {
    "count": 1,
    "name": "example.function"
+  },
+  {
+   "count": 2,
+   "name": "other"
+  },
+  {
+   "count": 1,
+   "name": "other.thing"
   }
  ],
  "_docs_json": {
@@ -45,15 +53,29 @@
    "file": "test-source/007-docs/example.c",
    "line": 11,
    "name": "example.function"
+  },
+  {
+   "body": "<p>This is another topic</p>\n",
+   "count": 2,
+   "file": "test-source/007-docs/example.c",
+   "line": 28,
+   "name": "other"
+  },
+  {
+   "body": "<p>With another thing.</p>\n",
+   "count": 1,
+   "file": "test-source/007-docs/example.c",
+   "line": 35,
+   "name": "other.thing"
   }
  ],
  "_output_filename": "007-docs/",
  "_root": "/",
  "_sourcename": "007-docs/.",
- "body": "<div style=\"width:90%;margin:auto;min-width:960px;\"><div style=\"width:30%;display:inline-block;min-width:320px;\">\n\n\t<a style=\"display:block;\" href=\"{_docs_json.dirname}\">/</a>\n\t{_docs:menuwrap}\n\n</div><div style=\"width:60%;display:inline-block;min-width:640px;\">\n\n\t{^_list:wrap}\n\n</div></div>\n",
+ "body": "<div style=\"width:90%;margin:auto;min-width:960px;\"><div style=\"width:30%;display:inline-block;min-width:320px;vertical-align:top;\">\n\n\t<div style=\"margin:32px;\">\n\t<a style=\"display:block;\" href=\"{_docs_json.dirname}\">/</a>\n\t{_docs:menuwrap}\n\t</div>\n\n</div><div style=\"width:60%;display:inline-block;min-width:640px;\">\n\n\t{^_list:wrap}\n\n</div></div>\n",
  "html": "<html>\n\t<head>\n\t\t<title>{title}</title>\n\t\t<link rel='stylesheet' href='{_docs_json.dirname}/docs.css' />\n\t</head>\n\t<body>{body}</body>\n</html>\n",
  "menuwrap": "{_it.count>1&&_it:menuwrap_link}",
  "menuwrap_link": "<a style=\"display:block;\" href=\"{_docs_json.dirname}/{_it.name}\">/{_it.name}</a>",
  "title": "Welcome to docs!",
- "wrap": "\n<div>\n<h1>{_it.name}</h1>\n<div>{_it.body}</div>\n</div>\n"
+ "wrap": "\n<div style=\"margin:32px\">\n<h1><a href=\"{_docs_json.dirname}/{_it.name}\">{_it.name}</a></h1>\n<div>{_it.body}</div>\n</div>\n"
 }

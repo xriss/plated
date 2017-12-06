@@ -34,8 +34,8 @@ Welcome to docs!
 
 #^wrap
 
-<div>
-<h1>{_it.name}</h1>
+<div style="margin:32px">
+<h1><a href="{_docs_json.dirname}/{_it.name}">{_it.name}</a></h1>
 <div>{_it.body}</div>
 </div>
 
@@ -48,10 +48,12 @@ Welcome to docs!
 <a style="display:block;" href="{_docs_json.dirname}/{_it.name}">/{_it.name}</a>
 
 #^body
-<div style="width:90%;margin:auto;min-width:960px;"><div style="width:30%;display:inline-block;min-width:320px;">
+<div style="width:90%;margin:auto;min-width:960px;"><div style="width:30%;display:inline-block;min-width:320px;vertical-align:top;">
 
+	<div style="margin:32px;">
 	<a style="display:block;" href="{_docs_json.dirname}">/</a>
 	{_docs:menuwrap}
+	</div>
 
 </div><div style="width:60%;display:inline-block;min-width:640px;">
 

@@ -21,3 +21,23 @@ int function(int arguments)
 {
 	return 0;
 }
+
+
+
+/***************************************************************************
+--[[#other
+
+This is another topic
+
+]]*/
+
+/***************************************************************************
+--[[#other.thing
+
+With another thing.
+
+]]*/
+int function(int arguments)
+{
+	return 0;
+}
