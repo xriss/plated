@@ -29,6 +29,9 @@ calling this we are good to go.
 In the future when we talk about plated and its available functions we 
 are referring to the return from this create function.
 
+The opts is intended to be filled with command line options so take a 
+look at these for a full description of what can be passed in here.
+
 ]]*/
 
 

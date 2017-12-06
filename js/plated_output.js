@@ -34,12 +34,31 @@ exports.create=function(opts,plated){
 
 	var plated_output={}
 
+/***************************************************************************
+--[[#js.plated_output.remember
+
+	chunks = plated_output.remember(chunks)
+
+Remember this page, the name is expected to be found in 
+chunks._output_filename and this is used as the key to store these 
+chunks.
+
+]]*/
 	plated_output.remember=function( chunks )
 	{
 		plated.output_chunks[ chunks._output_filename ]=chunks
 		return chunks
 	}
 
+/***************************************************************************
+--[[#js.plated_output.remember_and_write
+
+	chunks = plated_output.remember_and_write(chunks)
+
+The same as remember but also instantly write out the chunks using 
+plated_output.write
+
+]]*/
 	plated_output.remember_and_write=function( chunks )
 	{
 		plated.output_chunks[ chunks._output_filename ]=chunks
@@ -47,6 +66,21 @@ exports.create=function(opts,plated){
 		return chunks
 	}
 
+/***************************************************************************
+--[[#js.plated_output.write
+
+	plated_output.write(chunks)
+
+Write out the chunks to to _output_filename as its final page like 
+form. chunks._output_chunkname is the name of the chunk that we intend 
+to render into this page, eg "html" 
+
+opts.output is the directory we are going to write the file into.
+
+If the opts.dumpjson flag is set then we also output a 
+.json file which contains the chunks used to construct this page.
+
+]]*/
 	plated_output.write=function( chunks )
 	{
 		// run chunks through plugins, eg special blog handling
@@ -72,6 +106,15 @@ exports.create=function(opts,plated){
 		
 	}
 
+/***************************************************************************
+--[[#js.plated_output.write
+
+	plated_output.write_all()
+
+Go through all the remembered chunks and write each one out using 
+plated_output.write
+
+]]*/
 	plated_output.write_all=function()
 	{
 		for( var n in plated.output_chunks )
