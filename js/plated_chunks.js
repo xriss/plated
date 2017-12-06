@@ -1,13 +1,13 @@
 
 /***************************************************************************
---[[#module.plated_chunks
+--[[#js.module.plated_chunks
 
 Manage the chunks of text that are combined into a page.
 
 ]]*/
 
 /***************************************************************************
---[[#plated_chunks
+--[[#js.plated_chunks
 
 Returned by module.plated_chunks.create can also be found in plated.chunks
 

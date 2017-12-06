@@ -1,13 +1,13 @@
 
 /***************************************************************************
---[[#module.plated_files
+--[[#js.module.plated_files
 
 Deal with input files
 
 ]]*/
 
 /***************************************************************************
---[[#plated_files
+--[[#js.plated_files
 
 Returned by module.plated_files.create can also be found in plated.files
 

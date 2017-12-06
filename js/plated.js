@@ -1,6 +1,6 @@
 
 /***************************************************************************
---[[#module.plated
+--[[#js.plated
 
 Plated is a static site generator that uses a cascading chunk system to 
 describe the output pages.
@@ -14,32 +14,10 @@ things to enable extra functionality such as page redirects or
 generating blogs.
 
 
-]]*/
-
-/***************************************************************************
---[[#plated
-
-Returned by module.plated.create
-
-]]*/
-
-
-
-var fs = require('fs');
-var util=require('util');
-var path=require('path');
-
-
-var ls=function(a) { console.log(util.inspect(a,{depth:null})); }
-
-
-/***************************************************************************
---[[#module.plated.create
-
 The plated module only exposes one function, which is used to create 
-and bind state data which then provides the rest of the function.
+the actual plated module with bound state data.
 
-	plated=module.plated.create(opts,plated)
+	plated=plated(opts,plated)
 
 opts is an object of options and plated is an optional input if 
 provided it will be modified else a new object will be created, either 
@@ -49,11 +27,20 @@ We also load and setup this and all the builtin plugins so after
 calling this we are good to go.
 
 ]]*/
+
+
+var fs = require('fs');
+var util=require('util');
+var path=require('path');
+
+
+var ls=function(a) { console.log(util.inspect(a,{depth:null})); }
+
 exports.create=function(opts,plated){
 	plated=plated || {};
 
 /***************************************************************************
---[[#plated.setup
+--[[#js.plated.setup
 
 	plated.setup(opts)
 
@@ -74,7 +61,7 @@ and output.
 	};
 	
 /***************************************************************************
---[[#plated.plugin
+--[[#js.plated.plugin
 
 	plated.plugin(it)
 
@@ -102,7 +89,7 @@ associated with these chunks.
 	}
 		
 /***************************************************************************
---[[#plated.build
+--[[#js.plated.build
 
 	plated.build()
 
@@ -115,7 +102,7 @@ Build all the output files from the inputs.
 	};
 
 /***************************************************************************
---[[#plated.watch
+--[[#js.plated.watch
 
 	plated.watch()
 

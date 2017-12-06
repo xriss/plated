@@ -107,6 +107,27 @@ exports.create=function(opts,plated){
 
 				}
 				
+				var names={}
+				for(var name in docs) // first cache
+				{
+					names[name]=true
+				}
+				for(var name in names) // then modify
+				{
+					var aa=name.split(".")
+					while(aa.length>0)
+					{
+						var n=aa.join(".")
+						if(!docs[n])
+						{
+							docs[n]={ // fill in parents
+								name:n,
+								body:"",
+							}
+						}
+						aa.pop()
+					}
+				}
 				
 				var pages={"":0}
 				var list=[]
