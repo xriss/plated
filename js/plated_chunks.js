@@ -1,15 +1,21 @@
 
 /***************************************************************************
---[[#js.module.plated_chunks
+--[[#js.plated_chunks
 
 Manage the chunks of text that are combined into a page.
 
-]]*/
+This module only exposes one function, which is used to create 
+the actual module with bound state data.
 
-/***************************************************************************
---[[#js.plated_chunks
+	plated_chunks = require("./plated_chunks.js").create(opts,plated)
 
-Returned by module.plated_chunks.create can also be found in plated.chunks
+This is called automatically when the plated module is created and the 
+return value is made available in plated.chunks note that all of these 
+modules are bound together and operate as a group with shared data.
+
+In the future when we talk about this module and its available 
+functions we are referring to the return value from this create 
+function.
 
 ]]*/
 

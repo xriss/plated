@@ -14,17 +14,20 @@ things to enable extra functionality such as page redirects or
 generating blogs.
 
 
-The plated module only exposes one function, which is used to create 
-the actual plated module with bound state data.
+This module only exposes one function, which is used to create 
+the actual module with bound state data.
 
-	plated=plated(opts,plated)
+	plated=require("./plated.js").create(opts,plated)
 
 opts is an object of options and plated is an optional input if 
-provided it will be modified else a new object will be created, either 
-way it will be returned by this function.
+provided it will be modified and returned otherwise a new object will 
+be created and returned.
 
 We also load and setup this and all the builtin plugins so after 
 calling this we are good to go.
+
+In the future when we talk about plated and its available functions we 
+are referring to the return from this create function.
 
 ]]*/
 

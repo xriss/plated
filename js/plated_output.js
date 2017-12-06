@@ -1,16 +1,21 @@
 
-
-/***************************************************************************
---[[#js.module.plated_output
-
-Deal with output of files
-
-]]*/
-
 /***************************************************************************
 --[[#js.plated_output
 
-Returned by module.plated_output.create can also be found in plated.output
+Manage the chunks of text that are combined into a page.
+
+This module only exposes one function, which is used to create 
+the actual module with bound state data.
+
+	plated_output = require("./plated_output.js").create(opts,plated)
+
+This is called automatically when the plated module is created and the 
+return value is made available in plated.chunks note that all of these 
+modules are bound together and operate as a group with shared data.
+
+In the future when we talk about this module and its available 
+functions we are referring to the return value from this create 
+function.
 
 ]]*/
 

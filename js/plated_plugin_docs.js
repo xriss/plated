@@ -198,7 +198,7 @@ exports.create=function(opts,plated){
 					for(var i in list)
 					{
 						var v=list[i]
-						if(v.name.startsWith(page))
+						if( v.name.startsWith(page+".") || v.name==page || page=="" ) 
 						{
 							newchunks._list.push(v)
 						}
