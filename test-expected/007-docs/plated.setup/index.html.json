@@ -1,9 +1,33 @@
 {
- "_dirname": "/007-docs/plated.test",
+ "_dirname": "/007-docs/plated.setup",
  "_docs": [
   {
+   "count": 2,
+   "name": "module.plated"
+  },
+  {
    "count": 1,
-   "name": "plated.test"
+   "name": "module.plated.create"
+  },
+  {
+   "count": 5,
+   "name": "plated"
+  },
+  {
+   "count": 1,
+   "name": "plated.build"
+  },
+  {
+   "count": 1,
+   "name": "plated.plugin"
+  },
+  {
+   "count": 1,
+   "name": "plated.setup"
+  },
+  {
+   "count": 1,
+   "name": "plated.watch"
   }
  ],
  "_docs_json": {
@@ -15,7 +39,7 @@
    "node_modules": true
   }
  },
- "_filename": "/007-docs/plated.test/index.html",
+ "_filename": "/007-docs/plated.setup/index.html",
  "_flags": {
   "menuwrap": {
    "trim": "ends"
@@ -29,20 +53,20 @@
  },
  "_list": [
   {
-   "body": "<h1 id=\"plated\">PLATED</h1>\n<p>This is some test markdown to see if it is found.</p>\n",
+   "body": "<pre><code>plated.setup(opts)\n</code></pre><p>Initialise plated and require the base plated modules: files, chunks \nand output.</p>\n",
    "count": 1,
    "file": "js/plated.js",
-   "line": 3,
-   "name": "plated.test"
+   "line": 56,
+   "name": "plated.setup"
   }
  ],
  "_output_chunkname": "html",
- "_output_filename": "007-docs/plated.test/index.html",
+ "_output_filename": "007-docs/plated.setup/index.html",
  "_root": "/",
- "_sourcename": "007-docs/plated.test/index.html",
+ "_sourcename": "007-docs/plated.setup/index.html",
  "body": "<div style=\"width:90%;margin:auto;min-width:960px;\"><div style=\"width:30%;display:inline-block;min-width:320px;\">\n\n\t<a style=\"display:block;\" href=\"{_docs_json.dirname}\">/</a>\n\t{_docs:menuwrap}\n\n</div><div style=\"width:60%;display:inline-block;min-width:640px;\">\n\n\t{^_list:wrap}\n\n</div></div>\n",
  "html": "<html>\n\t<head>\n\t\t<title>{title}</title>\n\t\t<link rel='stylesheet' href='{_docs_json.dirname}/docs.css' />\n\t</head>\n\t<body>{body}</body>\n</html>\n",
- "menuwrap": "{_it.count>1&_it:menuwrap_link}",
+ "menuwrap": "{_it.count>1&&_it:menuwrap_link}",
  "menuwrap_link": "<a style=\"display:block;\" href=\"{_docs_json.dirname}/{_it.name}\">/{_it.name}</a>",
  "title": "Welcome to docs!",
  "wrap": "\n<div>\n<h1>{_it.name}</h1>\n<div>{_it.body}</div>\n</div>\n"
