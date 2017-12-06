@@ -1,15 +1,27 @@
 
 /***************************************************************************
---[[#plated.test
+--[[#module.plated
 
-PLATED
-======
+Plated is a static site generator that uses a cascading chunk system to 
+describe the output pages.
 
-This is some test markdown to see if it is found.
+Since we are using node we are also able to dynamically build the pages 
+in the browser, which is why we include json dumps of the chunk data. 
+This provides enough data to reconstruct pages client side.
+
+Included are a handful of plugins that do slightly more complicated 
+things to enable extra functionality such as page redirects or 
+generating blogs.
 
 
 ]]*/
 
+/***************************************************************************
+--[[#plated
+
+Returned by module.plated.create
+
+]]*/
 
 
 
@@ -21,9 +33,34 @@ var path=require('path');
 var ls=function(a) { console.log(util.inspect(a,{depth:null})); }
 
 
+/***************************************************************************
+--[[#module.plated.create
+
+The plated module only exposes one function, which is used to create 
+and bind state data which then provides the rest of the function.
+
+	plated=module.plated.create(opts,plated)
+
+opts is an object of options and plated is an optional input if 
+provided it will be modified else a new object will be created, either 
+way it will be returned by this function.
+
+We also load and setup this and all the builtin plugins so after 
+calling this we are good to go.
+
+]]*/
 exports.create=function(opts,plated){
 	plated=plated || {};
 
+/***************************************************************************
+--[[#plated.setup
+
+	plated.setup(opts)
+
+Initialise plated and require the base plated modules: files, chunks 
+and output.
+
+]]*/
 	plated.setup=function(opts)
 	{
 		plated.output_chunks={};
@@ -36,6 +73,27 @@ exports.create=function(opts,plated){
 		plated.process_output=[];
 	};
 	
+/***************************************************************************
+--[[#plated.plugin
+
+	plated.plugin(it)
+
+Register a plugin, each plugin can provide the following function hooks.
+
+	dirs = it.process_dirs( dirs )
+
+Adjust the registered dirs data and return it.
+
+	file = it.process_file( file )
+
+Adjust or react to the file data and return it.
+
+	it.process_output( chunks )
+
+Adjust a files chunks prior to writing it out, or, output extra data 
+associated with these chunks.
+
+]]*/
 	plated.plugin=function(it)
 	{
 		if(it.process_dirs  ) { plated.process_dirs.push(  it.process_dirs  ); }
@@ -43,11 +101,27 @@ exports.create=function(opts,plated){
 		if(it.process_output) { plated.process_output.push(it.process_output); }
 	}
 		
+/***************************************************************************
+--[[#plated.build
+
+	plated.build()
+
+Build all the output files from the inputs.
+
+]]*/
 	plated.build=function()
 	{
 		return plated.files.build();
 	};
 
+/***************************************************************************
+--[[#plated.watch
+
+	plated.watch()
+
+Continuously build the output files from the inputs whenever one of the input files changes
+
+]]*/
 	plated.watch=function()
 	{
 		return plated.files.watch();
