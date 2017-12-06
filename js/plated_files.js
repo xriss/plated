@@ -1,4 +1,18 @@
 
+/***************************************************************************
+--[[#module.plated_files
+
+Deal with input files
+
+]]*/
+
+/***************************************************************************
+--[[#plated_files
+
+Returned by module.plated_files.create can also be found in plated.files
+
+]]*/
+
 var fs = require('fs');
 var util=require('util');
 var path=require('path');

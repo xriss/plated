@@ -15,13 +15,19 @@ Welcome to docs!
 #^_docs_json
 
 {
+
+// ignore anything containing this text
+// so we can skip .git and node_modules etc
+
 	ignore:{
 		"node_modules":true,
 	},
 
-	dirs:{
-		"../js":".js",
-//		"../../gamecake/lua":".lua",
+// search in these dirs (relative to the root of source)
+// to find files that end with the given value
+
+ 	dirs:{
+		"007-docs":".c",
 	},
 
 }

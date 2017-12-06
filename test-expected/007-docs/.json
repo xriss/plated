@@ -3,37 +3,17 @@
  "_docs": [
   {
    "count": 2,
-   "name": "module.plated"
+   "name": "example"
   },
   {
    "count": 1,
-   "name": "module.plated.create"
-  },
-  {
-   "count": 5,
-   "name": "plated"
-  },
-  {
-   "count": 1,
-   "name": "plated.build"
-  },
-  {
-   "count": 1,
-   "name": "plated.plugin"
-  },
-  {
-   "count": 1,
-   "name": "plated.setup"
-  },
-  {
-   "count": 1,
-   "name": "plated.watch"
+   "name": "example.function"
   }
  ],
  "_docs_json": {
   "dirname": "/007-docs",
   "dirs": {
-   "../js": ".js"
+   "007-docs": ".c"
   },
   "ignore": {
    "node_modules": true
@@ -53,53 +33,18 @@
  },
  "_list": [
   {
-   "body": "<p>Plated is a static site generator that uses a cascading chunk system to \ndescribe the output pages.</p>\n<p>Since we are using node we are also able to dynamically build the pages \nin the browser, which is why we include json dumps of the chunk data. \nThis provides enough data to reconstruct pages client side.</p>\n<p>Included are a handful of plugins that do slightly more complicated \nthings to enable extra functionality such as page redirects or \ngenerating blogs.</p>\n",
+   "body": "<p>This is some markdown giving a file overview.</p>\n",
    "count": 2,
-   "file": "js/plated.js",
+   "file": "test-source/007-docs/example.c",
    "line": 3,
-   "name": "module.plated"
+   "name": "example"
   },
   {
-   "body": "<p>The plated module only exposes one function, which is used to create \nand bind state data which then provides the rest of the function.</p>\n<pre><code>plated=module.plated.create(opts,plated)\n</code></pre><p>opts is an object of options and plated is an optional input if \nprovided it will be modified else a new object will be created, either \nway it will be returned by this function.</p>\n<p>We also load and setup this and all the builtin plugins so after \ncalling this we are good to go.</p>\n",
+   "body": "<p>This is some markdown explaining a function and its use</p>\n<pre><code>result = example.function(arguments)\n</code></pre><p>Please remember to pass in arguments or you will not get a result.</p>\n",
    "count": 1,
-   "file": "js/plated.js",
-   "line": 37,
-   "name": "module.plated.create"
-  },
-  {
-   "body": "<p>Returned by module.plated.create</p>\n",
-   "count": 5,
-   "file": "js/plated.js",
-   "line": 20,
-   "name": "plated"
-  },
-  {
-   "body": "<pre><code>plated.build()\n</code></pre><p>Build all the output files from the inputs.</p>\n",
-   "count": 1,
-   "file": "js/plated.js",
-   "line": 105,
-   "name": "plated.build"
-  },
-  {
-   "body": "<pre><code>plated.plugin(it)\n</code></pre><p>Register a plugin, each plugin can provide the following function hooks.</p>\n<pre><code>dirs = it.process_dirs( dirs )\n</code></pre><p>Adjust the registered dirs data and return it.</p>\n<pre><code>file = it.process_file( file )\n</code></pre><p>Adjust or react to the file data and return it.</p>\n<pre><code>it.process_output( chunks )\n</code></pre><p>Adjust a files chunks prior to writing it out, or, output extra data \nassociated with these chunks.</p>\n",
-   "count": 1,
-   "file": "js/plated.js",
-   "line": 77,
-   "name": "plated.plugin"
-  },
-  {
-   "body": "<pre><code>plated.setup(opts)\n</code></pre><p>Initialise plated and require the base plated modules: files, chunks \nand output.</p>\n",
-   "count": 1,
-   "file": "js/plated.js",
-   "line": 56,
-   "name": "plated.setup"
-  },
-  {
-   "body": "<pre><code>plated.watch()\n</code></pre><p>Continuously build the output files from the inputs whenever one of the input files changes</p>\n",
-   "count": 1,
-   "file": "js/plated.js",
-   "line": 118,
-   "name": "plated.watch"
+   "file": "test-source/007-docs/example.c",
+   "line": 11,
+   "name": "example.function"
   }
  ],
  "_output_filename": "007-docs/",

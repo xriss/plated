@@ -1,4 +1,19 @@
 
+/***************************************************************************
+--[[#module.plated_chunks
+
+Manage the chunks of text that are combined into a page.
+
+]]*/
+
+/***************************************************************************
+--[[#plated_chunks
+
+Returned by module.plated_chunks.create can also be found in plated.chunks
+
+]]*/
+
+
 var util=require('util');
 var marked=require('marked');
 var JSON5=require('json5');

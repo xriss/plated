@@ -1,4 +1,19 @@
 
+
+/***************************************************************************
+--[[#module.plated_output
+
+Deal with output of files
+
+]]*/
+
+/***************************************************************************
+--[[#plated_output
+
+Returned by module.plated_output.create can also be found in plated.output
+
+]]*/
+
 var fs = require('fs')
 var util=require('util')
 var path=require('path')

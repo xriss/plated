@@ -6,76 +6,22 @@
 	<body><div style="width:90%;margin:auto;min-width:960px;"><div style="width:30%;display:inline-block;min-width:320px;">
 
 	<a style="display:block;" href="/007-docs">/</a>
-	<a style="display:block;" href="/007-docs/module.plated">/module.plated</a><a style="display:block;" href="/007-docs/plated">/plated</a>
+	<a style="display:block;" href="/007-docs/example">/example</a>
 
 </div><div style="width:60%;display:inline-block;min-width:640px;">
 
 	
 <div>
-<h1>module.plated</h1>
-<div><p>Plated is a static site generator that uses a cascading chunk system to 
-describe the output pages.</p>
-<p>Since we are using node we are also able to dynamically build the pages 
-in the browser, which is why we include json dumps of the chunk data. 
-This provides enough data to reconstruct pages client side.</p>
-<p>Included are a handful of plugins that do slightly more complicated 
-things to enable extra functionality such as page redirects or 
-generating blogs.</p>
+<h1>example</h1>
+<div><p>This is some markdown giving a file overview.</p>
 </div>
 </div>
 
 <div>
-<h1>module.plated.create</h1>
-<div><p>The plated module only exposes one function, which is used to create 
-and bind state data which then provides the rest of the function.</p>
-<pre><code>plated=module.plated.create(opts,plated)
-</code></pre><p>opts is an object of options and plated is an optional input if 
-provided it will be modified else a new object will be created, either 
-way it will be returned by this function.</p>
-<p>We also load and setup this and all the builtin plugins so after 
-calling this we are good to go.</p>
-</div>
-</div>
-
-<div>
-<h1>plated</h1>
-<div><p>Returned by module.plated.create</p>
-</div>
-</div>
-
-<div>
-<h1>plated.build</h1>
-<div><pre><code>plated.build()
-</code></pre><p>Build all the output files from the inputs.</p>
-</div>
-</div>
-
-<div>
-<h1>plated.plugin</h1>
-<div><pre><code>plated.plugin(it)
-</code></pre><p>Register a plugin, each plugin can provide the following function hooks.</p>
-<pre><code>dirs = it.process_dirs( dirs )
-</code></pre><p>Adjust the registered dirs data and return it.</p>
-<pre><code>file = it.process_file( file )
-</code></pre><p>Adjust or react to the file data and return it.</p>
-<pre><code>it.process_output( chunks )
-</code></pre><p>Adjust a files chunks prior to writing it out, or, output extra data 
-associated with these chunks.</p>
-</div>
-</div>
-
-<div>
-<h1>plated.setup</h1>
-<div><pre><code>plated.setup(opts)
-</code></pre><p>Initialise plated and require the base plated modules: files, chunks 
-and output.</p>
-</div>
-</div>
-
-<div>
-<h1>plated.watch</h1>
-<div><pre><code>plated.watch()
-</code></pre><p>Continuously build the output files from the inputs whenever one of the input files changes</p>
+<h1>example.function</h1>
+<div><p>This is some markdown explaining a function and its use</p>
+<pre><code>result = example.function(arguments)
+</code></pre><p>Please remember to pass in arguments or you will not get a result.</p>
 </div>
 </div>
 

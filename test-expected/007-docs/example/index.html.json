@@ -1,45 +1,25 @@
 {
- "_dirname": "/007-docs/plated.build",
+ "_dirname": "/007-docs/example",
  "_docs": [
   {
    "count": 2,
-   "name": "module.plated"
+   "name": "example"
   },
   {
    "count": 1,
-   "name": "module.plated.create"
-  },
-  {
-   "count": 5,
-   "name": "plated"
-  },
-  {
-   "count": 1,
-   "name": "plated.build"
-  },
-  {
-   "count": 1,
-   "name": "plated.plugin"
-  },
-  {
-   "count": 1,
-   "name": "plated.setup"
-  },
-  {
-   "count": 1,
-   "name": "plated.watch"
+   "name": "example.function"
   }
  ],
  "_docs_json": {
   "dirname": "/007-docs",
   "dirs": {
-   "../js": ".js"
+   "007-docs": ".c"
   },
   "ignore": {
    "node_modules": true
   }
  },
- "_filename": "/007-docs/plated.build/index.html",
+ "_filename": "/007-docs/example/index.html",
  "_flags": {
   "menuwrap": {
    "trim": "ends"
@@ -53,17 +33,24 @@
  },
  "_list": [
   {
-   "body": "<pre><code>plated.build()\n</code></pre><p>Build all the output files from the inputs.</p>\n",
+   "body": "<p>This is some markdown giving a file overview.</p>\n",
+   "count": 2,
+   "file": "test-source/007-docs/example.c",
+   "line": 3,
+   "name": "example"
+  },
+  {
+   "body": "<p>This is some markdown explaining a function and its use</p>\n<pre><code>result = example.function(arguments)\n</code></pre><p>Please remember to pass in arguments or you will not get a result.</p>\n",
    "count": 1,
-   "file": "js/plated.js",
-   "line": 105,
-   "name": "plated.build"
+   "file": "test-source/007-docs/example.c",
+   "line": 11,
+   "name": "example.function"
   }
  ],
  "_output_chunkname": "html",
- "_output_filename": "007-docs/plated.build/index.html",
+ "_output_filename": "007-docs/example/index.html",
  "_root": "/",
- "_sourcename": "007-docs/plated.build/index.html",
+ "_sourcename": "007-docs/example/index.html",
  "body": "<div style=\"width:90%;margin:auto;min-width:960px;\"><div style=\"width:30%;display:inline-block;min-width:320px;\">\n\n\t<a style=\"display:block;\" href=\"{_docs_json.dirname}\">/</a>\n\t{_docs:menuwrap}\n\n</div><div style=\"width:60%;display:inline-block;min-width:640px;\">\n\n\t{^_list:wrap}\n\n</div></div>\n",
  "html": "<html>\n\t<head>\n\t\t<title>{title}</title>\n\t\t<link rel='stylesheet' href='{_docs_json.dirname}/docs.css' />\n\t</head>\n\t<body>{body}</body>\n</html>\n",
  "menuwrap": "{_it.count>1&&_it:menuwrap_link}",

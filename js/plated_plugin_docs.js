@@ -21,6 +21,12 @@ exports.create=function(opts,plated){
 	
 	
 	plated_plugin_docs.config={};
+	
+// configurable triggers, these must both be at the start of a line
+// and defaults to lua style comments
+
+	plated_plugin_docs.config.head="--[[#"
+	plated_plugin_docs.config.foot="]]"
 
 // special chunk names that trigger docs processing
 
@@ -63,9 +69,9 @@ exports.create=function(opts,plated){
 									idx++
 									if(mode=="look")
 									{
-										if(l.startsWith("--[[#"))
+										if(l.startsWith(plated_plugin_docs.config.head))
 										{
-											var words=l.substring(5).split(/\s+/); // split on whitespace
+											var words=l.substring(plated_plugin_docs.config.head.length).split(/\s+/); // split on whitespace
 											name=""
 											if( (words[0]) && words[0].match(/^[0-9a-zA-Z_\-\.]+$/) ) // a valid chunk name, 
 											{
@@ -79,7 +85,7 @@ exports.create=function(opts,plated){
 									else
 									if(mode=="read")
 									{
-										if(l.startsWith("]]"))
+										if(l.startsWith(plated_plugin_docs.config.foot))
 										{
 											mode="look"
 											docs[name]={
