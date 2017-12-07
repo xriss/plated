@@ -107,7 +107,7 @@ If the opts.dumpjson flag is set then we also output a
 	}
 
 /***************************************************************************
---[[#js.plated_output.write
+--[[#js.plated_output.write_all
 
 	plated_output.write_all()
 
