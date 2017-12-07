@@ -1,4 +1,23 @@
 
+
+/***************************************************************************
+--[[#js.plated_plugin_include
+
+A blog plugin.
+
+This module only exposes one function, which is used to create 
+the actual module with bound state data.
+
+	plated_plugin_include = require("./plated_plugin_include.js").create(opts,plated)
+
+This is called automatically when the plated module is created and the 
+returned plugin functions are added to the plugin call stack. Note that 
+all of these modules are bound together and operate as a group with 
+shared data.
+
+]]*/
+
+
 var fs = require('fs');
 var util=require('util');
 var path=require('path');
@@ -26,7 +45,14 @@ exports.create=function(opts,plated){
 
 
 
-// tweak all the base chunks grouped by dir name and pre cascaded/merged
+/***************************************************************************
+--[[#js.plated_plugin_include.process_dirs
+
+	dirs = plated_plugin_include.process_dirs(dirs)
+
+Tweak all the base chunks grouped by dir name and pre cascaded/merged
+
+]]*/
 	plated_plugin_include.process_dirs=function(dirs){
 				
 		plated_plugin_include.chunks=[]
@@ -43,7 +69,14 @@ exports.create=function(opts,plated){
 	};
 
 
-// tweak a single file of chunks, only chunks found in this file will be available.
+/***************************************************************************
+--[[#js.plated_plugin_include.process_file
+
+	chunks = plated_plugin_include.process_file(chunks)
+
+Tweak a single file of chunks, only chunks found in this file will be available.
+
+]]*/
 	plated_plugin_include.process_file=function(chunks){
 		
 // process include_json
@@ -59,7 +92,14 @@ exports.create=function(opts,plated){
 	};
 
 
-// output any extra files associated with this file or directory
+/***************************************************************************
+--[[#js.plated_plugin_include.process_output
+
+	plated_plugin_include.process_output(chunks)
+
+Output any extra files associated with this file or directory.
+
+]]*/
 	plated_plugin_include.process_output=function(chunks){
 		
 		for( var idx=0; idx<plated_plugin_include.chunks.length ; idx++ )
