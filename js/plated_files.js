@@ -2,7 +2,7 @@
 /***************************************************************************
 --[[#js.plated_files
 
-Manage the chunks of text that are combined into a page.
+Manage the files that we read from and watch or write to.
 
 This module only exposes one function, which is used to create 
 the actual module with bound state data.
@@ -35,6 +35,15 @@ exports.create=function(opts,plated){
 
 	var plated_files={};
 
+/***************************************************************************
+--[[#js.plated_files.mkdir
+
+	plated_files.mkdir(dir)
+
+Create the given dir and recursively create its parent dirs as well if 
+necessary.
+
+]]*/
 	plated_files.mkdir = function(dir){
 		if (fs.existsSync(dir)){
 			return
@@ -50,7 +59,30 @@ exports.create=function(opts,plated){
 		}
 	}
 
-// fill in _source and related chunks
+/***************************************************************************
+--[[#js.plated_files.mkdir
+
+	plated_files.mkdir(dir)
+
+Fill in _source and related chunks such as.
+
+_sourcename the file that this set of chunks came from.
+
+_filename the output filename.
+
+_dirname the output dirname.
+
+_root the root of the site, normally just a / but some things such as 
+github pages need to exist in a directory rather than the root of a 
+site. This should always be used in html paths, {_root} instead of / to 
+make sure that you always get to the right place and can find your 
+files.
+
+_filename the url path of the filename, eg /dirname/filename
+
+_dirname the url path of the dir this file exists in, eg /dirname
+
+]]*/
 	plated_files.set_source=function(chunks,source)
 	{
 		chunks._sourcename=plated_files.filename_fixup(source);
@@ -66,13 +98,28 @@ exports.create=function(opts,plated){
 		return chunks;
 	}
 
-// create parent dir if necessary and write data into this file
+/***************************************************************************
+--[[#js.plated_files.write
+
+	plated_files.write(filename,data)
+
+Create parent dir if necessary and write the data into this file.
+
+]]*/
 	plated_files.write = function(filename,data) {
 		plated_files.mkdir( path.dirname(filename) );
 		fs.writeFileSync( filename , data );
 	};
 
-// get the dirname of this filename
+/***************************************************************************
+--[[#js.plated_files.filename_fixup
+
+	filename = plated_files.filename_fixup(filename)
+
+Fix the filename, so it becomes an empty string rather than a "." or 
+"/." or "/" this makes it easier to use in urls.
+
+]]*/
 	plated_files.filename_fixup = function(filename) {
 		if( filename =="." ) { filename =""; }
 		if( filename =="/." ) { filename =""; }
@@ -80,20 +127,46 @@ exports.create=function(opts,plated){
 		return filename;
 	}
 
-// get the dirname of this filename
+/***************************************************************************
+--[[#js.plated_files.filename_to_dirname
+
+	dirname = plated_files.filename_to_dirname(filename)
+
+Get the dirname of this filename.
+
+]]*/
 	plated_files.filename_to_dirname = function(filename) {
 		return plated_files.filename_fixup(path.dirname(filename));
 	}
 
 
-// convert a source path into an output path
+/***************************************************************************
+--[[#js.plated_files.source_to_output
+
+	filename = plated_files.source_to_output(filename)
+
+Convert a source path into an output path.
+
+]]*/
 	plated_files.source_to_output = function(path) {
 		var ps=path.replace(opts.source,opts.output);
 		if( ps.startsWith(opts.output) ) { return ps; }
 		return null;
 	};
 
-// is this filename part of the basechunks for a dir
+/***************************************************************************
+--[[#js.plated_files.filename_is_basechunk
+
+	bool = plated_files.filename_is_basechunk(filename)
+
+Is this filename part of the basechunks for a dir?
+
+A base chunk is something like ^.html or ^.css all of these files get 
+merged into the base chunks for the directory they are found in. Their 
+extension is ignored and just to help syntax highlighting when the file 
+is viewed.
+
+]]*/
 	plated_files.filename_is_basechunk=function(fname)
 	{
 		var vv=path.basename(fname).split(".");
@@ -104,7 +177,16 @@ exports.create=function(opts,plated){
 		return false;
 	}
 
-// is this filename something we need to run through plated
+/***************************************************************************
+--[[#js.plated_files.filename_is_plated
+
+	bool = plated_files.filename_is_plated(filename)
+ 
+Is this filename something we need to run through plated. Returns true 
+if filename contains the ^ trigger string. This string can be changed 
+by altering opts.hashfile from "^" to something else.
+
+]]*/
 	plated_files.filename_is_plated=function(fname)
 	{
 		var vv=path.basename(fname).split(".");
@@ -115,7 +197,15 @@ exports.create=function(opts,plated){
 		return false;
 	}
 
-// output filename
+/***************************************************************************
+--[[#js.plated_files.filename_to_output
+
+	filename = plated_files.filename_to_output(filename)
+ 
+Work out the output filename from an input filename, the trigger string 
+"^." gets removed as we process a file.
+
+]]*/
 	plated_files.filename_to_output=function(fname)
 	{
 		var d=path.dirname(fname);
@@ -130,7 +220,15 @@ exports.create=function(opts,plated){
 		return plated_files.filename_fixup( path.join(d,vv.join(".")) );
 	}
 
-// empty the (output) folder or make it if it does not exist
+/***************************************************************************
+--[[#js.plated_files.empty_folder
+
+	plated_files.empty_folder(path)
+ 
+Empty the (output) folder or make it if it does not exist. This is 
+rather dangerous so please be careful.
+
+]]*/
 	plated_files.empty_folder = function(path) {
 		var files = [];
 		if( fs.existsSync(path) ) {
@@ -154,7 +252,15 @@ exports.create=function(opts,plated){
 	};
 	
 
-// call f with every file we find
+/***************************************************************************
+--[[#js.plated_files.find_files
+
+	plated_files.find_files(root,name,func)
+ 
+Call func(name) with every file we find inside the root/name directory. 
+We follow symlinks into other directories.
+
+]]*/
 	plated_files.find_files = function(root,name,f) {
 		var files=fs.readdirSync( path.join(root,name) );
 		for(var i in files){ var v=files[i];
@@ -170,7 +276,15 @@ exports.create=function(opts,plated){
 		}
 	};
 
-// call f with every dir we find
+/***************************************************************************
+--[[#js.plated_files.find_files
+
+	plated_files.find_files(root,name,func)
+ 
+Call func(name) with every directory we find inside the root/name 
+directory. We follow symlinks into other directories.
+
+]]*/
 	plated_files.find_dirs = function(root,name,f) {
 		f(name);
 		var files=fs.readdirSync( path.join(root,name) );
@@ -185,11 +299,28 @@ exports.create=function(opts,plated){
 
 	var cache={}
 
+/***************************************************************************
+--[[#js.plated_files.empty_cache
+
+	plated_files.empty_cache()
+ 
+Empty the current file cache, we fill it up as read files.
+
+]]*/
 	plated_files.empty_cache=function()
 	{
 		cache={};
 	}
 
+/***************************************************************************
+--[[#js.plated_files.file_to_chunks
+
+	chunks = plated_files.file_to_chunks(root,fname,chunks)
+ 
+Load root/fname or get it from the cache and then turn it into chunks 
+using plated_chunks.fill_chunks(date,chunks) chunks is returned.
+
+]]*/
 	plated_files.file_to_chunks=function(root,fname,chunks)
 	{
 		if(!cache[fname])
@@ -205,8 +336,15 @@ exports.create=function(opts,plated){
 	}
 
 
-// check this directory and all directories above for generic chunks
-// build all of these into the current chunk namespace for this file
+/***************************************************************************
+--[[#js.plated_files.prepare_namespace
+
+	plated_files.prepare_namespace(fname)
+ 
+Check this directory and all directories above for generic chunks then 
+build all of these into the current chunk namespace for this file.
+
+]]*/
 	plated_files.prepare_namespace=function(fname)
 	{
 		var ns=[];
@@ -229,8 +367,15 @@ exports.create=function(opts,plated){
 
 	}
 
-// check this directory and all directories above for generic chunks
-// build all of these into the current chunk namespace for this file
+/***************************************************************************
+--[[#js.plated_files.base_files_to_chunks
+
+	chunks = plated_files.base_files_to_chunks(fname)
+ 
+Check this directory and all directories above for generic chunks build 
+all of these into the current chunk namespace for this file.
+
+]]*/
 	plated_files.base_files_to_chunks=function(fname)
 	{
 		var list=[];
@@ -257,7 +402,15 @@ exports.create=function(opts,plated){
 		return chunks;
 	}
 
-// build the given source filename, using chunks or maybe just a raw copy
+/***************************************************************************
+--[[#js.plated_files.build_file
+
+	plated_files.build_file(fname)
+ 
+Build the given source filename, using chunks or maybe just a raw copy 
+from source into the output.
+
+]]*/
 	plated_files.build_file=function(fname)
 	{
 		if(plated_files.filename_is_plated(fname))
@@ -285,11 +438,6 @@ exports.create=function(opts,plated){
 			merged_chunks._output_chunkname=fname.split('.').pop()
 			plated.output.remember_and_write( merged_chunks )
 
-//			plated_files.write( output_filename , plated.chunks.replace( plated.chunks.delimiter_wrap_str(fname.split('.').pop()),merged_chunks) );
-//			if(opts.dumpjson){
-//				plated_files.write( output_filename+".json" , JSON_stringify(merged_chunks,{space:1}) );
-//			}
-
 		}
 		else
 		{
@@ -302,7 +450,14 @@ exports.create=function(opts,plated){
 		}
 	}
 
-// build all files found in the source dir into the output dir 
+/***************************************************************************
+--[[#js.plated_files.build
+
+	plated_files.build()
+ 
+Build all files found in the source dir into the output dir.
+
+]]*/
 	plated_files.build=function()
 	{
 
@@ -342,9 +497,6 @@ exports.create=function(opts,plated){
 			merged_chunks._output_chunkname=undefined
 			plated.output.remember_and_write( merged_chunks )
 
-//			if(opts.dumpjson){
-//				plated_files.write( path.join(opts.output,d,".json") , JSON_stringify( plated.chunks.merge_namespace({}) ,{space:1}) );
-//			}
 		}
 
 		plated_files.find_files(opts.source,"",function(s){
@@ -359,7 +511,19 @@ exports.create=function(opts,plated){
 		plated.output.write_all()
 	}
 
-// build all files found in the source dir into the output dir 
+/***************************************************************************
+--[[#js.plated_files.watch
+
+	plated_files.watch()
+ 
+Build all files found in the source dir into the output dir and then 
+sit watching for changes to these files that would trigger rebuilds.
+
+This does not return, instead the user is expected to ctrl+c when 
+finished.
+
+
+]]*/
 	plated_files.watch=function()
 	{
 		plated_files.build(); // build once
