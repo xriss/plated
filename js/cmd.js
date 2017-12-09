@@ -112,18 +112,22 @@ var util=require('util');
 var ls=function(a) { console.log(util.inspect(a,{depth:null})); }
 
 
-var argv = require('yargs').argv; global.argv=argv;
+var yargs = require('yargs/yargs')(process.argv.slice(2))
+var argv = yargs.argv ; global.argv=argv;
 
 
-argv.site      = argv.site      || "http://localhost";
-argv.root      = argv.root      || "/";
-argv.source    = argv.source    || "source";
-argv.output    = argv.output    || "output";
-argv.hashfile  = argv.hashfile  || "^";
-argv.hashchunk = argv.hashchunk || "#^";
-argv.delimiter = argv.delimiter || "{}";
-argv.dumpjson  = argv.dumpjson ;
+var env=process.env
 
+argv.site      = argv.site      || env.PLATED_SITE      || "http://localhost";
+argv.root      = argv.root      || env.PLATED_ROOT      || "/";
+argv.source    = argv.source    || env.PLATED_SOURCE    || "source";
+argv.output    = argv.output    || env.PLATED_OUTPUT    || "output";
+argv.hashfile  = argv.hashfile  || env.PLATED_HASHFILE  || "^";
+argv.hashchunk = argv.hashchunk || env.PLATED_HASHCHUNK || "#^";
+argv.delimiter = argv.delimiter || env.PLATED_DELIMITER || "{}";
+argv.dumpjson  = argv.dumpjson  || env.PLATED_DUMPJSON  ;
+
+ls(argv)
 
 if( argv._[0]=="build" )
 {

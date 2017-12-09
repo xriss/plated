@@ -21,7 +21,7 @@
     "json5": "*",
     "json-stable-stringify": "*"
   },
-  "devDependencies": {},
+  "devDependencies": {"http-server":"*"},
   "scripts": {
     "build": "node cmd.js build",
     "watch": "node cmd.js watch"
