@@ -1,5 +1,5 @@
 {
- "_dirname": "/007-docs/other.thing",
+ "_dirname": "{_root}007-docs/other.thing",
  "_docs": [
   {
    "count": 2,
@@ -19,7 +19,7 @@
   }
  ],
  "_docs_json": {
-  "dirname": "/007-docs",
+  "dirname": "{_root}007-docs",
   "dirs": {
    "007-docs": ".c"
   },
@@ -27,7 +27,7 @@
    "node_modules": true
   }
  },
- "_filename": "/007-docs/other.thing/index.html",
+ "_filename": "{_root}007-docs/other.thing/index.html",
  "_flags": {
   "menuwrap": {
    "trim": "ends"
@@ -50,7 +50,7 @@
  ],
  "_output_chunkname": "html",
  "_output_filename": "007-docs/other.thing/index.html",
- "_root": "/",
+ "_root": "../../",
  "_sourcename": "007-docs/other.thing/index.html",
  "body": "<div style=\"width:90%;margin:auto;min-width:960px;\"><div style=\"width:30%;display:inline-block;min-width:320px;vertical-align:top;\">\n\n\t<div style=\"margin:32px;\">\n\t<a style=\"display:block;\" href=\"{_docs_json.dirname}\">/</a>\n\t{_docs:menuwrap}\n\t</div>\n\n</div><div style=\"width:60%;display:inline-block;min-width:640px;\">\n\n\t{^_list:wrap}\n\n</div></div>\n",
  "html": "<html>\n\t<head>\n\t\t<title>{title}</title>\n\t\t<link rel='stylesheet' href='{_docs_json.dirname}/docs.css' />\n\t</head>\n\t<body>{body}</body>\n</html>\n",

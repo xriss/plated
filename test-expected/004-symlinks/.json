@@ -1,7 +1,7 @@
 {
- "_dirname": "/004-symlinks",
- "_filename": "/004-symlinks",
+ "_dirname": "{_root}004-symlinks",
+ "_filename": "{_root}004-symlinks",
  "_output_filename": "004-symlinks/",
- "_root": "/",
+ "_root": "../",
  "_sourcename": "004-symlinks/."
 }

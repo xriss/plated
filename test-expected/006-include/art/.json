@@ -1,6 +1,6 @@
 {
- "_dirname": "/006-include/art",
- "_filename": "/006-include/art",
+ "_dirname": "{_root}006-include/art",
+ "_filename": "{_root}006-include/art",
  "_flags": {
   "txt_hello_world": {
    "trim": "ends"
@@ -10,7 +10,7 @@
   }
  },
  "_output_filename": "006-include/art/",
- "_root": "/",
+ "_root": "../../",
  "_sourcename": "006-include/art/.",
  "html": "<html>\n\t<body>{body}</body>\n</html>\n",
  "txt_hello_world": "HELLO WORLD",

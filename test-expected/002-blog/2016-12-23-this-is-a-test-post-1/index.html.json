@@ -20,9 +20,9 @@
   "title": "This is test post 1",
   "unixtime": 1482451200
  },
- "_blog_post_newer": "/002-blog/2016-12-24-this-is-a-test-post-2/",
- "_dirname": "/002-blog/2016-12-23-this-is-a-test-post-1",
- "_filename": "/002-blog/2016-12-23-this-is-a-test-post-1/index.html",
+ "_blog_post_newer": "{_root}002-blog/2016-12-24-this-is-a-test-post-2/",
+ "_dirname": "{_root}002-blog/2016-12-23-this-is-a-test-post-1",
+ "_filename": "{_root}002-blog/2016-12-23-this-is-a-test-post-1/index.html",
  "_flags": {
   "_blog_post_body": {
    "form": "markdown"
@@ -33,7 +33,7 @@
  },
  "_output_chunkname": "html",
  "_output_filename": "002-blog/2016-12-23-this-is-a-test-post-1/index.html",
- "_root": "/",
+ "_root": "../../",
  "_sourcename": "002-blog/2016-12-23-this-is-a-test-post-1/index.html",
  "blog_list": "\n<div>item head</div>\n{_it._body}\n<div>item tail</div>\n\n",
  "body": "{_blog_post_body_one}",

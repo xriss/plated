@@ -21,8 +21,8 @@
   "title": "This is a draft post",
   "unixtime": -86400
  },
- "_dirname": "/002-blog/draft-this-is-a-test-post",
- "_filename": "/002-blog/draft-this-is-a-test-post",
+ "_dirname": "{_root}002-blog/draft-this-is-a-test-post",
+ "_filename": "{_root}002-blog/draft-this-is-a-test-post",
  "_flags": {
   "_blog_post_body": {
    "form": "markdown"
@@ -32,7 +32,7 @@
   }
  },
  "_output_filename": "002-blog/draft-this-is-a-test-post/",
- "_root": "/",
+ "_root": "../../",
  "_sourcename": "002-blog/draft-this-is-a-test-post/.",
  "blog_list": "\n<div>item head</div>\n{_it._body}\n<div>item tail</div>\n\n",
  "html": "<html>\n\t<head>\n\t\t<title>{title}</title>\n\t</head>\n\t<body>{body}</body>\n</html>\n",

@@ -1,6 +1,6 @@
 {
- "_dirname": "/006-include/spa",
- "_filename": "/006-include/spa",
+ "_dirname": "{_root}006-include/spa",
+ "_filename": "{_root}006-include/spa",
  "_flags": {
   "txt_hello_world": {
    "trim": "ends"
@@ -20,7 +20,7 @@
   ]
  },
  "_output_filename": "006-include/spa/",
- "_root": "/",
+ "_root": "../../",
  "_sourcename": "006-include/spa/.",
  "html": "<html>\n\t<body>{body}</body>\n</html>\n",
  "txt_hello_world": "HOLA MUNDO",

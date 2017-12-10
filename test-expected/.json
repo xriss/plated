@@ -1,7 +1,7 @@
 {
- "_dirname": "/",
- "_filename": "/",
+ "_dirname": "{_root}",
+ "_filename": "{_root}",
  "_output_filename": "/",
- "_root": "/",
+ "_root": "./",
  "_sourcename": ""
 }

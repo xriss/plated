@@ -1,6 +1,6 @@
 {
- "_dirname": "/005-redirect",
- "_filename": "/005-redirect",
+ "_dirname": "{_root}005-redirect",
+ "_filename": "{_root}005-redirect",
  "_flags": {
  },
  "_output_filename": "005-redirect/",
@@ -11,7 +11,7 @@
    "redirect.html": "{_dirname}/index.html"
   }
  },
- "_root": "/",
+ "_root": "../",
  "_sourcename": "005-redirect/.",
  "html": "<html>\n\t<body>{body}</body>\n</html>\n\n"
 }

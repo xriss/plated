@@ -20,10 +20,10 @@
   "title": "This is test post 5",
   "unixtime": 1482796800
  },
- "_blog_post_newer": "/002-blog/2016-12-28-this-is-a-test-post-6/",
- "_blog_post_older": "/002-blog/2016-12-26-this-is-a-test-post-4/",
- "_dirname": "/002-blog/2016-12-27-this-is-a-test-post-5",
- "_filename": "/002-blog/2016-12-27-this-is-a-test-post-5/index.html",
+ "_blog_post_newer": "{_root}002-blog/2016-12-28-this-is-a-test-post-6/",
+ "_blog_post_older": "{_root}002-blog/2016-12-26-this-is-a-test-post-4/",
+ "_dirname": "{_root}002-blog/2016-12-27-this-is-a-test-post-5",
+ "_filename": "{_root}002-blog/2016-12-27-this-is-a-test-post-5/index.html",
  "_flags": {
   "_blog_post_body": {
    "form": "markdown"
@@ -34,7 +34,7 @@
  },
  "_output_chunkname": "html",
  "_output_filename": "002-blog/2016-12-27-this-is-a-test-post-5/index.html",
- "_root": "/",
+ "_root": "../../",
  "_sourcename": "002-blog/2016-12-27-this-is-a-test-post-5/index.html",
  "blog_list": "\n<div>item head</div>\n{_it._body}\n<div>item tail</div>\n\n",
  "body": "{_blog_post_body_one}",
