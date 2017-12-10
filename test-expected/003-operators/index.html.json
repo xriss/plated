@@ -80,9 +80,9 @@
   }
  ],
  "objs_plate": "<pre> {_it.number} is {_it.name} </pre>",
- "objs_plate1": "{_it.number<3&_it:objs_plate}",
- "objs_plate2": "{_it.number=3&_it:objs_plate}",
- "objs_plate3": "{_it.number>3&_it:objs_plate}",
+ "objs_plate1": "{_it.number<3&&_it:objs_plate}",
+ "objs_plate2": "{_it.number==3&&_it:objs_plate}",
+ "objs_plate3": "{_it.number>3&&_it:objs_plate}",
  "true": "true",
  "wrap_curve": "(( {_it} ))",
  "wrap_square": "[[ {_it} ]]"
