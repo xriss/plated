@@ -34,6 +34,71 @@ look at these for a full description of what can be passed in here.
 
 ]]*/
 
+/***************************************************************************
+--[[#html.plated
+
+Plated operates on a directory structure of files and simply copies the 
+files it does not understand into the output. As such you could have an 
+almost 100% generic static site with only a few special files getting 
+special treatment dependent on their name containing a ^. sequence of 
+characters.
+
+]]*/
+
+/***************************************************************************
+--[[#html.plated.files
+
+A special string triggers chunk file processing, by default this is ^. 
+but it can be changed to another character or string when plated is 
+invoked. ^. seems to be a reasonably safe yet generally unused sequence 
+of characters in file names.
+
+Chunk files are text files containing chunks of text assigned to 
+symbolic names, these chunks can then be referenced by tags contained 
+in other chunks and expanded to build final output files. This is 
+intended to be simple macro expansion only rather than a complex 
+programming language. Any programming would take place in a plugin, for 
+instance we sinclude a blog plugin helps build blog style websites on 
+top of this base chunk system. Or possibly even more tweaking can 
+happen inside js running in the page when it is viewed, it is entirely 
+possible to run plated in a page client side as well as server side.
+
+There are two basic types of chunk files, directory scope and file 
+scope. Directory scope chunk files contain chunks that can be 
+referenced by any other chunk file in their directory as well as any 
+sub directories. Directory scope chunks declared inside a sub directory 
+will replace any chunks defined higher up the path, this allows us to 
+adjust and group data using hierarchical directories.
+
+	^.html
+	^.css
+	^.md
+	^.what.ever.you.like
+
+Are all examples of directory scoped chunk files, they do not create 
+any output files themselves but are parsed to provide directory scope 
+chunks which can be used in other chunk files. It does not matter what 
+extension is used, primarily it is intended to be used as a clue to 
+editors to provide appropriate language highlighting. By convention css 
+chunks would be placed inside ^.css and html chunks inside ^.html but 
+this is in no way enforced or necessary for plated to work.
+
+
+	index.^.html
+	layout.^.css
+	hacks.^.js
+	
+Are all examples of file scoped chunk files. Each one will create a 
+file in the output directory with the same path but the name altered 
+slightly to remove ^. from it. For example index.^.html becomes 
+index.html
+
+The extension used selects the chunk name that will be rendered into 
+the output file. So index.^.html will render its html chunk and 
+layout.^.css will render its css chunk.
+
+]]*/
+
 
 var fs = require('fs');
 var util=require('util');
