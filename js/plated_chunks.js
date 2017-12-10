@@ -541,7 +541,7 @@ expand.
 		
 		if(!aa) { return str; }
 		
-		depth=0
+		var depth=0
 		
 		var r=[];
 		
@@ -551,40 +551,53 @@ expand.
 			if( v==plated_chunks.delimiter_open_str() ) // next string should be replaced
 			{
 				v=aa[ ++i ]
-				if(v=="[") // open, these are removed on last pass and no expansion happens inside
+				if(depth==0)
 				{
-					depth++
-					if(!lastpass) // dont keep on last pass
+					if(v=="[") // open, these are removed on last pass and no expansion happens inside
 					{
-						r.push( plated_chunks.delimiter_open_str() +"["+ plated_chunks.delimiter_close_str() )
+						if(!lastpass) // dont keep on last pass
+						{
+							r.push( plated_chunks.delimiter_open_str() +"["+ plated_chunks.delimiter_close_str() )
+						}
+						depth++
 					}
-				}
-				else
-				if(v=="]")// close, these are removed on last pass
-				{
-					depth--
-					if(!lastpass) // dont keep on last pass
+					else
+					if(v=="]")//  we have not opened so this is an error...
 					{
 						r.push( plated_chunks.delimiter_open_str() +"]"+ plated_chunks.delimiter_close_str() )
 					}
-				}
-				else
-				if(v=="[".repeat(v.length)) // allow one level of expansion per extra character as this tag shrinks
-				{
-					r.push( plated_chunks.delimiter_open_str() +v.substring(1)+ plated_chunks.delimiter_close_str() )
-				}
-				else
-				if(v=="]".repeat(v.length)) // allow one level of expansion per extra character as this tag shrinks
-				{
-					r.push( plated_chunks.delimiter_open_str() +v.substring(1)+ plated_chunks.delimiter_close_str() )
-				}
-				else
-				{
-					if((depth==0)||lastpass) // expand it
+					else
+					if(v=="[".repeat(v.length)) // allow one level of expansion per extra character as this tag shrinks
+					{
+						r.push( plated_chunks.delimiter_open_str() +v.substring(1)+ plated_chunks.delimiter_close_str() )
+					}
+					else
+					if(v=="]".repeat(v.length)) // allow one level of expansion per extra character as this tag shrinks
+					{
+						r.push( plated_chunks.delimiter_open_str() +v.substring(1)+ plated_chunks.delimiter_close_str() )
+					}
+					else
 					{
 						r.push( plated_chunks.expand_tag(v,dat,lastpass) );
 					}
-					else // keep it
+				}
+				else // we are inside {[}{]}
+				{
+					if(v=="[") // keep track of recursion, as long as we are balanced it is safe to nest
+					{
+						r.push( plated_chunks.delimiter_open_str() +"["+ plated_chunks.delimiter_close_str() )
+						depth++
+					}
+					else
+					if(v=="]")// close, these are removed on last pass
+					{
+						depth--
+						if( (!lastpass) && (depth==0) ) // do not keep on last pass
+						{
+							r.push( plated_chunks.delimiter_open_str() +"]"+ plated_chunks.delimiter_close_str() )
+						}
+					}
+					else // do not expand
 					{
 						r.push( plated_chunks.delimiter_open_str() +v+ plated_chunks.delimiter_close_str() )
 					}
@@ -623,18 +636,6 @@ use will survive.
 	plated_chunks.expand_tag=function(v,dat,lastpass)
 	{
 		var v_unesc=v.split("&amp;").join("&"); //turn html escaped & back into just & so we can let markdown break our tags
-		
-		if(v_unesc[0]=="^") // only expand once, on last pass, 
-		{
-			if(lastpass)
-			{
-				v_unesc=v_unesc.substring(1);
-			}
-			else
-			{
-				return ( plated_chunks.delimiter_open_str() +v+ plated_chunks.delimiter_close_str() );
-			}
-		}
 
 		var aa=v_unesc.split(/([^0-9a-zA-Z_\-\.]+)/g); // valid chars for chunk names and indexes
 
