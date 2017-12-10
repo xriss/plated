@@ -72,11 +72,11 @@ _filename the output filename.
 
 _dirname the output dirname.
 
-_root the root of the site, normally just a / but some things such as 
-github pages need to exist in a directory rather than the root of a 
-site. This should always be used in html paths, {_root} instead of / to 
-make sure that you always get to the right place and can find your 
-files.
+_root the root of the site, normally a relative path to the current 
+directory, eg ../ since some things such as github pages need to exist 
+in a directory rather than the root of a site. This should always be 
+used in html paths, {_root} instead of / to make sure that you always 
+get to the right place and can find your files.
 
 _filename the url path of the filename, eg /dirname/filename
 
@@ -91,9 +91,29 @@ _dirname the url path of the dir this file exists in, eg /dirname
 
 		chunks._dirname=plated_files.filename_to_dirname(chunks._sourcename);
 		
-		chunks._root=opts.root; // probably just "/"
-		chunks._filename=opts.root+chunks._filename;
-		chunks._dirname=opts.root+chunks._dirname;
+		if(opts.root)
+		{
+			chunks._root=opts.root;
+		}
+		else // work out relative path
+		{
+			var depth=chunks._dirname.split("/").length
+			if(chunks._dirname=="")
+			{
+				chunks._root="./";
+			}
+			else
+			{
+				chunks._root=""
+				while(depth>0)
+				{
+					chunks._root+="../"
+					depth--
+				}
+			}
+		}
+		chunks._filename="{_root}"+chunks._filename;
+		chunks._dirname="{_root}"+chunks._dirname;
 
 		return chunks;
 	}

@@ -119,7 +119,7 @@ var argv = yargs.argv ; global.argv=argv;
 var env=process.env
 
 argv.site      = argv.site      || env.PLATED_SITE      || "http://localhost";
-argv.root      = argv.root      || env.PLATED_ROOT      || "/";
+argv.root      = argv.root      || env.PLATED_ROOT      || "";
 argv.source    = argv.source    || env.PLATED_SOURCE    || "source";
 argv.output    = argv.output    || env.PLATED_OUTPUT    || "output";
 argv.hashfile  = argv.hashfile  || env.PLATED_HASHFILE  || "^";
@@ -147,7 +147,7 @@ console.log(
 	"> plated build \n"+
 	"\tBuild all files in source folder into output folder.\n"+
 	"\t\t--site=http://localhost -- site name, for external use eg links in rss.\n"+
-	"\t\t--root=/                -- root dir of site.\n"+
+	"\t\t--root=                 -- root dir of site else we work out a relative path.\n"+
 	"\t\t--source=source         -- choose the source folder.\n"+
 	"\t\t--output=output         -- choose the output folder.\n"+
 	"\t\t--hashfile=^            -- choose the magic string used in filenames.\n"+

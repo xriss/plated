@@ -541,6 +541,8 @@ expand.
 		
 		if(!aa) { return str; }
 		
+		depth=0
+		
 		var r=[];
 		
 		for(var i=0;i<aa.length;i++)
@@ -548,7 +550,45 @@ expand.
 			var v=aa[i];
 			if( v==plated_chunks.delimiter_open_str() ) // next string should be replaced
 			{
-				r.push( plated_chunks.expand_tag(aa[ ++i ],dat,lastpass) );
+				v=aa[ ++i ]
+				if(v=="[") // open, these are removed on last pass and no expansion happens inside
+				{
+					depth++
+					if(!lastpass) // dont keep on last pass
+					{
+						r.push( plated_chunks.delimiter_open_str() +"["+ plated_chunks.delimiter_close_str() )
+					}
+				}
+				else
+				if(v=="]")// close, these are removed on last pass
+				{
+					depth--
+					if(!lastpass) // dont keep on last pass
+					{
+						r.push( plated_chunks.delimiter_open_str() +"]"+ plated_chunks.delimiter_close_str() )
+					}
+				}
+				else
+				if(v=="[".repeat(v.length)) // allow one level of expansion per extra character as this tag shrinks
+				{
+					r.push( plated_chunks.delimiter_open_str() +v.substring(1)+ plated_chunks.delimiter_close_str() )
+				}
+				else
+				if(v=="]".repeat(v.length)) // allow one level of expansion per extra character as this tag shrinks
+				{
+					r.push( plated_chunks.delimiter_open_str() +v.substring(1)+ plated_chunks.delimiter_close_str() )
+				}
+				else
+				{
+					if((depth==0)||lastpass) // expand it
+					{
+						r.push( plated_chunks.expand_tag(v,dat,lastpass) );
+					}
+					else // keep it
+					{
+						r.push( plated_chunks.delimiter_open_str() +v+ plated_chunks.delimiter_close_str() )
+					}
+				}
 			}
 			else
 			{
@@ -595,7 +635,7 @@ use will survive.
 				return ( plated_chunks.delimiter_open_str() +v+ plated_chunks.delimiter_close_str() );
 			}
 		}
-		
+
 		var aa=v_unesc.split(/([^0-9a-zA-Z_\-\.]+)/g); // valid chars for chunk names and indexes
 
 		var last,next;
