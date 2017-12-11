@@ -48,20 +48,19 @@ characters.
 /***************************************************************************
 --[[#html.plated.files
 
-A special string triggers chunk file processing, by default this is ^. 
-but it can be changed to another character or string when plated is 
-invoked. ^. seems to be a reasonably safe yet generally unused sequence 
-of characters in file names.
+A special string in the filename triggers chunk file processing, by 
+default this is ^. but it can be changed to another character or string 
+when plated is invoked. ^. seems to be a reasonably safe yet generally 
+unused sequence of characters in file names.
 
 Chunk files are text files containing chunks of text assigned to 
-symbolic names, these chunks can then be referenced by tags contained 
-in other chunks and expanded to build final output files. This is 
-intended to be simple macro expansion only rather than a complex 
-programming language. Any programming would take place in a plugin, for 
-instance we sinclude a blog plugin helps build blog style websites on 
-top of this base chunk system. Or possibly even more tweaking can 
-happen inside js running in the page when it is viewed, it is entirely 
-possible to run plated in a page client side as well as server side.
+symbolic chunknames, these chunks can then be referenced by tags 
+contained in other chunks and expanded to build final output files. 
+
+This is intended to be simple macro expansion only rather than a 
+complex programming language. Any programming would take place in a 
+plugin, for instance we include a blog plugin that helps build blog 
+style websites on top of this base chunk system.
 
 There are two basic types of chunk files, directory scope and file 
 scope. Directory scope chunk files contain chunks that can be 
@@ -94,11 +93,136 @@ slightly to remove ^. from it. For example index.^.html becomes
 index.html
 
 The extension used selects the chunk name that will be rendered into 
-the output file. So index.^.html will render its html chunk and 
-layout.^.css will render its css chunk.
+the output file. So index.^.html will render the html chunk into the 
+output file and layout.^.css will render the css chunk.
+
+Usually pages in a directory will share the same layout, so a html 
+chunk will be declared at the directory level with the file just adding 
+a content chunk to be rendered inside this page structure. The 
+cascading chunk system means you are free to alter this in sub 
+directories but often pages have a lot in common so keeping a bunch of 
+generic layout chunks in the root with sub directories just picking 
+from them works perfectly. The idea is to provide data organisational 
+tools but not to dictate the use.
 
 ]]*/
 
+/***************************************************************************
+--[[#html.plated.chunks
+
+Chunk files are parsed one line at a time to break them into a number 
+of named chunks, lines that begin with the special characters #^ 
+trigger special processing all other lines are simple assigned to the 
+current chunk. eg:
+
+	#^chunkname
+	here is some text
+	that will be assigned to chunkname
+
+A chunk ends when we run out of file or we start another chunk.
+
+As well as the chunk name we can also add some flags to change how the 
+chunk is processed. These flags are added by name=value pairs after the 
+chunkname and separated by white space.
+
+	#^chunkname flag=value otherflag=othervalue
+
+These values are intended to change how the chunk is processed here are 
+the ones that we currently support. Multiple flags can of course be 
+applied to the same chunk.
+
+	#^chunkname trim=ends
+
+This flag will cause all whitespace to be removed from the beginning 
+and end of the chunk. Useful if you intend to include a chunk in a html 
+attributes as newlines would would mess that up.
+
+	#^chunkname form=json
+
+Parse the text as json, this allows for structured data or arrays to be 
+defined in chunks. This data can be referenced inside macro expansion 
+using the . operator to reference members. Most plugins have a json 
+chunk containing their settings.
+
+	#^chunkname form=markdown
+
+This text will be parsed as markdown and converted into html. Markdown 
+is an easy way to create simple formated content for blog posts or just 
+pages in general. Note that the default format is just to leave the 
+text of the chunk unprocessed which means normal html tags.
+
+Chunk names that begin with an underscore are considered internal 
+plated chunks ans some will be provided by the plated code for each 
+page rendered. Here is a list of chunks that will be provided by the 
+system.
+
+	#^chunkname same=replace
+
+This alters how we replace chunks when they are declared twice, 
+normally the chunk in the lowest level will simply replace a chunk 
+declared elsewhere. This is the default setting.
+
+	#^chunkname same=append
+
+If we change to append mode then chunks lower down will be appended to 
+the higher up chunks. This is very useful for css chunks where we can 
+append rules as we cascade down and these rules will take precedence 
+over the earlier rules due to the magic of css.
+
+	#^chunkname same=merge
+
+This should only be used with a json chunk, it merges the data with its 
+parent chunk so we can change or add values as we cascade down through 
+the directories similar to append but working as objects rather than 
+just plan text. This is why it should only be used with json chunks.
+
+	#^_root
+
+This will be set to a url that gets to the root of this website and 
+should be used in front of all urls to make sure that we can find the 
+files we want. This can be passed in on the command line and / is a 
+good way to think of this value. The default is actually for plated to 
+provide a relative url such as ../../ that would get you to the root of 
+the site from the current page. You should be using _root as the prefix 
+for all urls when including css or js or images etc in a html file.
+
+	#^_sourcename
+
+This will be set to the filename of the input source file that we are 
+currently rendering.
+
+	#^_filename
+
+This will be set to url of the file that we are currently rendering.
+
+	#^_dirname
+
+This will be set to url of the directory containing the file that we 
+are currently rendering.
+
+	#^_flags
+
+This is an object containing flag data for the defined chunks, most 
+chunks will not have any flags defined but if they are they can be 
+found in for example  _flags.chunkname.flagname which would hold the 
+value of flagname for the given chunkname. This is really just for 
+internal processing and should not need to be referenced by the user.
+
+As well as the provided chunks there are some special names exist to 
+trigger plugin behaviour and need to be defined with the correct 
+configuration data, for instance
+
+	#^_docs_json
+	
+Is the name of a chunk containing configuration data in json format 
+that enables the docs plugin to create pages such as the ones that you 
+are currently reading. See html.plated.plugins for documentation on how 
+to use them and what data must be provided. All you need to know is 
+that any chunk name that begins with an underscore belongs to the 
+plated system itself and must only be created according to the 
+documentation.
+
+]]*/
 
 var fs = require('fs');
 var util=require('util');
