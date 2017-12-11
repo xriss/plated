@@ -222,6 +222,131 @@ that any chunk name that begins with an underscore belongs to the
 plated system itself and must only be created according to the 
 documentation.
 
+As well as chunknames there are two other things we can do with special 
+characters at the start of a line.
+
+	#^-this is a comment line
+
+The comment line will simply be ignored, in case you wish to include 
+some comments about what a chunk will be used for.
+
+	#^=##
+
+Allows the redefinition of the magic string, for the rest of the file, 
+in this case, it would be ## instead of #^ but any string could be 
+used. This is intended as an escape clause in case the magic string is 
+undesirable in a certain file. It can also be changed on the command 
+line when plated is invoked if you wish to change it globally.
+
+]]*/
+
+/***************************************************************************
+--[[#html.plated.macros
+
+Once we have some chunks defined we need to provide a way of refering to them 
+inside other chunks as a macro expansion.
+
+	#^chunkname trim=ends
+	I am expanded
+	#^mainchunk
+	Expand the {chunkname} to its contents.
+
+If the above mainchunk was rendered then {chunkname} would be replace 
+with the contents of the chunk that was defined as #^chunkname this 
+macro expansion is recursive so you can include chunks within chunks 
+within chunks. Combined with the cascading chunks this provides a huge 
+amount of flexibility without any additional programming logic.
+
+If {chunkname} does not exist then the text will be left untouched as 
+{chunkname} also there must be no white space in this macro expansion. 
+so { chunkname } will never expand to anything.
+
+This may sound dangerous but we are able to get away with {} even 
+inside C like languages that contain {} all over the place. If this 
+scares you then you are free to redefine {} to {{}} when invoking 
+plated but I assure you it is not necessary.
+
+	{jsonchunk.member}
+
+When using a json chunk a . can be used to pull out a value from the object
+
+	{jsonarray.0.name}
+
+If it is an array then the first item could be picked out with a number 
+and then its member.
+
+	{jsonarray.-1.name}
+
+Negative numbers are allowed in which case it counts backwards from the 
+end, in this case the last objects name would be used.
+
+Finally a json chunk may have another chunk applied as a layout.
+
+	{jsonchunk:plate}
+	
+In this case plate is a chunk name that renders with {_it} being 
+synonymous with {jsonchunk} This is similar to calling a macro with a 
+number of values.
+
+	{jsonarray:plate}
+
+If a template is applied to an array then it is applied repeatedly to 
+each item in that array. This allows for simple formatting of json data 
+held within an array. The loop happens auto-magically with {_it} 
+expanding to a different value each time.
+
+All of these templating expansions are intended for use by plugins 
+which provide arrays or objects of data for you to display.
+
+If a plate is applied to empty data then the empty string is returned. 
+Eg no expansion happens, this can help with layout logic removing some 
+chunks and showing others depending on their existence.
+
+]]*/
+
+/***************************************************************************
+--[[#html.plated.operators
+
+As well as chunknames we can also combine some logic operators to 
+control how macros expand. This is mostly of use with json chunks where 
+you wish to make a choice between a number of possibilities. For instance
+
+	{obj.count==1&&obj:showit||obj:hideit}
+
+The above is an example of a value?one:two style logic test. First 
+obj.count is compared to the value 1 this will work if it is a string 
+or a number due to the loose typing used. If true then obj will be 
+rendered with the templat chunk showit if false then instead obj will 
+be rendered with the template chunk hideit. You can guess what these 
+two templates are intended to do.
+
+The operators are evaluated left to right with no precedence and are C 
+like, hence == rather than just a single = sign. Here are all the 
+possible operators that can be used.
+
+	{a<b}
+		returns true if a is less than b
+	{a<=b}
+		returns true if a is less than or equal to b
+	{a>b}
+		returns true if a is more than b
+	{a>=b}
+		returns true if a is more than or equal to b
+	{a==b}
+		returns true if a is equal to b
+	{a&&b}
+		a and b returns b if a is true else returns a
+	{a||b}
+		a and b returns b if a is false else returns a
+	{a||}
+		returns a if it exists else return an empty string
+
+The last one is useful for making macros invisible if they refer to 
+empty data. Normally macros remain in the output if they are invalid. 
+So {a} on its own would either expand to something else or remain as 
+{a} in the output. {a||} is just using the || operator to make it go 
+away if empty.
+
 ]]*/
 
 var fs = require('fs');
