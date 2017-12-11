@@ -33,6 +33,7 @@
  },
  "_output_filename": "002-blog/draft-this-is-a-test-post/",
  "_root": "../../",
+ "_site": "{_root}",
  "_sourcename": "002-blog/draft-this-is-a-test-post/.",
  "blog_list": "\n<div>item head</div>\n{_it._body}\n<div>item tail</div>\n\n",
  "html": "<html>\n\t<head>\n\t\t<title>{title}</title>\n\t</head>\n\t<body>{body}</body>\n</html>\n",

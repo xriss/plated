@@ -21,6 +21,7 @@
  },
  "_output_filename": "006-include/spa/",
  "_root": "../../",
+ "_site": "{_root}",
  "_sourcename": "006-include/spa/.",
  "html": "<html>\n\t<body>{body}</body>\n</html>\n",
  "txt_hello_world": "HOLA MUNDO",

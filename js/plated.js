@@ -13,7 +13,6 @@ Included are a handful of plugins that do slightly more complicated
 things to enable extra functionality such as page redirects or 
 generating blogs.
 
-
 This module only exposes one function, which is used to create 
 the actual module with bound state data.
 
@@ -262,7 +261,9 @@ If the above mainchunk was rendered then {chunkname} would be replace
 with the contents of the chunk that was defined as #^chunkname this 
 macro expansion is recursive so you can include chunks within chunks 
 within chunks. Combined with the cascading chunks this provides a huge 
-amount of flexibility without any additional programming logic.
+amount of flexibility without any additional programming logic. Similar 
+to {{moustache}} templates but with slightly less logic and a bit more 
+recursion.
 
 If {chunkname} does not exist then the text will be left untouched as 
 {chunkname} also there must be no white space in this macro expansion. 
@@ -285,7 +286,8 @@ and then its member.
 	{jsonarray.-1.name}
 
 Negative numbers are allowed in which case it counts backwards from the 
-end, in this case the last objects name would be used.
+end, in this case the last name of the last object in the array would 
+be used.
 
 Finally a json chunk may have another chunk applied as a layout.
 
@@ -309,7 +311,33 @@ If a plate is applied to empty data then the empty string is returned.
 Eg no expansion happens, this can help with layout logic removing some 
 chunks and showing others depending on their existence.
 
+Finally because we also need to be able to talk about these macros here 
+without them accidently expanding then we have a simple way to escape 
+them.
+
+	{[}{chunkname}{]}
+
+No matter how valid the chunkname is it will not expand because it is 
+contained within the comment tags {[}{]} these tags will be removed 
+after the text is rendered.
+
+	{[[}{chunkname}{]]}
+
+If multiple [ are used instead of one then it allows one level macro 
+replacement per extra [ so we can control expansion this way. In the 
+above example {chunkname} will expand once but any macros within that 
+chunk will stay untouched. A tad complex but escape syntax is always a 
+pain.
+
+Due to the way this expands you must be careful to balance any use of 
+{[}{]} within this chunk so as not to accidentally close the tag 
+prematurely. This documentation for instance is designed to be used 
+inside such a chunk so all square brackets inside {} have been 
+carefully balanced to stop anything from going wrong.
+
 ]]*/
+
+
 
 /***************************************************************************
 --[[#html.plated.operators

@@ -15,6 +15,7 @@
  },
  "_redirect_to": "../../005-redirect/subdir/../index.html",
  "_root": "../../",
+ "_site": "{_root}",
  "_sourcename": "005-redirect/subdir/.",
  "html": "<html>\n\t<head>\n\t\t<link rel=\"canonical\" href=\"{_redirect_to}\">\n\t\t<meta http-equiv=\"refresh\" content=\"0; url={_redirect_to}\">\n\t</head>\n\t<body>\n\t\t<div class=\"redirect\">\n\t\t\t<h1>Redirecting…</h1>\n\t\t\t<a href=\"{_redirect_to}\">Click here if you are not redirected.</a>\n\t\t\t<script>location=\"{_redirect_to}\"</script>\n\t\t</div>\n\t</body>\n</html>\n"
 }

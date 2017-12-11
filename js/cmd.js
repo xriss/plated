@@ -150,7 +150,7 @@ console.log(
 	"> plated build \n"+
 	"\tBuild all files in source folder into output folder.\n"+
 	"\t\t--site=          -- site, eg http://site.com/ for use in explicit links.\n"+
-	"\t\t--root=          -- root dir of site else we work out a relative path.\n"+
+	"\t\t--root=          -- root dir of site, eg / else we work out a relative path.\n"+
 	"\t\t--source=source  -- choose the source folder.\n"+
 	"\t\t--output=output  -- choose the output folder.\n"+
 	"\t\t--hashfile=^     -- choose the magic string used in filenames.\n"+

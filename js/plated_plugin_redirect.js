@@ -17,6 +17,31 @@ shared data.
 
 ]]*/
 
+/***************************************************************************
+--[[#html.plated_plugin_redirect
+
+	#^_redirect_json
+	{
+		files:{
+			"from/index.html":"to/",
+			"other/index.html":"to/",
+		},
+	}
+	
+A chunk of this name must be created in a directory scope file for this 
+plugin to parse it. files is a map of redirections we require.
+
+Perform a redirect of files, using simple html javascript redirection, 
+to another url. We mostly make use of the automatic use of an 
+index.html inside a given directory so in the case above ./from will 
+get redirected to ./to note that these can contain one level of macro 
+expansion so {_root}dir is a reasonable redirection.
+
+Multiple redirections can be performed in a single json configuration 
+but be aware that we end up actually creating files to perform these 
+redirections so be careful not to clash with other files.
+
+]]*/
 
 var fs = require('fs');
 var util=require('util');
@@ -126,7 +151,13 @@ Tweak all the base chunks grouped by dir name and pre cascaded/merged
 
 	chunks = plated_plugin_redirect.process_file(chunks)
 
-Tweak a single file of chunks, only chunks found in this file will be available.
+Tweak a single file of chunks, only chunks found in this file will be 
+available.
+
+	#^_redirect_json
+
+Is a special chunk name that we will parse as json and contain 
+configuration data to setup redirects.
 
 ]]*/
 	plated_plugin_redirect.process_file=function(chunks){

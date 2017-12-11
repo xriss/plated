@@ -12,6 +12,7 @@
   }
  },
  "_root": "../../",
+ "_site": "{_root}",
  "_sourcename": "005-redirect/subdir/.",
  "html": "<html>\n\t<body>{body}</body>\n</html>\n\n"
 }

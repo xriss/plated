@@ -35,6 +35,7 @@
  "_output_chunkname": "html",
  "_output_filename": "002-blog/2016-12-24-this-is-a-test-post-2/index.html",
  "_root": "../../",
+ "_site": "{_root}",
  "_sourcename": "002-blog/2016-12-24-this-is-a-test-post-2/index.html",
  "blog_list": "\n<div>item head</div>\n{_it._body}\n<div>item tail</div>\n\n",
  "body": "{_blog_post_body_one}",

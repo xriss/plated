@@ -15,8 +15,44 @@ returned plugin functions are added to the plugin call stack. Note that
 all of these modules are bound together and operate as a group with 
 shared data.
 
+This plugin is intended to duplicate part of a site into another 
+directory with possibly tweaked chunks, this is primarily intended for 
+text translations. We produce for instance pure text chunks containing 
+just english text and replace these chunks with french versions inside 
+a fra directory.
+
+Note that we only include chunkfiles not all data files, so this is 
+only about duplicating files that are rendered from chunks.
+
 ]]*/
 
+/***************************************************************************
+--[[#html.plated_plugin_include
+
+	#^_include_json
+	{
+		include:[
+			"",
+		],
+		exclude:[
+			"fra",
+			"spa",
+		],
+	}
+
+A chunk of this name must be created in a directory scope file for this 
+plugin to parse it. include is a list of prefixes to include and 
+exclude is a list of prefixes within the include to exclude.
+
+The above configuration is assumed to be within a file fra/^.index and 
+spa/^.index so it would include all chunkfiles from root but exclude 
+files in fra or spa, ie itself. This way we can have a default english 
+site and a spanish translation under spa/ or french under fra/
+
+The files are copied into the current directory without the prefix used 
+in include.
+
+]]*/
 
 var fs = require('fs');
 var util=require('util');
@@ -50,7 +86,9 @@ exports.create=function(opts,plated){
 
 	dirs = plated_plugin_include.process_dirs(dirs)
 
-Tweak all the base chunks grouped by dir name and pre cascaded/merged
+Remember all the _include_json chunks we can find inside our 
+plated_plugin_include.chunks array. This will be used later to 
+replicated output into other locations with slight chunk tweaks.
 
 ]]*/
 	plated_plugin_include.process_dirs=function(dirs){
@@ -74,7 +112,7 @@ Tweak all the base chunks grouped by dir name and pre cascaded/merged
 
 	chunks = plated_plugin_include.process_file(chunks)
 
-Tweak a single file of chunks, only chunks found in this file will be available.
+Auto magically parse _include_json chunks as json.
 
 ]]*/
 	plated_plugin_include.process_file=function(chunks){
@@ -97,7 +135,8 @@ Tweak a single file of chunks, only chunks found in this file will be available.
 
 	plated_plugin_include.process_output(chunks)
 
-Output any extra files associated with this file or directory.
+Compare this output file with cached include chunks and duplicate it 
+into these directories with slightly tweaked chunks if it matches.
 
 ]]*/
 	plated_plugin_include.process_output=function(chunks){

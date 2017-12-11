@@ -43,6 +43,7 @@
  "_output_chunkname": "html",
  "_output_filename": "003-operators/index.html",
  "_root": "../",
+ "_site": "{_root}",
  "_sourcename": "003-operators/index.^.html",
  "body": "<h2 id=\"test-1\">test 1</h2>\n<p>{data}</p>\n<p>{data:wrap_square}</p>\n<p>{data:wrap_square:wrap_curve}</p>\n<h2 id=\"test-2\">test 2</h2>\n<p>{missing&amp;&amp;data||}</p>\n<p>{missing||data}</p>\n<p>{true||data}</p>\n<p>{missing||}\n<br/>\n<br/></p>\n<h2 id=\"test-3\">test 3</h2>\n<p>FIRST -&gt; {json.0}</p>\n<p>LAST -&gt; {json.-1}</p>\n<p>MIDDLE -&gt; {json.1}</p>\n<h2 id=\"test-4\">test 4</h2>\n<p>{expand}</p>\n<p>{[[}{expand}{]]}</p>\n<h2 id=\"test-5\">test 5</h2>\n<p>less than three\n{objs:objs_plate1}</p>\n<p>equal to three\n{objs:objs_plate2}</p>\n<p>more than three\n{objs:objs_plate3}</p>\n",
  "data": "DATADATADATA",

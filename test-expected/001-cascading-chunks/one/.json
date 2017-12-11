@@ -15,6 +15,7 @@
  },
  "_output_filename": "001-cascading-chunks/one/",
  "_root": "../../",
+ "_site": "{_root}",
  "_sourcename": "001-cascading-chunks/one/.",
  "base": "\nBASE ONE\n",
  "json": {
