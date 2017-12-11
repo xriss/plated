@@ -1,8 +1,8 @@
 
 /***************************************************************************
---[[#js.plated_plugin_docs
+--[[#js.plated_plugin.docs
 
-A blog plugin.
+A docs plugin.
 
 This module only exposes one function, which is used to create 
 the actual module with bound state data.
@@ -16,6 +16,42 @@ shared data.
 
 ]]*/
 
+/***************************************************************************
+--[[#html.plated_plugin.docs
+
+	#^_docs_json
+	{
+		ignore:{
+			"node_modules":true,
+		},
+		dirs:{
+			"../js":".js",
+		},
+	}
+
+A chunk of this name must be created in a directory scope file for this 
+plugin to parse it. We should ignore any paths containing the key 
+strings in the ignore object and will include (recursively) the keys in 
+the dirs object but only if the filename ends in the given string.
+
+So in the above case we will scan ../js for all .js files but ignore 
+everything in node_modules. One should always ignore everything in 
+node_modules.
+
+These files are searched for special auto doc documentation syntax 
+where any line that begins with --[#name.of.the.chunk will begin a 
+special documentation chunk and ]] will end it. In both cases the 
+string must be at the start of a line.
+
+Each of these chunks will then be rendered into its own page as well as 
+its parent pages, we use dot notation to describe this relationship. In 
+the case of name.of.the.chunk it will exist in name.of.the name.of name 
+and the always present /
+
+Take a look at the source code that generates this site documentation 
+in source/docs for an example of how this can be themed and presented.
+
+]]*/
 
 var fs = require('fs');
 var util=require('util');
@@ -55,7 +91,7 @@ exports.create=function(opts,plated){
 
 
 /***************************************************************************
---[[#js.plated_plugin_docs.process_dirs
+--[[#js.plated_plugin.docs.process_dirs
 
 	dirs = plated_plugin_docs.process_dirs(dirs)
 
@@ -248,7 +284,7 @@ Tweak all the base chunks grouped by dir name and pre cascaded/merged
 
 
 /***************************************************************************
---[[#js.plated_plugin_docs.process_file
+--[[#js.plated_plugin.docs.process_file
 
 	chunks = plated_plugin_docs.process_file(chunks)
 

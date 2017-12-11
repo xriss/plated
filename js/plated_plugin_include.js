@@ -1,7 +1,7 @@
 
 
 /***************************************************************************
---[[#js.plated_plugin_include
+--[[#js.plated_plugin.include
 
 A blog plugin.
 
@@ -27,7 +27,7 @@ only about duplicating files that are rendered from chunks.
 ]]*/
 
 /***************************************************************************
---[[#html.plated_plugin_include
+--[[#html.plated_plugin.include
 
 	#^_include_json
 	{
@@ -51,6 +51,8 @@ site and a spanish translation under spa/ or french under fra/
 
 The files are copied into the current directory without the prefix used 
 in include.
+
+An example can be found in test-source/006-include
 
 ]]*/
 
@@ -82,7 +84,7 @@ exports.create=function(opts,plated){
 
 
 /***************************************************************************
---[[#js.plated_plugin_include.process_dirs
+--[[#js.plated_plugin.include.process_dirs
 
 	dirs = plated_plugin_include.process_dirs(dirs)
 
@@ -108,7 +110,7 @@ replicated output into other locations with slight chunk tweaks.
 
 
 /***************************************************************************
---[[#js.plated_plugin_include.process_file
+--[[#js.plated_plugin.include.process_file
 
 	chunks = plated_plugin_include.process_file(chunks)
 
@@ -131,7 +133,7 @@ Auto magically parse _include_json chunks as json.
 
 
 /***************************************************************************
---[[#js.plated_plugin_include.process_output
+--[[#js.plated_plugin.include.process_output
 
 	plated_plugin_include.process_output(chunks)
 

@@ -1,6 +1,6 @@
 
 /***************************************************************************
---[[#js.plated_plugin_blog
+--[[#js.plated_plugin.blog
 
 A blog plugin.
 
@@ -13,6 +13,61 @@ This is called automatically when the plated module is created and the
 returned plugin functions are added to the plugin call stack. Note that 
 all of these modules are bound together and operate as a group with 
 shared data.
+
+]]*/
+
+/***************************************************************************
+--[[#html.plated_plugin.blog
+
+	#^_blog_json
+	{
+		posts_per_page:5,
+	}
+
+A chunk of this name must be created in a directory scope file for this 
+plugin to parse it. posts_per_page is the number of posts per page, we 
+will create as many pages as we need.
+
+Every directory within this blog directory will now be treated as a blogpost.
+
+See source/blog for an example of this all fits together. Inside each 
+of these directories we look for.
+
+	#^_blog_post_json
+	{
+		"title":"my title",
+		"author":"my name",
+	}
+	
+Which contains metadata about the blog post, all of which can be used 
+in your templates to render the blog posts.
+
+	#^_blog_post_body form=markdown
+	This is my blog post body.
+
+Our blog body is to be found in this chunk name, probably best to use 
+markdown as it makes writing blog posts easier.
+
+When it comes to generating the pages then the following chunks should 
+be setup in base directory.
+
+	#^_blog_page_body
+	This is a page of blog posts, eg the front page.
+	
+Within this chunk we provide _blog_page_older as the url of an older 
+page and _blog_page_newer as the url of a newer page. If there is no 
+newer or older page then this will be empty. _list will contain an 
+array of blog posts that we intend to display in this page. It will be 
+at least one post and no more than the posts_per_page setting.
+
+	#^_blog_post_body
+	This is a single blog post, when viewed on its own page.
+
+Within this chunk we provide _blog_post_older as the url of an older 
+page and _blog_post_newer as the url of a newer page. If there is no 
+newer or older page then this will be empty. _blog_post_body will 
+contain the _blog_post_body as defined in the blog post directory.
+
 
 ]]*/
 
@@ -63,7 +118,7 @@ exports.create=function(opts,plated){
 
 
 /***************************************************************************
---[[#js.plated_plugin_blog.process_dirs
+--[[#js.plated_plugin.blog.process_dirs
 
 	dirs = plated_plugin_blog.process_dirs(dirs)
 
@@ -250,7 +305,7 @@ Tweak all the base chunks grouped by dir name and pre cascaded/merged
 
 
 /***************************************************************************
---[[#js.plated_plugin_blog.process_file
+--[[#js.plated_plugin.blog.process_file
 
 	chunks = plated_plugin_blog.process_file(chunks)
 

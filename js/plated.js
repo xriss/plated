@@ -351,7 +351,7 @@ you wish to make a choice between a number of possibilities. For instance
 The above is an example of a value?one:two style logic test. First 
 obj.count is compared to the value 1 this will work if it is a string 
 or a number due to the loose typing used. If true then obj will be 
-rendered with the templat chunk showit if false then instead obj will 
+rendered with the template chunk showit if false then instead obj will 
 be rendered with the template chunk hideit. You can guess what these 
 two templates are intended to do.
 

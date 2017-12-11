@@ -592,7 +592,7 @@ expand.
 					if(v=="]")// close, these are removed on last pass
 					{
 						depth--
-						if( (!lastpass) && (depth==0) ) // do not keep on last pass
+						if( (!lastpass) || (depth!=0) ) // do not keep on last pass
 						{
 							r.push( plated_chunks.delimiter_open_str() +"]"+ plated_chunks.delimiter_close_str() )
 						}

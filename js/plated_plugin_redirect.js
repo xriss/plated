@@ -1,7 +1,7 @@
 
 
 /***************************************************************************
---[[#js.plated_plugin_redirect
+--[[#js.plated_plugin.redirect
 
 A blog plugin.
 
@@ -18,7 +18,7 @@ shared data.
 ]]*/
 
 /***************************************************************************
---[[#html.plated_plugin_redirect
+--[[#html.plated_plugin.redirect
 
 	#^_redirect_json
 	{
@@ -40,6 +40,8 @@ expansion so {_root}dir is a reasonable redirection.
 Multiple redirections can be performed in a single json configuration 
 but be aware that we end up actually creating files to perform these 
 redirections so be careful not to clash with other files.
+
+An example can be found in test-source/005-redirect
 
 ]]*/
 
@@ -101,7 +103,7 @@ exports.create=function(opts,plated){
 
 
 /***************************************************************************
---[[#js.plated_plugin_redirect.process_dirs
+--[[#js.plated_plugin.redirect.process_dirs
 
 	dirs = plated_plugin_redirect.process_dirs(dirs)
 
@@ -147,7 +149,7 @@ Tweak all the base chunks grouped by dir name and pre cascaded/merged
 
 
 /***************************************************************************
---[[#js.plated_plugin_redirect.process_file
+--[[#js.plated_plugin.redirect.process_file
 
 	chunks = plated_plugin_redirect.process_file(chunks)
 
