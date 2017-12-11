@@ -21,21 +21,24 @@ when creating the js.plated module.
 The build action, output files are created once and then the command 
 returns.
 
-	--site=http://localhost
+	--site=
 	
 How we should link to this site if the link can not be relative, eg 
-normally we would just use //index.html to reach a file in the root of 
-the current site but if this HTML is going to be rendered somewhere 
+normally we would just use /index.html to reach a file in the root of 
+the current site but if this html is going to be rendered somewhere 
 else then this trick would no longer work and we would have to use this 
 value instead. An example of when this might happen is the publishing of 
-RSS feeds.
+rss feeds.
 
-	--root=/
+	--root=
 
-The root of the site we are building, normally / but github pages 
-requires the use of sub directories for all but one of your 
-repositories so this must be set correctly for such sites to link to 
-their files with {_root}index.html notation.
+The root of the site we are building, normally empty in which case we 
+maintain a relative path back to the root depending on how far we have 
+descended into the directory structure, eg ../../ It is recomended that 
+this be used whenever constructing a url, for instance linking to the 
+root index.html should be done like sp {_root}index.html rather than 
+/index.html if you want to ensure you have a site that can be built 
+into a directory as well as a domain.
 
 	--source=source
 	
@@ -118,7 +121,7 @@ var argv = yargs.argv ; global.argv=argv;
 
 var env=process.env
 
-argv.site      = argv.site      || env.PLATED_SITE      || "http://localhost";
+argv.site      = argv.site      || env.PLATED_SITE      || "";
 argv.root      = argv.root      || env.PLATED_ROOT      || "";
 argv.source    = argv.source    || env.PLATED_SOURCE    || "source";
 argv.output    = argv.output    || env.PLATED_OUTPUT    || "output";
@@ -146,14 +149,14 @@ console.log(
 	"\n"+
 	"> plated build \n"+
 	"\tBuild all files in source folder into output folder.\n"+
-	"\t\t--site=http://localhost -- site name, for external use eg links in rss.\n"+
-	"\t\t--root=                 -- root dir of site else we work out a relative path.\n"+
-	"\t\t--source=source         -- choose the source folder.\n"+
-	"\t\t--output=output         -- choose the output folder.\n"+
-	"\t\t--hashfile=^            -- choose the magic string used in filenames.\n"+
-	"\t\t--hashchunk=#^          -- choose the magic string used in chunks.\n"+
-	"\t\t--delimiter={}          -- choose the magic string used for wrapping tags.\n"+
-	"\t\t--dumpjson=             -- Enable json output of chunks when parsing.\n"+
+	"\t\t--site=          -- site, eg http://site.com/ for use in explicit links.\n"+
+	"\t\t--root=          -- root dir of site else we work out a relative path.\n"+
+	"\t\t--source=source  -- choose the source folder.\n"+
+	"\t\t--output=output  -- choose the output folder.\n"+
+	"\t\t--hashfile=^     -- choose the magic string used in filenames.\n"+
+	"\t\t--hashchunk=#^   -- choose the magic string used in chunks.\n"+
+	"\t\t--delimiter={}   -- choose the magic string used for wrapping tags.\n"+
+	"\t\t--dumpjson=      -- Enable json output of chunks when parsing.\n"+
 	"\n"+
 	"> plated watch \n"+
 	"\tBuild and then watch all files in source folder, rebuilding if they change.\n"+

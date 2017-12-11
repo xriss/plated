@@ -186,6 +186,13 @@ provide a relative url such as ../../ that would get you to the root of
 the site from the current page. You should be using _root as the prefix 
 for all urls when including css or js or images etc in a html file.
 
+	#^_site
+
+Similar to root but intended to explicitly link to the root of the 
+named site. This is intended for use in links that can never be 
+relative to the current url so must be full and explicit urls, eg in 
+RSS feeds.
+
 	#^_sourcename
 
 This will be set to the filename of the input source file that we are 

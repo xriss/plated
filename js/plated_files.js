@@ -91,6 +91,15 @@ _dirname the url path of the dir this file exists in, eg /dirname
 
 		chunks._dirname=plated_files.filename_to_dirname(chunks._sourcename);
 		
+		if(opts.site)
+		{
+			chunks._site=opts.site;
+		}
+		else
+		{
+			chunks._site="{_root}"
+		}
+		
 		if(opts.root)
 		{
 			chunks._root=opts.root;
