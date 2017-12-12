@@ -1,0 +1,43 @@
+#^title trim=ends
+{_blog_post_json.title}
+
+#^_blog_post_json
+{
+	"title":"More relative than relative.",
+	"author":"kriss",
+}
+
+#^_blog_post_body form=markdown
+
+{_blog_post_json.title}
+-------
+
+Having attempted to use plated under https://git-for-windows.github.io/ 
+which is currently my goto way of dealing with linuxy stuff on windows. 
+I hit a little problem.
+
+It seems mingw, the thing that runs bash that makes git for windows 
+viable gets a little bit carried away when you pass paths starting with 
+/ into a command. Or set an environment variable, yeah tried that one.
+
+http://www.mingw.org/wiki/Posix_path_conversion
+
+It tends to replace / with wherever msys was installed to, probably a 
+horrible path on yout c:\\ drive somewhere.
+
+This is a bit of a problem if you are passing in a url to a static 
+website builder. The current setup ended up replacing all the urls with 
+links to my C: drive which is a tad inconvenient.
+
+So I over solved it, a bit of messing around and it is now setup where 
+if you do not provide a root for the site then we work it out as a 
+relative path. So for instance if you are a couple of directories down 
+then it would set the _root to ../../ which gets you there from the 
+current page. This allows us to include js files or css files from the 
+root using a relative path.
+
+This works both for site that are built to the root of a domain and 
+github style sites that get placed inside a sub directory. This can 
+still be replaced with a --root=/whatever/ on the commandline but that 
+wont work too well on the windows, but then again, what does?
+
