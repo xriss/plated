@@ -227,9 +227,11 @@ Tweak all the base chunks grouped by dir name and pre cascaded/merged
 				merged_chunks._output_chunkname="html"
 				plated.output.remember_and_write( merged_chunks )
 
+				var cache_root=merged_chunks._root
 				delete merged_chunks._root // do not expand_root here, leave it for later so relative path works
 				chunks._body=plated.chunks.replace( plated.chunks.delimiter_wrap_str("_blog_post_body_many"),merged_chunks); // prebuild body
 				posts_body[idx]=plated.chunks.merge_namespace(chunks);
+				merged_chunks._root=cache_root
 
 				console.log(timestr()+" BLOGPOST "+fname)
 			}
