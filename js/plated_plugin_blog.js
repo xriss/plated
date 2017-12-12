@@ -162,11 +162,10 @@ Tweak all the base chunks grouped by dir name and pre cascaded/merged
 		for(var idx=0;idx<drafts.length;idx++) { var post=drafts[idx];
 
 			var fname=plated.files.filename_to_dirname(post._sourcename)+"/index.html"
-//			var output_filename = path.join( opts.output , plated.files.filename_to_output(fname) );
 			var chunks={};
 			
 			plated.files.set_source(chunks,fname)
-			
+
 			chunks.body=plated.chunks.delimiter_wrap_str("_blog_post_body_one");
 
 			plated.files.prepare_namespace(fname); // prepare merged namespace
@@ -175,11 +174,6 @@ Tweak all the base chunks grouped by dir name and pre cascaded/merged
 			merged_chunks._output_filename=plated.files.filename_to_output(fname)
 			merged_chunks._output_chunkname="html"
 			plated.output.remember_and_write( merged_chunks )
-
-//			plated.files.write( output_filename , plated.chunks.replace( plated.chunks.delimiter_wrap_str("html"),merged_chunks) );
-//			if(opts.dumpjson){
-//				plated.files.write( output_filename+".json" , JSON_stringify(merged_chunks,{space:1}) );
-//			}
 
 			console.log(timestr()+" BLOGDRAFT "+fname)
 		}
@@ -223,7 +217,7 @@ Tweak all the base chunks grouped by dir name and pre cascaded/merged
 				var chunks={};
 				
 				plated.files.set_source(chunks,fname)
-				
+
 				chunks.body=plated.chunks.delimiter_wrap_str("_blog_post_body_one");
 
 				plated.files.prepare_namespace(fname); // prepare merged namespace
@@ -233,11 +227,7 @@ Tweak all the base chunks grouped by dir name and pre cascaded/merged
 				merged_chunks._output_chunkname="html"
 				plated.output.remember_and_write( merged_chunks )
 
-//				plated.files.write( output_filename , plated.chunks.replace( plated.chunks.delimiter_wrap_str("html"),merged_chunks) );
-//				if(opts.dumpjson){
-//					plated.files.write( output_filename+".json" , JSON_stringify(merged_chunks,{space:1}) );
-//				}
-
+				delete merged_chunks._root // do not expand_root here, leave it for later so relative path works
 				chunks._body=plated.chunks.replace( plated.chunks.delimiter_wrap_str("_blog_post_body_many"),merged_chunks); // prebuild body
 				posts_body[idx]=plated.chunks.merge_namespace(chunks);
 
@@ -268,7 +258,6 @@ Tweak all the base chunks grouped by dir name and pre cascaded/merged
 				}
 
 				var fname=pagename
-//				var output_filename = path.join( opts.output , plated.files.filename_to_output(fname) );
 				var chunks={};
 				
 				plated.files.set_source(chunks,fname)
@@ -285,11 +274,6 @@ Tweak all the base chunks grouped by dir name and pre cascaded/merged
 				merged_chunks._output_filename=plated.files.filename_to_output(fname)
 				merged_chunks._output_chunkname="html"
 				plated.output.remember_and_write( merged_chunks )
-
-//				plated.files.write( output_filename , plated.chunks.replace( plated.chunks.delimiter_wrap_str("html"),merged_chunks) );
-//				if(opts.dumpjson){
-//					plated.files.write( output_filename+".json" , JSON_stringify(merged_chunks,{space:1}) );
-//				}
 
 				console.log(timestr()+" BLOG "+fname)
 
