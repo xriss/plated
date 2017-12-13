@@ -31,7 +31,7 @@ only about duplicating files that are rendered from chunks.
 
 	#^_copy_json
 	{
-		copy:[
+		include:[
 			"",
 		],
 		exclude:[
