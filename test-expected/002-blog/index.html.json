@@ -38,7 +38,7 @@
     "unixtime": 1482883200
    },
    "_blog_post_older": "{_root}002-blog/2016-12-27-this-is-a-test-post-5/",
-   "_body": "\n<a href=\"../../002-blog/2016-12-28-this-is-a-test-post-6\">link</a>\n<h2 id=\"-title-\">This is test post 6</h2>\n<p>The title is This is test post 6 and this is an example blog post number 6.\n<br/>\n<br/></p>\n\n\n",
+   "_body": "\n<a href=\"{_root}002-blog/2016-12-28-this-is-a-test-post-6\">link</a>\n<h2 id=\"-title-\">This is test post 6</h2>\n<p>The title is This is test post 6 and this is an example blog post number 6.\n<br/>\n<br/></p>\n\n\n",
    "_dirname": "{_root}002-blog/2016-12-28-this-is-a-test-post-6",
    "_filename": "{_root}002-blog/2016-12-28-this-is-a-test-post-6/index.html",
    "_flags": {
@@ -85,7 +85,7 @@
    },
    "_blog_post_newer": "{_root}002-blog/2016-12-28-this-is-a-test-post-6/",
    "_blog_post_older": "{_root}002-blog/2016-12-26-this-is-a-test-post-4/",
-   "_body": "\n<a href=\"../../002-blog/2016-12-27-this-is-a-test-post-5\">link</a>\n<h2 id=\"-title-\">This is test post 5</h2>\n<p>The title is This is test post 5 and this is an example blog post number 5.\n<br/>\n<br/></p>\n\n\n",
+   "_body": "\n<a href=\"{_root}002-blog/2016-12-27-this-is-a-test-post-5\">link</a>\n<h2 id=\"-title-\">This is test post 5</h2>\n<p>The title is This is test post 5 and this is an example blog post number 5.\n<br/>\n<br/></p>\n\n\n",
    "_dirname": "{_root}002-blog/2016-12-27-this-is-a-test-post-5",
    "_filename": "{_root}002-blog/2016-12-27-this-is-a-test-post-5/index.html",
    "_flags": {

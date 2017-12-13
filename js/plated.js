@@ -476,7 +476,7 @@ Continuously build the output files from the inputs whenever one of the input fi
 	plated.plugin(require("./plated_plugin_docs.js"    ).create(opts,plated));
 	plated.plugin(require("./plated_plugin_blog.js"    ).create(opts,plated));
 	plated.plugin(require("./plated_plugin_redirect.js").create(opts,plated));
-	plated.plugin(require("./plated_plugin_include.js" ).create(opts,plated));
+	plated.plugin(require("./plated_plugin_copy.js"    ).create(opts,plated));
 
 	return plated;
 }

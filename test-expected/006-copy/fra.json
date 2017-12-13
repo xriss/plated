@@ -1,6 +1,6 @@
 {
- "_dirname": "{_root}006-include",
- "_filename": "{_root}006-include",
+ "_dirname": "{_root}006-copy",
+ "_filename": "{_root}006-copy",
  "_flags": {
   "txt_hello_world": {
    "trim": "ends"
@@ -9,10 +9,10 @@
    "trim": "ends"
   }
  },
- "_output_filename": "006-include/",
+ "_output_filename": "006-copy/",
  "_root": "../",
  "_site": "{_root}",
- "_sourcename": "006-include/.",
+ "_sourcename": "006-copy/.",
  "html": "<html>\n\t<body>{body}</body>\n</html>\n",
  "txt_hello_world": "BONJOUR LE MONDE",
  "txt_root": "{_root}fra/"

@@ -1,6 +1,6 @@
 {
- "_dirname": "{_root}006-include",
- "_filename": "{_root}006-include/index.html",
+ "_dirname": "{_root}006-copy",
+ "_filename": "{_root}006-copy/index.html",
  "_flags": {
   "txt_hello_world": {
    "trim": "ends"
@@ -10,12 +10,12 @@
   }
  },
  "_output_chunkname": "html",
- "_output_filename": "006-include/index.html",
+ "_output_filename": "006-copy/index.html",
  "_root": "../",
  "_site": "{_root}",
- "_sourcename": "006-include/index.^.html",
+ "_sourcename": "006-copy/index.^.html",
  "body": "\n<h1>{txt_hello_world}</h1>\n\n<a href=\"{txt_root}subdir\">subdir</a>\n",
  "html": "<html>\n\t<body>{body}</body>\n</html>\n",
- "txt_hello_world": "HELLO WORLD",
- "txt_root": "{_root}"
+ "txt_hello_world": "HOLA MUNDO",
+ "txt_root": "{_root}spa/"
 }

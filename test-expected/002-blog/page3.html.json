@@ -39,7 +39,7 @@
    },
    "_blog_post_newer": "{_root}002-blog/2016-12-25-this-is-a-test-post-3/",
    "_blog_post_older": "{_root}002-blog/2016-12-23-this-is-a-test-post-1/",
-   "_body": "\n<a href=\"../../002-blog/2016-12-24-this-is-a-test-post-2\">link</a>\n<h2 id=\"-title-\">This is test post 2</h2>\n<p>The title is This is test post 2 and this is an example blog post number 2.\n<br/>\n<br/></p>\n\n\n",
+   "_body": "\n<a href=\"{_root}002-blog/2016-12-24-this-is-a-test-post-2\">link</a>\n<h2 id=\"-title-\">This is test post 2</h2>\n<p>The title is This is test post 2 and this is an example blog post number 2.\n<br/>\n<br/></p>\n\n\n",
    "_dirname": "{_root}002-blog/2016-12-24-this-is-a-test-post-2",
    "_filename": "{_root}002-blog/2016-12-24-this-is-a-test-post-2/index.html",
    "_flags": {
@@ -85,7 +85,7 @@
     "unixtime": 1482451200
    },
    "_blog_post_newer": "{_root}002-blog/2016-12-24-this-is-a-test-post-2/",
-   "_body": "\n<a href=\"../../002-blog/2016-12-23-this-is-a-test-post-1\">link</a>\n<h2 id=\"-title-\">This is test post 1</h2>\n<p>The title is This is test post 1 and this is an example blog post number 1.\n<br/>\n<br/></p>\n\n\n",
+   "_body": "\n<a href=\"{_root}002-blog/2016-12-23-this-is-a-test-post-1\">link</a>\n<h2 id=\"-title-\">This is test post 1</h2>\n<p>The title is This is test post 1 and this is an example blog post number 1.\n<br/>\n<br/></p>\n\n\n",
    "_dirname": "{_root}002-blog/2016-12-23-this-is-a-test-post-1",
    "_filename": "{_root}002-blog/2016-12-23-this-is-a-test-post-1/index.html",
    "_flags": {

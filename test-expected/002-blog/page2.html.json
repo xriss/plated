@@ -40,7 +40,7 @@
    },
    "_blog_post_newer": "{_root}002-blog/2016-12-27-this-is-a-test-post-5/",
    "_blog_post_older": "{_root}002-blog/2016-12-25-this-is-a-test-post-3/",
-   "_body": "\n<a href=\"../../002-blog/2016-12-26-this-is-a-test-post-4\">link</a>\n<h2 id=\"-title-\">This is test post 4</h2>\n<p>The title is This is test post 4 and this is an example blog post number 4.\n<br/>\n<br/></p>\n\n\n",
+   "_body": "\n<a href=\"{_root}002-blog/2016-12-26-this-is-a-test-post-4\">link</a>\n<h2 id=\"-title-\">This is test post 4</h2>\n<p>The title is This is test post 4 and this is an example blog post number 4.\n<br/>\n<br/></p>\n\n\n",
    "_dirname": "{_root}002-blog/2016-12-26-this-is-a-test-post-4",
    "_filename": "{_root}002-blog/2016-12-26-this-is-a-test-post-4/index.html",
    "_flags": {
@@ -87,7 +87,7 @@
    },
    "_blog_post_newer": "{_root}002-blog/2016-12-26-this-is-a-test-post-4/",
    "_blog_post_older": "{_root}002-blog/2016-12-24-this-is-a-test-post-2/",
-   "_body": "\n<a href=\"../../002-blog/2016-12-25-this-is-a-test-post-3\">link</a>\n<h2 id=\"-title-\">This is test post 3</h2>\n<p>The title is This is test post 3 and this is an example blog post number 3.\n<br/>\n<br/></p>\n\n\n",
+   "_body": "\n<a href=\"{_root}002-blog/2016-12-25-this-is-a-test-post-3\">link</a>\n<h2 id=\"-title-\">This is test post 3</h2>\n<p>The title is This is test post 3 and this is an example blog post number 3.\n<br/>\n<br/></p>\n\n\n",
    "_dirname": "{_root}002-blog/2016-12-25-this-is-a-test-post-3",
    "_filename": "{_root}002-blog/2016-12-25-this-is-a-test-post-3/index.html",
    "_flags": {

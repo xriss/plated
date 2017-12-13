@@ -1,14 +1,14 @@
 
 
 /***************************************************************************
---[[#js.plated_plugin.include
+--[[#js.plated_plugin.copy
 
 A blog plugin.
 
 This module only exposes one function, which is used to create 
 the actual module with bound state data.
 
-	plated_plugin_include = require("./plated_plugin_include.js").create(opts,plated)
+	plated_plugin_copy = require("./plated_plugin_copy.js").create(opts,plated)
 
 This is called automatically when the plated module is created and the 
 returned plugin functions are added to the plugin call stack. Note that 
@@ -21,17 +21,17 @@ text translations. We produce for instance pure text chunks containing
 just english text and replace these chunks with french versions inside 
 a fra directory.
 
-Note that we only include chunkfiles not all data files, so this is 
+Note that we only copy chunkfiles not all data files, so this is 
 only about duplicating files that are rendered from chunks.
 
 ]]*/
 
 /***************************************************************************
---[[#html.plated_plugin.include
+--[[#html.plated_plugin.copy
 
-	#^_include_json
+	#^_copy_json
 	{
-		include:[
+		copy:[
 			"",
 		],
 		exclude:[
@@ -52,7 +52,7 @@ site and a spanish translation under spa/ or french under fra/
 The files are copied into the current directory without the prefix used 
 in include.
 
-An example can be found in test-source/006-include
+An example can be found in test-source/006-copy
 
 ]]*/
 
@@ -70,38 +70,38 @@ exports.create=function(opts,plated){
 
 	var timestr=function(){ return new Date().toISOString().replace(/^.+T/, "").replace(/\..+/, ""); }
 
-	var plated_plugin_include={};
+	var plated_plugin_copy={};
 	
-	plated_plugin_include.chunks=[]
+	plated_plugin_copy.chunks=[]
 	
-	plated_plugin_include.config={};
+	plated_plugin_copy.config={};
 
-// special chunk names that trigger include processing
+// special chunk names that trigger copy processing
 
-// json settings for the include
-//		_include_json
+// json settings for the copy
+//		_copy_json
 
 
 
 /***************************************************************************
---[[#js.plated_plugin.include.process_dirs
+--[[#js.plated_plugin.copy.process_dirs
 
-	dirs = plated_plugin_include.process_dirs(dirs)
+	dirs = plated_plugin_copy.process_dirs(dirs)
 
-Remember all the _include_json chunks we can find inside our 
-plated_plugin_include.chunks array. This will be used later to 
+Remember all the _copy_json chunks we can find inside our 
+plated_plugin_copy.chunks array. This will be used later to 
 replicated output into other locations with slight chunk tweaks.
 
 ]]*/
-	plated_plugin_include.process_dirs=function(dirs){
+	plated_plugin_copy.process_dirs=function(dirs){
 				
-		plated_plugin_include.chunks=[]
+		plated_plugin_copy.chunks=[]
 
 		for( var dirname in dirs ) { var chunks=dirs[dirname];
-			if(chunks._include_json)
+			if(chunks._copy_json)
 			{
-				chunks._include_json.dirname=dirname
-				plated_plugin_include.chunks.push(chunks)
+				chunks._copy_json.dirname=dirname
+				plated_plugin_copy.chunks.push(chunks)
 			}
 		}
 		
@@ -110,22 +110,22 @@ replicated output into other locations with slight chunk tweaks.
 
 
 /***************************************************************************
---[[#js.plated_plugin.include.process_file
+--[[#js.plated_plugin.copy.process_file
 
-	chunks = plated_plugin_include.process_file(chunks)
+	chunks = plated_plugin_copy.process_file(chunks)
 
-Auto magically parse _include_json chunks as json.
+Auto magically parse _copy_json chunks as json.
 
 ]]*/
-	plated_plugin_include.process_file=function(chunks){
+	plated_plugin_copy.process_file=function(chunks){
 		
-// process include_json
-		var chunk=chunks._include_json;
+// process copy_json
+		var chunk=chunks._copy_json;
 		if( chunk )
 		{
 			if( "string" == typeof (chunk) ) { chunk=JSON5.parse(chunk) || {}; } // auto json parse
 			
-			chunks._include_json=chunk;
+			chunks._copy_json=chunk;
 		}
 		
 		return chunks;
@@ -133,20 +133,20 @@ Auto magically parse _include_json chunks as json.
 
 
 /***************************************************************************
---[[#js.plated_plugin.include.process_output
+--[[#js.plated_plugin.copy.process_output
 
-	plated_plugin_include.process_output(chunks)
+	plated_plugin_copy.process_output(chunks)
 
-Compare this output file with cached include chunks and duplicate it 
+Compare this output file with cached copy chunks and duplicate it 
 into these directories with slightly tweaked chunks if it matches.
 
 ]]*/
-	plated_plugin_include.process_output=function(chunks){
+	plated_plugin_copy.process_output=function(chunks){
 		
-		for( var idx=0; idx<plated_plugin_include.chunks.length ; idx++ )
+		for( var idx=0; idx<plated_plugin_copy.chunks.length ; idx++ )
 		{
-			var include_chunks=plated_plugin_include.chunks[idx]
-			var it=include_chunks._include_json
+			var copy_chunks=plated_plugin_copy.chunks[idx]
+			var it=copy_chunks._copy_json
 
 			var filename=chunks._output_filename
 
@@ -182,7 +182,7 @@ into these directories with slightly tweaked chunks if it matches.
 				var output_chunkname=chunks._output_chunkname
 				
 				var newchunks=plated.chunks.deepmerge(chunks,{})
-				plated.chunks.deepmerge( plated.chunks.remove_underscorechunks(include_chunks),newchunks)
+				plated.chunks.deepmerge( plated.chunks.remove_underscorechunks(copy_chunks),newchunks)
 
 				if(output_chunkname)
 				{
@@ -197,7 +197,7 @@ into these directories with slightly tweaked chunks if it matches.
 					plated.files.write( filename , data )
 				}
 
-console.log(timestr()+" INCLUDE "+ chunks._output_filename +" -> "+ path.join( it.dirname , output_filename )  )
+console.log(timestr()+" COPY "+ chunks._output_filename +" -> "+ path.join( it.dirname , output_filename )  )
 
 			}
 			
@@ -207,5 +207,5 @@ console.log(timestr()+" INCLUDE "+ chunks._output_filename +" -> "+ path.join( i
 
 	};
 
-	return plated_plugin_include;
+	return plated_plugin_copy;
 };

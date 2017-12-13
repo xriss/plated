@@ -1,0 +1,29 @@
+{
+ "_copy_json": {
+  "dirname": "006-copy/fra",
+  "exclude": [
+   "fra",
+   "spa"
+  ],
+  "include": [
+   "006-copy/"
+  ]
+ },
+ "_dirname": "{_root}006-copy/fra",
+ "_filename": "{_root}006-copy/fra",
+ "_flags": {
+  "txt_hello_world": {
+   "trim": "ends"
+  },
+  "txt_root": {
+   "trim": "ends"
+  }
+ },
+ "_output_filename": "006-copy/fra/",
+ "_root": "../../",
+ "_site": "{_root}",
+ "_sourcename": "006-copy/fra/.",
+ "html": "<html>\n\t<body>{body}</body>\n</html>\n",
+ "txt_hello_world": "BONJOUR LE MONDE",
+ "txt_root": "{_root}fra/"
+}
