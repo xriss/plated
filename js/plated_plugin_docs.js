@@ -117,6 +117,15 @@ Tweak all the base chunks grouped by dir name and pre cascaded/merged
 						if(fn.endsWith(test))
 						{
 							var fname=path.join(opts.source,docdir,fn) // the file to process
+							var url=fname;
+							for(var pre in (chunk.urlprefix || {}) ) // build url of file
+							{
+								var fix=chunk.urlprefix[pre]
+								if(url.startsWith(pre))
+								{
+									url=fix+url.substring(pre.length)
+								}
+							}
 							var s;
 							try { s=fs.readFileSync(fname,'utf8'); } catch(e){}
 							if(s)
@@ -154,6 +163,7 @@ Tweak all the base chunks grouped by dir name and pre cascaded/merged
 												body:plated_chunks.markdown( lines.join("\n") ),
 												line:linenum,
 												file:fname,
+												url:url,
 											};
 										}
 										else

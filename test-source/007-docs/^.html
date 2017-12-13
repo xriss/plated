@@ -30,13 +30,21 @@ Welcome to docs!
 		"007-docs":".c",
 	},
 
+// create url links by replacing the beginning of filenames like so
+
+ 	urlprefix:{
+		"test-source/":"https://github.com/xriss/plated/blob/master/test-source/",
+	},
+
+
 }
 
 #^wrap
 
 <div style="margin:32px">
 <h1><a href="{_docs_json.dirname}/{_it.name}">{_it.name}</a></h1>
-<div>{_it.body}</div>
+<div><a href="{_it.url}#L{_it.line}">{_it.url}</a></div>
+<div>{[[}{_it.body}{]]}</div>
 </div>
 
 #^menuwrap trim=ends
@@ -57,6 +65,6 @@ Welcome to docs!
 
 </div><div style="width:60%;display:inline-block;min-width:640px;">
 
-	{[[}{_list:wrap}{]]}
+	{_list:wrap}
 
 </div></div>
