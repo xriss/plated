@@ -1,7 +1,7 @@
 {
   "name": "plated",
   "description": "Plated is a chunk based static website builder.",
-  "version": "0.0.36",
+  "version": "0.0.37",
   "license": "MIT",
   "repository": {
     "type": "git",
