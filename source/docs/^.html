@@ -41,7 +41,8 @@ Welcome to docs!
 #^wrap
 
 <div style="margin:64px 0px;">
-<h1><a href="{_docs_json.dirname}/{_it.name}">{[[}{_it.name}{]]}</a></h1>
+<h1><a href="{_docs_json.dirname}/{_it.name}">{_it.name}</a></h1>
+<div><a href="{_it.url}#L{_it.line}">{_it.url}</a></div>
 <div>{[[}{_it.body}{]]}</div>
 </div>
 
