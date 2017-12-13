@@ -130,8 +130,6 @@ argv.hashchunk = argv.hashchunk || env.PLATED_HASHCHUNK || "#^";
 argv.delimiter = argv.delimiter || env.PLATED_DELIMITER || "{}";
 argv.dumpjson  = argv.dumpjson  || env.PLATED_DUMPJSON  ;
 
-ls(argv)
-
 if( argv._[0]=="build" )
 {
 	var plated=require("./plated.js").create(argv);
