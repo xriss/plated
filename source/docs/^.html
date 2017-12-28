@@ -1,7 +1,7 @@
 
 #^title trim=ends
 
-Welcome to docs!
+Plated docs!
 
 #^html
 <html>
@@ -40,30 +40,37 @@ Welcome to docs!
 
 #^wrap
 
-<div style="margin:64px 0px;">
+<div class="wrap">
 <h1><a href="{_docs_json.dirname}/{_it.name}">{_it.name}</a></h1>
-<div><a href="{_it.url}#L{_it.line}">{_it.url}</a></div>
+<div class="source"><a href="{_it.url}#L{_it.line}">{_it.url}</a></div>
 <div>{[[}{_it.body}{]]}</div>
 </div>
 
 #^menuwrap trim=ends
 
-{_it.count>1&&_it:menuwrap_link}
+{_it:menuwrap_link}
 
 #^menuwrap_link trim=ends
 
-<a style="display:block;" href="{_docs_json.dirname}/{_it.name}">/{_it.name}</a>
+{_it.count>1&&_it:menuwrap_link2}
+{_it.count==1&&_it:menuwrap_link1}
+
+#^menuwrap_link1 trim=ends
+<a class="sub" href="{_docs_json.dirname}/{_it.name}"><span>/{_it.name}</span></a>
+
+#^menuwrap_link2 trim=ends
+<a class="par" href="{_docs_json.dirname}/{_it.name}"><span>/{_it.name}</span></a>
 
 #^body
-<div style="width:90%;margin:auto;min-width:960px;"><div style="width:30%;display:inline-block;min-width:320px;vertical-align:top;">
-
-	<div style="margin:64px 0px;">
-	<a style="display:block;" href="{_docs_json.dirname}">/</a>
-	{_docs:menuwrap}
+<div class="default">
+	<div class="nav">
+		<div class="topics">
+			<a class="home" href="/">plated^</a>
+			<a class="par" href="{_docs_json.dirname}"><span>/</span></a>
+			{_docs:menuwrap}
+		</div>
 	</div>
-
-</div><div style="width:60%;display:inline-block;min-width:640px;">
-
-	{_list:wrap}
-
-</div></div>
+	<div class="main">
+		{_list:wrap}
+	</div>
+</div>
