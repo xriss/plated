@@ -1,4 +1,4 @@
-[submodule "output"]
+[submodule "output/plated"]
 	path = output/plated
 	url = git@github.com:xriss/plated.git
 	branch = gh-pages
