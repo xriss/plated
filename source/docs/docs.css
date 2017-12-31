@@ -28,7 +28,6 @@ a:hover {color:var(--base);}
 a img 	{border:none;}
 
 h1, h2, h3, h4, h5, h6, p, blockquote {margin:0; padding:0;}
-h1, h2, h3, h4, h5, h6 {color:var(--white); line-height:36px;}
 h1 		{margin-bottom:26px; font-size:30px;}
 h1 a	{font-weight:bold;}
 h2 		{font-size:24px;}
@@ -55,7 +54,7 @@ sup 			{font-size:0.83em; vertical-align:super; line-height:0;}
 
 .default		{margin:0 auto;}
 .wrap			{margin:0 auto; margin:4em 0;}
-.nav			{width:26.5em; font-size:16px; line-height:24px; position:fixed; top:0; left:0; overflow-y:auto; height:100%; background-color:var(--base_nav_back); padding:0 2em; word-break:break-word;}
+.nav			{width:26.5em; font-size:16px; line-height:24px; position:fixed; top:0; left:0; overflow-y:auto; height:100%; background-color:var(--base_nav_back); padding:0 2em;}
 .main			{max-width:calc(960px + 20em); padding-left:33em; margin-left:3em; margin-right:3em;}
 
 
