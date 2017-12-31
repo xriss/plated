@@ -19,8 +19,6 @@ Read the docs - https://xriss.github.io/plated/docs/
 
 Documentation is embedded within the source so they get updated together where there are changes. The current version is always the latest.
 
-_This is a work in progress - thank you for your patience_
-
 
 ## Scripts
 
