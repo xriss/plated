@@ -14,3 +14,5 @@ npm install
 echo " installing node test server , please ignore prefer global warnings "
 echo
 npm install http-server
+cd ..
+
