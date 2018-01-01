@@ -10,9 +10,5 @@ echo " installing node dependencies, if this fails you probably need node "
 echo
 cd js
 npm install
-
-echo " installing node test server , please ignore prefer global warnings "
-echo
-npm install http-server
 cd ..
 
