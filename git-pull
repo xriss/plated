@@ -1,0 +1,24 @@
+cd `dirname $0`
+
+echo
+
+echo " initializing git submodules "
+echo
+git submodule update --init --reference .
+
+git pull --recurse-submodules && git submodule update --recursive --remote
+
+echo " installing node dependencies, if this fails you probably need node "
+echo
+cd js
+npm install
+cd ..
+
+echo " fixing local gh-pages branch to track origin "
+cd output/plated
+git stash -u
+git reset --hard origin/gh-pages
+git branch -f --track gh-pages origin/gh-pages
+git checkout gh-pages
+cd ..
+

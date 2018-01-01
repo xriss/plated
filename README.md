@@ -4,6 +4,7 @@ A standalone version of the chunk based templating system used in pagecake to ge
 
 	npm install -g plated
 
+This git repository has sub modules and the ./git-pull script should be used to help keep them setup correctly.
 
 Visit https://github.com/xriss/plated-example for a blank boiler plate starting site that can easily be published to github.
 
