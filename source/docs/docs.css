@@ -9,26 +9,28 @@
   --pre_back:#282a36;
 }
 
+/*	Original theme for Docs!	*/
+
 *{box-sizing:border-box; -webkit-box-sizing:border-box; -moz-box-sizing:border-box; -o-box-sizing:border-box; -ms-box-sizing:border-box;}
 
 html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td,article,aside,canvas,details,embed,figure,figcaption,footer,header,hgroup,menu,nav,output,ruby,section,summary,time,mark,audio,video{border:0;font-size:100%;font:inherit;vertical-align:top;margin:0;padding:0}article,aside,details,figcaption,figure,footer,header,hgroup,menu,nav,section{display:block}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:none}table{border-collapse:collapse;border-spacing:0}	/* Resets */
 
 a,img		{border:0; outline:none;}textarea:focus,input:focus{outline:0;}*:focus{outline:0;}
-body, html	{-webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale;}
-body		{min-width:100%; min-height:100%; margin:0 auto;}
+body, html	{-webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale; min-width:100%; min-height:100%; width:100%; height:100%; margin:0 auto;}
 
-body 	{font-family:"Helvetica Neue", Helvetica, Arial, sans-serif; font-size:13px; line-height:18px; color:var(--base_font); background-color:var(--base_back); width:100%; position:relative;}
+body 	{font-family:"Helvetica Neue", Helvetica, Arial, sans-serif; font-size:13px; line-height:18px; color:var(--base_font); background-color:var(--base_back); position:relative;}
 
 table 	{margin:10px 0 15px 0; border-collapse:collapse;}
 td,th 	{border:1px solid var(--white); padding:3px 10px;}
 th 		{padding:5px 10px;}
 
 a 		{color:var(--base_font); text-decoration:none;}
-a:hover {color:var(--base);}
+a:hover {color:var(--base); cursor:pointer;}
 a img 	{border:none;}
 
+b		{font-weight:bold;}
+
 h1, h2, h3, h4, h5, h6, p, blockquote {margin:0; padding:0;}
-h1, h2, h3, h4, h5, h6 {color:var(--white); line-height:36px;}
 h1 		{margin-bottom:26px; font-size:30px;}
 h1 a	{font-weight:bold;}
 h2 		{font-size:24px;}
@@ -54,8 +56,8 @@ sup 			{font-size:0.83em; vertical-align:super; line-height:0;}
 /*	Wrappers	*/
 
 .default		{margin:0 auto;}
-.wrap			{margin:0 auto; margin:4em 0;}
-.nav			{width:26.5em; font-size:16px; line-height:24px; position:fixed; top:0; left:0; overflow-y:auto; height:100%; background-color:var(--base_nav_back); padding:0 2em; word-break:break-word;}
+.wrap			{margin:0 auto; padding:4em 0 0 0;}
+.nav			{width:26.5em; font-size:16px; line-height:24px; position:fixed; top:0; left:0; overflow-y:auto; height:100%; background-color:var(--base_nav_back); padding:0 2em;}
 .main			{max-width:calc(960px + 20em); padding-left:33em; margin-left:3em; margin-right:3em;}
 
 
@@ -68,27 +70,39 @@ sup 			{font-size:0.83em; vertical-align:super; line-height:0;}
 
 /*	Sidebar styling	*/
 
-.topics				{margin:4em 0px; counter-reset:parent; position:relative;}
+.topics				{padding:4em 0px 5em 0; counter-reset:parent; position:relative;}
 .topics:before		{display:block; content:"Table Of Contents"; color:var(--base_font); margin-bottom:15px;}
 .topics a			{display:block; margin-left:1.5em; white-space:nowrap;}
 .topics a.par:before	{counter-increment:parent; content:counter(parent)". "; margin-left:-1.5em; display:inline-block; min-width:30px;}
 .topics a span			{display:inline-block; margin-left:1em; line-height:1.5em;}
 .topics a.par			{counter-reset:sub; font-weight:bold;}
-.topics a.sub			{font-size:95%;}
+.topics a.sub			{font-size:93%;}
 .topics a.sub span		{margin-left:2em;}
 .topics a.sub:before	{counter-increment:sub; content:counter(parent)"."counter(sub)" "; margin-left:-1.5em; display:inline-block; min-width:30px; line-height:1.5em;}
 .topics a.par:nth-of-type(n+5){margin-top:0.8em;}
 
-a.home				{position:absolute; top:-1.5em; left:-1.5em; color:var(--base); font-family:monospace; font-size:1.5em;}
+a.home				{position:absolute; top:1em; left:-1.5em; color:var(--base); font-family:monospace; font-size:1.5em;}
+
+
+/*	Bottom bar in sidebar	*/
+
+.bar				{position:fixed; left:0; bottom:0; padding:10px 30px; background-color:var(--base_source); z-index:100; width:26.5em; border-top:20px solid var(--base_nav_back);}
+.bar a				{font-size:14px; display:inline-block; vertical-align:top; width:50%; color:var(--base_font);}
+a.repo				{text-align:right; padding-right:20px;}
 
 
 /*	Sourcecode links to Github under title links	*/
 
-.source a:before	{display:inline; content:'source'; font-style:italic; background-color:var(--base_source); padding:2px 3px 3px 5px; border-radius:6px; margin-right:5px; color:var(--base_font);}
+.source a:before	{display:inline; content:'source'; font-style:italic; background-color:var(--base_source); padding:2px 4px 3px 5px; border-radius:6px; margin-right:5px; color:var(--base_font);}
 .source a			{display:block; margin-bottom:32px; font-size:14px;}
+
 
 /*	Firefox target	*/
 
 @-moz-document url-prefix() {
     ul li a		{margin-left:0px;}
+    
+    /*	FF body margin bug	*/
+    .bar		{bottom:24px;}
+    .topics		{padding:4em 0px 6em 0}
 }
