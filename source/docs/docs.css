@@ -81,7 +81,7 @@ sup 			{font-size:0.83em; vertical-align:super; line-height:0;}
 .topics a.sub:before	{counter-increment:sub; content:counter(parent)"."counter(sub)" "; margin-left:-1.5em; display:inline-block; min-width:30px; line-height:1.5em;}
 .topics a.par:nth-of-type(n+5){margin-top:0.8em;}
 
-a.home				{position:absolute; top:1em; left:-1.5em; color:var(--base); font-family:monospace; font-size:1.5em;}
+a.home				{position:absolute; top:1em; left:-1.5em; color:var(--base); font-family:'Patua One',georgia,serif; font-size:1.5em;}
 
 
 /*	Bottom bar in sidebar	*/

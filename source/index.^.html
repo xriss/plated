@@ -1,26 +1,19 @@
 #^title trim=ends
-
 plated^
 
+
 #^body
-
-<h1>{title}</h1>
-
-<p>Generate a static website from hierarchical text and data files.</p>
-
-
-{blog_wrap}
-{git_wrap}
-
+<div class="blog_wrap">
+	<div class="logo">
+		<h1>{title}</h1>
+		<p>Generate a static website from hierarchical text and data files.</p>
+	</div>
+	{mit_wrap}
+</div>
 
 
-#^blog_wrap
+#^mit_wrap
 <div class="line"></div>
-<a href="{_root}blog">Read blog post</a>
-
-<p><a href="{_root}docs">Documentation</a><p>
-
-
-#^git_wrap
-<div class="line"></div>
-<a class="bar" href="https://github.com/xriss/plated">Fork it on Github</a>
+<div class="read_wrap">
+	<a href="https://github.com/xriss/plated/blob/master/LICENSE">MIT License</a>
+</div>

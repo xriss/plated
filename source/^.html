@@ -1,16 +1,27 @@
-
 #^html trim=ends
-
 <html>
 <head>{head}</head>
-<body>{body}</body>
+<body>{nav}{body}</body>
 </html>
 
 #^head trim=ends
 <title>{title}</title>
 <style>
+@import url('https://fonts.googleapis.com/css?family=Patua+One');
 {css}
 </style>
+
+#^nav trim=ends
+<div class="nav_wrap">
+	<div class="nav">
+		<a href="{_root}" class="logo">plated^</a>
+		<ul>
+			<li><a href="https://github.com/xriss/plated">Github</a></li>
+			<li><a href="{_root}blog">Blog</a></li>
+			<li><a href="{_root}docs">Documentation</a></li>
+		</ul>
+	</div>
+</div>
 
 #^body trim=ends
 
