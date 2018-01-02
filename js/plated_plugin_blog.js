@@ -265,8 +265,8 @@ Tweak all the base chunks grouped by dir name and pre cascaded/merged
 				plated.files.set_source(chunks,fname)
 
 				chunks._list=list;
-				chunks._blog_page_older=pagename_older && (opts.root+pagename_older);
-				chunks._blog_page_newer=pagename_newer && (opts.root+pagename_newer);
+				chunks._blog_page_older=pagename_older && ("{_root}"+pagename_older);
+				chunks._blog_page_newer=pagename_newer && ("{_root}"+pagename_newer);
 
 				chunks.body=plated.chunks.delimiter_wrap_str("_blog_page_body");
 

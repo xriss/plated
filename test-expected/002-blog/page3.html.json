@@ -4,7 +4,7 @@
   "posts_per_page": 2
  },
  "_blog_page_body": "\n<div>some blog posts</div>\n\n{_list:blog_list}\n\n<div> {_blog_page_older:link_older_page} {_blog_page_newer:link_newer_page} </div>\n\n",
- "_blog_page_newer": "002-blog/page2.html",
+ "_blog_page_newer": "{_root}002-blog/page2.html",
  "_blog_post_body_many": "\n<a href=\"{_dirname}\">link</a>\n{_blog_post_body}\n\n",
  "_blog_post_body_one": "\n{_blog_post_body}\n\n<div> {_blog_post_older:link_older_post} {_blog_post_newer:link_newer_post} </div>\n\nSome comments belong here\n",
  "_dirname": "{_root}002-blog",
