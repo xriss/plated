@@ -31,10 +31,10 @@ p 	{margin-bottom:16px; font-size:18px; line-height:28px;}
 
 */
 
-.wrap			{margin:0 auto; padding:0 0 4em 0;}
+.wrap				{margin:0 auto; padding:0 0 4em 0;}
 .wrap:nth-of-type(1){padding-top:4em;}
-.contents		{width:26.5em; font-size:16px; line-height:24px; position:fixed; top:3.5em; left:0; overflow-y:auto; height:100%; background-color:var(--base_back_alt); padding:0 2em;}
-.main			{max-width:calc(960px + 20em); padding-left:33em; margin-left:3em; margin-right:3em;}
+.contents			{width:26.5em; font-size:16px; line-height:24px; position:fixed; top:3.5em; left:0; overflow-y:auto; height:100%; background-color:var(--base_back_alt); padding:0 2em;}
+.main				{max-width:calc(960px + 20em); padding-left:33em; margin-left:3em; margin-right:3em;}
 
 
 /*

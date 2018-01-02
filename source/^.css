@@ -151,6 +151,24 @@ sup 				{font-size:0.83em; vertical-align:super; line-height:0;}
 
 /*
 
+	Install:
+	
+	Installation instructions on the splash page
+	
+	install 		|	Main wrapper
+	install div		|	Wrapper for installation divs
+	install code	|	Bigger fonts for code div
+	
+*/
+
+.install 					{display:flex; justify-content:space-evenly; width:100%; margin-top:2em;}
+.install div				{width:60%; padding-left:5%;}
+.install div:nth-of-type(1) {width:40%; padding:0;}
+.install code 				{font-size:1.6em;}
+
+
+/*
+
 	Blog:
 	
 	blog_info 		|	Blog author & date info
