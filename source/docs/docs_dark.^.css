@@ -1,14 +1,23 @@
 #^css same=append
 
+:root {
+  --base_back:#110F14;
+  --base_back_alt:#0a090c;
+  --base_src:#0a090c;
+  --base_font:#d2d2d2;
+  --hr:#9E9E9E;
+}
+
+
 /*
 
-	Original theme for Docs!
+	Dark theme for Docs!
 	
 	Font size is smaller than root.
 
 */
 
-p 	{font-size:18px; line-height:28px;}
+p 	{margin-bottom:16px; font-size:18px; line-height:28px;}
 
 
 /*
