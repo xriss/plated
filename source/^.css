@@ -1,38 +1,78 @@
 #^css same=append
 
+/*
+
+	Variables:
+	
+	------------------------------------------------------------------
+	The bright highlight used for the logo and links on hover
+	------------------------------------------------------------------
+	
+	base 			- Blue				|	Logo
+	base_alt 		- Light blue		|	Link hover
+	
+	------------------------------------------------------------------
+	Basic colours for background and fonts
+	------------------------------------------------------------------
+	
+	base_back		- Off white			|	Main body background
+	base_back_alt 	- Dark white		|	Docs column background
+	base_back_code	- Dark blue grey	|	Code background
+	base_link		- Medium grey		|	Link
+	base_font		- Dark grey			|	Body font
+	base_code		- White				|	Code font
+	base_src		- Light grey		|	Source link background
+	
+	------------------------------------------------------------------
+	Extra bits
+	------------------------------------------------------------------
+	
+	white 			- White				|	Navigation bar
+	hr		 		- Blue				|	Horizontal line
+
+*/
+
 :root {
   --base:#1400ff;
   --base_alt:#3F2FFF;
   --base_back:#f7f4fd;
-  --base_nav_back:#efefef;
+  --base_back_alt:#efefef;
   --base_link:#666;
   --base_font:#484848;
-  --base_source:#d8d8d8;
+  --base_code:#fff;
+  --base_src:#d8d8d8;
   --white:#fff;
   --hr:#1400ff;
-  --pre_back:#282a36;
+  --base_back_code:#282a36;
 }
+
+
+/*
+
+	Reset css
+
+*/
 
 *{box-sizing:border-box; -webkit-box-sizing:border-box; -moz-box-sizing:border-box; -o-box-sizing:border-box; -ms-box-sizing:border-box;}
 
-html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td,article,aside,canvas,details,embed,figure,figcaption,footer,header,hgroup,menu,nav,output,ruby,section,summary,time,mark,audio,video{border:0;font-size:100%;font:inherit;vertical-align:top;margin:0;padding:0}article,aside,details,figcaption,figure,footer,header,hgroup,menu,nav,section{display:block}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:none}table{border-collapse:collapse;border-spacing:0}	/* Resets */
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td,article,aside,canvas,details,embed,figure,figcaption,footer,header,hgroup,menu,nav,output,ruby,section,summary,time,mark,audio,video{border:0;font-size:100%;font:inherit;vertical-align:top;margin:0;padding:0}article,aside,details,figcaption,figure,footer,header,hgroup,menu,nav,section{display:block}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:none}table{border-collapse:collapse;border-spacing:0}
 
 a,img		{border:0; outline:none;}textarea:focus,input:focus{outline:0;}*:focus{outline:0;}
 body, html	{-webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale; min-width:100%; min-height:100%; width:100%; height:100%; margin:0 auto;}
 
-body 	{font-family:"Helvetica Neue", Helvetica, Arial, sans-serif; font-size:13px; line-height:18px; color:var(--base_font); background-color:var(--base_back); position:relative; padding-top:4em;}
 
-table 	{margin:10px 0 15px 0; border-collapse:collapse;}
-td,th 	{border:1px solid var(--white); padding:3px 10px;}
-th 		{padding:5px 10px;}
+/*
+
+	Main styles for the entire site
+
+*/
+
+body 	{font-family:Arial, sans-serif; font-size:13px; line-height:18px; color:var(--base_font); background-color:var(--base_back); position:relative; padding-top:4em;}
 
 a 		{color:var(--base_font); text-decoration:none;}
 a:hover {color:var(--base); cursor:pointer;}
 a img 	{border:none;}
 
-b		{font-weight:bold;}
-
-h1, h2, h3, h4, h5, h6, p, blockquote {margin:0; padding:0;}
 h1 		{margin-bottom:26px; font-size:30px;}
 h1 a	{font-weight:bold;}
 h2 		{font-size:24px;}
@@ -41,29 +81,50 @@ h4 		{font-size:16px;}
 h5 		{font-size:14px;}
 h6 		{font-size:13px;}
 
-hr 		{margin:60px 0; border:0; border-bottom:1px solid var(--hr);}
+b		{font-weight:bold;}
 p 		{margin-bottom:16px; font-size:19px; line-height:31px;}
 
-blockquote 		{padding:13px 13px 21px 15px; margin-bottom:18px; font-family:georgia,serif; font-style:italic;}
-blockquote:before {content:"\201C"; font-size:40px; margin-left:-10px; font-family:georgia,serif; color:#eee;}
-blockquote p 	{font-size:14px; font-weight:300; line-height:18px; margin-bottom:0; font-style:italic;}
+.line, hr			{border-top:1px dashed var(--hr); margin-top:40px; margin-bottom:20px; position:relative;}
 
-code, pre 		{font-family:Menlo, Monaco, Andale Mono, Courier New, monospace; color:var(--white);}
-code			{padding:1px 3px; font-size:12px; -webkit-border-radius:3px; -moz-border-radius:3px; border-radius:3px; background:var(--pre_back);}
-pre				{display:block; padding:14px; margin:32px 0 18px 0; line-height:16px; font-size:11px; white-space:pre-wrap; word-wrap:break-word; background-color:var(--pre_back); border-radius:6px;}
-pre:first-of-type{margin-top:0;}
-pre code 		{font-size:14px; line-height:26px; padding:0; background:transparent;}
-sup 			{font-size:0.83em; vertical-align:super; line-height:0;}
+blockquote 			{padding:13px 13px 21px 15px; margin-bottom:18px; font-family:georgia,serif; font-style:italic;}
+blockquote:before	{content:"\201C"; font-size:40px; margin-left:-10px; font-family:georgia,serif; color:#eee;}
+blockquote p 		{font-size:14px; font-weight:300; line-height:18px; margin-bottom:0; font-style:italic;}
+
+code, pre 			{font-family:monospace; color:var(--base_code);}
+code				{padding:1px 3px; font-size:12px; -webkit-border-radius:3px; -moz-border-radius:3px; border-radius:3px; background:var(--base_back_code);}
+pre					{display:block; padding:14px; margin:32px 0 18px 0; line-height:16px; font-size:11px; white-space:pre-wrap; word-wrap:break-word; background-color:var(--base_back_code); border-radius:6px;}
+pre:first-of-type	{margin-top:0;}
+pre code 			{font-size:14px; line-height:26px; padding:0; background:transparent;}
+sup 				{font-size:0.83em; vertical-align:super; line-height:0;}
 
 
-/*	Wrappers	*/
+/*
+
+	Wrappers:
+	
+	default 		|	Clean default div, used only in Docs body
+	nav_wrap 		|	Navigation bar for entire site
+	right 			|	Class for text-align right
+
+*/
 
 .default	{margin:0 auto;}
 .nav_wrap	{width:100%; padding:1.5em 3em; background-color:var(--white); position:fixed; top:0; left:0; z-index:100;}
-.read_wrap	{text-align:right;}
+.right		{text-align:right;}
 
 
-/*	Navi bar	*/
+/*
+
+	Navigation bar:
+	
+	The main navigation bar is made up of a wrapper div that holds the
+	main logo link and an unordered list of all the other pages.
+	
+	nav		 		|	Main div for logo and links
+	nav ul	 		|	Listing of links
+	nav a 			|	Links with padding
+
+*/
 
 .nav		{display:flex; display:-webkit-box; display:-moz-box; display:-ms-flexbox; display:-webkit-flex; -moz-box-align:center; -ms-box-align:center; -webkit-box-align:center; align-items:center;}
 .nav ul		{display:flex; display:-webkit-box; display:-moz-box; display:-ms-flexbox; display:-webkit-flex; justify-content:flex-end; width:100%;}
@@ -71,27 +132,41 @@ sup 			{font-size:0.83em; vertical-align:super; line-height:0;}
 .nav a:hover{color:var(--base);}
 
 
-/*	LOGO	*/
+/*	
+
+	Logo:
+	
+	'Patua One' is only used here - @import found in ^.html
+	
+	logo	 		|	Splash page logo
+	logo p	 		|	Splash page about div
+	nav a.logo 		|	Logo in navigation bar
+	
+*/
 
 .logo		{font-family:'Patua One',georgia,serif; color:var(--base);}
-.nav a.logo {font-size:1.8em; display:block; color:var(--base);}
 .logo p		{font-size:5em; line-height:0.8em; color:var(--base_font);}
+.nav a.logo {font-size:1.8em; display:block; color:var(--base);}
 
 
-/*	BLOG	*/
+/*
 
-.line, hr		{border-top:1px dashed var(--hr); margin-top:40px; margin-bottom:20px; position:relative;}
+	Blog:
+	
+	blog_info 		|	Blog author & date info
+	blog_wrap 		|	Wrapper for a blog post
+	paging_wrap		|	Wrapper for paging links
+	
+*/
+
+
 .blog_info		{position:absolute; right:10px; top:1.5em; font-size:70%;}
 
 .blog_wrap		{width:740px; position:relative; margin:auto; padding:4em 0; line-height:33px; font-size:20px; font-family:sans-serif; color:var(--base_font);}
-.blog_wrap h2	{font-family:'Patua One',georgia,serif; font-size:2em; padding-bottom:1em;}
+.blog_wrap h2	{font-family:'Patua One',georgia,serif; font-size:2.5em; line-height:1em; padding-bottom:1em;}
 .blog_wrap a 	{color:var(--base); text-decoration:none;}
 .blog_wrap a:hover {color:var(--base_alt); cursor:pointer;}
 
 .paging_wrap	{display:flex; display:-webkit-box; display:-moz-box; display:-ms-flexbox; display:-webkit-flex; justify-content:space-between; margin-top:5em;}
-.paging_wrap a	{display:block;}
+.paging_wrap a	{display:block; font-size:80%;}
 
-
-/*	SPLASH	*/
-
-.read_wrap a	{display:block; color:var(--base_link);}

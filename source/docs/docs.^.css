@@ -1,20 +1,8 @@
 #^css same=append
 
-:root {
-  --base:#1400ff;
-  --base_back:#110F14;
-  --base_back_alt:#0a090c;
-  --base_font:#d2d2d2;
-  --base_code:#d8d8d8;
-  --white:#fff;
-  --hr:#9E9E9E;
-  --back_code:#282a36;
-}
-
-
 /*
 
-	Dark theme for Docs!
+	Original theme for Docs!
 	
 	Font size is smaller than root.
 
@@ -29,8 +17,8 @@ p 	{margin-bottom:16px; font-size:18px; line-height:28px;}
 
 */
 
-.source a:before	{display:inline; content:'source'; font-style:italic; background-color:var(--base_code); padding:2px 4px 3px 5px; border-radius:6px; margin-right:5px; color:var(--base_font);}
-.source a			{display:block; margin-bottom:32px; font-size:14px;}
+.source a:before	{display:inline; content:'source'; font-style:italic; background-color:var(--base_src); padding:2px 4px 3px 5px; border-radius:6px; margin-right:5px; color:var(--base_font);}
+.source a			{display:block; margin-bottom:32px; font-size:14px; word-wrap:break-word;}
 
 
 /*

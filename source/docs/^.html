@@ -10,7 +10,7 @@ Plated^ docs!
 		<link href="https://fonts.googleapis.com/css?family=Patua+One" rel="stylesheet">
 		<link rel='stylesheet' href='{_docs_json.dirname}/docs.css' />
 	</head>
-	<body>{body}</body>
+	<body>{nav}{body}</body>
 </html>
 
 #^_docs_json
@@ -64,10 +64,8 @@ Plated^ docs!
 
 #^body
 <div class="default">
-	<div class="nav">
-		<div class="bar"><a class="back" href="{_root}">Back to <b>plated^</b></a><a class="repo" href="https://github.com/xriss/plated">on Github</a></div>
+	<div class="contents">
 		<div class="topics">
-			<a class="home" href="{_root}">plated^</a>
 			<a class="par" href="{_docs_json.dirname}"><span>/</span></a>
 			{_docs:menuwrap}
 		</div>
