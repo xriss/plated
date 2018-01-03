@@ -4,11 +4,7 @@
 
 	Original theme for Docs!
 	
-	Font size is smaller than root.
-
 */
-
-p 	{font-size:18px; line-height:28px;}
 
 
 /*
@@ -58,12 +54,21 @@ p 	{font-size:18px; line-height:28px;}
 .topics a.par:nth-of-type(n+5){margin-top:0.8em;}
 
 
-/*	
+/*
 
-	Firefox target
+	Media queries
+	
+	main			|	Wrapper for documentation page
+	contents		|	Wrapper for documentation table of contents
 	
 */
 
-@-moz-document url-prefix() {
-    ul li a		{margin-left:0px;}
+@media only screen and (-webkit-min-device-pixel-ratio: 1.5),
+only screen and (-o-min-device-pixel-ratio: 3/2),
+only screen and (min--moz-device-pixel-ratio: 1.5),
+only screen and (min-device-pixel-ratio: 1.5) {
+
+	body			{display:block;}
+	.contents		{top:5.5em;}
+
 }
