@@ -4,17 +4,16 @@
 The page title needs its white space striped so it can safely be used 
 inside quoted strings.
 
-#^----------------------------------------------------------------------
 #^title trim=ends
 
 Welcome to blog!
+
 
 #^----------------------------------------------------------------------
 
 The master html page layout. We keep a separate one in each test 
 directory so the tests are compartmentalised.
 
-#^----------------------------------------------------------------------
 #^html
 
 <html>
@@ -31,7 +30,6 @@ This special chunk is used to enable blog page processing and and auto
 build an index.html as well as page2.html page3.html etc depending on 
 the number of blog posts and how many you requested in each page.
 
-#^----------------------------------------------------------------------
 #^_blog_json
 
 {
@@ -43,7 +41,6 @@ the number of blog posts and how many you requested in each page.
 
 Build an anchor tag to wrap the url of an older page.
 
-#^----------------------------------------------------------------------
 #^link_older_page
 
 <a href="{_it}">older posts</a>
@@ -53,7 +50,6 @@ Build an anchor tag to wrap the url of an older page.
 
 Build an anchor tag to wrap the url of a newer page.
 
-#^----------------------------------------------------------------------
 #^link_newer_page
 
 <a href="{_it}">newer posts</a>
@@ -64,7 +60,6 @@ Build an anchor tag to wrap the url of a newer page.
 Wrap a list of blog posts for the main blog front index page and 
 page2,page3 etc.
 
-#^----------------------------------------------------------------------
 #^_blog_page_body
 
 <div>some blog posts</div>
@@ -76,7 +71,6 @@ page2,page3 etc.
 
 Display a single blog from the list on the front page.
 
-#^----------------------------------------------------------------------
 #^blog_list
 
 <div>item head</div>
@@ -88,7 +82,6 @@ Display a single blog from the list on the front page.
 
 Build an anchor tag to wrap the url of an older post.
 
-#^----------------------------------------------------------------------
 #^link_older_post
 
 <a href="{_it}">older post</a>
@@ -98,16 +91,20 @@ Build an anchor tag to wrap the url of an older post.
 
 Build an anchor tag to wrap the url of a newer post.
 
-#^----------------------------------------------------------------------
 #^link_newer_post
 
 <a href="{_it}">newer post</a>
 
 #^----------------------------------------------------------------------
 
-Wrap the _blog_post_body for use on a single post.
+Wrap the _blog_post_body for use in a single blog post page. Here you 
+also have access to _blog_post_json for providing any extra meta info 
+such as time author etc.
 
-#^----------------------------------------------------------------------
+Note that _blog_post_body is a prerendered/cached version of the blog 
+post, rendered from the point of view of the post in the chunk 
+hierarchy.
+
 #^_blog_post_body_one
 
 {_blog_post_body}
@@ -117,9 +114,15 @@ Some comments belong here
 
 #^----------------------------------------------------------------------
 
-Wrap the _blog_post_body for use in the list on the front page.
+Wrap the _blog_post_body for use in the list on the front page. Here 
+you also have access to _blog_post_json for providing extra meta info 
+such as time author etc and could even choose to only display this 
+rather than the actual body.
 
-#^----------------------------------------------------------------------
+Note that _blog_post_body is a prerendered/cached version of the blog 
+post, rendered from the point of view of the post in the chunk 
+hierarchy.
+
 #^_blog_post_body_many
 
 <a href="{_dirname}">link</a>

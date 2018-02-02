@@ -5,8 +5,8 @@
  },
  "_blog_page_body": "\n<div>some blog posts</div>\n{_list:blog_list}\n<div> {_blog_page_older:link_older_page} {_blog_page_newer:link_newer_page} </div>\n\n",
  "_blog_post_body": "<h2 id=\"-title-\">{title}</h2>\n<p>The title is {title} and this is an example blog post number 2.\n<br/>\n<br/></p>\n",
- "_blog_post_body_many": "<a href=\"{_dirname}\">link</a>\n{_blog_post_body}\n\n",
- "_blog_post_body_one": "{_blog_post_body}\n<div> {_blog_post_older:link_older_post} {_blog_post_newer:link_newer_post} </div>\nSome comments belong here\n\n",
+ "_blog_post_body_many": "\n<a href=\"{_dirname}\">link</a>\n{_blog_post_body}\n\n",
+ "_blog_post_body_one": "\n{_blog_post_body}\n<div> {_blog_post_older:link_older_post} {_blog_post_newer:link_newer_post} </div>\nSome comments belong here\n\n",
  "_blog_post_json": {
   "datedash": "2016-12-24",
   "datetime": [
@@ -41,8 +41,8 @@
  "body": "{_blog_post_body_one}",
  "html": "\n<html>\n\t<head>\n\t\t<title>{title}</title>\n\t</head>\n\t<body>{body}</body>\n</html>\n\n",
  "link_newer_page": "\n<a href=\"{_it}\">newer posts</a>\n\n",
- "link_newer_post": "<a href=\"{_it}\">newer post</a>\n",
+ "link_newer_post": "\n<a href=\"{_it}\">newer post</a>\n",
  "link_older_page": "\n<a href=\"{_it}\">older posts</a>\n\n",
- "link_older_post": "<a href=\"{_it}\">older post</a>\n\n",
+ "link_older_post": "\n<a href=\"{_it}\">older post</a>\n\n",
  "title": "{_blog_post_json.title}"
 }
