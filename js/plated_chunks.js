@@ -148,14 +148,12 @@ chunks where we wish to bubble down css values into sub directories.
 				{
 					if(l[opts.hashchunk.length]=="-") // a comment, ignore this line and all following text lines
 					{
-/*
 						if(name) // we are switching to a new chunk so save current chunk
 						{
 							chunks[name]=chunk.join("\n");
 						}
 						chunk=[]; // start a new comment chunk we intend to just throw away
 						name="" // no name chunk which will be ignored
-*/
 					}
 					else
 					if(l[opts.hashchunk.length]=="=") // change escape char

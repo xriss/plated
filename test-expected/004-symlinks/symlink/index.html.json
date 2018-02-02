@@ -8,6 +8,6 @@
  "_root": "../../",
  "_site": "{_root}",
  "_sourcename": "004-symlinks/symlink/index.^.html",
- "body": "\n<h1>HELLO WORLD</h1>\n\n",
- "html": "<html>\n\t<body>{body}</body>\n</html>"
+ "body": "<h1>HELLO WORLD</h1>\n\n",
+ "html": "<html>\n\t<body>{body}</body>\n</html>\n"
 }
