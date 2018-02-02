@@ -1,12 +1,22 @@
 
 #^----------------------------------------------------------------------
+
+The page title needs its white space striped so it can safely be used 
+inside quoted strings.
+
 #^----------------------------------------------------------------------
 #^title trim=ends
+
 Welcome to blog!
 
 #^----------------------------------------------------------------------
+
+The master html page layout. We keep a separate one in each test 
+directory so the tests are compartmentalised.
+
 #^----------------------------------------------------------------------
 #^html
+
 <html>
 	<head>
 		<title>{title}</title>
@@ -16,54 +26,89 @@ Welcome to blog!
 
 
 #^----------------------------------------------------------------------
+
+This special chunk is used to enable blog page processing and and auto 
+build an index.html as well as page2.html page3.html etc depending on 
+the number of blog posts and how many you requested in each page.
+
 #^----------------------------------------------------------------------
 #^_blog_json
+
 {
 	posts_per_page:2,
 }
 
 
 #^----------------------------------------------------------------------
+
+Build an anchor tag to wrap the url of an older page.
+
 #^----------------------------------------------------------------------
 #^link_older_page
+
 <a href="{_it}">older posts</a>
 
 
 #^----------------------------------------------------------------------
+
+Build an anchor tag to wrap the url of a newer page.
+
 #^----------------------------------------------------------------------
 #^link_newer_page
+
 <a href="{_it}">newer posts</a>
 
 
 #^----------------------------------------------------------------------
+
+Wrap a list of blog posts for the main blog front index page and 
+page2,page3 etc.
+
 #^----------------------------------------------------------------------
 #^_blog_page_body
+
 <div>some blog posts</div>
 {_list:blog_list}
 <div> {_blog_page_older:link_older_page} {_blog_page_newer:link_newer_page} </div>
 
 
 #^----------------------------------------------------------------------
+
+Display a single blog from the list on the front page.
+
 #^----------------------------------------------------------------------
 #^blog_list
+
 <div>item head</div>
 {_it._body}
 <div>item tail</div>
 
 
 #^----------------------------------------------------------------------
+
+Build an anchor tag to wrap the url of an older post.
+
 #^----------------------------------------------------------------------
+
 #^link_older_post
 <a href="{_it}">older post</a>
 
 
 #^----------------------------------------------------------------------
+
+Build an anchor tag to wrap the url of a newer post.
+
 #^----------------------------------------------------------------------
+
 #^link_newer_post
 <a href="{_it}">newer post</a>
 
 #^----------------------------------------------------------------------
+
+Wrap the _blog_post_body for use on a single post.
+
 #^----------------------------------------------------------------------
+
 #^_blog_post_body_one
 {_blog_post_body}
 <div> {_blog_post_older:link_older_post} {_blog_post_newer:link_newer_post} </div>
@@ -71,7 +116,11 @@ Some comments belong here
 
 
 #^----------------------------------------------------------------------
+
+Wrap the _blog_post_body for use in the list on the front page.
+
 #^----------------------------------------------------------------------
+
 #^_blog_post_body_many
 <a href="{_dirname}">link</a>
 {_blog_post_body}
