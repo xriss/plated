@@ -8,12 +8,35 @@ plated^
 		<h1>{title}</h1>
 		<p>Generate a static website from hierarchical text and data files.</p>
 	</div>
-	{mit_wrap}
+	<div class="line"></div>
+	{install}
 </div>
 
 
-#^mit_wrap
-<div class="line"></div>
-<div class="read_wrap">
-	<a href="https://github.com/xriss/plated/blob/master/LICENSE">MIT License</a>
+#^install
+<div class="install">
+	<div>
+		Start by running either
+	</div>
+	<div>
+		{npm}
+	</div>
 </div>
+<div class="install full">
+	<div>
+		{clone}
+	</div>
+</div>
+
+
+
+
+#^npm form=markdown
+```shell
+~ $	npm install -g plated
+```
+
+#^clone form=markdown
+```shell
+~ $	git clone https://github.com/xriss/plated-example.git
+```
