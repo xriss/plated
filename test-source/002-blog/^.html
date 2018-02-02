@@ -89,8 +89,8 @@ Display a single blog from the list on the front page.
 Build an anchor tag to wrap the url of an older post.
 
 #^----------------------------------------------------------------------
-
 #^link_older_post
+
 <a href="{_it}">older post</a>
 
 
@@ -99,8 +99,8 @@ Build an anchor tag to wrap the url of an older post.
 Build an anchor tag to wrap the url of a newer post.
 
 #^----------------------------------------------------------------------
-
 #^link_newer_post
+
 <a href="{_it}">newer post</a>
 
 #^----------------------------------------------------------------------
@@ -108,8 +108,8 @@ Build an anchor tag to wrap the url of a newer post.
 Wrap the _blog_post_body for use on a single post.
 
 #^----------------------------------------------------------------------
-
 #^_blog_post_body_one
+
 {_blog_post_body}
 <div> {_blog_post_older:link_older_post} {_blog_post_newer:link_newer_post} </div>
 Some comments belong here
@@ -120,8 +120,8 @@ Some comments belong here
 Wrap the _blog_post_body for use in the list on the front page.
 
 #^----------------------------------------------------------------------
-
 #^_blog_post_body_many
+
 <a href="{_dirname}">link</a>
 {_blog_post_body}
 
