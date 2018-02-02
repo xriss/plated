@@ -3,11 +3,11 @@
   "dir": "002-blog/.",
   "posts_per_page": 2
  },
- "_blog_page_body": "\n<div>some blog posts</div>\n\n{_list:blog_list}\n\n<div> {_blog_page_older:link_older_page} {_blog_page_newer:link_newer_page} </div>\n\n",
+ "_blog_page_body": "<div>some blog posts</div>\n{_list:blog_list}\n<div> {_blog_page_older:link_older_page} {_blog_page_newer:link_newer_page} </div>\n\n",
  "_blog_page_newer": "{_root}002-blog/index.html",
  "_blog_page_older": "{_root}002-blog/page3.html",
- "_blog_post_body_many": "\n<a href=\"{_dirname}\">link</a>\n{_blog_post_body}\n\n",
- "_blog_post_body_one": "\n{_blog_post_body}\n\n<div> {_blog_post_older:link_older_post} {_blog_post_newer:link_newer_post} </div>\n\nSome comments belong here\n",
+ "_blog_post_body_many": "<a href=\"{_dirname}\">link</a>\n{_blog_post_body}\n\n",
+ "_blog_post_body_one": "{_blog_post_body}\n<div> {_blog_post_older:link_older_post} {_blog_post_newer:link_newer_post} </div>\nSome comments belong here\n\n",
  "_dirname": "{_root}002-blog",
  "_filename": "{_root}002-blog/page2.html",
  "_flags": {
@@ -21,10 +21,10 @@
     "dir": "002-blog/.",
     "posts_per_page": 2
    },
-   "_blog_page_body": "\n<div>some blog posts</div>\n\n{_list:blog_list}\n\n<div> {_blog_page_older:link_older_page} {_blog_page_newer:link_newer_page} </div>\n\n",
+   "_blog_page_body": "<div>some blog posts</div>\n{_list:blog_list}\n<div> {_blog_page_older:link_older_page} {_blog_page_newer:link_newer_page} </div>\n\n",
    "_blog_post_body": "<h2 id=\"-title-\">{title}</h2>\n<p>The title is {title} and this is an example blog post number 4.\n<br/>\n<br/></p>\n",
-   "_blog_post_body_many": "\n<a href=\"{_dirname}\">link</a>\n{_blog_post_body}\n\n",
-   "_blog_post_body_one": "\n{_blog_post_body}\n\n<div> {_blog_post_older:link_older_post} {_blog_post_newer:link_newer_post} </div>\n\nSome comments belong here\n",
+   "_blog_post_body_many": "<a href=\"{_dirname}\">link</a>\n{_blog_post_body}\n\n",
+   "_blog_post_body_one": "{_blog_post_body}\n<div> {_blog_post_older:link_older_post} {_blog_post_newer:link_newer_post} </div>\nSome comments belong here\n\n",
    "_blog_post_json": {
     "datedash": "2016-12-26",
     "datetime": [
@@ -40,7 +40,7 @@
    },
    "_blog_post_newer": "{_root}002-blog/2016-12-27-this-is-a-test-post-5/",
    "_blog_post_older": "{_root}002-blog/2016-12-25-this-is-a-test-post-3/",
-   "_body": "\n<a href=\"{_root}002-blog/2016-12-26-this-is-a-test-post-4\">link</a>\n<h2 id=\"-title-\">This is test post 4</h2>\n<p>The title is This is test post 4 and this is an example blog post number 4.\n<br/>\n<br/></p>\n\n\n",
+   "_body": "<a href=\"{_root}002-blog/2016-12-26-this-is-a-test-post-4\">link</a>\n<h2 id=\"-title-\">This is test post 4</h2>\n<p>The title is This is test post 4 and this is an example blog post number 4.\n<br/>\n<br/></p>\n\n\n",
    "_dirname": "{_root}002-blog/2016-12-26-this-is-a-test-post-4",
    "_filename": "{_root}002-blog/2016-12-26-this-is-a-test-post-4/index.html",
    "_flags": {
@@ -54,13 +54,13 @@
    "_root": "../../",
    "_site": "{_root}",
    "_sourcename": "002-blog/2016-12-26-this-is-a-test-post-4/index.html",
-   "blog_list": "\n<div>item head</div>\n{_it._body}\n<div>item tail</div>\n\n",
+   "blog_list": "<div>item head</div>\n{_it._body}\n<div>item tail</div>\n\n",
    "body": "{_blog_post_body_one}",
-   "html": "<html>\n\t<head>\n\t\t<title>{title}</title>\n\t</head>\n\t<body>{body}</body>\n</html>\n",
-   "link_newer_page": "<a href=\"{_it}\">newer posts</a>\n",
+   "html": "<html>\n\t<head>\n\t\t<title>{title}</title>\n\t</head>\n\t<body>{body}</body>\n</html>\n\n",
+   "link_newer_page": "<a href=\"{_it}\">newer posts</a>\n\n",
    "link_newer_post": "<a href=\"{_it}\">newer post</a>\n",
-   "link_older_page": "<a href=\"{_it}\">older posts</a>\n",
-   "link_older_post": "<a href=\"{_it}\">older post</a>\n",
+   "link_older_page": "<a href=\"{_it}\">older posts</a>\n\n",
+   "link_older_post": "<a href=\"{_it}\">older post</a>\n\n",
    "title": "{_blog_post_json.title}"
   },
   {
@@ -68,10 +68,10 @@
     "dir": "002-blog/.",
     "posts_per_page": 2
    },
-   "_blog_page_body": "\n<div>some blog posts</div>\n\n{_list:blog_list}\n\n<div> {_blog_page_older:link_older_page} {_blog_page_newer:link_newer_page} </div>\n\n",
+   "_blog_page_body": "<div>some blog posts</div>\n{_list:blog_list}\n<div> {_blog_page_older:link_older_page} {_blog_page_newer:link_newer_page} </div>\n\n",
    "_blog_post_body": "<h2 id=\"-title-\">{title}</h2>\n<p>The title is {title} and this is an example blog post number 3.\n<br/>\n<br/></p>\n",
-   "_blog_post_body_many": "\n<a href=\"{_dirname}\">link</a>\n{_blog_post_body}\n\n",
-   "_blog_post_body_one": "\n{_blog_post_body}\n\n<div> {_blog_post_older:link_older_post} {_blog_post_newer:link_newer_post} </div>\n\nSome comments belong here\n",
+   "_blog_post_body_many": "<a href=\"{_dirname}\">link</a>\n{_blog_post_body}\n\n",
+   "_blog_post_body_one": "{_blog_post_body}\n<div> {_blog_post_older:link_older_post} {_blog_post_newer:link_newer_post} </div>\nSome comments belong here\n\n",
    "_blog_post_json": {
     "datedash": "2016-12-25",
     "datetime": [
@@ -87,7 +87,7 @@
    },
    "_blog_post_newer": "{_root}002-blog/2016-12-26-this-is-a-test-post-4/",
    "_blog_post_older": "{_root}002-blog/2016-12-24-this-is-a-test-post-2/",
-   "_body": "\n<a href=\"{_root}002-blog/2016-12-25-this-is-a-test-post-3\">link</a>\n<h2 id=\"-title-\">This is test post 3</h2>\n<p>The title is This is test post 3 and this is an example blog post number 3.\n<br/>\n<br/></p>\n\n\n",
+   "_body": "<a href=\"{_root}002-blog/2016-12-25-this-is-a-test-post-3\">link</a>\n<h2 id=\"-title-\">This is test post 3</h2>\n<p>The title is This is test post 3 and this is an example blog post number 3.\n<br/>\n<br/></p>\n\n\n",
    "_dirname": "{_root}002-blog/2016-12-25-this-is-a-test-post-3",
    "_filename": "{_root}002-blog/2016-12-25-this-is-a-test-post-3/index.html",
    "_flags": {
@@ -101,13 +101,13 @@
    "_root": "../../",
    "_site": "{_root}",
    "_sourcename": "002-blog/2016-12-25-this-is-a-test-post-3/index.html",
-   "blog_list": "\n<div>item head</div>\n{_it._body}\n<div>item tail</div>\n\n",
+   "blog_list": "<div>item head</div>\n{_it._body}\n<div>item tail</div>\n\n",
    "body": "{_blog_post_body_one}",
-   "html": "<html>\n\t<head>\n\t\t<title>{title}</title>\n\t</head>\n\t<body>{body}</body>\n</html>\n",
-   "link_newer_page": "<a href=\"{_it}\">newer posts</a>\n",
+   "html": "<html>\n\t<head>\n\t\t<title>{title}</title>\n\t</head>\n\t<body>{body}</body>\n</html>\n\n",
+   "link_newer_page": "<a href=\"{_it}\">newer posts</a>\n\n",
    "link_newer_post": "<a href=\"{_it}\">newer post</a>\n",
-   "link_older_page": "<a href=\"{_it}\">older posts</a>\n",
-   "link_older_post": "<a href=\"{_it}\">older post</a>\n",
+   "link_older_page": "<a href=\"{_it}\">older posts</a>\n\n",
+   "link_older_post": "<a href=\"{_it}\">older post</a>\n\n",
    "title": "{_blog_post_json.title}"
   }
  ],
@@ -116,12 +116,12 @@
  "_root": "../",
  "_site": "{_root}",
  "_sourcename": "002-blog/page2.html",
- "blog_list": "\n<div>item head</div>\n{_it._body}\n<div>item tail</div>\n\n",
+ "blog_list": "<div>item head</div>\n{_it._body}\n<div>item tail</div>\n\n",
  "body": "{_blog_page_body}",
- "html": "<html>\n\t<head>\n\t\t<title>{title}</title>\n\t</head>\n\t<body>{body}</body>\n</html>\n",
- "link_newer_page": "<a href=\"{_it}\">newer posts</a>\n",
+ "html": "<html>\n\t<head>\n\t\t<title>{title}</title>\n\t</head>\n\t<body>{body}</body>\n</html>\n\n",
+ "link_newer_page": "<a href=\"{_it}\">newer posts</a>\n\n",
  "link_newer_post": "<a href=\"{_it}\">newer post</a>\n",
- "link_older_page": "<a href=\"{_it}\">older posts</a>\n",
- "link_older_post": "<a href=\"{_it}\">older post</a>\n",
+ "link_older_page": "<a href=\"{_it}\">older posts</a>\n\n",
+ "link_older_post": "<a href=\"{_it}\">older post</a>\n\n",
  "title": "Welcome to blog!"
 }

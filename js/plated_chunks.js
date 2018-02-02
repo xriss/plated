@@ -146,8 +146,16 @@ chunks where we wish to bubble down css values into sub directories.
 		str.split("\n").forEach(function(l){
 				if(l.substr(0,opts.hashchunk.length)==opts.hashchunk)
 				{
-					if(l[opts.hashchunk.length]=="-") // a comment, ignore
+					if(l[opts.hashchunk.length]=="-") // a comment, ignore this line and all following text lines
 					{
+/*
+						if(name) // we are switching to a new chunk so save current chunk
+						{
+							chunks[name]=chunk.join("\n");
+						}
+						chunk=[]; // start a new comment chunk we intend to just throw away
+						name="" // no name chunk which will be ignored
+*/
 					}
 					else
 					if(l[opts.hashchunk.length]=="=") // change escape char
@@ -161,7 +169,7 @@ chunks where we wish to bubble down css values into sub directories.
 					}
 					else
 					{
-						if(name)
+						if(name) // we are switching to a new chunk so save current chunk
 						{					
 							chunks[name]=chunk.join("\n");
 						}
