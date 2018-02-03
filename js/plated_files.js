@@ -557,6 +557,8 @@ finished.
 	{
 		plated_files.build(); // build once
 
+		var rebuild=false; // set to true to request a rebuild
+
 		var as=opts.source.split(path.sep);
 		watch.watchTree(opts.source,{},function(f,curr,prev){
 			if(typeof f == "object" && prev === null && curr === null)
@@ -570,15 +572,16 @@ finished.
 			else
 			if(curr.nlink===0) // f was removed
 			{
-				plated_files.build(); // rebuild everything
+				rebuild=true
 			}
 			else
 			if(prev === null) // f is a new file
 			{
-				plated_files.build(); // rebuild everything
+				rebuild=true
 			}
 			else
 			{
+				flag=true;
 				var af=f.split(path.sep);
 				for(var i=0;i<as.length;i++)
 				{
@@ -592,7 +595,7 @@ finished.
 				plated_files.empty_cache();
 				if(plated_files.filename_is_basechunk(s)) // full build
 				{
-					plated_files.build();
+					rebuild=true
 				}
 				else
 				{
@@ -602,6 +605,13 @@ finished.
 
 			}
 		});
+		setInterval(function(){
+			if(rebuild)
+			{
+				rebuild=false
+				plated_files.build();
+			}
+		},1000)
 	}
 
 	return plated_files;
