@@ -1,0 +1,14 @@
+{
+ "_dirname": "{_root}008-import/sub",
+ "_filename": "{_root}008-import/sub",
+ "_flags": {
+  "test": {
+   "form": "markdown"
+  }
+ },
+ "_output_filename": "008-import/sub/",
+ "_root": "../../",
+ "_site": "{_root}",
+ "_sourcename": "008-import/sub/.",
+ "test": "<p>This is some text that we will import.</p>\n<p>Note we can only import into a page chunk from a dir chunk. This \nprevents any sort of recursion and we simply make sure that all dir \nlevel chunks are always processed before page level chunks are.</p>\n"
+}
