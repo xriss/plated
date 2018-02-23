@@ -258,6 +258,10 @@ Tweak all the base chunks grouped by dir name and pre cascaded/merged
 						list.push(posts_body[i]);
 					}
 				}
+				if(postidx==0) // export the first page of posts to global visibility
+				{
+					blog[0]._blog_export=list
+				}
 
 				var fname=pagename
 				var chunks={};

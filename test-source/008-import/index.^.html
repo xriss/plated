@@ -1,0 +1,35 @@
+
+#^title trim=ends
+
+Welcome to docs!
+
+#^html
+<html>
+	<head>
+		<title>{title}</title>
+	</head>
+	<body>{body}</body>
+</html>
+
+#^body
+
+{body_test}
+
+{body_blog_list:blog_plate}
+
+#^body_test import=008-import/sub^test
+
+any text here will just get replaced by the imported chunk
+
+#^body_blog_list import=002-blog^_blog_export
+
+This is replaces with the list of posts that would be on the front page 
+of the blog.
+
+#^blog_plate
+
+<p>
+<h1>{_it._blog_post_json.title}</h1>
+<a href="{_it._filename}"> linky</a>
+{_it._body}
+</p>
