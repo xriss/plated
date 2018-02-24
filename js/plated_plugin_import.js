@@ -20,10 +20,11 @@ shared data.
 /***************************************************************************
 --[[#html.plated_plugin.import
 
-	#^importedchunk import=dir/dir#chunkname
+	#^importedchunk import=dir/dir
 	...
 	
-The content if this chunk is unimportant as it will be replaced by the chunk referenced from another file via import=dir#chunkname
+The content if this chunk is unimportant as it will be replaced by the 
+chunk referenced from another file via the import=dir flag. 
 
 ]]*/
 
@@ -63,15 +64,12 @@ available.
 			var flags=chunks._flags && chunks._flags[n]
 			if(flags && flags.import) // special import 
 			{
-				var aa=flags.import.split("^")
-				var dirname=aa[0]
-				var chunkname=aa[1]
+				var dirname=flags.import
 				var dirchunks=plated.dirs[dirname] || plated.files[dirname]
-				if( dirname && chunkname && dirchunks && dirchunks[chunkname] )
+				if( dirname && dirchunks )
 				{
-					chunks[n]=dirchunks[chunkname]
-					console.log(timestr()+" IMPORTING #^"+chunkname+" from "+dirname+" into #^"+n)
-for( var n in plated.dirs){ console.log(n) }
+					chunks[n]=dirchunks
+					console.log(timestr()+" IMPORTING from "+dirname+" into #^"+n)
 				}
 			}
 		}
