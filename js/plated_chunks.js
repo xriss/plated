@@ -515,7 +515,13 @@ value from the array.
 			var root=(dat._flags) && (dat._flags[str]) && (dat._flags[str].root);
 			if( root && dat[root] && ( (typeof dat[root]) == "object" ) )
 			{
-				return plated_chunks.replace(dat[str],dat[root])
+				var cache_root=dat[root]._root
+				delete dat[root]._root // never expand _root here, must leave it for later so relative path works
+
+				var ret=plated_chunks.replace(dat[str],dat[root])
+
+				dat[root]._root=cache_root // replace _root
+				return ret;
 			}
 			else
 			{
