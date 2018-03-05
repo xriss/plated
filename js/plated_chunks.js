@@ -512,7 +512,15 @@ value from the array.
 	{
 		if( dat[str] !== undefined ) // simple check
 		{
-			return dat[str];
+			var root=(dat._flags) && (dat._flags[str]) && (dat._flags[str].root);
+			if( root && dat[root] && ( (typeof dat[root]) == "object" ) )
+			{
+				return plated_chunks.replace(dat[str],dat[root])
+			}
+			else
+			{
+				return dat[str];
+			}
 		}
 		var i=str.indexOf('.');
 		if(i>=0)
@@ -650,7 +658,7 @@ use will survive.
 		for(var i=0;i<aa.length;i++)
 		{
 			var a=aa[i];
-			if(a=="") // when we want to spit out nothing if a value is unset we can end on an empty string eg {value|}
+			if(a=="") // when we want to spit out nothing if a value is unset we can end on an empty string eg {value||}
 			{
 				switch(opp)
 				{
