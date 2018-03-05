@@ -513,14 +513,15 @@ value from the array.
 		if( dat[str] !== undefined ) // simple check
 		{
 			var root=(dat._flags) && (dat._flags[str]) && (dat._flags[str].root);
-			if( root && dat[root] && ( (typeof dat[root]) == "object" ) )
+			var chunks=root && plated_chunks.lookup(root,dat)
+			if(chunks)
 			{
-				var cache_root=dat[root]._root
-				delete dat[root]._root // never expand _root here, must leave it for later so relative path works
+				var cache_root=chunks._root
+				delete chunks._root // never expand _root here, must leave it for later so relative path works
 
-				var ret=plated_chunks.replace(dat[str],dat[root])
+				var ret=plated_chunks.replace(dat[str],chunks)
 
-				dat[root]._root=cache_root // replace _root
+				chunks._root=cache_root // replace _root
 				return ret;
 			}
 			else
