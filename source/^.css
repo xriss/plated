@@ -89,6 +89,7 @@ h6 		{font-size:13px;}
 
 b		{font-weight:bold;}
 p 		{font-size:19px; line-height:31px; margin-bottom:16px;}
+strong	{font-weight:bold;}
 
 .line, hr			{border-top:1px dashed var(--hr); margin-top:40px; margin-bottom:20px; position:relative;}
 
@@ -191,7 +192,7 @@ sup 				{font-size:0.83em; line-height:0; vertical-align:super;}
 */
 
 
-.blog_info		{font-size:70%; position:absolute; right:10px; top:1.5em;}
+.blog_info		{font-size:70%; position:absolute; right:10px; top:2.5em; background-color:#e7e1f5; padding:0 20px;}
 
 .blog_wrap		{color:var(--base_font); font-family:sans-serif; font-size:20px; line-height:33px; margin:auto; padding:4em 0; position:relative; width:740px;}
 .blog_wrap h2	{font-family:'Patua One',georgia,serif; font-size:2.5em; line-height:1em; padding-bottom:1em;}
