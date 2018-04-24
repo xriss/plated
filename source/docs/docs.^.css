@@ -30,7 +30,7 @@
 .wrap				{margin:0 auto; padding:0 0 4em 0;}
 .wrap:nth-of-type(1){padding-top:4em;}
 .contents			{background-color:var(--base_back_alt); font-size:16px; height:100%; left:0; line-height:24px; overflow-y:auto; position:fixed; padding:0 2em; top:3.5em; width:26.5em;}
-.main				{padding-left:33em; margin-left:3em; margin-right:3em; max-width:calc(960px + 20em);}
+.main				{padding-left:33em; margin-left:3em; margin-right:3em; width:calc(960px + 20em); max-width:calc(960px + 20em);}
 
 
 /*
