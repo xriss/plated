@@ -22,11 +22,19 @@ shared data.
 	#^_blog_json
 	{
 		posts_per_page:5,
+		posts_per_feed:20,
+		title="Feed Title",
+		url="http://base.site/url/",
 	}
 
 A chunk of this name must be created in a directory scope file for this 
 plugin to parse it. posts_per_page is the number of posts per page, we 
 will create as many pages as we need.
+
+posts_per_feed specifys the number of posts to publish in the feed.json 
+file. Which will be published using the title and url that should also 
+be suplied. The url is the root of the site and must be explicity set 
+for the feed to work.
 
 Every directory within this blog directory will now be treated as a blogpost.
 
@@ -93,6 +101,12 @@ exports.create=function(opts,plated){
 
 // main settings that you can override in your blog_json config chunk
 	plated_plugin_blog.config.posts_per_page=5;
+
+	plated_plugin_blog.config.posts_per_feed=20;
+
+	plated_plugin_blog.config.title="Title"
+	
+	plated_plugin_blog.config.url="/"
 
 
 // special chunk names that trigger blog processing
@@ -287,6 +301,42 @@ Tweak all the base chunks grouped by dir name and pre cascaded/merged
 				pagename=pagename_older;
 			}
 
+			var feed={}
+			feed.items=[]
+			feed.version="https://jsonfeed.org/version/1"
+			feed.title=blog_json.title
+			feed.home_page_url=blog_json.url
+			feed.feed_url=blog_json.url+plated.files.filename_to_dirname(blog[0]._sourcename)+"/feed.json"
+
+			for(var i=0 ; i<blog_json.posts_per_feed ; i++ )
+			{
+				var chunks=posts_body[i]
+				if(chunks)
+				{
+					var cache_root=chunks._root
+					chunks._root=blog_json.url
+					
+					var it={};
+					
+					it.id=chunks._sourcename
+					it.url=plated.chunks.replace( plated.chunks.delimiter_wrap_str( "_dirname" ) , chunks )
+					it.title=chunks._blog_post_json.title
+					it.content_html=plated.chunks.replace( plated.chunks.delimiter_wrap_str( "_body" ) , chunks )
+					it.date_published=(new Date(chunks._blog_post_json.unixtime*1000)).toISOString()
+					if(chunks._blog_post_json.author)
+					{
+						it.author={name:chunks._blog_post_json.author}
+					}
+					it.tags=chunks._blog_post_json.tags
+					feed.items.push(it);
+
+					chunks._root=cache_root
+				}
+			}
+			plated.files.write(
+				path.join( opts.output , plated.files.filename_to_output(plated.files.filename_to_dirname(blog[0]._sourcename)+"/feed.json") ),
+				JSON_stringify(feed,{space:1}) )
+
 // write pages of multiple blog posts
 		}
 		
@@ -310,7 +360,10 @@ Tweak a single file of chunks, only chunks found in this file will be available.
 		{
 			if( "string" == typeof (chunk) ) { chunk=JSON5.parse(chunk) || {}; } // auto json parse
 			chunk.dir            = chunk.dirname        || chunks._sourcename ;
-			chunk.posts_per_page = chunk.posts_per_page || plated_plugin_blog.config.posts_per_page ;
+			for(var n in plated_plugin_blog.config)
+			{
+				chunk[n] = chunk[n] || plated_plugin_blog.config[n] ;
+			}
 			
 			chunks._blog_json=chunk;
 		}

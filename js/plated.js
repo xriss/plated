@@ -372,7 +372,7 @@ possible operators that can be used.
 	{a&&b}
 		a and b returns b if a is true else returns a
 	{a||b}
-		a and b returns b if a is false else returns a
+		a or b returns b if a is false else returns a
 	{a||}
 		returns a if it exists else return an empty string
 
