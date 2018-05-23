@@ -23,8 +23,8 @@ shared data.
 	{
 		posts_per_page:5,
 		posts_per_feed:20,
-		title="Feed Title",
-		url="http://base.site/url/",
+		feed_title="Feed Title",
+		feed_url="http://base.site/url/",
 	}
 
 A chunk of this name must be created in a directory scope file for this 
@@ -32,9 +32,9 @@ plugin to parse it. posts_per_page is the number of posts per page, we
 will create as many pages as we need.
 
 posts_per_feed specifys the number of posts to publish in the feed.json 
-file. Which will be published using the title and url that should also 
-be suplied. The url is the root of the site and must be explicity set 
-for the feed to work.
+file. Which will be published using the feed_title and feed_url that 
+should also be suplied. The feed_url is the root of the site and must 
+be explicity set for the feed to be accesed from anywhere.
 
 Every directory within this blog directory will now be treated as a blogpost.
 
@@ -104,9 +104,9 @@ exports.create=function(opts,plated){
 
 	plated_plugin_blog.config.posts_per_feed=20;
 
-	plated_plugin_blog.config.title="Title"
+	plated_plugin_blog.config.feed_title="Title"
 	
-	plated_plugin_blog.config.url="/"
+	plated_plugin_blog.config.feed_url="/"
 
 
 // special chunk names that trigger blog processing
@@ -304,9 +304,9 @@ Tweak all the base chunks grouped by dir name and pre cascaded/merged
 			var feed={}
 			feed.items=[]
 			feed.version="https://jsonfeed.org/version/1"
-			feed.title=blog_json.title
-			feed.home_page_url=blog_json.url
-			feed.feed_url=blog_json.url+plated.files.filename_to_dirname(blog[0]._sourcename)+"/feed.json"
+			feed.title=blog_json.feed_title
+			feed.home_page_url=blog_json.feed_url
+			feed.feed_url=blog_json.feed_url+plated.files.filename_to_dirname(blog[0]._sourcename)+"/feed.json"
 
 			for(var i=0 ; i<blog_json.posts_per_feed ; i++ )
 			{
@@ -314,7 +314,7 @@ Tweak all the base chunks grouped by dir name and pre cascaded/merged
 				if(chunks)
 				{
 					var cache_root=chunks._root
-					chunks._root=blog_json.url
+					chunks._root=blog_json.feed_url
 					
 					var it={};
 					
