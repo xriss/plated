@@ -19,7 +19,8 @@
     "marked": "*",
     "watch": "*",
     "json5": "*",
-    "json-stable-stringify": "*"
+    "json-stable-stringify": "*",
+    "jsonfeed-to-atom": "*"
   },
   "devDependencies": {
     "http-server": "*"

@@ -85,6 +85,7 @@ var path=require('path');
 var watch=require('watch');
 var JSON5=require('json5');
 var JSON_stringify = require('json-stable-stringify');
+var jsonfeedToAtom = require('jsonfeed-to-atom')
 
 
 var ls=function(a) { console.log(util.inspect(a,{depth:null})); }
@@ -333,9 +334,16 @@ Tweak all the base chunks grouped by dir name and pre cascaded/merged
 					chunks._root=cache_root
 				}
 			}
+			var fname=plated.files.filename_to_output(plated.files.filename_to_dirname(blog[0]._sourcename))
+
 			plated.files.write(
-				path.join( opts.output , plated.files.filename_to_output(plated.files.filename_to_dirname(blog[0]._sourcename)+"/feed.json") ),
+				path.join( opts.output , fname+"/feed.json"),
 				JSON_stringify(feed,{space:1}) )
+			plated.files.write(
+				path.join( opts.output , fname+"/feed.xml") ,
+				jsonfeedToAtom(feed) )
+
+
 
 // write pages of multiple blog posts
 		}
