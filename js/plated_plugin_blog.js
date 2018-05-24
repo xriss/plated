@@ -23,8 +23,10 @@ shared data.
 	{
 		posts_per_page:5,
 		posts_per_feed:20,
-		feed_title="Feed Title",
-		feed_url="http://base.site/url/",
+		url="http://base.site/url/",
+		feed={
+			title="Feed Title",
+		}
 	}
 
 A chunk of this name must be created in a directory scope file for this 
@@ -32,9 +34,11 @@ plugin to parse it. posts_per_page is the number of posts per page, we
 will create as many pages as we need.
 
 posts_per_feed specifys the number of posts to publish in the feed.json 
-file. Which will be published using the feed_title and feed_url that 
-should also be suplied. The feed_url is the root of the site and must 
-be explicity set for the feed to be accesed from anywhere.
+file. Which will be published using any data suplied in feed which can 
+contain any valid jsonfeed values. The base url must also be suplied 
+since feeds are expected to be copied to other domains. This url is 
+intentionally seperate from _root as it must be explictly set and we 
+can not get away with relative paths here.
 
 Every directory within this blog directory will now be treated as a blogpost.
 
@@ -45,10 +49,16 @@ of these directories we look for.
 	{
 		"title":"my title",
 		"author":"my name",
+		feed={
+			tags=["feed","tags"],
+			atatchments=[{url="http://domain.full/thing.mp3",mimie_type="mime/type"}],
+		}
 	}
 	
-Which contains metadata about the blog post, all of which can be used 
-in your templates to render the blog posts.
+Which contains metadata about the blog post, the feed object can 
+contain any valid jsonfeed settings, by we try and set useful defaults 
+from the rest of the metadata. All of these values can also be used in 
+your templates to render the blog posts.
 
 	#^_blog_post_body form=markdown
 	This is my blog post body.
@@ -105,9 +115,11 @@ exports.create=function(opts,plated){
 
 	plated_plugin_blog.config.posts_per_feed=20;
 
-	plated_plugin_blog.config.feed_title="Title"
-	
-	plated_plugin_blog.config.feed_url="/"
+	plated_plugin_blog.config.url="/"
+
+	plated_plugin_blog.config.feed={
+		title:"Title",
+	}
 
 
 // special chunk names that trigger blog processing
@@ -303,11 +315,20 @@ Tweak all the base chunks grouped by dir name and pre cascaded/merged
 			}
 
 			var feed={}
-			feed.items=[]
+
 			feed.version="https://jsonfeed.org/version/1"
-			feed.title=blog_json.feed_title
-			feed.home_page_url=blog_json.feed_url
-			feed.feed_url=blog_json.feed_url+plated.files.filename_to_dirname(blog[0]._sourcename)+"/feed.json"
+			feed.title=blog_json.title
+			feed.home_page_url=blog_json.url
+			feed.feed_url=blog_json.url+plated.files.filename_to_dirname(blog[0]._sourcename)+"/feed.json"
+
+			if(blog_json.feed)
+			{
+				for(var n in blog_json.feed)
+				{
+					feed[n]=blog_json.feed[n]
+				}
+			}
+			feed.items=[] // force this to empty just in case
 
 			for(var i=0 ; i<blog_json.posts_per_feed ; i++ )
 			{
@@ -315,20 +336,29 @@ Tweak all the base chunks grouped by dir name and pre cascaded/merged
 				if(chunks)
 				{
 					var cache_root=chunks._root
-					chunks._root=blog_json.feed_url
+					chunks._root=blog_json.url
 					
 					var it={};
 					
-					it.id=chunks._sourcename
-					it.url=plated.chunks.replace( plated.chunks.delimiter_wrap_str( "_dirname" ) , chunks )
 					it.title=chunks._blog_post_json.title
-					it.content_html=plated.chunks.replace( plated.chunks.delimiter_wrap_str( "_body" ) , chunks )
-					it.date_published=(new Date(chunks._blog_post_json.unixtime*1000)).toISOString()
 					if(chunks._blog_post_json.author)
 					{
 						it.author={name:chunks._blog_post_json.author}
 					}
-					it.tags=chunks._blog_post_json.tags
+					it.id=chunks._sourcename
+					it.url=plated.chunks.replace( plated.chunks.delimiter_wrap_str( "_dirname" ) , chunks )
+					it.content_html=plated.chunks.replace( plated.chunks.delimiter_wrap_str( "_body" ) , chunks )
+					it.date_published=(new Date(chunks._blog_post_json.unixtime*1000)).toISOString()
+
+
+					if(chunks._blog_post_json.feed)
+					{
+						for(var n in chunks._blog_post_json.feed)
+						{
+							it[n]=chunks._blog_post_json.feed[n]
+						}
+					}
+
 					feed.items.push(it);
 
 					chunks._root=cache_root
@@ -370,7 +400,21 @@ Tweak a single file of chunks, only chunks found in this file will be available.
 			chunk.dir            = chunk.dirname        || chunks._sourcename ;
 			for(var n in plated_plugin_blog.config)
 			{
-				chunk[n] = chunk[n] || plated_plugin_blog.config[n] ;
+				if( "object" == typeof (plated_plugin_blog.config[n]) ) // one level deep copy
+				{
+					chunk[n] = chunk[n] || {} ;
+					if( "object" == typeof (chunk[n]) ) // sanity
+					{
+						for(var nn in plated_plugin_blog.config[n])
+						{
+							chunk[n][nn]=chunk[n][nn] || plated_plugin_blog.config[n][nn]
+						}
+					}
+				}
+				else
+				{
+					chunk[n] = chunk[n] || plated_plugin_blog.config[n] ;
+				}
 			}
 			
 			chunks._blog_json=chunk;
