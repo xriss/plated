@@ -345,8 +345,8 @@ Tweak all the base chunks grouped by dir name and pre cascaded/merged
 					{
 						it.author={name:chunks._blog_post_json.author}
 					}
-					it.id=chunks._dirname.split("{_root}").join("") // remove {_root} and use as id
 					it.url=plated.chunks.replace( plated.chunks.delimiter_wrap_str( "_dirname" ) , chunks )
+					it.id=it.url // id and url can be the same
 					it.content_html=plated.chunks.replace( plated.chunks.delimiter_wrap_str( "_body" ) , chunks )
 					it.date_published=(new Date(chunks._blog_post_json.unixtime*1000)).toISOString()
 
