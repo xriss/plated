@@ -25,5 +25,5 @@
  "_sourcename": "006-copy/spa/.",
  "html": "<html>\n\t<body>{body}</body>\n</html>\n",
  "txt_hello_world": "HOLA MUNDO",
- "txt_root": "{_root}spa/"
+ "txt_root": "{_root}006-copy/spa/"
 }

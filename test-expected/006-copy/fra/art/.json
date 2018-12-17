@@ -1,6 +1,6 @@
 {
- "_dirname": "{_root}006-copy/art",
- "_filename": "{_root}006-copy/art",
+ "_dirname": "{_root}006-copy/fra",
+ "_filename": "{_root}006-copy/fra/art",
  "_flags": {
   "txt_hello_world": {
    "trim": "ends"
@@ -12,8 +12,8 @@
  "_output_filename": "006-copy/art/",
  "_root": "../../",
  "_site": "{_root}",
- "_sourcename": "006-copy/art/.",
+ "_sourcename": "006-copy/fra/art/",
  "html": "<html>\n\t<body>{body}</body>\n</html>\n",
  "txt_hello_world": "BONJOUR LE MONDE",
- "txt_root": "{_root}fra/"
+ "txt_root": "{_root}006-copy/fra/"
 }
