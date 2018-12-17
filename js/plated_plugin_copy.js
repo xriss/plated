@@ -184,6 +184,8 @@ into these directories with slightly tweaked chunks if it matches.
 				var newchunks=plated.chunks.deepmerge(chunks,{})
 				plated.chunks.deepmerge( plated.chunks.remove_underscorechunks(copy_chunks),newchunks)
 
+				plated.files.set_source(newchunks,path.join( it.dirname , output_filename )) // set _root etc
+
 				if(output_chunkname)
 				{
 					var filename=path.join( opts.output , it.dirname , output_filename )
