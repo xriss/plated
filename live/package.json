@@ -15,10 +15,11 @@
     "ace-builds": "*"
   },
   "devDependencies": {
-   "browserify": "*",
-   "uglifyify": "*",
-   "watchify": "*",
-   "http-server": "*"
+    "browserify": "*",
+    "uglifyify": "*",
+    "watchify": "*",
+    "exorcist": "*",
+    "http-server": "*"
   },
   "scripts": {
     "build": "./build",
