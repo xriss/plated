@@ -13,7 +13,8 @@
   "main": "js/plated_live.js",
   "dependencies": {
     "isomorphic-git": "*",
-    "@isomorphic-git/lightning-fs": "*"
+    "@isomorphic-git/lightning-fs": "*",
+    "pify": "*"
   },
   "devDependencies": {
     "browserify": "*",
