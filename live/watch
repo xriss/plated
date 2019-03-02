@@ -3,6 +3,8 @@ cd `dirname $0`
 #echo "bake"
 #node js/bake.js
 
+NODE_PATH=./node_modules:node_modules/ace-builds/src-noconflict
+
 WATCHIFY=node_modules/watchify/bin/cmd.js
 
 echo "watchify"
