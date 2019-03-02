@@ -15,10 +15,13 @@
     "ace-builds": "*"
   },
   "devDependencies": {
-    "http-server": "*"
+   "browserify": "*",
+   "uglifyify": "*",
+   "watchify": "*",
+   "http-server": "*"
   },
   "scripts": {
-    "build": "node js/cmd.js build",
-    "watch": "node js/cmd.js watch"
+    "build": "./build",
+    "watch": "./watch"
   }
 }

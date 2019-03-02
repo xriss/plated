@@ -1,0 +1,12 @@
+cd `dirname $0`
+
+#echo "bake"
+#node js/bake.js
+
+EXORCIST=node_modules/exorcist/bin/exorcist.js
+BROWSERIFY=node_modules/browserify/bin/cmd.js
+
+echo "browserify"
+
+$BROWSERIFY -g uglifyify -r ./js/plated_live.js:plated_live -d | $EXORCIST jslib/plated_live.js.map > jslib/plated_live.js
+
