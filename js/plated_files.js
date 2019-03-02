@@ -54,7 +54,7 @@ necessary.
 		}catch(err){
 			if(err.code == 'ENOENT'){
 				plated_files.mkdir(path.dirname(dir)) //create parent dir
-				plated_files.mkdir(dir) //create dir
+				fs.mkdirSync(dir) // try and create dir again
 			}
 		}
 	}

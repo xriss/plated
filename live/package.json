@@ -1,0 +1,24 @@
+{
+  "name": "plated_live",
+  "description": "Plated_live is a javascript web based editor for plated sites.",
+  "version": "0.0.1",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/xriss/plated.git"
+  },
+  "directories": {
+    "lib": "."
+  },
+  "main": "./plated_live.js",
+  "dependencies": {
+    "ace-builds": "*"
+  },
+  "devDependencies": {
+    "http-server": "*"
+  },
+  "scripts": {
+    "build": "node cmd.js build",
+    "watch": "node cmd.js watch"
+  }
+}
