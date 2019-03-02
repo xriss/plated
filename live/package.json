@@ -8,9 +8,9 @@
     "url": "git+https://github.com/xriss/plated.git"
   },
   "directories": {
-    "lib": "."
+    "lib": "js"
   },
-  "main": "./plated_live.js",
+  "main": "js/plated_live.js",
   "dependencies": {
     "ace-builds": "*"
   },
@@ -18,7 +18,7 @@
     "http-server": "*"
   },
   "scripts": {
-    "build": "node cmd.js build",
-    "watch": "node cmd.js watch"
+    "build": "node js/cmd.js build",
+    "watch": "node js/cmd.js watch"
   }
 }
