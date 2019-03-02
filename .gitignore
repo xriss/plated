@@ -6,4 +6,5 @@ test-output
 
 package-lock.json
 
-live/jslib/plated_live.*
+#our generated files
+live/html/js/plated_live.*

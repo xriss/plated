@@ -6,5 +6,5 @@ cd `dirname $0`
 WATCHIFY=node_modules/watchify/bin/cmd.js
 
 echo "watchify"
-$WATCHIFY -v -r ./js/plated_live.js:plated_live -d -o jslib/plated_live.js
+$WATCHIFY -v -r ./js/plated_live.js:plated_live -d -o html/js/plated_live.js
 
