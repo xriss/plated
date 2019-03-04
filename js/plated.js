@@ -394,9 +394,15 @@ var ls=function(a) { console.log(util.inspect(a,{depth:null})); }
 exports.create=function(opts,plated){
 	plated=plated || {};
 
-// force defaults if missing
+// force defaults if they are missing
 	opts = opts || {} 
+	opts.site      = opts.site      || "";
+	opts.root      = opts.root      || "";
+	opts.source    = opts.source    || "source";
+	opts.output    = opts.output    || "output";
 	opts.hashchunk = opts.hashchunk || "#^" 
+	opts.delimiter = opts.delimiter || "{}" 
+	opts.hashfile  = opts.hashfile  || "^" 
 
 /***************************************************************************
 --[[#js.plated.setup

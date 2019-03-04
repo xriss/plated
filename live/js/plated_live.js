@@ -1,11 +1,14 @@
 
 var plated_live=exports;
 
-var plated=require("plated").create({"hashchunk":"#^"}) // create a base instance
+var loadjs=require("loadjs");
+
+var plated=require("plated").create({"hashchunk":"#^",delimiter:"{}"}) // create a base instance
 
 plated_live.chunks={}
 plated.chunks.fill_chunks( require('fs').readFileSync(__dirname + '/chunks.html', 'utf8'), plated_live.chunks )
 
+plated.plate=function(str){ return plated.chunks.replace(str,plated_live.chunks) }
 
 plated_live.worker=async function(){
 
@@ -35,19 +38,34 @@ plated_live.worker=async function(){
 }
 
 
-plated_live.start=async function(){
+plated_live.start=function(){
 
-	console.log(plated_live.chunks)
+	loadjs([
+		"lib/jquery.min.js",
+		"lib/jquery-ui/jquery-ui.min.js",
+		"lib/ace/ace.js",
+		"lib/jquery-ui-themes/themes/ui-darkness/jquery-ui.min.css",
+	],async function(){
 
-	var MagicPortal=require("magic-portal")
-	var worker = new Worker("js/plated_live_worker.js")
-	plated_live.portal = new MagicPortal(worker)
+		console.log(plated_live.chunks)
+/*
+		var editor = ace.edit("editor");
+		editor.setTheme("ace/theme/twilight");
+		editor.session.setMode("ace/mode/javascript");
+*/
+		$( plated.plate("{dialogue_test}") ).dialog();
 
-	plated_live.git = await plated_live.portal.get('git')
-	plated_live.pfs = await plated_live.portal.get('pfs')
+		var MagicPortal=require("magic-portal")
+		var worker = new Worker("js/plated_live_worker.js")
+		plated_live.portal = new MagicPortal(worker)
 
-	var t2 = await plated_live.pfs.readdir("/");
-	console.log( t2 )
-	
+		plated_live.git = await plated_live.portal.get('git')
+		plated_live.pfs = await plated_live.portal.get('pfs')
+
+		var t2 = await plated_live.pfs.readdir("/");
+		console.log( t2 )
+
+	})
+
 }
 
