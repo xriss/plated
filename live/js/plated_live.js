@@ -18,20 +18,10 @@ plated_live.worker=async function(){
 
 	var git=require("isomorphic-git")
 
-	var fs=new (require("@isomorphic-git/lightning-fs"))('plated')
+	var fs=new (require("@isomorphic-git/lightning-fs"))('plated',{wipe:true})
 	var pfs=(require("pify"))(fs)
 	
 	git.plugins.set('fs', fs)
-
-	await git.clone({
-		dir: '/',
-		corsProxy: 'https://cors.isomorphic-git.org',
-		url: 'https://github.com/isomorphic-git/isomorphic-git',
-		ref: 'master',
-		singleBranch: true,
-		depth: 10
-	})
-
 
 	portal.set('git', git)
 	portal.set('pfs', pfs)
@@ -96,19 +86,27 @@ plated_live.start_loaded=async function(){
 	plated_live.editor.setTheme("ace/theme/twilight");
 	plated_live.editor.session.setMode("ace/mode/javascript");
 
-//	$( plated.plate("{dialogue_test}") ).dialog();
-
-/*
 	var MagicPortal=require("magic-portal")
-	var worker = new Worker("js/plated_live_worker.js")
+	var worker = new Worker("lib/plated_live_worker.js")
 	plated_live.portal = new MagicPortal(worker)
 
 	plated_live.git = await plated_live.portal.get('git')
 	plated_live.pfs = await plated_live.portal.get('pfs')
 
+//	$( plated.plate("{dialogue_test}") ).dialog();
+
+	console.log( "fetching git" )
+	await plated_live.git.clone({
+		dir: '/',
+		corsProxy: 'https://cors.isomorphic-git.org',
+		url: 'https://github.com/xriss/plated.git',
+		ref: 'master',
+		singleBranch: true,
+//		depth: 10
+	})
+
 	var t2 = await plated_live.pfs.readdir("/");
 	console.log( t2 )
-*/
 
 }
 
