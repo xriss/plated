@@ -1,4 +1,4 @@
 cd `dirname $0`
 
-./plated watch --dumpjson --output=output/plated
+./plated watch --dumpjson --output=docs
 

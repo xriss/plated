@@ -1,4 +1,4 @@
 cd `dirname $0`
 
-./plated build --dumpjson --output=output/plated
+./plated build --dumpjson --output=docs
 

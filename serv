@@ -1,6 +1,6 @@
 cd `dirname $0`
 
-cd output
+cd docs
 ../js/node_modules/.bin/http-server
 
 #../js/node_modules/.bin/http-server || python -m SimpleHTTPServer 8080

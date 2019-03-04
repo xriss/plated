@@ -99,7 +99,7 @@ plated_live.start_loaded=async function(){
 	await plated_live.git.clone({
 		dir: '/',
 		corsProxy: 'https://cors.isomorphic-git.org',
-		url: 'https://github.com/xriss/plated.git',
+		url: 'https://github.com/xriss/plated-example.git',
 		ref: 'master',
 		singleBranch: true,
 //		depth: 10
