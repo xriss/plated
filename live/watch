@@ -8,5 +8,5 @@ NODE_PATH=./node_modules:node_modules/ace-builds/src-noconflict
 WATCHIFY=node_modules/watchify/bin/cmd.js
 
 echo "watchify"
-$WATCHIFY -v -r ./js/plated_live.js:plated_live -d -o html/js/plated_live.js | tee | ./serv
+$WATCHIFY -t brfs -v -r ./js/plated_live.js:plated_live -d -o html/js/plated_live.js | tee | ./serv
 

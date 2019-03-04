@@ -12,12 +12,14 @@
   },
   "main": "js/plated_live.js",
   "dependencies": {
+    "plated": "*",
     "@isomorphic-git/lightning-fs": "*",
     "isomorphic-git": "*",
     "magic-portal": "*",
     "pify": "*"
   },
   "devDependencies": {
+    "brfs": "*",
     "browserify": "*",
     "uglifyify": "*",
     "watchify": "*",

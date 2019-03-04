@@ -8,5 +8,5 @@ BROWSERIFY=node_modules/browserify/bin/cmd.js
 
 echo "browserify"
 
-$BROWSERIFY -g uglifyify -r ./js/plated_live.js:plated_live -d | $EXORCIST html/js/plated_live.js.map > html/js/plated_live.js
+$BROWSERIFY -t brfs -g uglifyify -r ./js/plated_live.js:plated_live -d | $EXORCIST html/js/plated_live.js.map > html/js/plated_live.js
 

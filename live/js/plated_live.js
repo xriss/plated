@@ -1,6 +1,11 @@
 
 var plated_live=exports;
 
+var plated=require("plated").create({"hashchunk":"#^"}) // create a base instance
+
+plated_live.chunks={}
+plated.chunks.fill_chunks( require('fs').readFileSync(__dirname + '/chunks.html', 'utf8'), plated_live.chunks )
+
 
 plated_live.worker=async function(){
 
@@ -32,6 +37,8 @@ plated_live.worker=async function(){
 
 plated_live.start=async function(){
 
+	console.log(plated_live.chunks)
+
 	var MagicPortal=require("magic-portal")
 	var worker = new Worker("js/plated_live_worker.js")
 	plated_live.portal = new MagicPortal(worker)
@@ -41,6 +48,6 @@ plated_live.start=async function(){
 
 	var t2 = await plated_live.pfs.readdir("/");
 	console.log( t2 )
-
+	
 }
 

@@ -394,6 +394,10 @@ var ls=function(a) { console.log(util.inspect(a,{depth:null})); }
 exports.create=function(opts,plated){
 	plated=plated || {};
 
+// force defaults if missing
+	opts = opts || {} 
+	opts.hashchunk = opts.hashchunk || "#^" 
+
 /***************************************************************************
 --[[#js.plated.setup
 
