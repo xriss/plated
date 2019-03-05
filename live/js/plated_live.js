@@ -145,7 +145,7 @@ plated_live.load_file=async function(it){
 		{
 //console.log("Loading "+it.path)
 			var d=await plated_live.pfs.readFile(it.path,"utf8")
-			plated_live.editor.setValue(d);
+			plated_live.editor.setValue(d,-1);
 			
 			var modelist = ace.require("ace/ext/modelist")
 			var mode = modelist.getModeForPath(it.path).mode
