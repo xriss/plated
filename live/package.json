@@ -13,6 +13,7 @@
   "main": "js/plated_live.js",
   "dependencies": {
     "@isomorphic-git/lightning-fs": "*",
+    "events": "^3.0.0",
     "isomorphic-git": "*",
     "loadjs": "^3.5.5",
     "magic-portal": "*",
