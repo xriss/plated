@@ -25,7 +25,8 @@
     "loadjs": "^3.5.5",
     "magic-portal": "*",
     "pify": "*",
-    "plated": "*"
+    "plated": "*",
+    "webworkify": "^1.5.0"
   },
   "devDependencies": {
     "brfs": "*",

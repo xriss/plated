@@ -139,7 +139,6 @@ plated_live.start_loaded=async function(){
 	
 	plated_live.editor=ace.edit("editor");
 	plated_live.editor.setTheme("ace/theme/twilight");
-//	plated_live.editor.session.setMode("ace/mode/javascript");
 
 	plated_live.editor.$blockScrolling = Infinity
 
@@ -150,7 +149,7 @@ plated_live.start_loaded=async function(){
 	else
 	{
 		var MagicPortal=require("magic-portal")
-		var worker = new Worker("lib/plated_live_worker.js")
+		var worker = require('webworkify')(require("./plated_live_worker.js"))
 		plated_live.portal = new MagicPortal(worker)
 
 		plated_live.git = await plated_live.portal.get('git')
