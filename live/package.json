@@ -1,11 +1,12 @@
 {
   "name": "plated_live",
-  "description": "Plated_live is a *utterly* browser editor for plated sites.",
+  "description": "Plated_live is an *utterly* browser editor for plated sites.",
   "version": "0.0.1",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/xriss/plated.git"
+    "url": "git+https://github.com/xriss/plated.git",
+    "directory": "live"
   },
   "directories": {
     "lib": "js"
