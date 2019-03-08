@@ -93,6 +93,6 @@ input#gamecake_text_input	{width:100%; font-size:x-large; padding:5px 10px;}
 .ace-twilight .ace_gutter	{color:#666 !important;}
 
 
-#menubar { position: absolute; top: 0; left: 0; width: 100%; }
+#menubar { display: inline-block; }
 #menubar > li { display: inline-block; }
 #menubar > li > ul > li { display: block; }

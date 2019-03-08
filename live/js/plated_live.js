@@ -1,9 +1,24 @@
 
 var plated_live=exports;
 
+if(typeof window !== 'undefined')
+{
+	window.$ = window.jQuery = require("jquery");
+	var split=require("jquery.splitter")
+	var term=(require("jquery.terminal"))()
+
+	var ui=require("./jquery-ui.js")
+
+	var tree=require("jstree/dist/jstree.js")
+}
+
+
+
 var loadjs=require("loadjs");
 
 var plated=require("plated").create({"hashchunk":"#^",delimiter:"{}"}) // create a base instance
+
+
 
 plated_live.chunks={}
 plated.chunks.fill_chunks( require('fs').readFileSync(__dirname + '/chunks.html', 'utf8'), plated_live.chunks )
@@ -42,30 +57,49 @@ plated_live.worker=async function(){
 plated_live.opts={}
 
 plated_live.opts.noworker=false
+plated_live.opts.git_url="https://github.com/xriss/"
+plated_live.opts.git_repo="plated-example"
+plated_live.opts.git_user=""
+plated_live.opts.git_pass=""
+plated_live.opts.git_token=""
+plated_live.opts.tree_mode="plated"
+plated_live.opts.plated_source="plated/source"
+plated_live.opts.plated_output="docs"
+
 
 plated_live.start=function(opts){
-	plated_live.opts=plated_live.opts || opts
+	for(var n in opts) { plated_live.opts[n]=opts[n] } // copy opts
+
+//	loadjs([
+//	],{async:false,success:function(){$(plated_live.start_loaded)}})
 	
-	loadjs([
-		"lib/jquery.min.js",
-		"lib/jquery-ui/jquery-ui.min.js",
-		"lib/ace/ace.js",
-		"lib/ace/ext-modelist.js",
-		"lib/jquery-ui-themes/themes/ui-darkness/jquery-ui.min.css",
-		"lib/jquery.splitter.js",
-		"lib/jquery.splitter.css",
-		"lib/jquery.terminal.min.js",
-		"lib/jquery.terminal.min.css",
-		"lib/jstree/jstree.min.js",
-		"lib/jstree/themes/default/style.min.css",
-	],{async:false,success:function(){$(plated_live.start_loaded)}})
+	$(plated_live.start_loaded)
 }
 
 plated_live.cmds={}
 plated_live.cmds.add=function(a,b){ this.echo(a + b); }
 
 plated_live.start_loaded=async function(){
+
+	var ace=require("brace")
+	require("brace/ext/modelist")
+	require("brace/theme/twilight")
+
+	require("brace/mode/javascript")
+	require("brace/mode/json")
+	require("brace/mode/html")
+	require("brace/mode/css")
+	require("brace/mode/markdown")
+
+	$("html").prepend("<style>"+require("jquery.splitter/css/jquery.splitter.css")+"</style>")
+	$("html").prepend("<style>"+require("jquery.terminal/css/jquery.terminal.css")+"</style>")
+	$("html").prepend("<style>"+require('fs').readFileSync(__dirname + '/jquery-ui.css', 'utf8')+"</style>")
+	$("html").prepend("<style>"+require("jstree/dist/themes/default/style.css")+"</style>")
+
 	
+	$("html").prepend(plated.plate('<style>{css}</style>')) // load styles
+
+
 	$("html").prepend(plated.plate('<style>{css}</style>')) // load styles
 	$("body").empty().append(plated.plate('{body}')) // fill in the base body
 
@@ -85,7 +119,9 @@ plated_live.start_loaded=async function(){
 	$("#split_left").split({orientation:'horizontal',limit:5,position:'90%',onDrag: resize_func });
 //	$("#split_right").split({orientation:'horizontal',limit:5,position:'90%',onDrag: resize_func });
 
-	$('#menubar').menu({
+	$("#treedrop").selectmenu();
+
+	$("#menubar").menu({
 		position: { my: 'left top', at: 'left bottom' },
 		blur: function() {
 			$(this).menu('option', 'position', { my: 'left top', at: 'left bottom' });
@@ -105,6 +141,8 @@ plated_live.start_loaded=async function(){
 	plated_live.editor.setTheme("ace/theme/twilight");
 //	plated_live.editor.session.setMode("ace/mode/javascript");
 
+	plated_live.editor.$blockScrolling = Infinity
+
 	if(plated_live.opts.noworker)
 	{
 		plated_live.git_setup()
@@ -119,14 +157,9 @@ plated_live.start_loaded=async function(){
 		plated_live.pfs = await plated_live.portal.get('pfs')
 	}
 
-	await plated_live.git_clone({name:"plated-example"})
+	await plated_live.git_clone()
 
-	plated_live.jstree=$('#pagecake_tree').jstree({
-		'core' : {
-			'data' : await plated_live.get_dir_tree()
-		}
-	})
-
+	plated_live.jstree=$('#pagecake_tree').jstree()
 	plated_live.jstree.on('changed.jstree', function (e, data) {
 		if(data.selected.length>0)
 		{
@@ -135,6 +168,9 @@ plated_live.start_loaded=async function(){
 			plated_live.load_file({path:n.original.path})
 		}
 	})
+	
+	await plated_live.rescan_tree()
+	
 }
 
 plated_live.load_file=async function(it){
@@ -147,39 +183,42 @@ plated_live.load_file=async function(it){
 			var d=await plated_live.pfs.readFile(it.path,"utf8")
 			plated_live.editor.setValue(d,-1);
 			
-			var modelist = ace.require("ace/ext/modelist")
+			var modelist = ace.acequire("ace/ext/modelist")
 			var mode = modelist.getModeForPath(it.path).mode
 			plated_live.editor.session.setMode(mode)
+
 		}
 	}
 }
 
 
-plated_live.git_clone=async function(it){
-	it=it || {}
-	it.url=it.url || "https://github.com/xriss/"
-	it.name=it.name || "plated-example"
+plated_live.git_clone=async function(){
 
-	console.log( "fetching git" )
-
-	await plated_live.pfs.mkdir("/"+it.name).catch(error=>{ console.log(error) })
+	await plated_live.pfs.mkdir("/"+plated_live.opts.git_repo).catch(error=>{ console.log(error) })
 	await plated_live.git.clone({
-		dir: '/'+it.name,
+		dir: '/'+plated_live.opts.git_repo,
 		corsProxy: 'https://cors.isomorphic-git.org',
-		url: it.url+it.name,
+		url: plated_live.opts.git_url+plated_live.opts.git_repo,
 		ref: 'master',
 		singleBranch: true,
 		depth: 1
 	}).catch(error=>{ console.log(error) })
+}
 
-	console.log( "fetched git" )
+plated_live.rescan_tree=async function()
+{
+	var d1= await plated_live.get_dir_tree("/"+plated_live.opts.git_repo+"/"+plated_live.opts.plated_source)
+	var d2= await plated_live.get_dir_tree("/"+plated_live.opts.git_repo+"/"+plated_live.opts.plated_output)
+	
+	plated_live.jstree.jstree(true).settings.core.data = [ { text:"Edit/", children:d1 , state:{opened:true}} , { text:"View/", children:d2 } ]
+	plated_live.jstree.jstree(true).refresh();
 }
 
 
-plated_live.get_dir_tree=async function()
+plated_live.get_dir_tree=async function(dir,base)
 {
-	
-console.log("walking")
+	dir=dir||""
+	base=base||{}
 	var dat=[]
 	var walk = async function(dir,dat)
 	{
@@ -194,6 +233,7 @@ console.log("walking")
 			if (stat && stat.type=="dir")
 			{
 				var it={children:[]}
+				for(var n in base) { it[n]=base[n] } // dupe base
 				it.text=file+"/"
 				it.path=path
 				await walk(path,it.children)
@@ -202,6 +242,7 @@ console.log("walking")
 			else
 			{
 				var it={}
+				for(var n in base) { it[n]=base[n] } // dupe base
 				it.text=file
 				it.path=path
 				dat.push(it)
@@ -211,7 +252,7 @@ console.log("walking")
 			await addfile(file)
 		}
 	}
-	await walk("",dat)
+	await walk(dir,dat)
 
 //console.log("dat")
 //	console.log(dat)
