@@ -164,7 +164,7 @@ plated_live.start_loaded=async function(){
 		{
 			var n=data.instance.get_node(data.selected[0])
 //			console.log(n.original.path)
-			plated_live.load_file({path:n.original.path})
+			plated_live.open_session({path:n.original.path})
 		}
 	})
 	
@@ -172,20 +172,21 @@ plated_live.start_loaded=async function(){
 	
 }
 
-plated_live.load_file=async function(it){
+plated_live.sessions={}
+plated_live.open_session=async function(it){
 	if(it.path)
 	{
 		var stat = await plated_live.pfs.stat(it.path)
 		if(stat && stat.type=="file")
 		{
 //console.log("Loading "+it.path)
-			var d=await plated_live.pfs.readFile(it.path,"utf8")
-			plated_live.editor.setValue(d,-1);
-			
-			var modelist = ace.acequire("ace/ext/modelist")
-			var mode = modelist.getModeForPath(it.path).mode
-			plated_live.editor.session.setMode(mode)
-
+			if(!plated_live.sessions[it.path]) // create new session
+			{
+				var filedata=await plated_live.pfs.readFile(it.path,"utf8")
+				var mode = ace.acequire("ace/ext/modelist").getModeForPath(it.path).mode
+				plated_live.sessions[it.path]=ace.createEditSession( filedata , mode )
+			}
+			plated_live.editor.setSession( plated_live.sessions[it.path] )
 		}
 	}
 }
