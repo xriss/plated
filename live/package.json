@@ -1,7 +1,7 @@
 {
   "name": "plated_live",
   "description": "Plated_live is an *utterly* browser editor for plated sites.",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "license": "MIT",
   "repository": {
     "type": "git",
@@ -11,7 +11,7 @@
   "directories": {
     "lib": "js"
   },
-  "main": "js/plated_live.js",
+  "main": "html/lib/plated_live.js",
   "dependencies": {
     "@isomorphic-git/lightning-fs": "*",
     "brace": "^0.11.1",
