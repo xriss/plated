@@ -9,15 +9,13 @@ plated_live_cmds.create=function(plated_live)
 	var cmds=async function(cmdstr, term)
 	{
 		var cmd=$.terminal.parse_command(cmdstr)
-		cmd.term=term
-		
-		console.log(cmd)
+		cmd.term=term // keep terminal for function calls
 		
 		var aa=cmds.list
 		var a=aa[ cmd.name ]
-		while(typeof a=="object") // allow nested objects in command list
+		while(typeof a=="object") // allow nested objects in list
 		{
-			aa=a
+			aa=a // push
 			cmd=$.terminal.parse_command(cmd.rest)
 			cmd.term=term
 			a=aa[ cmd.name ]
@@ -36,7 +34,14 @@ plated_live_cmds.create=function(plated_live)
 		}
 		else
 		{
-			cmd.term.error("unknown command "+cmd.name)
+			if(cmd.name=="")
+			{
+				cmd.term.error("Type help for available commands.")
+			}
+			else
+			{
+				cmd.term.error("Unknown command "+cmd.name)
+			}
 		}
 
 	}
@@ -44,24 +49,63 @@ plated_live_cmds.create=function(plated_live)
 	cmds.list={}	
 	cmds.list.git={}
 
-	cmds.list.ls=async function(cmd){
+	cmds.list.help=async function(cmd)
+	{
+		var aa=cmds.list
+		for(var i=0;i<cmd.args.length;i++)
+		{
+			var a=aa[ cmd.args[i] ]
+			if(a) { aa=a }
+		}
+		
+		if(typeof aa.help=="string")
+		{
+			cmd.term.echo(aa.help)
+		}
+		else
+		{
+			var list=[]
+			for(var n in aa)
+			{
+				list.push(n)
+			}
+			list.sort()
+			cmd.term.echo(list.join(" "))
+		}
+	}
+	cmds.list.help.help="help COMMAND\n\
+Provide list of commands or information about specific COMMAND."
 
+	cmds.list.ls=async function(cmd)
+	{
 		var p=plated_live.opts.cd
 		var a=cmd.args[0]
-		if(a){ d=path.join(p,a) }
+		if(a){ p=path.join(p,a) }
 
-		var list = await plated_live.pfs.readdir( p ).catch(error=>{ cmd.term.error(error) })
+		var list = await plated_live.pfs.readdir( p ).catch(error=>{cmd.term.error(error)})
 		
 		if(list)
 		{
+			list.sort()
+			cmd.term.echo(p)
 			for(var i=0;i<list.length;i++)
 			{
-				cmd.term.echo( list[i] )
+				var vn=list[i]
+				var vp=path.join(p,vn)
+				var vs=await plated_live.pfs.stat(vp).catch(error=>{cmd.term.error(error)})
+				if(vs && vs.type=="dir")
+				{
+					vn=vn+"/"
+				}
+				cmd.term.echo("  "+vn)
 			}
 		}
 	}
+	cmds.list.ls.help="ls PATH\n\
+List all files and dirs at PATH."
 
-	cmds.list.cd=async function( cmd ){
+	cmds.list.cd=async function(cmd)
+	{
 		
 		var p=cmd.args[0]
 		
@@ -80,7 +124,7 @@ plated_live_cmds.create=function(plated_live)
 		cd=path.normalize(cd)
 		
 		// check dir exists
-		var stat = await plated_live.pfs.stat(cd).catch(error=>{ cmd.term.error(error) })
+		var stat = await plated_live.pfs.stat(cd).catch(error=>{cmd.term.error(error)})
 		
 		if( stat && stat.type=="dir" )
 		{
@@ -89,6 +133,8 @@ plated_live_cmds.create=function(plated_live)
 		
 		return plated_live.opts.cd
 	}
+	cmds.list.cd.help="cd PATH\n\
+Change current directory to PATH."
 
 	return cmds
 }
