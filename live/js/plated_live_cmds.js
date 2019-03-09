@@ -1,6 +1,8 @@
 
 var plated_live_cmds=exports
 
+var path = require("path")
+
 
 plated_live_cmds.create=function(plated_live)
 {
@@ -44,7 +46,11 @@ plated_live_cmds.create=function(plated_live)
 
 	cmds.list.ls=async function(cmd){
 
-		var list = await plated_live.pfs.readdir( plated_live.opts.cd ).catch(error=>{ cmd.term.error(error) })
+		var p=plated_live.opts.cd
+		var a=cmd.args[0]
+		if(a){ d=path.join(p,a) }
+
+		var list = await plated_live.pfs.readdir( p ).catch(error=>{ cmd.term.error(error) })
 		
 		if(list)
 		{
@@ -60,39 +66,20 @@ plated_live_cmds.create=function(plated_live)
 		var p=cmd.args[0]
 		
 		var cd=plated_live.opts.cd
-
 		if(p)
 		{
-			if( p[0] == "/" )
+			if( p[0] == "/" ) // replace
 			{
 				cd=p
 			}
 			else
-			if( p == ".." )
 			{
-				var l=cd.lastIndexOf("/")
-				if(l>0)
-				{
-					cd=cd.substring(0,l)
-				}
-				else
-				{
-					cd="/"
-				}
-			}
-			else
-			{
-				if( cd[cd.length-1]=="/" )
-				{
-					cd=cd+p
-				}
-				else
-				{
-					cd=cd+"/"+p
-				}
+				cd=path.join(cd,p)
 			}
 		}
+		cd=path.normalize(cd)
 		
+		// check dir exists
 		var stat = await plated_live.pfs.stat(cd).catch(error=>{ cmd.term.error(error) })
 		
 		if( stat && stat.type=="dir" )
