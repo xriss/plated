@@ -78,11 +78,6 @@ plated_live.start=function(opts){
 	$(plated_live.start_loaded)
 }
 
-plated_live.cmds={}
-plated_live.cmds.add=function(a,b){ this.echo(a + b); }
-
-require("./plated_live_cmds.js").inject(plated_live) // add console commands
-
 plated_live.start_loaded=async function(){
 
 	var ace=require("brace")
@@ -116,8 +111,8 @@ plated_live.start_loaded=async function(){
 		timresize_timeouteout=setTimeout(f,100);
 	};
 	$( window ).resize(resize_func) // keep height full
-	$("#split").height("100%").split({orientation:'vertical',limit:5,position:'15%',onDrag: resize_func });
-	$("#split_left").split({orientation:'horizontal',limit:5,position:'90%',onDrag: resize_func });
+	$("#split").height("100%").split({orientation:'vertical',limit:5,position:'20%',onDrag: resize_func });
+	$("#split_left").split({orientation:'horizontal',limit:5,position:'80%',onDrag: resize_func });
 //	$("#split_right").split({orientation:'horizontal',limit:5,position:'90%',onDrag: resize_func });
 
 	$("#treedrop").selectmenu();
@@ -133,8 +128,15 @@ plated_live.start_loaded=async function(){
 			}
 		},
 	});
-	    
-	plated_live.terminal=$('#pagecake_console').terminal(plated_live.cmds,{prompt:"^> "});
+	
+	plated_live.cmds=require("./plated_live_cmds.js").create(plated_live)
+	plated_live.terminal=$('#pagecake_console').terminal(plated_live.cmds,
+		{
+			prompt:"^> "
+		}
+	);
+
+console.log(plated_live.cmds)
 
 	plated_live.terminal.echo("Welcome to the world of tomorrow!")
 	

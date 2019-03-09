@@ -1,58 +1,99 @@
 
 var plated_live_cmds=exports
 
-plated_live_cmds.inject=function(plated_live)
+
+plated_live_cmds.create=function(plated_live)
 {
-	plated_live.cmds.git={}
+	var cmds=async function(cmdstr, term)
+	{
+		var cmd=$.terminal.parse_command(cmdstr)
+		cmd.term=term
+		
+		console.log(cmd)
+		
+		var aa=cmds.list
+		var a=aa[ cmd.name ]
+		while(typeof a=="object") // allow nested objects in command list
+		{
+			aa=a
+			cmd=$.terminal.parse_command(cmd.rest)
+			cmd.term=term
+			a=aa[ cmd.name ]
+		}
+		if(typeof a=="function")
+		{
+			var r=a(cmd)
+			if( (typeof r == "object") && (typeof r.then == "function") ) // handle promise
+			{
+				var r=await r
+			}
+			if(typeof r != "undefined" )
+			{
+				cmd.term.echo( r )
+			}
+		}
+		else
+		{
+			cmd.term.error("unknown command "+cmd.name)
+		}
 
-	plated_live.cmds.ls=async function(){
-		var con=this
+	}
+	
+	cmds.list={}	
+	cmds.list.git={}
 
-		var list = await plated_live.pfs.readdir( plated_live.opts.cd ).catch(error=>{ con.error(error) })
+	cmds.list.ls=async function(cmd){
+
+		var list = await plated_live.pfs.readdir( plated_live.opts.cd ).catch(error=>{ cmd.term.error(error) })
 		
 		if(list)
 		{
 			for(var i=0;i<list.length;i++)
 			{
-				this.echo( list[i] )
+				cmd.term.echo( list[i] )
 			}
 		}
 	}
 
-	plated_live.cmds.cd=async function( p ){
-		var con=this
+	cmds.list.cd=async function( cmd ){
+		
+		var p=cmd.args[0]
 		
 		var cd=plated_live.opts.cd
-		if( p[0] == "/" )
+
+		if(p)
 		{
-			cd=p
-		}
-		else
-		if( p == ".." )
-		{
-			var l=cd.lastIndexOf("/")
-			if(l>0)
+			if( p[0] == "/" )
 			{
-				cd=cd.substring(0,l)
+				cd=p
+			}
+			else
+			if( p == ".." )
+			{
+				var l=cd.lastIndexOf("/")
+				if(l>0)
+				{
+					cd=cd.substring(0,l)
+				}
+				else
+				{
+					cd="/"
+				}
 			}
 			else
 			{
-				cd="/"
-			}
-		}
-		else
-		{
-			if( cd[cd.length-1]=="/" )
-			{
-				cd=cd+p
-			}
-			else
-			{
-				cd=cd+"/"+p
+				if( cd[cd.length-1]=="/" )
+				{
+					cd=cd+p
+				}
+				else
+				{
+					cd=cd+"/"+p
+				}
 			}
 		}
 		
-		var stat = await plated_live.pfs.stat(cd).catch(error=>{ con.error(error) })
+		var stat = await plated_live.pfs.stat(cd).catch(error=>{ cmd.term.error(error) })
 		
 		if( stat && stat.type=="dir" )
 		{
@@ -61,4 +102,6 @@ plated_live_cmds.inject=function(plated_live)
 		
 		return plated_live.opts.cd
 	}
+
+	return cmds
 }
