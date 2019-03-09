@@ -66,6 +66,8 @@ plated_live.opts.tree_mode="plated"
 plated_live.opts.plated_source="plated/source"
 plated_live.opts.plated_output="docs"
 
+plated_live.opts.cd="/"+plated_live.opts.git_repo
+
 
 plated_live.start=function(opts){
 	for(var n in opts) { plated_live.opts[n]=opts[n] } // copy opts
@@ -79,6 +81,8 @@ plated_live.start=function(opts){
 plated_live.cmds={}
 plated_live.cmds.add=function(a,b){ this.echo(a + b); }
 
+require("./plated_live_cmds.js").inject(plated_live) // add console commands
+
 plated_live.start_loaded=async function(){
 
 	var ace=require("brace")
@@ -91,16 +95,13 @@ plated_live.start_loaded=async function(){
 	require("brace/mode/css")
 	require("brace/mode/markdown")
 
+	$("html").prepend(plated.plate('<style>{css}</style>')) // load our styles
+
 	$("html").prepend("<style>"+require("jquery.splitter/css/jquery.splitter.css")+"</style>")
 	$("html").prepend("<style>"+require("jquery.terminal/css/jquery.terminal.css")+"</style>")
 	$("html").prepend("<style>"+require('fs').readFileSync(__dirname + '/jquery-ui.css', 'utf8')+"</style>")
 	$("html").prepend("<style>"+require("jstree/dist/themes/default/style.css")+"</style>")
 
-	
-	$("html").prepend(plated.plate('<style>{css}</style>')) // load styles
-
-
-	$("html").prepend(plated.plate('<style>{css}</style>')) // load styles
 	$("body").empty().append(plated.plate('{body}')) // fill in the base body
 
 	var resize_timeout;
@@ -164,7 +165,7 @@ plated_live.start_loaded=async function(){
 		{
 			var n=data.instance.get_node(data.selected[0])
 //			console.log(n.original.path)
-			plated_live.open_session({path:n.original.path})
+			plated_live.show_session({path:n.original.path})
 		}
 	})
 	
@@ -173,7 +174,7 @@ plated_live.start_loaded=async function(){
 }
 
 plated_live.sessions={}
-plated_live.open_session=async function(it){
+plated_live.show_session=async function(it){
 	if(it.path)
 	{
 		var stat = await plated_live.pfs.stat(it.path)
