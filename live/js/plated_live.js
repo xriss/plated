@@ -271,8 +271,8 @@ plated_live.rescan_tree=async function()
 	
 	plated_live.jstree.jstree(true).settings.core.data = [
 		{ text:"/plated_live.json" , path:"/plated_live.json" },
-		{ text:"*Edit*", children:d1 , state:{opened:true}} ,
-		{ text:"*View*", children:d2 }
+		{ text:"Edit*", children:d1 , state:{opened:true}} ,
+		{ text:"View*", children:d2 }
 	]
 	plated_live.jstree.jstree(true).refresh();
 }
