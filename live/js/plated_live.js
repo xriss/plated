@@ -58,7 +58,7 @@ plated_live.opts={}
 
 plated_live.opts.noworker=false
 plated_live.opts.git_url="https://github.com/xriss/"
-plated_live.opts.git_repo="plated-example"
+plated_live.opts.git_repo="plated-test"
 plated_live.opts.git_user=""
 plated_live.opts.git_pass=""
 plated_live.opts.git_token=""
@@ -166,7 +166,6 @@ console.log(plated_live.cmds)
 		if(data.selected.length>0)
 		{
 			var n=data.instance.get_node(data.selected[0])
-//			console.log(n.original.path)
 			plated_live.show_session({path:n.original.path})
 		}
 	})

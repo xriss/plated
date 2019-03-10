@@ -73,7 +73,8 @@ plated_live_cmds.create=function(plated_live)
 			cmd.term.echo(list.join(" "))
 		}
 	}
-	cmds.list.help.help="help COMMAND\n\
+	cmds.list.help.help="\
+	help COMMAND\n\
 Provide list of commands or information about specific COMMAND."
 
 	cmds.list.ls=async function(cmd)
@@ -101,7 +102,8 @@ Provide list of commands or information about specific COMMAND."
 			}
 		}
 	}
-	cmds.list.ls.help="ls PATH\n\
+	cmds.list.ls.help="\
+	ls PATH\n\
 List all files and dirs at PATH."
 
 	cmds.list.cd=async function(cmd)
@@ -133,7 +135,8 @@ List all files and dirs at PATH."
 		
 		return plated_live.opts.cd
 	}
-	cmds.list.cd.help="cd PATH\n\
+	cmds.list.cd.help="\
+	cd PATH\n\
 Change current directory to PATH."
 
 	return cmds

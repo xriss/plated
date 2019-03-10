@@ -199,7 +199,7 @@ is viewed.
 	plated_files.filename_is_basechunk=function(fname)
 	{
 		var vv=path.basename(fname).split(".");
-		if( vv[0]==opts.hashfile )
+		if( (vv.length>1) && (vv[0]==opts.hashfile) )
 		{
 			return true
 		}
