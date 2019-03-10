@@ -15,12 +15,12 @@
     "plated": "./cmd.js"
   },
   "dependencies": {
-    "yargs": "*",
-    "marked": "*",
-    "watch": "*",
-    "json5": "*",
     "json-stable-stringify": "*",
-    "jsonfeed-to-atom": "*"
+    "json5": "*",
+    "jsonfeed-to-atom": "*",
+    "marked": "^0.6.1",
+    "watch": "*",
+    "yargs": "^13.2.2"
   },
   "devDependencies": {
     "http-server": "*"
