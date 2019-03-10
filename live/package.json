@@ -21,6 +21,7 @@
     "jquery-ui": "*",
     "jquery.splitter": "^0.27.1",
     "jquery.terminal": "*",
+    "json-stable-stringify": "^1.0.1",
     "jstree": "^3.3.7",
     "loadjs": "^3.5.5",
     "magic-portal": "*",

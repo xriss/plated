@@ -1,6 +1,8 @@
 
 var plated_live=exports;
 
+var jsstringify=require("json-stable-stringify")
+
 if(typeof window !== 'undefined')
 {
 	window.$ = window.jQuery = require("jquery");
@@ -62,11 +64,30 @@ plated_live.opts.git_repo="plated-test"
 plated_live.opts.git_user=""
 plated_live.opts.git_pass=""
 plated_live.opts.git_token=""
+plated_live.opts.git_oauth=""
 plated_live.opts.tree_mode="plated"
 plated_live.opts.plated_source="plated/source"
 plated_live.opts.plated_output="docs"
+plated_live.opts.author_name="plated_live"
+plated_live.opts.author_email="plated_live@wetgenes.com"
 
 plated_live.opts.cd="/"+plated_live.opts.git_repo
+
+// merge opts into git call values
+plated_live.gitopts=function(it)
+{
+	it=it || {}
+
+	it.dir          = it.dir          || '/'+plated_live.opts.git_repo
+	it.corsProxy    = it.corsProxy    || 'https://cors.isomorphic-git.org'
+	it.author       = it.author       || { name:plated_live.opts.author_name , email:plated_live.opts.author_email }
+	it.username     = it.username     || plated_live.opts.git_user
+	it.password     = it.password     || plated_live.opts.git_pass
+	it.token        = it.token        || plated_live.opts.git_token
+	it.oauth2format = it.oauth2format || plated_live.opts.git_oauth
+
+	return it
+}
 
 
 plated_live.start=function(opts){
@@ -80,6 +101,33 @@ plated_live.start=function(opts){
 
 plated_live.start_loaded=async function(){
 
+	if(plated_live.opts.noworker)
+	{
+		plated_live.git_setup()
+	}
+	else
+	{
+		var MagicPortal=require("magic-portal")
+		var worker = require('webworkify')(require("./plated_live_worker.js"))
+		plated_live.portal = new MagicPortal(worker)
+
+		plated_live.git = await plated_live.portal.get('git')
+		plated_live.pfs = await plated_live.portal.get('pfs')
+	}
+
+	var json_opts=await plated_live.pfs.readFile("/plated_live.json","utf8").catch(function(){})
+	if(json_opts)
+	{
+//		try{
+			var opts=JSON.parse(json_opts)
+			for(var n in opts)
+			{
+				plated_live.opts[n]=opts[n] // adjust options from local data
+			}
+//		}catch(e){}
+	}
+	await plated_live.pfs.writeFile("/plated_live.json",jsstringify(plated_live.opts,{space:"\t"})).catch(function(){})
+	
 	var ace=require("brace")
 	require("brace/ext/modelist")
 	require("brace/theme/twilight")
@@ -136,8 +184,6 @@ plated_live.start_loaded=async function(){
 		}
 	);
 
-console.log(plated_live.cmds)
-
 	plated_live.terminal.echo("Welcome to the world of tomorrow!")
 	
 	plated_live.editor=ace.edit("editor");
@@ -145,19 +191,7 @@ console.log(plated_live.cmds)
 
 	plated_live.editor.$blockScrolling = Infinity
 
-	if(plated_live.opts.noworker)
-	{
-		plated_live.git_setup()
-	}
-	else
-	{
-		var MagicPortal=require("magic-portal")
-		var worker = require('webworkify')(require("./plated_live_worker.js"))
-		plated_live.portal = new MagicPortal(worker)
-
-		plated_live.git = await plated_live.portal.get('git')
-		plated_live.pfs = await plated_live.portal.get('pfs')
-	}
+	
 
 	await plated_live.git_clone()
 
@@ -171,7 +205,30 @@ console.log(plated_live.cmds)
 	})
 	
 	await plated_live.rescan_tree()
+
+
+	window.setInterval(plated_live.cron,1000) // start cron tasks
+}
+
+plated_live.cron=async function()
+{
+	if(plated_live.cron.lock) { return; } // there can be only one
+	plated_live.cron.lock=true
 	
+	for(var path in plated_live.sessions)
+	{
+		var session=plated_live.sessions[path]
+		var undo=session.getUndoManager()
+		if( !undo.isClean() )
+		{
+			await plated_live.pfs.writeFile(path,session.getValue(),"utf8") // auto save
+			console.log("Saved "+path)
+			undo.markClean()
+		}
+		
+	}
+
+	plated_live.cron.lock=false
 }
 
 plated_live.sessions={}
@@ -212,7 +269,11 @@ plated_live.rescan_tree=async function()
 	var d1= await plated_live.get_dir_tree("/"+plated_live.opts.git_repo+"/"+plated_live.opts.plated_source)
 	var d2= await plated_live.get_dir_tree("/"+plated_live.opts.git_repo+"/"+plated_live.opts.plated_output)
 	
-	plated_live.jstree.jstree(true).settings.core.data = [ { text:"Edit/", children:d1 , state:{opened:true}} , { text:"View/", children:d2 } ]
+	plated_live.jstree.jstree(true).settings.core.data = [
+		{ text:"/plated_live.json" , path:"/plated_live.json" },
+		{ text:"*Edit*", children:d1 , state:{opened:true}} ,
+		{ text:"*View*", children:d2 }
+	]
 	plated_live.jstree.jstree(true).refresh();
 }
 

@@ -96,3 +96,11 @@ input#gamecake_text_input	{width:100%; font-size:x-large; padding:5px 10px;}
 #menubar { display: inline-block; }
 #menubar > li { display: inline-block; }
 #menubar > li > ul > li { display: block; }
+
+
+.cmd .cursor.blink {
+  color: #aaa;
+  border-left: 1px solid #aaa;
+  background-color: black;
+  margin-left: -1px;
+}
