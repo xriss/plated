@@ -191,7 +191,7 @@ plated_live.start_loaded=async function(){
 
 	plated_live.editor.$blockScrolling = Infinity
 
-	
+	$("#editor").hide();
 
 	await plated_live.git_clone()
 
@@ -199,8 +199,36 @@ plated_live.start_loaded=async function(){
 	plated_live.jstree.on('changed.jstree', function (e, data) {
 		if(data.selected.length>0)
 		{
-			var n=data.instance.get_node(data.selected[0])
-			plated_live.show_session({path:n.original.path})
+			var it=data.instance.get_node(data.selected[0])
+			$("#view_iframe").remove() // kill iframe
+			if(it.original.mode=="view")
+			{
+				$("#editor").hide();
+				$("#split_right").append('<iframe id="view_iframe" style="background:#fff"></iframe>');
+				(async function()
+				{
+					var filepath=it.original.path
+					var filedata=await plated_live.pfs.readFile(filepath,"utf8")
+					var doc = document.getElementById('view_iframe').contentWindow.document
+					doc.open()
+					if(filepath.endsWith(".html"))
+					{
+						doc.write(filedata)
+					}
+					else
+					{
+						doc.write("<pre>")
+						doc.write(filedata)
+						doc.write("</pre>")
+					}
+					doc.close()
+				})()
+			}
+			else
+			{
+				$("#editor").show()
+				plated_live.show_session({path:it.original.path})
+			}
 		}
 	})
 	
@@ -267,7 +295,7 @@ plated_live.git_clone=async function(){
 plated_live.rescan_tree=async function()
 {
 	var d1= await plated_live.get_dir_tree("/"+plated_live.opts.git_repo+"/"+plated_live.opts.plated_source)
-	var d2= await plated_live.get_dir_tree("/"+plated_live.opts.git_repo+"/"+plated_live.opts.plated_output)
+	var d2= await plated_live.get_dir_tree("/"+plated_live.opts.git_repo+"/"+plated_live.opts.plated_output,{mode:"view"})
 	
 	plated_live.jstree.jstree(true).settings.core.data = [
 		{ text:"/plated_live.json" , path:"/plated_live.json" },
