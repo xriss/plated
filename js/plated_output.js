@@ -19,7 +19,7 @@ function.
 
 ]]*/
 
-var fs = require('fs')
+//var fs = require('fs')
 var util=require('util')
 var path=require('path')
 var watch=require('watch')
@@ -53,23 +53,23 @@ chunks.
 /***************************************************************************
 --[[#js.plated_output.remember_and_write
 
-	chunks = plated_output.remember_and_write(chunks)
+	chunks = await plated_output.remember_and_write(chunks)
 
 The same as remember but also instantly write out the chunks using 
 plated_output.write
 
 ]]*/
-	plated_output.remember_and_write=function( chunks )
+	plated_output.remember_and_write=async function( chunks )
 	{
 		plated.output_chunks[ chunks._output_filename ]=chunks
-		plated_output.write(chunks)
+		await plated_output.write(chunks)
 		return chunks
 	}
 
 /***************************************************************************
 --[[#js.plated_output.write
 
-	plated_output.write(chunks)
+	await plated_output.write(chunks)
 
 Write out the chunks to to _output_filename as its final page like 
 form. chunks._output_chunkname is the name of the chunk that we intend 
@@ -81,11 +81,11 @@ If the opts.dumpjson flag is set then we also output a
 .json file which contains the chunks used to construct this page.
 
 ]]*/
-	plated_output.write=function( chunks )
+	plated_output.write=async function( chunks )
 	{
 		// run chunks through plugins, eg special blog handling
 		for(var idx in plated.process_output) { var f=plated.process_output[idx];
-			f( chunks ); // output special extra files
+			await f( chunks ); // output special extra files
 		}
 
 		var output_filename=chunks._output_filename
@@ -95,13 +95,13 @@ If the opts.dumpjson flag is set then we also output a
 		{
 			var filename=path.join( opts.output , output_filename )
 			var data=plated.chunks.replace( plated.chunks.delimiter_wrap_str( output_chunkname ) , chunks )
-			plated.files.write( filename , data )
+			await plated.files.write( filename , data )
 		}
 		if(opts.dumpjson)
 		{
 			var filename=path.join( opts.output , output_filename ) + ".json"
 			var data=JSON_stringify(chunks,{space:1})
-			plated.files.write( filename , data )
+			await plated.files.write( filename , data )
 		}
 		
 	}
@@ -115,12 +115,12 @@ Go through all the remembered chunks and write each one out using
 plated_output.write
 
 ]]*/
-	plated_output.write_all=function()
+	plated_output.write_all=async function()
 	{
 		for( var n in plated.output_chunks )
 		{
 			var chunks=plated.output_chunks[n]
-			plated_output.write(chunks)
+			await plated_output.write(chunks)
 		}
 	}
 

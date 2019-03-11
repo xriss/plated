@@ -20,7 +20,7 @@ function.
 ]]*/
 
 
-var fs = require('fs');
+//var fs = require('fs');
 var util=require('util');
 var path=require('path');
 var watch=require('watch');
@@ -36,6 +36,23 @@ exports.create=function(opts,plated){
 	var plated_files={};
 
 /***************************************************************************
+--[[#js.plated_files.exists
+
+	await plated_files.exists(path)
+
+Returns true if a file or dir at the given path exists.
+
+]]*/
+	plated_files.exists = async function(dir)
+	{
+		if( await plated.pfs.stat(dir).catch(e=>{}) )
+		{
+			return true
+		}
+		return false
+	}
+
+/***************************************************************************
 --[[#js.plated_files.mkdir
 
 	plated_files.mkdir(dir)
@@ -44,19 +61,22 @@ Create the given dir and recursively create its parent dirs as well if
 necessary.
 
 ]]*/
-	plated_files.mkdir = function(dir){
-		if (fs.existsSync(dir)){
-			return
-		}
+	plated_files.mkdir = async function(dir)
+	{
+//		if(dir==".") { return }
 
-		try{
-			fs.mkdirSync(dir)
-		}catch(err){
-			if(err.code == 'ENOENT'){
-				plated_files.mkdir(path.dirname(dir)) //create parent dir
-				fs.mkdirSync(dir) // try and create dir again
-			}
+		if( await plated.pfs.stat(dir).catch(e=>{}) ) { return } // already done
+
+		await plated.pfs.mkdir(dir).catch(e=>{}) // create dir
+
+		if( await plated.pfs.stat(dir).catch(e=>{}) ) { return } // success
+
+		var parent=path.dirname(dir)
+		if(parent && parent!=dir) // sanity
+		{
+			await plated_files.mkdir(parent) //create parent dir
 		}
+		await plated.pfs.mkdir(dir) // try and create dir again but do not catch error		
 	}
 
 /***************************************************************************
@@ -135,9 +155,10 @@ _dirname the url path of the dir this file exists in, eg /dirname
 Create parent dir if necessary and write the data into this file.
 
 ]]*/
-	plated_files.write = function(filename,data) {
-		plated_files.mkdir( path.dirname(filename) );
-		fs.writeFileSync( filename , data );
+	plated_files.write = async function(filename,data)
+	{
+		await plated_files.mkdir( path.dirname(filename) );
+		await plated.pfs.writeFile( filename , data );
 	};
 
 /***************************************************************************
@@ -258,25 +279,33 @@ Empty the (output) folder or make it if it does not exist. This is
 rather dangerous so please be careful.
 
 ]]*/
-	plated_files.empty_folder = function(path) {
-		var files = [];
-		if( fs.existsSync(path) ) {
-			files = fs.readdirSync(path);
-			files.forEach(function(file,index){
+	plated_files.empty_folder = async function(path) {
+	var ttt=await plated_files.exists(path)
+		if( await plated_files.exists(path) )
+		{
+			var files = await plated.pfs.readdir(path);
+			for(var index=0 ; index<files.length ; index++ )
+			{
+				var file=files[index]
 				var curPath = path + "/" + file;
-				if(fs.lstatSync(curPath).isDirectory()) { // recurse but not into links
-					plated_files.empty_folder(curPath);
-				} else { // delete file
+				var st=await plated.pfs.lstat(curPath)
+				if( st.isDirectory() )
+				{
+					await plated_files.empty_folder(curPath);
+				}
+				else
+				{
 					if(file!=".git") // dont delete .git files // TODO:make generic rule? We need t keep .git for submodules
 					{
-						fs.unlinkSync(curPath);
+						await plated.pfs.unlink(curPath);
 					}
 				}
-			});
+			}
 		}
 		else
 		{
-			try { fs.mkdirSync(path); } catch(e){} // create it
+			await plated.pfs.mkdir(path).catch(e=>{}) // create it
+//			try { fs.mkdirSync(path); } catch(e){} // create it
 		}
 	};
 	
@@ -284,46 +313,52 @@ rather dangerous so please be careful.
 /***************************************************************************
 --[[#js.plated_files.find_files
 
-	plated_files.find_files(root,name,func)
+	plated_files.find_files(root,name)
  
-Call func(name) with every file we find inside the root/name directory. 
+REturn an array with every file we find inside the root/name directory. 
 We follow symlinks into other directories.
 
 ]]*/
-	plated_files.find_files = function(root,name,f) {
-		var files=fs.readdirSync( path.join(root,name) );
+	plated_files.find_files = async function(root,name,ret)
+	{
+		ret=ret || []
+		var files=await plated.pfs.readdir( path.join(root,name) );
 		for(var i in files){ var v=files[i];
-			var st=fs.statSync( path.join(root,name,v) ); // follow links
+			var st=await plated.pfs.stat( path.join(root,name,v) ); // follow links
 			if( st.isDirectory() )
 			{
-				plated_files.find_files(root,path.join(name,v),f);
+				await plated_files.find_files(root,path.join(name,v),ret);
 			}
 			else
 			{
-				f( path.join(name,v) );
+				ret.push( path.join(name,v) )
 			}
 		}
+		return ret
 	};
 
 /***************************************************************************
---[[#js.plated_files.find_files
+--[[#js.plated_files.find_dirs
 
-	plated_files.find_files(root,name,func)
+	plated_files.find_dirs(root,name,func)
  
 Call func(name) with every directory we find inside the root/name 
 directory. We follow symlinks into other directories.
 
 ]]*/
-	plated_files.find_dirs = function(root,name,f) {
-		f(name);
-		var files=fs.readdirSync( path.join(root,name) );
+	plated_files.find_dirs = async function(root,name,ret)
+	{
+		ret=ret || []
+		ret.push( name )
+		var files=await plated.pfs.readdir( path.join(root,name) );
 		for(var i in files){ var v=files[i];
-			var st=fs.statSync( path.join(root,name,v) ); // follow links
+			var st=await plated.pfs.stat( path.join(root,name,v) ); // follow links
 			if( st.isDirectory() )
 			{
-				plated_files.find_dirs(root,path.join(name,v),f);
+				await plated_files.find_dirs(root,path.join(name,v),ret);
 			}
 		}
+		return ret
 	};
 
 	var cache={}
@@ -350,12 +385,11 @@ Load root/fname or get it from the cache and then turn it into chunks
 using plated_chunks.fill_chunks(date,chunks) chunks is returned.
 
 ]]*/
-	plated_files.file_to_chunks=function(root,fname,chunks)
+	plated_files.file_to_chunks=async function(root,fname,chunks)
 	{
 		if(!cache[fname])
 		{
-			var s;
-			try { s=fs.readFileSync(path.join(root,fname),'utf8'); } catch(e){}
+			var s=await plated.pfs.readFile(path.join(root,fname),'utf8').catch(e=>{})
 			if(s)
 			{
 				cache[fname]=s;
@@ -399,34 +433,31 @@ build all of these into the current chunk namespace for this file.
 /***************************************************************************
 --[[#js.plated_files.base_files_to_chunks
 
-	chunks = plated_files.base_files_to_chunks(fname)
+	chunks = await plated_files.base_files_to_chunks(fname)
  
 Check this directory and all directories above for generic chunks build 
 all of these into the current chunk namespace for this file.
 
 ]]*/
-	plated_files.base_files_to_chunks=function(fname)
+	plated_files.base_files_to_chunks=async function(fname)
 	{
 		var list=[];
-		var rf=function(fn){
-			var d=path.dirname(fn);
-			var p=path.join(opts.source,d);
-			var files=fs.readdirSync(p);
-			files.sort();
-			files.reverse();
-			for(var i in files){ var v=files[i];
-				if( plated_files.filename_is_basechunk(v) )
-				{
-					var p2=path.join(d,v);
-					list.push(p2);
-				}
+		var d=path.dirname(fname);
+		var p=path.join(opts.source,d);
+		var files=await plated.pfs.readdir(p);
+		files.sort();
+		files.reverse();
+		for(var i in files){ var v=files[i];
+			if( plated_files.filename_is_basechunk(v) )
+			{
+				var p2=path.join(d,v);
+				list.push(p2);
 			}
-		};
-		rf(fname)
+		}
 		
 		var chunks={};
 		for(var i=list.length-1 ; i>=0 ; i--) { var v=list[i];
-			plated_files.file_to_chunks(opts.source,v,chunks);
+			await plated_files.file_to_chunks(opts.source,v,chunks);
 		}
 		return chunks;
 	}
@@ -440,7 +471,7 @@ Build the given source filename, using chunks or maybe just a raw copy
 from source into the output.
 
 ]]*/
-	plated_files.build_file=function(fname)
+	plated_files.build_file=async function(fname)
 	{
 		if(plated_files.filename_is_plated(fname))
 		{
@@ -450,7 +481,7 @@ from source into the output.
 			
 			var chunks={};
 			
-			plated_files.file_to_chunks(opts.source, fname , chunks); // read chunks from this file
+			await plated_files.file_to_chunks(opts.source, fname , chunks); // read chunks from this file
 			
 			plated_files.set_source(chunks,fname)
 			
@@ -458,23 +489,22 @@ from source into the output.
 
 			// run chunks through plugins, eg special blog handling
 			for(var idx in plated.process_file) { var f=plated.process_file[idx];
-				chunks = f( chunks ); // adjust and or output special chunks or files
+				chunks = await f( chunks ); // adjust and or output special chunks or files
 			}
 
 			var merged_chunks=plated.chunks.merge_namespace(chunks);
 			
 			merged_chunks._output_filename=plated.files.filename_to_output(fname)
 			merged_chunks._output_chunkname=fname.split('.').pop()
-			plated.output.remember_and_write( merged_chunks )
+			await plated.output.remember_and_write( merged_chunks )
 
 		}
 		else
 		{
-			var s=null; // ignore bad files
-			try { s=fs.readFileSync( path.join(opts.source,fname) ); } catch(e){}
+			var s=await plated.pfs.readFile( path.join(opts.source,fname) ).catch(e=>{})
 			if(s!==null)
 			{
-				plated_files.write( path.join(opts.output,fname), s );
+				await plated_files.write( path.join(opts.output,fname), s );
 			}
 		}
 	}
@@ -487,17 +517,17 @@ from source into the output.
 Build all files found in the source dir into the output dir.
 
 ]]*/
-	plated_files.build=function()
+	plated_files.build=async function()
 	{
-
-		plated_files.empty_folder(opts.output);
+		await plated_files.empty_folder(opts.output);
 
 		plated.dirs={};
 		
-		plated_files.find_dirs(opts.source,"",function(s){
+		var dirs = await plated_files.find_dirs(opts.source,"")
+		for(var i in dirs){ var s=dirs[i]
 			console.log(timestr()+" DIR  "+"/"+s)
 			
-			var chunks=plated_files.base_files_to_chunks(s+"/name.txt");
+			var chunks=await plated_files.base_files_to_chunks(s+"/name.txt");
 
 			plated_files.set_source(chunks,s+"/.")
 			
@@ -505,15 +535,16 @@ Build all files found in the source dir into the output dir.
 
 			// run chunks through plugins, eg special blog handling
 			for(var idx in plated.process_file) { var f=plated.process_file[idx];
-				chunks = f( chunks ); // adjust and or output special chunks or files
+				chunks = await f( chunks ); // adjust and or output special chunks or files
 			}
 
 			plated.dirs[s]=chunks;
-		});
+		}
 
 		// run chunks through plugins, eg special blog handling
 		for(var idx in plated.process_dirs) { var f=plated.process_dirs[idx];
-			plated.dirs = f( plated.dirs ); // adjust and or output special chunks or files
+			plated.dirs = await f( plated.dirs ); // adjust and or output special chunks or files
+
 		}
 
 
@@ -524,20 +555,20 @@ Build all files found in the source dir into the output dir.
 
 			merged_chunks._output_filename=d+"/"
 			merged_chunks._output_chunkname=undefined
-			plated.output.remember_and_write( merged_chunks )
+			await plated.output.remember_and_write( merged_chunks )
 
 		}
 
-		plated_files.find_files(opts.source,"",function(s){
-				
-				if(!plated_files.filename_is_basechunk(s))
-				{
-					console.log(timestr()+" FILE "+"/"+s)
-					plated_files.build_file(s);
-				}
-		});
+		var files=await plated_files.find_files(opts.source,"")
+		for(var i in files){ var s=files[i]
+			if(!plated_files.filename_is_basechunk(s))
+			{
+				console.log(timestr()+" FILE "+"/"+s)
+				await plated_files.build_file(s);
+			}
+		}
 
-		plated.output.write_all()
+		await plated.output.write_all()
 	}
 
 /***************************************************************************
@@ -553,14 +584,14 @@ finished.
 
 
 ]]*/
-	plated_files.watch=function()
+	plated_files.watch=async function()
 	{
-		plated_files.build(); // build once
+		await plated_files.build(); // build once
 
 		var rebuild=false; // set to true to request a rebuild
 
 		var as=opts.source.split(path.sep);
-		watch.watchTree(opts.source,{},function(f,curr,prev){
+		watch.watchTree(opts.source,{},async function(f,curr,prev){
 			if(typeof f == "object" && prev === null && curr === null)
 			{
 				// finished
@@ -600,7 +631,7 @@ finished.
 				else
 				{
 					console.log(timestr()+" FILE "+"/"+s)
-					plated_files.build_file(s);
+					await plated_files.build_file(s);
 				}
 
 			}

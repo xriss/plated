@@ -384,7 +384,7 @@ away if empty.
 
 ]]*/
 
-var fs = require('fs');
+//var fs = require('fs');
 var util=require('util');
 var path=require('path');
 
@@ -393,7 +393,9 @@ var ls=function(a) { console.log(util.inspect(a,{depth:null})); }
 
 exports.create=function(opts,plated){
 	plated=plated || {};
-
+	 // allow any custom promise based file system
+	plated.pfs=plated.pfs || 	(require("pify"))(require('fs'))
+	
 // force defaults if they are missing
 	opts = opts || {} 
 	opts.site      = opts.site      || "";

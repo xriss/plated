@@ -45,7 +45,7 @@ An example can be found in test-source/005-redirect
 
 ]]*/
 
-var fs = require('fs');
+//var fs = require('fs');
 var util=require('util');
 var path=require('path');
 var JSON5=require('json5');
@@ -110,7 +110,7 @@ exports.create=function(opts,plated){
 Tweak all the base chunks grouped by dir name and pre cascaded/merged
 
 ]]*/
-	plated_plugin_redirect.process_dirs=function(dirs){
+	plated_plugin_redirect.process_dirs=async function(dirs){
 				
 		for( var dirname in dirs ) { var chunks=dirs[dirname];
 			if(chunks._redirect_json)
@@ -130,7 +130,7 @@ Tweak all the base chunks grouped by dir name and pre cascaded/merged
 					
 					merged_chunks._output_filename=merged_chunks._redirect_from
 					merged_chunks._output_chunkname="html"
-					plated.output.remember_and_write( merged_chunks )
+					await plated.output.remember_and_write( merged_chunks )
 
 //					plated.files.write( output_filename , plated.chunks.replace( merged_chunks.html , merged_chunks ) );
 //					if(opts.dumpjson){

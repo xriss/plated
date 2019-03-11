@@ -53,7 +53,7 @@ in source/docs for an example of how this can be themed and presented.
 
 ]]*/
 
-var fs = require('fs');
+//var fs = require('fs');
 var util=require('util');
 var path=require('path');
 var watch=require('watch');
@@ -98,9 +98,10 @@ exports.create=function(opts,plated){
 Tweak all the base chunks grouped by dir name and pre cascaded/merged
 
 ]]*/
-	plated_plugin_docs.process_dirs=function(dirs){
+	plated_plugin_docs.process_dirs=async function(dirs){
 				
 		for( var dirname in dirs ) { var chunks=dirs[dirname];
+
 			
 			var chunk=chunks._docs_json;
 			if( chunk )
@@ -112,9 +113,12 @@ Tweak all the base chunks grouped by dir name and pre cascaded/merged
 				{
 					var test=chunk.dirs[docdir]
 
-					plated_files.find_files(path.join(opts.source,docdir),"",function(fn){
-						for(var x in chunk.ignore) { if(fn.indexOf(x)>-1) return; } // ignore paths containing
-						if(fn.endsWith(test))
+					var files=await plated_files.find_files(path.join(opts.source,docdir),"")
+
+					for(var i in files){var fn=files[i]
+						var ignore=false
+						for(var x in chunk.ignore) { if(fn.indexOf(x)>-1) ignore=true; } // ignore paths containing
+						if(fn.endsWith(test) && !ignore)
 						{
 							var fname=path.join(opts.source,docdir,fn) // the file to process
 							var url=fname;
@@ -126,8 +130,7 @@ Tweak all the base chunks grouped by dir name and pre cascaded/merged
 									url=fix+url.substring(pre.length)
 								}
 							}
-							var s;
-							try { s=fs.readFileSync(fname,'utf8'); } catch(e){}
+							var s=await plated.pfs.readFile(fname,'utf8').catch(e=>{})
 							if(s)
 							{
 								var mode="look"
@@ -174,7 +177,7 @@ Tweak all the base chunks grouped by dir name and pre cascaded/merged
 								})
 							}
 						}
-					});
+					}
 
 				}
 				
@@ -280,7 +283,7 @@ Tweak all the base chunks grouped by dir name and pre cascaded/merged
 
 					merged_chunks._output_filename=plated_files.filename_to_output(fname)
 					merged_chunks._output_chunkname="html"
-					plated.output.remember_and_write( merged_chunks )
+					await plated.output.remember_and_write( merged_chunks )
 
 					console.log(timestr()+" DOCS "+fname)
 				}
@@ -288,7 +291,7 @@ Tweak all the base chunks grouped by dir name and pre cascaded/merged
 			}
 
 		}
-				
+
 		return dirs;
 	};
 

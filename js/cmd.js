@@ -130,16 +130,18 @@ argv.hashchunk = argv.hashchunk || env.PLATED_HASHCHUNK || "#^";
 argv.delimiter = argv.delimiter || env.PLATED_DELIMITER || "{}";
 argv.dumpjson  = argv.dumpjson  || env.PLATED_DUMPJSON  ;
 
+(async()=>{
+	
 if( argv._[0]=="build" )
 {
 	var plated=require("./plated.js").create(argv);
-	return plated.build();
+	return await plated.build();
 }
 else
 if( argv._[0]=="watch" )
 {
 	var plated=require("./plated.js").create(argv);
-	return plated.watch();
+	return await plated.watch();
 }
 
 // help text
@@ -161,3 +163,5 @@ console.log(
 	"\t\t...same options as build\n"+
 	"\n"+
 "");
+
+})()

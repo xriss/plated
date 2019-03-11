@@ -66,7 +66,7 @@
    "name": "html.plated_plugin.redirect"
   },
   {
-   "count": 64,
+   "count": 66,
    "name": "js"
   },
   {
@@ -166,7 +166,7 @@
    "name": "js.plated_chunks.set_namespace"
   },
   {
-   "count": 18,
+   "count": 20,
    "name": "js.plated_files"
   },
   {
@@ -191,6 +191,10 @@
   },
   {
    "count": 1,
+   "name": "js.plated_files.exists"
+  },
+  {
+   "count": 1,
    "name": "js.plated_files.file_to_chunks"
   },
   {
@@ -212,6 +216,10 @@
   {
    "count": 1,
    "name": "js.plated_files.filename_to_output"
+  },
+  {
+   "count": 1,
+   "name": "js.plated_files.find_dirs"
   },
   {
    "count": 1,
@@ -446,7 +454,7 @@
    "body": "<pre><code>chunks = plated_plugin_docs.process_file(chunks)</code></pre><p>Tweak a single file of chunks, only chunks found in this file will be available.</p>\n",
    "count": 1,
    "file": "js/plated_plugin_docs.js",
-   "line": 297,
+   "line": 300,
    "name": "js.plated_plugin.docs.process_file",
    "url": "https://github.com/xriss/plated/blob/master/js/plated_plugin_docs.js"
   },

@@ -25,6 +25,10 @@ echo
 diff -r --side-by-side --suppress-common-lines test-output test-expected
 TEST=$?
 
+echo
+diff -r -q --suppress-common-lines test-output test-expected
+echo
+
 if [ $TEST = 0 ] ; then
 	echo
 	echo "$(tput setaf 2) PASSED $(tput sgr0)"

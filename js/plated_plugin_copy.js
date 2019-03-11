@@ -141,7 +141,7 @@ Compare this output file with cached copy chunks and duplicate it
 into these directories with slightly tweaked chunks if it matches.
 
 ]]*/
-	plated_plugin_copy.process_output=function(chunks){
+	plated_plugin_copy.process_output=async function(chunks){
 		
 		for( var idx=0; idx<plated_plugin_copy.chunks.length ; idx++ )
 		{
@@ -190,13 +190,13 @@ into these directories with slightly tweaked chunks if it matches.
 				{
 					var filename=path.join( opts.output , it.dirname , output_filename )
 					var data=plated.chunks.replace( plated.chunks.delimiter_wrap_str( output_chunkname ) , newchunks )
-					plated.files.write( filename , data )
+					await plated.files.write( filename , data )
 				}
 				if(opts.dumpjson)
 				{
 					var filename=path.join( opts.output , it.dirname , output_filename ) + ".json"
 					var data=JSON_stringify(newchunks,{space:1})
-					plated.files.write( filename , data )
+					await plated.files.write( filename , data )
 				}
 
 console.log(timestr()+" COPY "+ chunks._output_filename +" -> "+ path.join( it.dirname , output_filename )  )

@@ -89,7 +89,7 @@ contain the _blog_post_body as defined in the blog post directory.
 
 ]]*/
 
-var fs = require('fs');
+//var fs = require('fs');
 var util=require('util');
 var path=require('path');
 var watch=require('watch');
@@ -152,7 +152,7 @@ exports.create=function(opts,plated){
 Tweak all the base chunks grouped by dir name and pre cascaded/merged
 
 ]]*/
-	plated_plugin_blog.process_dirs=function(dirs){
+	plated_plugin_blog.process_dirs=async function(dirs){
 		
 		var blogs={};
 		var drafts=[];
@@ -200,7 +200,7 @@ Tweak all the base chunks grouped by dir name and pre cascaded/merged
 
 			merged_chunks._output_filename=plated.files.filename_to_output(fname)
 			merged_chunks._output_chunkname="html"
-			plated.output.remember_and_write( merged_chunks )
+			await plated.output.remember_and_write( merged_chunks )
 
 			console.log(timestr()+" BLOGDRAFT "+fname)
 		}
@@ -252,7 +252,7 @@ Tweak all the base chunks grouped by dir name and pre cascaded/merged
 
 				merged_chunks._output_filename=plated.files.filename_to_output(fname)
 				merged_chunks._output_chunkname="html"
-				plated.output.remember_and_write( merged_chunks )
+				await plated.output.remember_and_write( merged_chunks )
 
 				var cache_root=merged_chunks._root
 				delete merged_chunks._root // do not expand_root here, leave it for later so relative path works
@@ -306,7 +306,7 @@ Tweak all the base chunks grouped by dir name and pre cascaded/merged
 
 				merged_chunks._output_filename=plated.files.filename_to_output(fname)
 				merged_chunks._output_chunkname="html"
-				plated.output.remember_and_write( merged_chunks )
+				await plated.output.remember_and_write( merged_chunks )
 
 				console.log(timestr()+" BLOG "+fname)
 
@@ -368,10 +368,10 @@ Tweak all the base chunks grouped by dir name and pre cascaded/merged
 
 			console.log(timestr()+" BLOGFEED "+fname+"/feed.json")
 
-			plated.files.write(
+			await plated.files.write(
 				path.join( opts.output , fname+"/feed.json"),
 				JSON_stringify(feed,{space:1}) )
-			plated.files.write(
+			await plated.files.write(
 				path.join( opts.output , fname+"/feed.xml") ,
 				jsonfeedToAtom(feed) )
 

@@ -19,6 +19,7 @@
     "json5": "*",
     "jsonfeed-to-atom": "*",
     "marked": "^0.6.1",
+    "pify": "^4.0.1",
     "watch": "*",
     "yargs": "^13.2.2"
   },

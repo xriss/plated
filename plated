@@ -1,2 +1,2 @@
-node `dirname $0`/js/cmd $*
+node --trace-warnings `dirname $0`/js/cmd $*
 

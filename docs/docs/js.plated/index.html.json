@@ -66,7 +66,7 @@
    "name": "html.plated_plugin.redirect"
   },
   {
-   "count": 64,
+   "count": 66,
    "name": "js"
   },
   {
@@ -166,7 +166,7 @@
    "name": "js.plated_chunks.set_namespace"
   },
   {
-   "count": 18,
+   "count": 20,
    "name": "js.plated_files"
   },
   {
@@ -191,6 +191,10 @@
   },
   {
    "count": 1,
+   "name": "js.plated_files.exists"
+  },
+  {
+   "count": 1,
    "name": "js.plated_files.file_to_chunks"
   },
   {
@@ -212,6 +216,10 @@
   {
    "count": 1,
    "name": "js.plated_files.filename_to_output"
+  },
+  {
+   "count": 1,
+   "name": "js.plated_files.find_dirs"
   },
   {
    "count": 1,
@@ -377,7 +385,7 @@
    "body": "<pre><code>plated.build()</code></pre><p>Build all the output files from the inputs.</p>\n",
    "count": 1,
    "file": "js/plated.js",
-   "line": 457,
+   "line": 459,
    "name": "js.plated.build",
    "url": "https://github.com/xriss/plated/blob/master/js/plated.js"
   },
@@ -385,7 +393,7 @@
    "body": "<pre><code>plated.plugin(it)</code></pre><p>Register a plugin, each plugin can provide the following function hooks.</p>\n<pre><code>dirs = it.process_dirs( dirs )</code></pre><p>Adjust the registered dirs data and return it.</p>\n<pre><code>file = it.process_file( file )</code></pre><p>Adjust or react to the file data and return it.</p>\n<pre><code>it.process_output( chunks )</code></pre><p>Adjust a files chunks prior to writing it out, or, output extra data \nassociated with these chunks.</p>\n",
    "count": 1,
    "file": "js/plated.js",
-   "line": 429,
+   "line": 431,
    "name": "js.plated.plugin",
    "url": "https://github.com/xriss/plated/blob/master/js/plated.js"
   },
@@ -393,7 +401,7 @@
    "body": "<pre><code>plated.setup(opts)</code></pre><p>Initialise plated and require the base plated modules: files, chunks \nand output.</p>\n",
    "count": 1,
    "file": "js/plated.js",
-   "line": 408,
+   "line": 410,
    "name": "js.plated.setup",
    "url": "https://github.com/xriss/plated/blob/master/js/plated.js"
   },
@@ -401,7 +409,7 @@
    "body": "<pre><code>plated.watch()</code></pre><p>Continuously build the output files from the inputs whenever one of the input files changes</p>\n",
    "count": 1,
    "file": "js/plated.js",
-   "line": 470,
+   "line": 472,
    "name": "js.plated.watch",
    "url": "https://github.com/xriss/plated/blob/master/js/plated.js"
   }
