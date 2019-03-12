@@ -26,7 +26,7 @@
     "loadjs": "*",
     "magic-portal": "*",
     "pify": "*",
-    "plated": "0.0.63",
+    "plated": "*",
     "webworkify": "*"
   },
   "devDependencies": {
