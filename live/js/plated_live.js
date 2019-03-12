@@ -217,6 +217,8 @@ plated_live.start_loaded=async function(){
 				$("#split_right").append('<iframe id="view_iframe" style="background:#fff"></iframe>');
 				(async function()
 				{
+					await plated_live.plated.build() // force updates 
+					
 					var filepath=it.original.path
 					var filedata=await plated_live.pfs.readFile(filepath,"utf8")
 					var doc = document.getElementById('view_iframe').contentWindow.document
