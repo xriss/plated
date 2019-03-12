@@ -256,7 +256,7 @@ Create a new empty file at the given PATH.
 
 	cmds.list.build=async function(cmd)
 	{
-		await plated_live.plated.build()
+		plated_live.plated.build()
 	}
 	cmds.list.build.help=`
 	build

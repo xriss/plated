@@ -23,10 +23,29 @@ function.
 //var fs = require('fs');
 var util=require('util');
 var path=require('path');
-var watch=require('watch');
 var JSON_stringify = require('json-stable-stringify');
 
 var ls=function(a) { console.log(util.inspect(a,{depth:null})); }
+
+// hax for partial file system implimentations
+var stat_isDirectory=function(stat)
+{
+	if(stat)
+	{
+		if(stat.isDirectory)
+		{
+			return stat.isDirectory()
+		}
+		if(stat.type)
+		{
+			if(stat.type=="dir")
+			{
+				return true
+			}
+		}
+	}
+	return false
+}
 
 // wrap so we can contain multiple environments without borking
 exports.create=function(opts,plated){
@@ -289,7 +308,7 @@ rather dangerous so please be careful.
 				var file=files[index]
 				var curPath = path + "/" + file;
 				var st=await plated.pfs.lstat(curPath)
-				if( st.isDirectory() )
+				if( stat_isDirectory(st) )
 				{
 					await plated_files.empty_folder(curPath);
 				}
@@ -325,7 +344,7 @@ We follow symlinks into other directories.
 		var files=await plated.pfs.readdir( path.join(root,name) );
 		for(var i in files){ var v=files[i];
 			var st=await plated.pfs.stat( path.join(root,name,v) ); // follow links
-			if( st.isDirectory() )
+			if( stat_isDirectory(st) )
 			{
 				await plated_files.find_files(root,path.join(name,v),ret);
 			}
@@ -353,7 +372,7 @@ directory. We follow symlinks into other directories.
 		var files=await plated.pfs.readdir( path.join(root,name) );
 		for(var i in files){ var v=files[i];
 			var st=await plated.pfs.stat( path.join(root,name,v) ); // follow links
-			if( st.isDirectory() )
+			if( stat_isDirectory(st) )
 			{
 				await plated_files.find_dirs(root,path.join(name,v),ret);
 			}
@@ -586,6 +605,8 @@ finished.
 ]]*/
 	plated_files.watch=async function()
 	{
+		var watch=require('watch');
+
 		await plated_files.build(); // build once
 
 		var rebuild=false; // set to true to request a rebuild

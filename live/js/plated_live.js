@@ -130,10 +130,10 @@ plated_live.start_loaded=async function(){
 	plated_live.plated=require("plated").create({
 			site  :"",
 			root  :"",
-			source:plated_live.opts.git_repo+"/"+plated_live.opts.plated_source,
-			output:plated_live.opts.git_repo+"/"+plated_live.opts.plated_output,
+			source:"/"+plated_live.opts.git_repo+"/"+plated_live.opts.plated_source,
+			output:"/"+plated_live.opts.git_repo+"/"+plated_live.opts.plated_output,
 		},{
-			pfs:plated.pfs,
+			pfs:plated_live.pfs,
 		})
 
 
