@@ -132,6 +132,7 @@ plated_live.start_loaded=async function(){
 			root  :"",
 			source:"/"+plated_live.opts.git_repo+"/"+plated_live.opts.plated_source,
 			output:"/"+plated_live.opts.git_repo+"/"+plated_live.opts.plated_output,
+			dumpjson:true,
 		},{
 			pfs:plated_live.pfs,
 		})

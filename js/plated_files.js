@@ -620,6 +620,8 @@ Build all files found in the source dir into the output dir.
 	{
 		await plated_files.empty_folder(opts.output);
 
+		plated_files.empty_cache();
+
 		plated.dirs={};
 		
 		var dirs = await plated_files.find_dirs(opts.source,"")
