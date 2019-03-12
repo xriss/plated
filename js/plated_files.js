@@ -55,6 +55,27 @@ exports.create=function(opts,plated){
 	var plated_files={};
 
 /***************************************************************************
+--[[#js.plated_files.trimpath
+
+	plated_files.trimpath(path)
+
+Remove a trailing / from the path
+
+]]*/
+	plated_files.trimpath = function(path)
+	{
+		if(path!="/")
+		{
+			if(path[path.length-1]=="/")
+			{
+				path=path.substring(0,path.length-1)
+			}
+		}
+		return path
+  	}
+
+
+/***************************************************************************
 --[[#js.plated_files.joinpath
 
 	await plated_files.joinpath(...)
@@ -65,17 +86,6 @@ join components into a full path.
 	plated_files.joinpath = function()
 	{
 		var s=path.join.apply(null,arguments)
-/*
-var ss=s
-		if(s!="/")
-		{
-			if(s[s.length-1]=="/")
-			{
-				s=s.substring(0,s.length-1)
-			}
-		}
-console.log(s+":"+ss)
-*/
 		return s
   	}
 
@@ -88,13 +98,42 @@ console.log(s+":"+ss)
 Returns true if a file or dir at the given path exists.
 
 ]]*/
-	plated_files.exists = async function(dir)
+	plated_files.exists = async function(path)
 	{
-		if( await plated.pfs.stat(dir).catch(e=>{}) )
+		path=plated_files.trimpath(path)
+		if( await plated.pfs.stat(path).catch(e=>{}) )
 		{
 			return true
 		}
 		return false
+	}
+
+/***************************************************************************
+--[[#js.plated_files.stat
+
+	await plated_files.stat(path)
+
+Return the stat of this path
+
+]]*/
+	plated_files.stat = function(path)
+	{
+		path=plated_files.trimpath(path)
+		return plated.pfs.stat(path)
+	}
+
+/***************************************************************************
+--[[#js.plated_files.lstat
+
+	await plated_files.lstat(path)
+
+Return the lstat of this path
+
+]]*/
+	plated_files.lstat = function(path)
+	{
+		path=plated_files.trimpath(path)
+		return plated.pfs.lstat(path)
 	}
 
 /***************************************************************************
@@ -110,11 +149,11 @@ necessary.
 	{
 //		if(dir==".") { return }
 
-		if( await plated.pfs.stat(dir).catch(e=>{}) ) { return } // already done
+		if( await plated_files.stat(dir).catch(e=>{}) ) { return } // already done
 
 		await plated.pfs.mkdir(dir).catch(e=>{}) // create dir
 
-		if( await plated.pfs.stat(dir).catch(e=>{}) ) { return } // success
+		if( await plated_files.stat(dir).catch(e=>{}) ) { return } // success
 
 		var parent=path.dirname(dir)
 		if(parent && parent!=dir) // sanity
@@ -333,7 +372,7 @@ rather dangerous so please be careful.
 			{
 				var file=files[index]
 				var curPath = path + "/" + file;
-				var st=await plated.pfs.lstat(curPath)
+				var st=await plated_files.lstat(curPath)
 				if( stat_isDirectory(st) )
 				{
 					await plated_files.empty_folder(curPath);
@@ -369,7 +408,7 @@ We follow symlinks into other directories.
 		ret=ret || []
 		var files=await plated.pfs.readdir( plated_files.joinpath(root,name) );
 		for(var i in files){ var v=files[i];
-			var st=await plated.pfs.stat( plated_files.joinpath(root,name,v) ); // follow links
+			var st=await plated_files.stat( plated_files.joinpath(root,name,v) ); // follow links
 			if( stat_isDirectory(st) )
 			{
 				await plated_files.find_files(root,plated_files.joinpath(name,v),ret);
@@ -397,7 +436,7 @@ directory. We follow symlinks into other directories.
 		ret.push( name )
 		var files=await plated.pfs.readdir( plated_files.joinpath(root,name) );
 		for(var i in files){ var v=files[i];
-			var st=await plated.pfs.stat( plated_files.joinpath(root,name,v) ); // follow links
+			var st=await plated_files.stat( plated_files.joinpath(root,name,v) ); // follow links
 			if( stat_isDirectory(st) )
 			{
 				await plated_files.find_dirs(root,plated_files.joinpath(name,v),ret);
