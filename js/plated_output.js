@@ -21,7 +21,6 @@ function.
 
 //var fs = require('fs')
 var util=require('util')
-var path=require('path')
 var watch=require('watch')
 var JSON_stringify = require('json-stable-stringify')
 
@@ -93,13 +92,13 @@ If the opts.dumpjson flag is set then we also output a
 
 		if(output_chunkname)
 		{
-			var filename=path.join( opts.output , output_filename )
+			var filename=plated.files.joinpath( opts.output , output_filename )
 			var data=plated.chunks.replace( plated.chunks.delimiter_wrap_str( output_chunkname ) , chunks )
 			await plated.files.write( filename , data )
 		}
 		if(opts.dumpjson)
 		{
-			var filename=path.join( opts.output , output_filename ) + ".json"
+			var filename=plated.files.joinpath( opts.output , output_filename ) + ".json"
 			var data=JSON_stringify(chunks,{space:1})
 			await plated.files.write( filename , data )
 		}

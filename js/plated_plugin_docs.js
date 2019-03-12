@@ -55,7 +55,6 @@ in source/docs for an example of how this can be themed and presented.
 
 //var fs = require('fs');
 var util=require('util');
-var path=require('path');
 var watch=require('watch');
 var JSON5=require('json5');
 var JSON_stringify = require('json-stable-stringify');
@@ -113,14 +112,14 @@ Tweak all the base chunks grouped by dir name and pre cascaded/merged
 				{
 					var test=chunk.dirs[docdir]
 
-					var files=await plated_files.find_files(path.join(opts.source,docdir),"")
+					var files=await plated_files.find_files(plated_files.joinpath(opts.source,docdir),"")
 
 					for(var i in files){var fn=files[i]
 						var ignore=false
 						for(var x in chunk.ignore) { if(fn.indexOf(x)>-1) ignore=true; } // ignore paths containing
 						if(fn.endsWith(test) && !ignore)
 						{
-							var fname=path.join(opts.source,docdir,fn) // the file to process
+							var fname=plated_files.joinpath(opts.source,docdir,fn) // the file to process
 							var url=fname;
 							for(var pre in (chunk.urlprefix || {}) ) // build url of file
 							{

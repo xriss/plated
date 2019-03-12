@@ -30,7 +30,6 @@ chunk referenced from another file via the import=dir flag.
 
 //var fs = require('fs');
 var util=require('util');
-var path=require('path');
 var JSON5=require('json5');
 var JSON_stringify = require('json-stable-stringify');
 

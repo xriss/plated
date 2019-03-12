@@ -91,7 +91,6 @@ contain the _blog_post_body as defined in the blog post directory.
 
 //var fs = require('fs');
 var util=require('util');
-var path=require('path');
 var watch=require('watch');
 var JSON5=require('json5');
 var JSON_stringify = require('json-stable-stringify');
@@ -240,7 +239,7 @@ Tweak all the base chunks grouped by dir name and pre cascaded/merged
 				
 
 				var fname=plated.files.filename_to_dirname(post._sourcename)+"/index.html"
-//				var output_filename = path.join( opts.output , plated.files.filename_to_output(fname) );
+//				var output_filename = plated.files.joinpath( opts.output , plated.files.filename_to_output(fname) );
 				var chunks={};
 				
 				plated.files.set_source(chunks,fname)
@@ -369,10 +368,10 @@ Tweak all the base chunks grouped by dir name and pre cascaded/merged
 			console.log(timestr()+" BLOGFEED "+fname+"/feed.json")
 
 			await plated.files.write(
-				path.join( opts.output , fname+"/feed.json"),
+				plated.files.joinpath( opts.output , fname+"/feed.json"),
 				JSON_stringify(feed,{space:1}) )
 			await plated.files.write(
-				path.join( opts.output , fname+"/feed.xml") ,
+				plated.files.joinpath( opts.output , fname+"/feed.xml") ,
 				jsonfeedToAtom(feed) )
 
 

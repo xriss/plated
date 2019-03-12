@@ -55,6 +55,32 @@ exports.create=function(opts,plated){
 	var plated_files={};
 
 /***************************************************************************
+--[[#js.plated_files.joinpath
+
+	await plated_files.joinpath(...)
+
+join components into a full path.
+
+]]*/
+	plated_files.joinpath = function()
+	{
+		var s=path.join.apply(null,arguments)
+/*
+var ss=s
+		if(s!="/")
+		{
+			if(s[s.length-1]=="/")
+			{
+				s=s.substring(0,s.length-1)
+			}
+		}
+console.log(s+":"+ss)
+*/
+		return s
+  	}
+
+
+/***************************************************************************
 --[[#js.plated_files.exists
 
 	await plated_files.exists(path)
@@ -286,7 +312,7 @@ Work out the output filename from an input filename, the trigger string
 				vv.splice(i,1);
 			}
 		}
-		return plated_files.filename_fixup( path.join(d,vv.join(".")) );
+		return plated_files.filename_fixup( plated_files.joinpath(d,vv.join(".")) );
 	}
 
 /***************************************************************************
@@ -341,16 +367,16 @@ We follow symlinks into other directories.
 	plated_files.find_files = async function(root,name,ret)
 	{
 		ret=ret || []
-		var files=await plated.pfs.readdir( path.join(root,name) );
+		var files=await plated.pfs.readdir( plated_files.joinpath(root,name) );
 		for(var i in files){ var v=files[i];
-			var st=await plated.pfs.stat( path.join(root,name,v) ); // follow links
+			var st=await plated.pfs.stat( plated_files.joinpath(root,name,v) ); // follow links
 			if( stat_isDirectory(st) )
 			{
-				await plated_files.find_files(root,path.join(name,v),ret);
+				await plated_files.find_files(root,plated_files.joinpath(name,v),ret);
 			}
 			else
 			{
-				ret.push( path.join(name,v) )
+				ret.push( plated_files.joinpath(name,v) )
 			}
 		}
 		return ret
@@ -369,12 +395,12 @@ directory. We follow symlinks into other directories.
 	{
 		ret=ret || []
 		ret.push( name )
-		var files=await plated.pfs.readdir( path.join(root,name) );
+		var files=await plated.pfs.readdir( plated_files.joinpath(root,name) );
 		for(var i in files){ var v=files[i];
-			var st=await plated.pfs.stat( path.join(root,name,v) ); // follow links
+			var st=await plated.pfs.stat( plated_files.joinpath(root,name,v) ); // follow links
 			if( stat_isDirectory(st) )
 			{
-				await plated_files.find_dirs(root,path.join(name,v),ret);
+				await plated_files.find_dirs(root,plated_files.joinpath(name,v),ret);
 			}
 		}
 		return ret
@@ -408,7 +434,7 @@ using plated_chunks.fill_chunks(date,chunks) chunks is returned.
 	{
 		if(!cache[fname])
 		{
-			var s=await plated.pfs.readFile(path.join(root,fname),'utf8').catch(e=>{})
+			var s=await plated.pfs.readFile(plated_files.joinpath(root,fname),'utf8').catch(e=>{})
 			if(s)
 			{
 				cache[fname]=s;
@@ -462,14 +488,14 @@ all of these into the current chunk namespace for this file.
 	{
 		var list=[];
 		var d=path.dirname(fname);
-		var p=path.join(opts.source,d);
+		var p=plated_files.joinpath(opts.source,d);
 		var files=await plated.pfs.readdir(p);
 		files.sort();
 		files.reverse();
 		for(var i in files){ var v=files[i];
 			if( plated_files.filename_is_basechunk(v) )
 			{
-				var p2=path.join(d,v);
+				var p2=plated_files.joinpath(d,v);
 				list.push(p2);
 			}
 		}
@@ -494,7 +520,7 @@ from source into the output.
 	{
 		if(plated_files.filename_is_plated(fname))
 		{
-			var output_filename = path.join( opts.output , plated.files.filename_to_output(fname) );
+			var output_filename = plated_files.joinpath( opts.output , plated.files.filename_to_output(fname) );
 			
 			plated_files.prepare_namespace(fname); // prepare merged namespace
 			
@@ -520,10 +546,10 @@ from source into the output.
 		}
 		else
 		{
-			var s=await plated.pfs.readFile( path.join(opts.source,fname) ).catch(e=>{})
+			var s=await plated.pfs.readFile( plated_files.joinpath(opts.source,fname) ).catch(e=>{})
 			if(s!==null)
 			{
-				await plated_files.write( path.join(opts.output,fname), s );
+				await plated_files.write( plated_files.joinpath(opts.output,fname), s );
 			}
 		}
 	}
@@ -569,7 +595,7 @@ Build all files found in the source dir into the output dir.
 
 		for(var d in plated.dirs){ var chunks=plated.dirs[d];
 
-			plated_files.prepare_namespace( path.join(d,".json") ); // prepare merged namespace
+			plated_files.prepare_namespace( plated_files.joinpath(d,".json") ); // prepare merged namespace
 			var merged_chunks=plated.chunks.merge_namespace({});
 
 			merged_chunks._output_filename=d+"/"

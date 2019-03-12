@@ -47,7 +47,6 @@ An example can be found in test-source/005-redirect
 
 //var fs = require('fs');
 var util=require('util');
-var path=require('path');
 var JSON5=require('json5');
 var JSON_stringify = require('json-stable-stringify');
 
@@ -123,10 +122,10 @@ Tweak all the base chunks grouped by dir name and pre cascaded/merged
 					var merged_chunks=plated.chunks.merge_namespace(chunks);
 
 					merged_chunks.html=plated_plugin_redirect.config.html
-					merged_chunks._redirect_from=path.join( dirname , n )
+					merged_chunks._redirect_from=plated.files.joinpath( dirname , n )
 					merged_chunks._redirect_to=plated.chunks.replace( v , merged_chunks )
 
-//					var output_filename = path.join( opts.output , merged_chunks._redirect_from );
+//					var output_filename = plated.files.joinpath( opts.output , merged_chunks._redirect_from );
 					
 					merged_chunks._output_filename=merged_chunks._redirect_from
 					merged_chunks._output_chunkname="html"
