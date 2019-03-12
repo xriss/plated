@@ -18,9 +18,7 @@ if(typeof window !== 'undefined')
 
 var loadjs=require("loadjs");
 
-var plated=require("plated").create({"hashchunk":"#^",delimiter:"{}"}) // create a base instance
-
-
+var plated=require("plated").create() // create a base instance for inline chunks
 
 plated_live.chunks={}
 plated.chunks.fill_chunks( require('fs').readFileSync(__dirname + '/chunks.html', 'utf8'), plated_live.chunks )
@@ -128,6 +126,17 @@ plated_live.start_loaded=async function(){
 	}
 	await plated_live.pfs.writeFile("/plated_live.json",jsstringify(plated_live.opts,{space:"\t"})).catch(function(){})
 	
+	// this is the plated that works in browser to build the website
+	plated_live.plated=require("plated").create({
+			site  :"",
+			root  :"",
+			source:plated_live.opts.git_repo+"/"+plated_live.opts.plated_source,
+			output:plated_live.opts.git_repo+"/"+plated_live.opts.plated_output,
+		},{
+			pfs:plated.pfs,
+		})
+
+
 	var ace=require("brace")
 	require("brace/ext/modelist")
 	require("brace/theme/twilight")

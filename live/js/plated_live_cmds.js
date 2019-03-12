@@ -254,6 +254,15 @@ Change current directory to PATH.
 Create a new empty file at the given PATH.
 `
 
+	cmds.list.build=async function(cmd)
+	{
+		await plated_live.plated.build()
+	}
+	cmds.list.build.help=`
+	build
+build the plated site.
+`
+
 	cmds.list.git.status=async function(cmd)
 	{
 		let gitroot = await plated_live.git.findRoot({ filepath: plated_live.opts.cd })
