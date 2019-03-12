@@ -18,7 +18,7 @@ if(typeof window !== 'undefined')
 
 var loadjs=require("loadjs");
 
-var plated=require("plated").create() // create a base instance for inline chunks
+var plated=require("plated").create({},{pfs:{}}) // create a base instance for inline chunks with no file access
 
 plated_live.chunks={}
 plated.chunks.fill_chunks( require('fs').readFileSync(__dirname + '/chunks.html', 'utf8'), plated_live.chunks )

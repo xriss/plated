@@ -135,6 +135,21 @@ Return the lstat of this path
 		path=plated_files.trimpath(path)
 		return plated.pfs.lstat(path)
 	}
+	
+/***************************************************************************
+--[[#js.plated_files.readdir
+
+	await plated_files.readdir(path)
+
+Return the readdir of this path
+
+]]*/
+	plated_files.readdir = function(path)
+	{
+		path=plated_files.trimpath(path)
+		return plated.pfs.readdir(path)
+	}
+	
 
 /***************************************************************************
 --[[#js.plated_files.mkdir
@@ -367,7 +382,7 @@ rather dangerous so please be careful.
 	var ttt=await plated_files.exists(path)
 		if( await plated_files.exists(path) )
 		{
-			var files = await plated.pfs.readdir(path);
+			var files = await plated_files.readdir(path);
 			for(var index=0 ; index<files.length ; index++ )
 			{
 				var file=files[index]
@@ -406,7 +421,7 @@ We follow symlinks into other directories.
 	plated_files.find_files = async function(root,name,ret)
 	{
 		ret=ret || []
-		var files=await plated.pfs.readdir( plated_files.joinpath(root,name) );
+		var files=await plated_files.readdir( plated_files.joinpath(root,name) );
 		for(var i in files){ var v=files[i];
 			var st=await plated_files.stat( plated_files.joinpath(root,name,v) ); // follow links
 			if( stat_isDirectory(st) )
@@ -434,7 +449,7 @@ directory. We follow symlinks into other directories.
 	{
 		ret=ret || []
 		ret.push( name )
-		var files=await plated.pfs.readdir( plated_files.joinpath(root,name) );
+		var files=await plated_files.readdir( plated_files.joinpath(root,name) );
 		for(var i in files){ var v=files[i];
 			var st=await plated_files.stat( plated_files.joinpath(root,name,v) ); // follow links
 			if( stat_isDirectory(st) )
@@ -528,7 +543,7 @@ all of these into the current chunk namespace for this file.
 		var list=[];
 		var d=path.dirname(fname);
 		var p=plated_files.joinpath(opts.source,d);
-		var files=await plated.pfs.readdir(p);
+		var files=await plated_files.readdir(p);
 		files.sort();
 		files.reverse();
 		for(var i in files){ var v=files[i];
