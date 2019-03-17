@@ -1,7 +1,7 @@
 {
   "name": "plated_live",
   "description": "Plated_live is an *utterly* browser editor for plated sites.",
-  "version": "0.0.8",
+  "version": "0.0.9",
   "license": "MIT",
   "repository": {
     "type": "git",
