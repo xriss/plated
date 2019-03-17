@@ -208,50 +208,132 @@ plated_live.start_loaded=async function(){
 	await plated_live.git_clone()
 
 	plated_live.jstree=$('#pagecake_tree').jstree()
-	plated_live.jstree.on('changed.jstree', async function (e, data) {
+	plated_live.jstree.on('changed.jstree', function (e, data) {
 		if(data.selected.length>0)
 		{
 			var it=data.instance.get_node(data.selected[0])
-			$("#view_iframe").remove() // kill iframe
-			if( it.original.mode=="view" )
-			{
-				var stat = await plated_live.pfs.stat(it.original.path||"/")
-				if(stat && stat.type=="file")
-				{
-					$("#editor").hide();
-					$("#split_right").append('<iframe id="view_iframe" style="background:#fff"></iframe>');
-					await plated_live.plated.build() // force updates 
-					
-					var filepath=it.original.path
-					var filedata=await plated_live.pfs.readFile(filepath,"utf8")
-					var doc = document.getElementById('view_iframe').contentWindow.document
-					doc.open()
-					if(filepath.endsWith(".html"))
-					{
-						doc.write(filedata)
-					}
-					else
-					{
-						doc.write("<pre>")
-						doc.write(filedata)
-						doc.write("</pre>")
-					}
-					doc.close()
-				}
-			}
-			else
-			{
-				$("#editor").show()
-				plated_live.show_session({path:it.original.path})
-			}
+			plated_live.goto_view( it.original.path )
 		}
 	})
 	
 	await plated_live.rescan_tree()
 	$("#treedrop").on( "selectmenuchange", function( event, ui ) { plated_live.rescan_tree() } );
 
-
+	plated_live.viewing_filepath=""
+	$("body").keydown(plated_live.keydown)
+	$(plated_live.editor.textInput.getElement()).keydown(plated_live.keydown)
+ 
+ 
 	window.setInterval(plated_live.cron,1000) // start cron tasks
+}
+
+plated_live.keydown=function(e)
+{
+//	console.log(e.which)
+	if(e.which==115) // F4
+	{
+		plated_live.swap_view()
+		return false;
+	}
+}
+
+
+plated_live.goto_view=async function(fn)
+{
+	if(!fn) { return }
+	console.log("switch to "+fn)
+
+	var source="/"+plated_live.opts.git_repo+"/"+plated_live.opts.plated_source+"/"
+
+	$("#view_iframe").remove() // kill iframe
+
+	if( fn.startsWith(source) || fn=="/plated_live.json" )
+	{
+		$("#editor").show()
+		plated_live.show_session({path:fn})
+	}
+	else
+	{
+		var stat = await plated_live.pfs.stat(fn).catch(e=>{})
+		if(stat && stat.type=="file")
+		{
+			$("#editor").hide();
+			$("#split_right").append('<iframe id="view_iframe" style="background:#fff"></iframe>');
+			await plated_live.plated.build() // force updates 
+			
+			var filepath=fn
+			var filedata=await plated_live.pfs.readFile(filepath,"utf8")
+			var win = document.getElementById('view_iframe').contentWindow
+			var doc = win.document
+			doc.open()
+			if(filepath.endsWith(".html"))
+			{
+				doc.write(filedata)
+			}
+			else
+			{
+				doc.write("<pre>")
+				doc.write(filedata)
+				doc.write("</pre>")
+			}
+			doc.close()
+			plated_live.viewing_filepath=filepath
+			$(win).keydown(plated_live.keydown)
+
+		}
+	}
+}
+
+plated_live.swap_view=async function()
+{
+	var source="/"+plated_live.opts.git_repo+"/"+plated_live.opts.plated_source+"/"
+	var output="/"+plated_live.opts.git_repo+"/"+plated_live.opts.plated_output+"/"
+
+	if( plated_live.viewing_filepath.startsWith(source) )
+	{
+//		console.log("source : "+plated_live.viewing_filepath)
+
+		var fn=plated_live.viewing_filepath.substring(source.length)
+		var fo=output+plated_live.plated.files.filename_to_output(fn)
+
+		var stat = await plated_live.pfs.stat(fo).catch(f=>{})
+		if(stat && stat.type=="file")
+		{
+			return plated_live.goto_view(fo)
+		}
+	}
+	else
+	if( plated_live.viewing_filepath.startsWith(output) )
+	{
+//		console.log("output : "+plated_live.viewing_filepath)
+
+		var fn=plated_live.viewing_filepath.substring(output.length)
+
+		var fo=source+fn
+		var stat = await plated_live.pfs.stat(fo).catch(f=>{})
+		if(stat && stat.type=="file")
+		{
+			return plated_live.goto_view(fo) // try same filename in source path
+		}
+
+		var aa=fn.split(".")
+		
+		var i=aa.length
+		if(i>1)
+		{
+			aa[i]=aa[i-1]
+			aa[i-1]="^"
+		}
+		
+		fn=aa.join(".")
+		fo=source+fn
+		stat = await plated_live.pfs.stat(fo).catch(f=>{})
+		if(stat && stat.type=="file")
+		{
+			return plated_live.goto_view(fo) // filename with .^. 
+		}
+
+	}
 }
 
 plated_live.cron=async function()
@@ -290,6 +372,7 @@ plated_live.show_session=async function(it){
 				plated_live.sessions[it.path]=ace.createEditSession( filedata , mode )
 			}
 			plated_live.editor.setSession( plated_live.sessions[it.path] )
+			plated_live.viewing_filepath=it.path
 		}
 	}
 }
