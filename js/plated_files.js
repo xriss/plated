@@ -449,8 +449,8 @@ directory. We follow symlinks into other directories.
 	{
 		ret=ret || []
 		ret.push( name )
-		var files=await plated_files.readdir( plated_files.joinpath(root,name) );
-		for(var i in files){ var v=files[i];
+		var files=await plated_files.readdir( plated_files.joinpath(root,name) ).catch(e=>{});
+		for(var i in files||[]){ var v=files[i];
 			var st=await plated_files.stat( plated_files.joinpath(root,name,v) ); // follow links
 			if( stat_isDirectory(st) )
 			{

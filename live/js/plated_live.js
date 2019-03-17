@@ -361,7 +361,7 @@ plated_live.sessions={}
 plated_live.show_session=async function(it){
 	if(it.path)
 	{
-		var stat = await plated_live.pfs.stat(it.path)
+		var stat = await plated_live.pfs.stat(it.path).catch(e=>{})
 		if(stat && stat.type=="file")
 		{
 //console.log("Loading "+it.path)
@@ -423,14 +423,11 @@ plated_live.get_dir_tree=async function(dir,base)
 	var dat=[]
 	var walk = async function(dir,dat)
 	{
-//console.log(dir||"/")
-		var list = await plated_live.pfs.readdir(dir||"/")
-//console.log("list")
-//console.log(list)
-			var addfile=async function(file){
+		var list = await plated_live.pfs.readdir(dir||"/").catch(e=>{})
+		var addfile=async function(file){
 			var path=dir+"/"+file
 //			console.log(path)
-			var stat = await plated_live.pfs.stat(path)
+			var stat = await plated_live.pfs.stat(path).catch(e=>{})
 			if (stat && stat.type=="dir")
 			{
 				var it={children:[]}
@@ -449,7 +446,7 @@ plated_live.get_dir_tree=async function(dir,base)
 				dat.push(it)
 			}
 		}
-		for(idx in list){ var file=list[idx]
+		for(idx in list||{}){ var file=list[idx]
 			await addfile(file)
 		}
 	}
