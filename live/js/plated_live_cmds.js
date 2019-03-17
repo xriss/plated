@@ -10,7 +10,7 @@ plated_live_cmds.create=function(plated_live)
 	// just return given argument if it begins with a /
 	var joincd=function(p)
 	{
-		if(!p) { return plated_live.opts.cd }
+		if(!p) { return plated_live.opts_get("cd") }
 		
 		if(p[0]=="/")
 		{
@@ -203,7 +203,7 @@ List all files and dirs at PATH.
 		
 		var p=cmd.args[0]
 		
-		var cd=plated_live.opts.cd
+		var cd=plated_live.opts_get("cd")
 		if(p)
 		{
 			if( p[0] == "/" ) // replace
@@ -225,7 +225,7 @@ List all files and dirs at PATH.
 			plated_live.opts.cd=cd
 		}
 		
-		return plated_live.opts.cd
+		return plated_live.opts_get("cd")
 	}
 	cmds.list.cd.help=`
 	cd
@@ -265,7 +265,7 @@ build the plated site.
 
 	cmds.list.git.status=async function(cmd)
 	{
-		let gitroot = await plated_live.git.findRoot({ filepath: plated_live.opts.cd })
+		let gitroot = await plated_live.git.findRoot({ filepath:joincd() })
 		var ret=[]
 		var d=await scan_git(gitroot)
 		for(var i=0;i<d.length;i++)
@@ -290,7 +290,7 @@ Print current status of the git repo.
 
 	cmds.list.git.add=async function(cmd)
 	{
-		let gitroot = await plated_live.git.findRoot({ filepath: plated_live.opts.cd })
+		let gitroot = await plated_live.git.findRoot({ filepath:joincd() })
 		var ret=[]
 		var d=await scan_git(gitroot)
 		for(var i=0;i<d.length;i++)
@@ -315,7 +315,7 @@ Add FILENAME to staging.
 
 	cmds.list.git.commit=async function(cmd)
 	{
-		let gitroot = await plated_live.git.findRoot({ filepath: plated_live.opts.cd })
+		let gitroot = await plated_live.git.findRoot({ filepath:joincd() })
 		
 		var changes=0 // check for changes
 		var d = await plated_live.git.listFiles({ dir: gitroot }) // ask git
@@ -349,7 +349,7 @@ Commit staging with optional MESSAGE.
 
 	cmds.list.git.pull=async function(cmd)
 	{
-		let gitroot = await plated_live.git.findRoot({ filepath: plated_live.opts.cd })
+		let gitroot = await plated_live.git.findRoot({ filepath:joincd() })
 		await plated_live.git.pull(plated_live.gitopts({ dir: gitroot }))
 	}
 	cmds.list.git.pull.help=`
@@ -359,7 +359,7 @@ Pull changes from remote.
 
 	cmds.list.git.push=async function(cmd)
 	{
-		let gitroot = await plated_live.git.findRoot({ filepath: plated_live.opts.cd })
+		let gitroot = await plated_live.git.findRoot({ filepath:joincd() })
 		await plated_live.git.push(plated_live.gitopts({ dir: gitroot }))
 	}
 	cmds.list.git.push.help=`
@@ -369,7 +369,7 @@ Push changes to remote.
 
 	cmds.list.git.clone=async function(cmd)
 	{
-		let gitroot = await plated_live.git.findRoot({ filepath: plated_live.opts.cd })
+		let gitroot = await plated_live.git.findRoot({ filepath:joincd() })
 		
 		var files=await scan_pfs(gitroot)
 		for(var i=files.length-1;i>=0;i--)
@@ -380,7 +380,7 @@ Push changes to remote.
 
 		await plated_live.git.clone(plated_live.gitopts({
 			dir: gitroot,
-			url: plated_live.opts.git_url+plated_live.opts.git_repo,
+			url: plated_live.opts_get("git_url"),
 			ref: 'master',
 			singleBranch: true,
 			depth: 1

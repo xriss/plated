@@ -3,6 +3,8 @@ var plated_live=exports;
 
 var jsstringify=require("json-stable-stringify")
 
+var path=require("path")
+
 if(typeof window !== 'undefined')
 {
 	window.$ = window.jQuery = require("jquery");
@@ -57,8 +59,7 @@ plated_live.worker=async function(){
 plated_live.opts={}
 
 plated_live.opts.noworker=false
-plated_live.opts.git_url="https://github.com/xriss/"
-plated_live.opts.git_repo="plated-test"
+plated_live.opts.git_url="https://github.com/xriss/plated-test"
 plated_live.opts.git_user=""
 plated_live.opts.git_pass=""
 plated_live.opts.git_token=""
@@ -69,20 +70,29 @@ plated_live.opts.plated_output="docs"
 plated_live.opts.author_name="plated_live"
 plated_live.opts.author_email="plated_live@wetgenes.com"
 
-plated_live.opts.cd="/"+plated_live.opts.git_repo
+plated_live.opts_get=function(s)
+{
+	if(s=="git_repo") // special
+	{
+		return path.basename( plated_live.opts.git_url )
+	}
+	return plated_live.opts[s]
+}
+
+plated_live.opts.cd="/"+plated_live.opts_get("git_repo")
 
 // merge opts into git call values
 plated_live.gitopts=function(it)
 {
 	it=it || {}
 
-	it.dir          = it.dir          || '/'+plated_live.opts.git_repo
+	it.dir          = it.dir          || '/'+plated_live.opts_get("git_repo")
 	it.corsProxy    = it.corsProxy    || 'https://cors.isomorphic-git.org'
-	it.author       = it.author       || { name:plated_live.opts.author_name , email:plated_live.opts.author_email }
-	it.username     = it.username     || plated_live.opts.git_user
-	it.password     = it.password     || plated_live.opts.git_pass
-	it.token        = it.token        || plated_live.opts.git_token
-	it.oauth2format = it.oauth2format || plated_live.opts.git_oauth
+	it.author       = it.author       || { name:plated_live.opts_get("author_name") , email:plated_live.opts_get("author_email") }
+	it.username     = it.username     || plated_live.opts_get("git_user")
+	it.password     = it.password     || plated_live.opts_get("git_pass")
+	it.token        = it.token        || plated_live.opts_get("git_token")
+	it.oauth2format = it.oauth2format || plated_live.opts_get("git_oauth")
 
 	return it
 }
@@ -99,7 +109,7 @@ plated_live.start=function(opts){
 
 plated_live.start_loaded=async function(){
 
-	if(plated_live.opts.noworker)
+	if(plated_live.opts_get("noworker"))
 	{
 		plated_live.git_setup()
 	}
@@ -130,8 +140,8 @@ plated_live.start_loaded=async function(){
 	plated_live.plated=require("plated").create({
 			site  :"",
 			root  :"",
-			source:"/"+plated_live.opts.git_repo+"/"+plated_live.opts.plated_source,
-			output:"/"+plated_live.opts.git_repo+"/"+plated_live.opts.plated_output,
+			source:"/"+plated_live.opts_get("git_repo")+"/"+plated_live.opts_get("plated_source"),
+			output:"/"+plated_live.opts_get("git_repo")+"/"+plated_live.opts_get("plated_output"),
 			dumpjson:true,
 		},{
 			pfs:plated_live.pfs,
@@ -243,16 +253,12 @@ plated_live.goto_view=async function(fn)
 	if(!fn) { return }
 	console.log("switch to "+fn)
 
-	var source="/"+plated_live.opts.git_repo+"/"+plated_live.opts.plated_source+"/"
+	var source="/"+plated_live.opts_get("git_repo")+"/"+plated_live.opts_get("plated_source")+"/"
+	var output="/"+plated_live.opts_get("git_repo")+"/"+plated_live.opts_get("plated_output")+"/"
 
 	$("#view_iframe").remove() // kill iframe
 
-	if( fn.startsWith(source) || fn=="/plated_live.json" )
-	{
-		$("#editor").show()
-		plated_live.show_session({path:fn})
-	}
-	else
+	if( fn.startsWith(output) )
 	{
 		var stat = await plated_live.pfs.stat(fn).catch(e=>{})
 		if(stat && stat.type=="file")
@@ -282,12 +288,18 @@ plated_live.goto_view=async function(fn)
 
 		}
 	}
+	else
+	{
+		$("#editor").show()
+		plated_live.show_session({path:fn})
+	}
+
 }
 
 plated_live.swap_view=async function()
 {
-	var source="/"+plated_live.opts.git_repo+"/"+plated_live.opts.plated_source+"/"
-	var output="/"+plated_live.opts.git_repo+"/"+plated_live.opts.plated_output+"/"
+	var source="/"+plated_live.opts_get("git_repo")+"/"+plated_live.opts_get("plated_source")+"/"
+	var output="/"+plated_live.opts_get("git_repo")+"/"+plated_live.opts_get("plated_output")+"/"
 
 	if( plated_live.viewing_filepath.startsWith(source) )
 	{
@@ -370,6 +382,7 @@ plated_live.show_session=async function(it){
 				var filedata=await plated_live.pfs.readFile(it.path,"utf8")
 				var mode = ace.acequire("ace/ext/modelist").getModeForPath(it.path).mode
 				plated_live.sessions[it.path]=ace.createEditSession( filedata , mode )
+				plated_live.sessions[it.path].setUseWrapMode(true);
 			}
 			plated_live.editor.setSession( plated_live.sessions[it.path] )
 			plated_live.viewing_filepath=it.path
@@ -380,11 +393,11 @@ plated_live.show_session=async function(it){
 
 plated_live.git_clone=async function(){
 
-	await plated_live.pfs.mkdir("/"+plated_live.opts.git_repo).catch(error=>{ console.log(error) })
+	await plated_live.pfs.mkdir("/"+plated_live.opts_get("git_repo")).catch(error=>{ console.log(error) })
 	await plated_live.git.clone({
-		dir: '/'+plated_live.opts.git_repo,
+		dir: '/'+plated_live.opts_get("git_repo"),
 		corsProxy: 'https://cors.isomorphic-git.org',
-		url: plated_live.opts.git_url+plated_live.opts.git_repo,
+		url: plated_live.opts_get("git_url"),
 		ref: 'master',
 		singleBranch: true,
 		depth: 1
@@ -397,14 +410,14 @@ plated_live.rescan_tree=async function()
 	
 	if(ov==1) // full files system
 	{
-		var d1= await plated_live.get_dir_tree("/")
+		var d1= await plated_live.get_dir_tree("")
 		
 		plated_live.jstree.jstree(true).settings.core.data = d1
 	}
 	else
 	{
-		var d1= await plated_live.get_dir_tree("/"+plated_live.opts.git_repo+"/"+plated_live.opts.plated_source)
-		var d2= await plated_live.get_dir_tree("/"+plated_live.opts.git_repo+"/"+plated_live.opts.plated_output,{mode:"view"})
+		var d1= await plated_live.get_dir_tree("/"+plated_live.opts_get("git_repo")+"/"+plated_live.opts_get("plated_source"))
+		var d2= await plated_live.get_dir_tree("/"+plated_live.opts_get("git_repo")+"/"+plated_live.opts_get("plated_output"),{mode:"view"})
 		
 		plated_live.jstree.jstree(true).settings.core.data = [
 			{ text:"/plated_live.json" , path:"/plated_live.json" },
