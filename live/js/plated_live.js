@@ -197,7 +197,12 @@ plated_live.start_loaded=async function(){
 				$(this).menu('option', 'position', { my: 'left top', at: 'right top' });
 			}
 		},
-	});
+	})
+	
+	$("#menubar").on( "menuselect", function(e,ui){
+		var id=ui.item.attr("id")
+		plated_live.click(id)
+	})
 	
 	plated_live.cmds=require("./plated_live_cmds.js").create(plated_live)
 	plated_live.terminal=$('#pagecake_console').terminal(plated_live.cmds,
@@ -240,13 +245,34 @@ plated_live.start_loaded=async function(){
 plated_live.keydown=function(e)
 {
 //	console.log(e.which)
-	if(e.which==115) // F4
+	if(e.which==116) // F5
 	{
 		plated_live.swap_view()
 		return false;
 	}
 }
 
+plated_live.click=async function(id)
+{
+	var cdexec=function(s)
+	{
+		plated_live.opts.cd="/"+plated_live.opts_get("git_repo")
+		plated_live.terminal.exec(s)
+	}
+	switch(id)
+	{
+		case "nenu_git_status": cdexec("git status"); break
+		case "nenu_git_clone":  cdexec("git clone");  break
+		case "nenu_git_pull":   cdexec("git pull");   break
+		case "nenu_git_add":    cdexec("git add");    break
+		case "nenu_git_commit": cdexec("git commit"); break
+		case "nenu_git_push":   cdexec("git push");   break
+
+		default:
+			console.log("unhandled click "+id)
+		break
+	}
+}
 
 plated_live.goto_view=async function(fn)
 {
