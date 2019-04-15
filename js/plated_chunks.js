@@ -24,6 +24,7 @@ var util=require('util');
 var marked=require('marked');
 var JSON5=require('json5');
 
+
 // is this crap global?
 marked.setOptions({
 	renderer:    new marked.Renderer(),
@@ -173,7 +174,7 @@ chunks where we wish to bubble down css values into sub directories.
 						}
 						var words=l.substring(opts.hashchunk.length).split(/\s+/); // split on whitespace
 						name="";
-						if( (words[0]) && words[0].match(/^[0-9a-zA-Z_\-\.]+$/) ) // a valid chunk name, 
+						if( (words[0]) && words[0].match(/^[0-9a-zA-Z_\-\.\/\@]+$/) ) // a valid chunk name, 
 						{
 							name=words[0];
 						}
@@ -390,7 +391,7 @@ Remove last namespace from top of the stack.
 Remove any chunks that begin with "_" these are all internal chunks 
 used by plated code. The user should not be creating any chunks whose 
 names begin with an underscore. Also none of these chunks should ever 
-bubble down through the heir achy, they belong only to the page in 
+bubble down through the heirachy, they belong only to the page in 
 which they are created..
 
 A new object full of only chunks that do not begin with an underscore 
@@ -658,7 +659,7 @@ use will survive.
 	{
 		var v_unesc=v.split("&amp;").join("&"); //turn html escaped & back into just & so we can let markdown break our tags
 
-		var aa=v_unesc.split(/([^0-9a-zA-Z_\-\.]+)/g); // valid chars for chunk names and indexes
+		var aa=v_unesc.split(/([^0-9a-zA-Z_\-\.\/\@]+)/g); // valid chars for chunk names and indexes
 
 		var last,next;
 		var opp="replace";
@@ -687,7 +688,7 @@ use will survive.
 				}
 			}
 			else
-			if(a.match(/^[0-9a-zA-Z_\-\.]+$/)) // a chunk name
+			if(a.match(/^[0-9a-zA-Z_\-\.\/\@]+$/)) // a chunk name
 			{
 				switch(opp)
 				{
