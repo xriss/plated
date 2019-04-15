@@ -245,7 +245,7 @@ plated_live.start_loaded=async function(){
 plated_live.keydown=function(e)
 {
 //	console.log(e.which)
-	if(e.which==116) // F5
+	if(e.which==119) // F8
 	{
 		plated_live.swap_view()
 		return false;
@@ -267,6 +267,8 @@ plated_live.click=async function(id)
 		case "nenu_git_add":    cdexec("git add");    break
 		case "nenu_git_commit": cdexec("git commit"); break
 		case "nenu_git_push":   cdexec("git push");   break
+		
+		case "nenu_plated_swap": plated_live.swap_view(); break
 
 		default:
 			console.log("unhandled click "+id)
@@ -312,6 +314,7 @@ plated_live.goto_view=async function(fn)
 			plated_live.viewing_filepath=filepath
 			$(win).keydown(plated_live.keydown)
 
+			$("#top_title").text(fn)
 		}
 	}
 	else
@@ -412,6 +415,7 @@ plated_live.show_session=async function(it){
 			}
 			plated_live.editor.setSession( plated_live.sessions[it.path] )
 			plated_live.viewing_filepath=it.path
+			$("#top_title").text(it.path)
 		}
 	}
 }
