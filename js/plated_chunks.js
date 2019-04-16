@@ -744,9 +744,10 @@ use will survive.
 							{
 								for(var ii=0;ii<last.length;ii++)
 								{
-									dp.push( plated_chunks.replace(next,
-										plated_chunks.deepmerge(dat,{_it:last[ii],_idx:ii+1},dat._flags)
-									) );
+									var d=plated_chunks.deepmerge(dat,{},dat._flags)
+									d._it=last[ii]
+									d._idx=ii+1
+									dp.push( plated_chunks.replace_once(next,d) );
 								}
 							}
 							else
@@ -756,9 +757,10 @@ use will survive.
 							}
 							else // just apply plate to this single object or string
 							{
-								dp.push( plated_chunks.replace(next,
-									plated_chunks.deepmerge(dat,{_it:last,_idx:1},dat._flags)
-								) );
+								var d=plated_chunks.deepmerge(dat,{},dat._flags)
+								d._it=last
+								d._idx=1
+								dp.push( plated_chunks.replace_once(next,d) );
 							}
 							last=( dp.join("") ); // join all items
 						}
