@@ -549,12 +549,11 @@ value from the array.
 	chunks = plated_chunks.replace_once(str,dat,lastpass)
 
 Parse the str and replace {} values once only using dat values. 
-lastpass is a flag as on the lastpass we allow ^ as the first char 
-inside the {} to prevent further expansion.
+lastpass is a flag as on the lastpass we allow final expansion and removal.
 
-Normally the inside are expanded and then expanded again but since this 
-is the last pass we know that will not happen so these tags are safe to 
-expand.
+We can use {[} {]} around areas of text to prevent further expansion 
+inside. So we can talk about plated inside plated, this is necesary for 
+our documentation.
 
 ]]*/
 	plated_chunks.replace_once=function(str,dat,lastpass)
