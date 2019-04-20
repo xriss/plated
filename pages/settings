@@ -1,0 +1,10 @@
+
+# The directory to write output files into
+
+PLATED_OUTPUT=../docs
+
+
+# The directory to read input files from
+
+PLATED_SOURCE=source
+

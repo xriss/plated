@@ -1,0 +1,5 @@
+cd `dirname $0`
+
+. ./settings
+
+./node_modules/.bin/plated watch --dumpjson --output=$PLATED_OUTPUT --source=$PLATED_SOURCE

@@ -1,0 +1,10 @@
+cd `dirname $0`
+
+. ./settings
+
+./watch &
+./serv &
+
+wait
+
+
