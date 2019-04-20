@@ -66,7 +66,7 @@
    "name": "html.plated_plugin.redirect"
   },
   {
-   "count": 66,
+   "count": 71,
    "name": "js"
   },
   {
@@ -166,7 +166,7 @@
    "name": "js.plated_chunks.set_namespace"
   },
   {
-   "count": 20,
+   "count": 25,
    "name": "js.plated_files"
   },
   {
@@ -227,6 +227,14 @@
   },
   {
    "count": 1,
+   "name": "js.plated_files.joinpath"
+  },
+  {
+   "count": 1,
+   "name": "js.plated_files.lstat"
+  },
+  {
+   "count": 1,
    "name": "js.plated_files.mkdir"
   },
   {
@@ -235,7 +243,19 @@
   },
   {
    "count": 1,
+   "name": "js.plated_files.readdir"
+  },
+  {
+   "count": 1,
    "name": "js.plated_files.source_to_output"
+  },
+  {
+   "count": 1,
+   "name": "js.plated_files.stat"
+  },
+  {
+   "count": 1,
+   "name": "js.plated_files.trimpath"
   },
   {
    "count": 1,
@@ -333,7 +353,7 @@
  "_docs_json": {
   "dirname": "{_root}docs",
   "dirs": {
-   "../js": ".js"
+   "../../js": ""
   },
   "ignore": {
    "node_modules": true
@@ -374,12 +394,12 @@
  },
  "_list": [
   {
-   "body": "<pre><code>chunks = plated_chunks.replace_once(str,dat,lastpass)</code></pre><p>Parse the str and replace {} values once only using dat values. \nlastpass is a flag as on the lastpass we allow ^ as the first char \ninside the {} to prevent further expansion.</p>\n<p>Normally the inside are expanded and then expanded again but since this \nis the last pass we know that will not happen so these tags are safe to \nexpand.</p>\n",
+   "body": "<pre><code>chunks = plated_chunks.replace_once(str,dat,lastpass)</code></pre><p>Parse the str and replace {} values once only using dat values. \nlastpass is a flag as on the lastpass we allow final expansion and removal.</p>\n<p>We can use {[} {]} around areas of text to prevent further expansion \ninside. So we can talk about plated inside plated, this is necesary for \nour documentation.</p>\n",
    "count": 1,
-   "file": "js/plated_chunks.js",
-   "line": 546,
+   "file": "../js/plated_chunks.js",
+   "line": 547,
    "name": "js.plated_chunks.replace_once",
-   "url": "https://github.com/xriss/plated/blob/master/js/plated_chunks.js"
+   "url": "../js/plated_chunks.js"
   }
  ],
  "_output_chunkname": "html",

@@ -1,4 +1,0 @@
-cd `dirname $0`
-
-./plated watch --dumpjson --output=docs
-

@@ -75,9 +75,14 @@
 <a class="sub" href="../docs/js.plated_files.filename_to_output"><span>/js.plated_files.filename_to_output</span></a>
 <a class="sub" href="../docs/js.plated_files.find_dirs"><span>/js.plated_files.find_dirs</span></a>
 <a class="sub" href="../docs/js.plated_files.find_files"><span>/js.plated_files.find_files</span></a>
+<a class="sub" href="../docs/js.plated_files.joinpath"><span>/js.plated_files.joinpath</span></a>
+<a class="sub" href="../docs/js.plated_files.lstat"><span>/js.plated_files.lstat</span></a>
 <a class="sub" href="../docs/js.plated_files.mkdir"><span>/js.plated_files.mkdir</span></a>
 <a class="sub" href="../docs/js.plated_files.prepare_namespace"><span>/js.plated_files.prepare_namespace</span></a>
+<a class="sub" href="../docs/js.plated_files.readdir"><span>/js.plated_files.readdir</span></a>
 <a class="sub" href="../docs/js.plated_files.source_to_output"><span>/js.plated_files.source_to_output</span></a>
+<a class="sub" href="../docs/js.plated_files.stat"><span>/js.plated_files.stat</span></a>
+<a class="sub" href="../docs/js.plated_files.trimpath"><span>/js.plated_files.trimpath</span></a>
 <a class="sub" href="../docs/js.plated_files.watch"><span>/js.plated_files.watch</span></a>
 <a class="sub" href="../docs/js.plated_files.write"><span>/js.plated_files.write</span></a><a class="par" href="../docs/js.plated_output"><span>/js.plated_output</span></a>
 
@@ -113,7 +118,7 @@
 
 <div class="wrap">
 <h1><a href="../docs/cmd.plated">cmd.plated</a></h1>
-<div class="source"><a href="https://github.com/xriss/plated/blob/master/js/cmd.js#L6">https://github.com/xriss/plated/blob/master/js/cmd.js</a></div>
+<div class="source"><a href="../js/cmd.js#L6">../js/cmd.js</a></div>
 <div><pre><code>plated</code></pre><p>The commandline interface to plated, the options passed into this 
 command are actually the same as the options passed into the opt object 
 when creating the js.plated module.</p>
@@ -122,7 +127,7 @@ when creating the js.plated module.</p>
 
 <div class="wrap">
 <h1><a href="../docs/cmd.plated.build">cmd.plated.build</a></h1>
-<div class="source"><a href="https://github.com/xriss/plated/blob/master/js/cmd.js#L17">https://github.com/xriss/plated/blob/master/js/cmd.js</a></div>
+<div class="source"><a href="../js/cmd.js#L17">../js/cmd.js</a></div>
 <div><pre><code>plated build </code></pre><p>The build action, output files are created once and then the command 
 returns.</p>
 <pre><code>--site=</code></pre><p>How we should link to this site if the link can not be relative, eg 
@@ -172,7 +177,7 @@ enough data to recreate pages at run time should that be necessary.</p>
 
 <div class="wrap">
 <h1><a href="../docs/cmd.plated.watch">cmd.plated.watch</a></h1>
-<div class="source"><a href="https://github.com/xriss/plated/blob/master/js/cmd.js#L95">https://github.com/xriss/plated/blob/master/js/cmd.js</a></div>
+<div class="source"><a href="../js/cmd.js#L95">../js/cmd.js</a></div>
 <div><pre><code>plated watch</code></pre><p>Build once and then watch all the files in source folder with any 
 change triggering a rebuild.</p>
 <p>This combined with a simple server and being careful to disable the 
@@ -190,7 +195,7 @@ descriptions of all available options there.</p>
 
 <div class="wrap">
 <h1><a href="../docs/html.plated">html.plated</a></h1>
-<div class="source"><a href="https://github.com/xriss/plated/blob/master/js/plated.js#L37">https://github.com/xriss/plated/blob/master/js/plated.js</a></div>
+<div class="source"><a href="../js/plated.js#L37">../js/plated.js</a></div>
 <div><p>Plated operates on a directory structure of files and simply copies the 
 files it does not understand into the output. As such you could have an 
 almost 100% generic static site with only a few special files getting 
@@ -201,7 +206,7 @@ characters.</p>
 
 <div class="wrap">
 <h1><a href="../docs/html.plated.chunks">html.plated.chunks</a></h1>
-<div class="source"><a href="https://github.com/xriss/plated/blob/master/js/plated.js#L110">https://github.com/xriss/plated/blob/master/js/plated.js</a></div>
+<div class="source"><a href="../js/plated.js#L110">../js/plated.js</a></div>
 <div><p>Chunk files are parsed one line at a time to break them into a number 
 of named chunks, lines that begin with the special characters #^ 
 trigger special processing all other lines are simple assigned to the 
@@ -286,7 +291,7 @@ line when plated is invoked if you wish to change it globally.</p>
 
 <div class="wrap">
 <h1><a href="../docs/html.plated.files">html.plated.files</a></h1>
-<div class="source"><a href="https://github.com/xriss/plated/blob/master/js/plated.js#L48">https://github.com/xriss/plated/blob/master/js/plated.js</a></div>
+<div class="source"><a href="../js/plated.js#L48">../js/plated.js</a></div>
 <div><p>A special string in the filename triggers chunk file processing, by 
 default this is ^. but it can be changed to another character or string 
 when plated is invoked. ^. seems to be a reasonably safe yet generally 
@@ -338,7 +343,7 @@ tools but not to dictate the use.</p>
 
 <div class="wrap">
 <h1><a href="../docs/html.plated.macros">html.plated.macros</a></h1>
-<div class="source"><a href="https://github.com/xriss/plated/blob/master/js/plated.js#L250">https://github.com/xriss/plated/blob/master/js/plated.js</a></div>
+<div class="source"><a href="../js/plated.js#L250">../js/plated.js</a></div>
 <div><p>Once we have some chunks defined we need to provide a way of refering to them 
 inside other chunks as a macro expansion.</p>
 <pre><code>#^chunkname trim=ends
@@ -398,7 +403,7 @@ carefully balanced to stop anything from going wrong.</p>
 
 <div class="wrap">
 <h1><a href="../docs/html.plated.operators">html.plated.operators</a></h1>
-<div class="source"><a href="https://github.com/xriss/plated/blob/master/js/plated.js#L343">https://github.com/xriss/plated/blob/master/js/plated.js</a></div>
+<div class="source"><a href="../js/plated.js#L343">../js/plated.js</a></div>
 <div><p>As well as chunknames we can also combine some logic operators to 
 control how macros expand. This is mostly of use with json chunks where 
 you wish to make a choice between a number of possibilities. For instance</p>
@@ -442,7 +447,7 @@ away if empty.</p>
 
 <div class="wrap">
 <h1><a href="../docs/html.plated_plugin.blog">html.plated_plugin.blog</a></h1>
-<div class="source"><a href="https://github.com/xriss/plated/blob/master/js/plated_plugin_blog.js#L20">https://github.com/xriss/plated/blob/master/js/plated_plugin_blog.js</a></div>
+<div class="source"><a href="../js/plated_plugin_blog.js#L20">../js/plated_plugin_blog.js</a></div>
 <div><pre><code>#^_blog_json
 {
     posts_per_page:5,
@@ -496,7 +501,7 @@ contain the _blog_post_body as defined in the blog post directory.</p>
 
 <div class="wrap">
 <h1><a href="../docs/html.plated_plugin.copy">html.plated_plugin.copy</a></h1>
-<div class="source"><a href="https://github.com/xriss/plated/blob/master/js/plated_plugin_copy.js#L30">https://github.com/xriss/plated/blob/master/js/plated_plugin_copy.js</a></div>
+<div class="source"><a href="../js/plated_plugin_copy.js#L30">../js/plated_plugin_copy.js</a></div>
 <div><pre><code>#^_copy_json
 {
     include:[
@@ -521,7 +526,7 @@ in include.</p>
 
 <div class="wrap">
 <h1><a href="../docs/html.plated_plugin.docs">html.plated_plugin.docs</a></h1>
-<div class="source"><a href="https://github.com/xriss/plated/blob/master/js/plated_plugin_docs.js#L20">https://github.com/xriss/plated/blob/master/js/plated_plugin_docs.js</a></div>
+<div class="source"><a href="../js/plated_plugin_docs.js#L20">../js/plated_plugin_docs.js</a></div>
 <div><pre><code>#^_docs_json
 {
     ignore:{
@@ -552,7 +557,7 @@ in source/docs for an example of how this can be themed and presented.</p>
 
 <div class="wrap">
 <h1><a href="../docs/html.plated_plugin.import">html.plated_plugin.import</a></h1>
-<div class="source"><a href="https://github.com/xriss/plated/blob/master/js/plated_plugin_import.js#L21">https://github.com/xriss/plated/blob/master/js/plated_plugin_import.js</a></div>
+<div class="source"><a href="../js/plated_plugin_import.js#L21">../js/plated_plugin_import.js</a></div>
 <div><pre><code>#^importedchunk import=dir/dir
 ...</code></pre><p>The content if this chunk is unimportant as it will be replaced by the 
 chunk referenced from another file via the import=dir flag. </p>
@@ -561,7 +566,7 @@ chunk referenced from another file via the import=dir flag. </p>
 
 <div class="wrap">
 <h1><a href="../docs/html.plated_plugin.redirect">html.plated_plugin.redirect</a></h1>
-<div class="source"><a href="https://github.com/xriss/plated/blob/master/js/plated_plugin_redirect.js#L21">https://github.com/xriss/plated/blob/master/js/plated_plugin_redirect.js</a></div>
+<div class="source"><a href="../js/plated_plugin_redirect.js#L21">../js/plated_plugin_redirect.js</a></div>
 <div><pre><code>#^_redirect_json
 {
     files:{
@@ -590,7 +595,7 @@ redirections so be careful not to clash with other files.</p>
 
 <div class="wrap">
 <h1><a href="../docs/js.plated">js.plated</a></h1>
-<div class="source"><a href="https://github.com/xriss/plated/blob/master/js/plated.js#L3">https://github.com/xriss/plated/blob/master/js/plated.js</a></div>
+<div class="source"><a href="../js/plated.js#L3">../js/plated.js</a></div>
 <div><p>Plated is a static site generator that uses a cascading chunk system to 
 describe the output pages.</p>
 <p>Since we are using node we are also able to dynamically build the pages 
@@ -615,14 +620,14 @@ look at these for a full description of what can be passed in here.</p>
 
 <div class="wrap">
 <h1><a href="../docs/js.plated.build">js.plated.build</a></h1>
-<div class="source"><a href="https://github.com/xriss/plated/blob/master/js/plated.js#L459">https://github.com/xriss/plated/blob/master/js/plated.js</a></div>
+<div class="source"><a href="../js/plated.js#L458">../js/plated.js</a></div>
 <div><pre><code>plated.build()</code></pre><p>Build all the output files from the inputs.</p>
 </div>
 </div>
 
 <div class="wrap">
 <h1><a href="../docs/js.plated.plugin">js.plated.plugin</a></h1>
-<div class="source"><a href="https://github.com/xriss/plated/blob/master/js/plated.js#L431">https://github.com/xriss/plated/blob/master/js/plated.js</a></div>
+<div class="source"><a href="../js/plated.js#L430">../js/plated.js</a></div>
 <div><pre><code>plated.plugin(it)</code></pre><p>Register a plugin, each plugin can provide the following function hooks.</p>
 <pre><code>dirs = it.process_dirs( dirs )</code></pre><p>Adjust the registered dirs data and return it.</p>
 <pre><code>file = it.process_file( file )</code></pre><p>Adjust or react to the file data and return it.</p>
@@ -633,7 +638,7 @@ associated with these chunks.</p>
 
 <div class="wrap">
 <h1><a href="../docs/js.plated.setup">js.plated.setup</a></h1>
-<div class="source"><a href="https://github.com/xriss/plated/blob/master/js/plated.js#L410">https://github.com/xriss/plated/blob/master/js/plated.js</a></div>
+<div class="source"><a href="../js/plated.js#L409">../js/plated.js</a></div>
 <div><pre><code>plated.setup(opts)</code></pre><p>Initialise plated and require the base plated modules: files, chunks 
 and output.</p>
 </div>
@@ -641,14 +646,14 @@ and output.</p>
 
 <div class="wrap">
 <h1><a href="../docs/js.plated.watch">js.plated.watch</a></h1>
-<div class="source"><a href="https://github.com/xriss/plated/blob/master/js/plated.js#L472">https://github.com/xriss/plated/blob/master/js/plated.js</a></div>
+<div class="source"><a href="../js/plated.js#L471">../js/plated.js</a></div>
 <div><pre><code>plated.watch()</code></pre><p>Continuously build the output files from the inputs whenever one of the input files changes</p>
 </div>
 </div>
 
 <div class="wrap">
 <h1><a href="../docs/js.plated_chunks">js.plated_chunks</a></h1>
-<div class="source"><a href="https://github.com/xriss/plated/blob/master/js/plated_chunks.js#L3">https://github.com/xriss/plated/blob/master/js/plated_chunks.js</a></div>
+<div class="source"><a href="../js/plated_chunks.js#L3">../js/plated_chunks.js</a></div>
 <div><p>Manage the chunks of text that are combined into a page.</p>
 <p>This module only exposes one function, which is used to create 
 the actual module with bound state data.</p>
@@ -663,7 +668,7 @@ function.</p>
 
 <div class="wrap">
 <h1><a href="../docs/js.plated_chunks.deepmerge">js.plated_chunks.deepmerge</a></h1>
-<div class="source"><a href="https://github.com/xriss/plated/blob/master/js/plated_chunks.js#L413">https://github.com/xriss/plated/blob/master/js/plated_chunks.js</a></div>
+<div class="source"><a href="../js/plated_chunks.js#L414">../js/plated_chunks.js</a></div>
 <div><pre><code>too = plated_chunks.deepmerge(frm,too,_flags)</code></pre><p>Merge the object, frm, into an object too. How values merge can be 
 adjusted by _flags the same way _flags works in parsing chunks. 
 same=merge is honoured here so some chunks can be appended rather than 
@@ -676,28 +681,28 @@ with any inputs.</p>
 
 <div class="wrap">
 <h1><a href="../docs/js.plated_chunks.delimiter_close_str">js.plated_chunks.delimiter_close_str</a></h1>
-<div class="source"><a href="https://github.com/xriss/plated/blob/master/js/plated_chunks.js#L81">https://github.com/xriss/plated/blob/master/js/plated_chunks.js</a></div>
+<div class="source"><a href="../js/plated_chunks.js#L82">../js/plated_chunks.js</a></div>
 <div><pre><code>s = plated_chunks.delimiter_close_str()</code></pre><p>Return the last half of the opts.delimiter string.</p>
 </div>
 </div>
 
 <div class="wrap">
 <h1><a href="../docs/js.plated_chunks.delimiter_open_str">js.plated_chunks.delimiter_open_str</a></h1>
-<div class="source"><a href="https://github.com/xriss/plated/blob/master/js/plated_chunks.js#L69">https://github.com/xriss/plated/blob/master/js/plated_chunks.js</a></div>
+<div class="source"><a href="../js/plated_chunks.js#L70">../js/plated_chunks.js</a></div>
 <div><pre><code>s = plated_chunks.delimiter_open_str()</code></pre><p>Return the first half of the opts.delimiter string.</p>
 </div>
 </div>
 
 <div class="wrap">
 <h1><a href="../docs/js.plated_chunks.delimiter_wrap_str">js.plated_chunks.delimiter_wrap_str</a></h1>
-<div class="source"><a href="https://github.com/xriss/plated/blob/master/js/plated_chunks.js#L93">https://github.com/xriss/plated/blob/master/js/plated_chunks.js</a></div>
+<div class="source"><a href="../js/plated_chunks.js#L94">../js/plated_chunks.js</a></div>
 <div><pre><code>s = plated_chunks.delimiter_wrap_str(s)</code></pre><p>Return the given string wrapped in the opts.delimiter string.</p>
 </div>
 </div>
 
 <div class="wrap">
 <h1><a href="../docs/js.plated_chunks.expand_tag">js.plated_chunks.expand_tag</a></h1>
-<div class="source"><a href="https://github.com/xriss/plated/blob/master/js/plated_chunks.js#L637">https://github.com/xriss/plated/blob/master/js/plated_chunks.js</a></div>
+<div class="source"><a href="../js/plated_chunks.js#L637">../js/plated_chunks.js</a></div>
 <div><pre><code>value = plated_chunks.expand_tag(v,dat,lastpass)</code></pre><p>Do all the magical things that enables a tag to expand, normally we 
 just lookup the value inside dat but a few operators can be applied.</p>
 <p>Operators are applied from left to right so we have no precedence 
@@ -713,7 +718,7 @@ use will survive.</p>
 
 <div class="wrap">
 <h1><a href="../docs/js.plated_chunks.fill_chunks">js.plated_chunks.fill_chunks</a></h1>
-<div class="source"><a href="https://github.com/xriss/plated/blob/master/js/plated_chunks.js#L107">https://github.com/xriss/plated/blob/master/js/plated_chunks.js</a></div>
+<div class="source"><a href="../js/plated_chunks.js#L108">../js/plated_chunks.js</a></div>
 <div><pre><code>chunks = plated_chunks.fill_chunks(str,chunks)</code></pre><p>break a string into chunks ( can merged with or replace other chunks ) 
 so chunks can be a previously filled list of chunks that we will 
 combine any chunks we find in the string with.</p>
@@ -739,7 +744,7 @@ chunks where we wish to bubble down css values into sub directories.</p>
 
 <div class="wrap">
 <h1><a href="../docs/js.plated_chunks.format_chunks">js.plated_chunks.format_chunks</a></h1>
-<div class="source"><a href="https://github.com/xriss/plated/blob/master/js/plated_chunks.js#L238">https://github.com/xriss/plated/blob/master/js/plated_chunks.js</a></div>
+<div class="source"><a href="../js/plated_chunks.js#L239">../js/plated_chunks.js</a></div>
 <div><pre><code>chunks = plated_chunks.format_chunks(chunks)</code></pre><p>Process the chunks according to their flags, a chunk with trim=ends set 
 will have white space removed from its beginning and end.</p>
 <p>A chunk with form=json will be parsed as json rather than a string. It 
@@ -751,7 +756,7 @@ into a html string.</p>
 
 <div class="wrap">
 <h1><a href="../docs/js.plated_chunks.lookup">js.plated_chunks.lookup</a></h1>
-<div class="source"><a href="https://github.com/xriss/plated/blob/master/js/plated_chunks.js#L499">https://github.com/xriss/plated/blob/master/js/plated_chunks.js</a></div>
+<div class="source"><a href="../js/plated_chunks.js#L500">../js/plated_chunks.js</a></div>
 <div><pre><code>chunks = plated_chunks.lookup(str,dat)</code></pre><p>lookup the string inside dat, the string can use dot notation such as 
 parent.member to lookup a value inside an object.</p>
 <p>Numbers can also be used to reverence arrays such as array.0 or array.1 
@@ -762,7 +767,7 @@ value from the array.</p>
 
 <div class="wrap">
 <h1><a href="../docs/js.plated_chunks.markdown">js.plated_chunks.markdown</a></h1>
-<div class="source"><a href="https://github.com/xriss/plated/blob/master/js/plated_chunks.js#L842">https://github.com/xriss/plated/blob/master/js/plated_chunks.js</a></div>
+<div class="source"><a href="../js/plated_chunks.js#L844">../js/plated_chunks.js</a></div>
 <div><pre><code>html = plated_chunks.markdown(str)</code></pre><p>Convert a markdown string to a html string. As a personal quirk We keep 
 newlines a little more eagerly than standard markdown allowing some 
 control over the spacing between your text.</p>
@@ -772,7 +777,7 @@ control over the spacing between your text.</p>
 
 <div class="wrap">
 <h1><a href="../docs/js.plated_chunks.merge_namespace">js.plated_chunks.merge_namespace</a></h1>
-<div class="source"><a href="https://github.com/xriss/plated/blob/master/js/plated_chunks.js#L471">https://github.com/xriss/plated/blob/master/js/plated_chunks.js</a></div>
+<div class="source"><a href="../js/plated_chunks.js#L472">../js/plated_chunks.js</a></div>
 <div><pre><code>chunks = plated_chunks.merge_namespace(dat)</code></pre><p>Merge all of the namespaces together, along with the dat, then return 
 this new set of chunks for easy lookup it should be safe to modify the 
 output merged chunks without accidentally changing anything in the 
@@ -784,14 +789,14 @@ page.</p>
 
 <div class="wrap">
 <h1><a href="../docs/js.plated_chunks.pop_namespace">js.plated_chunks.pop_namespace</a></h1>
-<div class="source"><a href="https://github.com/xriss/plated/blob/master/js/plated_chunks.js#L372">https://github.com/xriss/plated/blob/master/js/plated_chunks.js</a></div>
+<div class="source"><a href="../js/plated_chunks.js#L373">../js/plated_chunks.js</a></div>
 <div><pre><code>plated_chunks.pop_namespace(value)</code></pre><p>Remove last namespace from top of the stack.</p>
 </div>
 </div>
 
 <div class="wrap">
 <h1><a href="../docs/js.plated_chunks.prepare">js.plated_chunks.prepare</a></h1>
-<div class="source"><a href="https://github.com/xriss/plated/blob/master/js/plated_chunks.js#L287">https://github.com/xriss/plated/blob/master/js/plated_chunks.js</a></div>
+<div class="source"><a href="../js/plated_chunks.js#L288">../js/plated_chunks.js</a></div>
 <div><pre><code>array = plated_chunks.prepare(chunks)</code></pre><p>break a string on {data} ready to find the lookup values and do all the 
 templating actions. This just gets us an array of string parts we can 
 easily parse.</p>
@@ -800,7 +805,7 @@ easily parse.</p>
 
 <div class="wrap">
 <h1><a href="../docs/js.plated_chunks.push_namespace">js.plated_chunks.push_namespace</a></h1>
-<div class="source"><a href="https://github.com/xriss/plated/blob/master/js/plated_chunks.js#L355">https://github.com/xriss/plated/blob/master/js/plated_chunks.js</a></div>
+<div class="source"><a href="../js/plated_chunks.js#L356">../js/plated_chunks.js</a></div>
 <div><pre><code>plated_chunks.push_namespace(value)</code></pre><p>Add this value into the namespaces, we check this namespace as well as 
 the current chunk data when filling in chunks.</p>
 </div>
@@ -808,11 +813,11 @@ the current chunk data when filling in chunks.</p>
 
 <div class="wrap">
 <h1><a href="../docs/js.plated_chunks.remove_underscorechunks">js.plated_chunks.remove_underscorechunks</a></h1>
-<div class="source"><a href="https://github.com/xriss/plated/blob/master/js/plated_chunks.js#L386">https://github.com/xriss/plated/blob/master/js/plated_chunks.js</a></div>
+<div class="source"><a href="../js/plated_chunks.js#L387">../js/plated_chunks.js</a></div>
 <div><pre><code>newchunks = plated_chunks.remove_underscorechunks(chunks)</code></pre><p>Remove any chunks that begin with &quot;_&quot; these are all internal chunks 
 used by plated code. The user should not be creating any chunks whose 
 names begin with an underscore. Also none of these chunks should ever 
-bubble down through the heir achy, they belong only to the page in 
+bubble down through the heirachy, they belong only to the page in 
 which they are created..</p>
 <p>A new object full of only chunks that do not begin with an underscore 
 is returned.</p>
@@ -821,7 +826,7 @@ is returned.</p>
 
 <div class="wrap">
 <h1><a href="../docs/js.plated_chunks.replace">js.plated_chunks.replace</a></h1>
-<div class="source"><a href="https://github.com/xriss/plated/blob/master/js/plated_chunks.js#L813">https://github.com/xriss/plated/blob/master/js/plated_chunks.js</a></div>
+<div class="source"><a href="../js/plated_chunks.js#L815">../js/plated_chunks.js</a></div>
 <div><pre><code>value = plated_chunks.replace(str,dat)</code></pre><p>Repeatedly call replace_once until all things that can expand, have 
 expanded, or we ran out of sanity. Sanity is 100 levels of recursion, 
 just to be on the safe side.</p>
@@ -831,19 +836,18 @@ just to be on the safe side.</p>
 
 <div class="wrap">
 <h1><a href="../docs/js.plated_chunks.replace_once">js.plated_chunks.replace_once</a></h1>
-<div class="source"><a href="https://github.com/xriss/plated/blob/master/js/plated_chunks.js#L546">https://github.com/xriss/plated/blob/master/js/plated_chunks.js</a></div>
+<div class="source"><a href="../js/plated_chunks.js#L547">../js/plated_chunks.js</a></div>
 <div><pre><code>chunks = plated_chunks.replace_once(str,dat,lastpass)</code></pre><p>Parse the str and replace {} values once only using dat values. 
-lastpass is a flag as on the lastpass we allow ^ as the first char 
-inside the {} to prevent further expansion.</p>
-<p>Normally the inside are expanded and then expanded again but since this 
-is the last pass we know that will not happen so these tags are safe to 
-expand.</p>
+lastpass is a flag as on the lastpass we allow final expansion and removal.</p>
+<p>We can use {[} {]} around areas of text to prevent further expansion 
+inside. So we can talk about plated inside plated, this is necesary for 
+our documentation.</p>
 </div>
 </div>
 
 <div class="wrap">
 <h1><a href="../docs/js.plated_chunks.reset_namespace">js.plated_chunks.reset_namespace</a></h1>
-<div class="source"><a href="https://github.com/xriss/plated/blob/master/js/plated_chunks.js#L327">https://github.com/xriss/plated/blob/master/js/plated_chunks.js</a></div>
+<div class="source"><a href="../js/plated_chunks.js#L328">../js/plated_chunks.js</a></div>
 <div><pre><code>plated_chunks.reset_namespace()</code></pre><p>clear the namespace, a namespace is a list of chunks that will be 
 merged together as we descend into directories. The lower or later 
 chunks replacing or merging with the previous ones.</p>
@@ -852,14 +856,14 @@ chunks replacing or merging with the previous ones.</p>
 
 <div class="wrap">
 <h1><a href="../docs/js.plated_chunks.set_namespace">js.plated_chunks.set_namespace</a></h1>
-<div class="source"><a href="https://github.com/xriss/plated/blob/master/js/plated_chunks.js#L342">https://github.com/xriss/plated/blob/master/js/plated_chunks.js</a></div>
+<div class="source"><a href="../js/plated_chunks.js#L343">../js/plated_chunks.js</a></div>
 <div><pre><code>plated_chunks.set_namespace(values)</code></pre><p>Set the namespace to the given value.</p>
 </div>
 </div>
 
 <div class="wrap">
 <h1><a href="../docs/js.plated_files">js.plated_files</a></h1>
-<div class="source"><a href="https://github.com/xriss/plated/blob/master/js/plated_files.js#L3">https://github.com/xriss/plated/blob/master/js/plated_files.js</a></div>
+<div class="source"><a href="../js/plated_files.js#L3">../js/plated_files.js</a></div>
 <div><p>Manage the files that we read from and watch or write to.</p>
 <p>This module only exposes one function, which is used to create 
 the actual module with bound state data.</p>
@@ -874,7 +878,7 @@ function.</p>
 
 <div class="wrap">
 <h1><a href="../docs/js.plated_files.base_files_to_chunks">js.plated_files.base_files_to_chunks</a></h1>
-<div class="source"><a href="https://github.com/xriss/plated/blob/master/js/plated_files.js#L434">https://github.com/xriss/plated/blob/master/js/plated_files.js</a></div>
+<div class="source"><a href="../js/plated_files.js#L533">../js/plated_files.js</a></div>
 <div><pre><code>chunks = await plated_files.base_files_to_chunks(fname)</code></pre><p>Check this directory and all directories above for generic chunks build 
 all of these into the current chunk namespace for this file.</p>
 </div>
@@ -882,14 +886,14 @@ all of these into the current chunk namespace for this file.</p>
 
 <div class="wrap">
 <h1><a href="../docs/js.plated_files.build">js.plated_files.build</a></h1>
-<div class="source"><a href="https://github.com/xriss/plated/blob/master/js/plated_files.js#L513">https://github.com/xriss/plated/blob/master/js/plated_files.js</a></div>
+<div class="source"><a href="../js/plated_files.js#L612">../js/plated_files.js</a></div>
 <div><pre><code>plated_files.build()</code></pre><p>Build all files found in the source dir into the output dir.</p>
 </div>
 </div>
 
 <div class="wrap">
 <h1><a href="../docs/js.plated_files.build_file">js.plated_files.build_file</a></h1>
-<div class="source"><a href="https://github.com/xriss/plated/blob/master/js/plated_files.js#L466">https://github.com/xriss/plated/blob/master/js/plated_files.js</a></div>
+<div class="source"><a href="../js/plated_files.js#L565">../js/plated_files.js</a></div>
 <div><pre><code>plated_files.build_file(fname)</code></pre><p>Build the given source filename, using chunks or maybe just a raw copy 
 from source into the output.</p>
 </div>
@@ -897,14 +901,14 @@ from source into the output.</p>
 
 <div class="wrap">
 <h1><a href="../docs/js.plated_files.empty_cache">js.plated_files.empty_cache</a></h1>
-<div class="source"><a href="https://github.com/xriss/plated/blob/master/js/plated_files.js#L367">https://github.com/xriss/plated/blob/master/js/plated_files.js</a></div>
+<div class="source"><a href="../js/plated_files.js#L466">../js/plated_files.js</a></div>
 <div><pre><code>plated_files.empty_cache()</code></pre><p>Empty the current file cache, we fill it up as read files.</p>
 </div>
 </div>
 
 <div class="wrap">
 <h1><a href="../docs/js.plated_files.empty_folder">js.plated_files.empty_folder</a></h1>
-<div class="source"><a href="https://github.com/xriss/plated/blob/master/js/plated_files.js#L274">https://github.com/xriss/plated/blob/master/js/plated_files.js</a></div>
+<div class="source"><a href="../js/plated_files.js#L373">../js/plated_files.js</a></div>
 <div><pre><code>plated_files.empty_folder(path)</code></pre><p>Empty the (output) folder or make it if it does not exist. This is 
 rather dangerous so please be careful.</p>
 </div>
@@ -912,14 +916,14 @@ rather dangerous so please be careful.</p>
 
 <div class="wrap">
 <h1><a href="../docs/js.plated_files.exists">js.plated_files.exists</a></h1>
-<div class="source"><a href="https://github.com/xriss/plated/blob/master/js/plated_files.js#L39">https://github.com/xriss/plated/blob/master/js/plated_files.js</a></div>
+<div class="source"><a href="../js/plated_files.js#L94">../js/plated_files.js</a></div>
 <div><pre><code>await plated_files.exists(path)</code></pre><p>Returns true if a file or dir at the given path exists.</p>
 </div>
 </div>
 
 <div class="wrap">
 <h1><a href="../docs/js.plated_files.file_to_chunks">js.plated_files.file_to_chunks</a></h1>
-<div class="source"><a href="https://github.com/xriss/plated/blob/master/js/plated_files.js#L380">https://github.com/xriss/plated/blob/master/js/plated_files.js</a></div>
+<div class="source"><a href="../js/plated_files.js#L479">../js/plated_files.js</a></div>
 <div><pre><code>chunks = plated_files.file_to_chunks(root,fname,chunks)</code></pre><p>Load root/fname or get it from the cache and then turn it into chunks 
 using plated_chunks.fill_chunks(date,chunks) chunks is returned.</p>
 </div>
@@ -927,7 +931,7 @@ using plated_chunks.fill_chunks(date,chunks) chunks is returned.</p>
 
 <div class="wrap">
 <h1><a href="../docs/js.plated_files.filename_fixup">js.plated_files.filename_fixup</a></h1>
-<div class="source"><a href="https://github.com/xriss/plated/blob/master/js/plated_files.js#L165">https://github.com/xriss/plated/blob/master/js/plated_files.js</a></div>
+<div class="source"><a href="../js/plated_files.js#L264">../js/plated_files.js</a></div>
 <div><pre><code>filename = plated_files.filename_fixup(filename)</code></pre><p>Fix the filename, so it becomes an empty string rather than a &quot;.&quot; or 
 &quot;/.&quot; or &quot;/&quot; this makes it easier to use in urls.</p>
 </div>
@@ -935,7 +939,7 @@ using plated_chunks.fill_chunks(date,chunks) chunks is returned.</p>
 
 <div class="wrap">
 <h1><a href="../docs/js.plated_files.filename_is_basechunk">js.plated_files.filename_is_basechunk</a></h1>
-<div class="source"><a href="https://github.com/xriss/plated/blob/master/js/plated_files.js#L208">https://github.com/xriss/plated/blob/master/js/plated_files.js</a></div>
+<div class="source"><a href="../js/plated_files.js#L307">../js/plated_files.js</a></div>
 <div><pre><code>bool = plated_files.filename_is_basechunk(filename)</code></pre><p>Is this filename part of the basechunks for a dir?</p>
 <p>A base chunk is something like ^.html or ^.css all of these files get 
 merged into the base chunks for the directory they are found in. Their 
@@ -946,7 +950,7 @@ is viewed.</p>
 
 <div class="wrap">
 <h1><a href="../docs/js.plated_files.filename_is_plated">js.plated_files.filename_is_plated</a></h1>
-<div class="source"><a href="https://github.com/xriss/plated/blob/master/js/plated_files.js#L231">https://github.com/xriss/plated/blob/master/js/plated_files.js</a></div>
+<div class="source"><a href="../js/plated_files.js#L330">../js/plated_files.js</a></div>
 <div><pre><code>bool = plated_files.filename_is_plated(filename)</code></pre><p>Is this filename something we need to run through plated. Returns true 
 if filename contains the ^ trigger string. This string can be changed 
 by altering opts.hashfile from &quot;^&quot; to something else.</p>
@@ -955,14 +959,14 @@ by altering opts.hashfile from &quot;^&quot; to something else.</p>
 
 <div class="wrap">
 <h1><a href="../docs/js.plated_files.filename_to_dirname">js.plated_files.filename_to_dirname</a></h1>
-<div class="source"><a href="https://github.com/xriss/plated/blob/master/js/plated_files.js#L181">https://github.com/xriss/plated/blob/master/js/plated_files.js</a></div>
+<div class="source"><a href="../js/plated_files.js#L280">../js/plated_files.js</a></div>
 <div><pre><code>dirname = plated_files.filename_to_dirname(filename)</code></pre><p>Get the dirname of this filename.</p>
 </div>
 </div>
 
 <div class="wrap">
 <h1><a href="../docs/js.plated_files.filename_to_output">js.plated_files.filename_to_output</a></h1>
-<div class="source"><a href="https://github.com/xriss/plated/blob/master/js/plated_files.js#L251">https://github.com/xriss/plated/blob/master/js/plated_files.js</a></div>
+<div class="source"><a href="../js/plated_files.js#L350">../js/plated_files.js</a></div>
 <div><pre><code>filename = plated_files.filename_to_output(filename)</code></pre><p>Work out the output filename from an input filename, the trigger string 
 &quot;^.&quot; gets removed as we process a file.</p>
 </div>
@@ -970,7 +974,7 @@ by altering opts.hashfile from &quot;^&quot; to something else.</p>
 
 <div class="wrap">
 <h1><a href="../docs/js.plated_files.find_dirs">js.plated_files.find_dirs</a></h1>
-<div class="source"><a href="https://github.com/xriss/plated/blob/master/js/plated_files.js#L341">https://github.com/xriss/plated/blob/master/js/plated_files.js</a></div>
+<div class="source"><a href="../js/plated_files.js#L440">../js/plated_files.js</a></div>
 <div><pre><code>plated_files.find_dirs(root,name,func)</code></pre><p>Call func(name) with every directory we find inside the root/name 
 directory. We follow symlinks into other directories.</p>
 </div>
@@ -978,15 +982,29 @@ directory. We follow symlinks into other directories.</p>
 
 <div class="wrap">
 <h1><a href="../docs/js.plated_files.find_files">js.plated_files.find_files</a></h1>
-<div class="source"><a href="https://github.com/xriss/plated/blob/master/js/plated_files.js#L314">https://github.com/xriss/plated/blob/master/js/plated_files.js</a></div>
+<div class="source"><a href="../js/plated_files.js#L413">../js/plated_files.js</a></div>
 <div><pre><code>plated_files.find_files(root,name)</code></pre><p>REturn an array with every file we find inside the root/name directory. 
 We follow symlinks into other directories.</p>
 </div>
 </div>
 
 <div class="wrap">
+<h1><a href="../docs/js.plated_files.joinpath">js.plated_files.joinpath</a></h1>
+<div class="source"><a href="../js/plated_files.js#L79">../js/plated_files.js</a></div>
+<div><pre><code>await plated_files.joinpath(...)</code></pre><p>join components into a full path.</p>
+</div>
+</div>
+
+<div class="wrap">
+<h1><a href="../docs/js.plated_files.lstat">js.plated_files.lstat</a></h1>
+<div class="source"><a href="../js/plated_files.js#L126">../js/plated_files.js</a></div>
+<div><pre><code>await plated_files.lstat(path)</code></pre><p>Return the lstat of this path</p>
+</div>
+</div>
+
+<div class="wrap">
 <h1><a href="../docs/js.plated_files.mkdir">js.plated_files.mkdir</a></h1>
-<div class="source"><a href="https://github.com/xriss/plated/blob/master/js/plated_files.js#L83">https://github.com/xriss/plated/blob/master/js/plated_files.js</a></div>
+<div class="source"><a href="../js/plated_files.js#L182">../js/plated_files.js</a></div>
 <div><pre><code>plated_files.mkdir(dir)</code></pre><p>Fill in _source and related chunks such as.</p>
 <p>_sourcename the file that this set of chunks came from.</p>
 <p>_filename the output filename.</p>
@@ -1003,22 +1021,43 @@ get to the right place and can find your files.</p>
 
 <div class="wrap">
 <h1><a href="../docs/js.plated_files.prepare_namespace">js.plated_files.prepare_namespace</a></h1>
-<div class="source"><a href="https://github.com/xriss/plated/blob/master/js/plated_files.js#L403">https://github.com/xriss/plated/blob/master/js/plated_files.js</a></div>
+<div class="source"><a href="../js/plated_files.js#L502">../js/plated_files.js</a></div>
 <div><pre><code>plated_files.prepare_namespace(fname)</code></pre><p>Check this directory and all directories above for generic chunks then 
 build all of these into the current chunk namespace for this file.</p>
 </div>
 </div>
 
 <div class="wrap">
+<h1><a href="../docs/js.plated_files.readdir">js.plated_files.readdir</a></h1>
+<div class="source"><a href="../js/plated_files.js#L140">../js/plated_files.js</a></div>
+<div><pre><code>await plated_files.readdir(path)</code></pre><p>Return the readdir of this path</p>
+</div>
+</div>
+
+<div class="wrap">
 <h1><a href="../docs/js.plated_files.source_to_output">js.plated_files.source_to_output</a></h1>
-<div class="source"><a href="https://github.com/xriss/plated/blob/master/js/plated_files.js#L194">https://github.com/xriss/plated/blob/master/js/plated_files.js</a></div>
+<div class="source"><a href="../js/plated_files.js#L293">../js/plated_files.js</a></div>
 <div><pre><code>filename = plated_files.source_to_output(filename)</code></pre><p>Convert a source path into an output path.</p>
 </div>
 </div>
 
 <div class="wrap">
+<h1><a href="../docs/js.plated_files.stat">js.plated_files.stat</a></h1>
+<div class="source"><a href="../js/plated_files.js#L112">../js/plated_files.js</a></div>
+<div><pre><code>await plated_files.stat(path)</code></pre><p>Return the stat of this path</p>
+</div>
+</div>
+
+<div class="wrap">
+<h1><a href="../docs/js.plated_files.trimpath">js.plated_files.trimpath</a></h1>
+<div class="source"><a href="../js/plated_files.js#L58">../js/plated_files.js</a></div>
+<div><pre><code>plated_files.trimpath(path)</code></pre><p>Remove a trailing / from the path</p>
+</div>
+</div>
+
+<div class="wrap">
 <h1><a href="../docs/js.plated_files.watch">js.plated_files.watch</a></h1>
-<div class="source"><a href="https://github.com/xriss/plated/blob/master/js/plated_files.js#L575">https://github.com/xriss/plated/blob/master/js/plated_files.js</a></div>
+<div class="source"><a href="../js/plated_files.js#L676">../js/plated_files.js</a></div>
 <div><pre><code>plated_files.watch()</code></pre><p>Build all files found in the source dir into the output dir and then 
 sit watching for changes to these files that would trigger rebuilds.</p>
 <p>This does not return, instead the user is expected to ctrl+c when 
@@ -1028,14 +1067,14 @@ finished.</p>
 
 <div class="wrap">
 <h1><a href="../docs/js.plated_files.write">js.plated_files.write</a></h1>
-<div class="source"><a href="https://github.com/xriss/plated/blob/master/js/plated_files.js#L151">https://github.com/xriss/plated/blob/master/js/plated_files.js</a></div>
+<div class="source"><a href="../js/plated_files.js#L250">../js/plated_files.js</a></div>
 <div><pre><code>plated_files.write(filename,data)</code></pre><p>Create parent dir if necessary and write the data into this file.</p>
 </div>
 </div>
 
 <div class="wrap">
 <h1><a href="../docs/js.plated_output">js.plated_output</a></h1>
-<div class="source"><a href="https://github.com/xriss/plated/blob/master/js/plated_output.js#L3">https://github.com/xriss/plated/blob/master/js/plated_output.js</a></div>
+<div class="source"><a href="../js/plated_output.js#L3">../js/plated_output.js</a></div>
 <div><p>Manage the chunks of text that are combined into a page.</p>
 <p>This module only exposes one function, which is used to create 
 the actual module with bound state data.</p>
@@ -1050,7 +1089,7 @@ function.</p>
 
 <div class="wrap">
 <h1><a href="../docs/js.plated_output.remember">js.plated_output.remember</a></h1>
-<div class="source"><a href="https://github.com/xriss/plated/blob/master/js/plated_output.js#L38">https://github.com/xriss/plated/blob/master/js/plated_output.js</a></div>
+<div class="source"><a href="../js/plated_output.js#L37">../js/plated_output.js</a></div>
 <div><pre><code>chunks = plated_output.remember(chunks)</code></pre><p>Remember this page, the name is expected to be found in 
 chunks._output_filename and this is used as the key to store these 
 chunks.</p>
@@ -1059,7 +1098,7 @@ chunks.</p>
 
 <div class="wrap">
 <h1><a href="../docs/js.plated_output.remember_and_write">js.plated_output.remember_and_write</a></h1>
-<div class="source"><a href="https://github.com/xriss/plated/blob/master/js/plated_output.js#L54">https://github.com/xriss/plated/blob/master/js/plated_output.js</a></div>
+<div class="source"><a href="../js/plated_output.js#L53">../js/plated_output.js</a></div>
 <div><pre><code>chunks = await plated_output.remember_and_write(chunks)</code></pre><p>The same as remember but also instantly write out the chunks using 
 plated_output.write</p>
 </div>
@@ -1067,7 +1106,7 @@ plated_output.write</p>
 
 <div class="wrap">
 <h1><a href="../docs/js.plated_output.write">js.plated_output.write</a></h1>
-<div class="source"><a href="https://github.com/xriss/plated/blob/master/js/plated_output.js#L70">https://github.com/xriss/plated/blob/master/js/plated_output.js</a></div>
+<div class="source"><a href="../js/plated_output.js#L69">../js/plated_output.js</a></div>
 <div><pre><code>await plated_output.write(chunks)</code></pre><p>Write out the chunks to to _output_filename as its final page like 
 form. chunks._output_chunkname is the name of the chunk that we intend 
 to render into this page, eg &quot;html&quot; </p>
@@ -1079,7 +1118,7 @@ to render into this page, eg &quot;html&quot; </p>
 
 <div class="wrap">
 <h1><a href="../docs/js.plated_output.write_all">js.plated_output.write_all</a></h1>
-<div class="source"><a href="https://github.com/xriss/plated/blob/master/js/plated_output.js#L110">https://github.com/xriss/plated/blob/master/js/plated_output.js</a></div>
+<div class="source"><a href="../js/plated_output.js#L109">../js/plated_output.js</a></div>
 <div><pre><code>plated_output.write_all()</code></pre><p>Go through all the remembered chunks and write each one out using 
 plated_output.write</p>
 </div>
@@ -1093,7 +1132,7 @@ plated_output.write</p>
 
 <div class="wrap">
 <h1><a href="../docs/js.plated_plugin.blog">js.plated_plugin.blog</a></h1>
-<div class="source"><a href="https://github.com/xriss/plated/blob/master/js/plated_plugin_blog.js#L3">https://github.com/xriss/plated/blob/master/js/plated_plugin_blog.js</a></div>
+<div class="source"><a href="../js/plated_plugin_blog.js#L3">../js/plated_plugin_blog.js</a></div>
 <div><p>A blog plugin.</p>
 <p>This module only exposes one function, which is used to create 
 the actual module with bound state data.</p>
@@ -1106,21 +1145,21 @@ shared data.</p>
 
 <div class="wrap">
 <h1><a href="../docs/js.plated_plugin.blog.process_dirs">js.plated_plugin.blog.process_dirs</a></h1>
-<div class="source"><a href="https://github.com/xriss/plated/blob/master/js/plated_plugin_blog.js#L148">https://github.com/xriss/plated/blob/master/js/plated_plugin_blog.js</a></div>
+<div class="source"><a href="../js/plated_plugin_blog.js#L147">../js/plated_plugin_blog.js</a></div>
 <div><pre><code>dirs = plated_plugin_blog.process_dirs(dirs)</code></pre><p>Tweak all the base chunks grouped by dir name and pre cascaded/merged</p>
 </div>
 </div>
 
 <div class="wrap">
 <h1><a href="../docs/js.plated_plugin.blog.process_file">js.plated_plugin.blog.process_file</a></h1>
-<div class="source"><a href="https://github.com/xriss/plated/blob/master/js/plated_plugin_blog.js#L388">https://github.com/xriss/plated/blob/master/js/plated_plugin_blog.js</a></div>
+<div class="source"><a href="../js/plated_plugin_blog.js#L387">../js/plated_plugin_blog.js</a></div>
 <div><pre><code>chunks = plated_plugin_blog.process_file(chunks)</code></pre><p>Tweak a single file of chunks, only chunks found in this file will be available.</p>
 </div>
 </div>
 
 <div class="wrap">
 <h1><a href="../docs/js.plated_plugin.copy">js.plated_plugin.copy</a></h1>
-<div class="source"><a href="https://github.com/xriss/plated/blob/master/js/plated_plugin_copy.js#L4">https://github.com/xriss/plated/blob/master/js/plated_plugin_copy.js</a></div>
+<div class="source"><a href="../js/plated_plugin_copy.js#L4">../js/plated_plugin_copy.js</a></div>
 <div><p>A blog plugin.</p>
 <p>This module only exposes one function, which is used to create 
 the actual module with bound state data.</p>
@@ -1140,7 +1179,7 @@ only about duplicating files that are rendered from chunks.</p>
 
 <div class="wrap">
 <h1><a href="../docs/js.plated_plugin.copy.process_dirs">js.plated_plugin.copy.process_dirs</a></h1>
-<div class="source"><a href="https://github.com/xriss/plated/blob/master/js/plated_plugin_copy.js#L87">https://github.com/xriss/plated/blob/master/js/plated_plugin_copy.js</a></div>
+<div class="source"><a href="../js/plated_plugin_copy.js#L87">../js/plated_plugin_copy.js</a></div>
 <div><pre><code>dirs = plated_plugin_copy.process_dirs(dirs)</code></pre><p>Remember all the _copy_json chunks we can find inside our 
 plated_plugin_copy.chunks array. This will be used later to 
 replicated output into other locations with slight chunk tweaks.</p>
@@ -1149,14 +1188,14 @@ replicated output into other locations with slight chunk tweaks.</p>
 
 <div class="wrap">
 <h1><a href="../docs/js.plated_plugin.copy.process_file">js.plated_plugin.copy.process_file</a></h1>
-<div class="source"><a href="https://github.com/xriss/plated/blob/master/js/plated_plugin_copy.js#L113">https://github.com/xriss/plated/blob/master/js/plated_plugin_copy.js</a></div>
+<div class="source"><a href="../js/plated_plugin_copy.js#L113">../js/plated_plugin_copy.js</a></div>
 <div><pre><code>chunks = plated_plugin_copy.process_file(chunks)</code></pre><p>Auto magically parse _copy_json chunks as json.</p>
 </div>
 </div>
 
 <div class="wrap">
 <h1><a href="../docs/js.plated_plugin.copy.process_output">js.plated_plugin.copy.process_output</a></h1>
-<div class="source"><a href="https://github.com/xriss/plated/blob/master/js/plated_plugin_copy.js#L136">https://github.com/xriss/plated/blob/master/js/plated_plugin_copy.js</a></div>
+<div class="source"><a href="../js/plated_plugin_copy.js#L136">../js/plated_plugin_copy.js</a></div>
 <div><pre><code>plated_plugin_copy.process_output(chunks)</code></pre><p>Compare this output file with cached copy chunks and duplicate it 
 into these directories with slightly tweaked chunks if it matches.</p>
 </div>
@@ -1164,7 +1203,7 @@ into these directories with slightly tweaked chunks if it matches.</p>
 
 <div class="wrap">
 <h1><a href="../docs/js.plated_plugin.docs">js.plated_plugin.docs</a></h1>
-<div class="source"><a href="https://github.com/xriss/plated/blob/master/js/plated_plugin_docs.js#L3">https://github.com/xriss/plated/blob/master/js/plated_plugin_docs.js</a></div>
+<div class="source"><a href="../js/plated_plugin_docs.js#L3">../js/plated_plugin_docs.js</a></div>
 <div><p>A docs plugin.</p>
 <p>This module only exposes one function, which is used to create 
 the actual module with bound state data.</p>
@@ -1177,21 +1216,21 @@ shared data.</p>
 
 <div class="wrap">
 <h1><a href="../docs/js.plated_plugin.docs.process_dirs">js.plated_plugin.docs.process_dirs</a></h1>
-<div class="source"><a href="https://github.com/xriss/plated/blob/master/js/plated_plugin_docs.js#L94">https://github.com/xriss/plated/blob/master/js/plated_plugin_docs.js</a></div>
+<div class="source"><a href="../js/plated_plugin_docs.js#L93">../js/plated_plugin_docs.js</a></div>
 <div><pre><code>dirs = plated_plugin_docs.process_dirs(dirs)</code></pre><p>Tweak all the base chunks grouped by dir name and pre cascaded/merged</p>
 </div>
 </div>
 
 <div class="wrap">
 <h1><a href="../docs/js.plated_plugin.docs.process_file">js.plated_plugin.docs.process_file</a></h1>
-<div class="source"><a href="https://github.com/xriss/plated/blob/master/js/plated_plugin_docs.js#L300">https://github.com/xriss/plated/blob/master/js/plated_plugin_docs.js</a></div>
+<div class="source"><a href="../js/plated_plugin_docs.js#L300">../js/plated_plugin_docs.js</a></div>
 <div><pre><code>chunks = plated_plugin_docs.process_file(chunks)</code></pre><p>Tweak a single file of chunks, only chunks found in this file will be available.</p>
 </div>
 </div>
 
 <div class="wrap">
 <h1><a href="../docs/js.plated_plugin.import">js.plated_plugin.import</a></h1>
-<div class="source"><a href="https://github.com/xriss/plated/blob/master/js/plated_plugin_import.js#L4">https://github.com/xriss/plated/blob/master/js/plated_plugin_import.js</a></div>
+<div class="source"><a href="../js/plated_plugin_import.js#L4">../js/plated_plugin_import.js</a></div>
 <div><p>A way of importing chunks from another page.</p>
 <p>This module only exposes one function, which is used to create 
 the actual module with bound state data.</p>
@@ -1204,7 +1243,7 @@ shared data.</p>
 
 <div class="wrap">
 <h1><a href="../docs/js.plated_plugin.import.process_file">js.plated_plugin.import.process_file</a></h1>
-<div class="source"><a href="https://github.com/xriss/plated/blob/master/js/plated_plugin_import.js#L50">https://github.com/xriss/plated/blob/master/js/plated_plugin_import.js</a></div>
+<div class="source"><a href="../js/plated_plugin_import.js#L49">../js/plated_plugin_import.js</a></div>
 <div><pre><code>chunks = plated_plugin_import.process_file(chunks)</code></pre><p>Tweak a single file of chunks, only chunks found in this file will be 
 available.</p>
 </div>
@@ -1212,7 +1251,7 @@ available.</p>
 
 <div class="wrap">
 <h1><a href="../docs/js.plated_plugin.redirect">js.plated_plugin.redirect</a></h1>
-<div class="source"><a href="https://github.com/xriss/plated/blob/master/js/plated_plugin_redirect.js#L4">https://github.com/xriss/plated/blob/master/js/plated_plugin_redirect.js</a></div>
+<div class="source"><a href="../js/plated_plugin_redirect.js#L4">../js/plated_plugin_redirect.js</a></div>
 <div><p>A blog plugin.</p>
 <p>This module only exposes one function, which is used to create 
 the actual module with bound state data.</p>
@@ -1225,14 +1264,14 @@ shared data.</p>
 
 <div class="wrap">
 <h1><a href="../docs/js.plated_plugin.redirect.process_dirs">js.plated_plugin.redirect.process_dirs</a></h1>
-<div class="source"><a href="https://github.com/xriss/plated/blob/master/js/plated_plugin_redirect.js#L106">https://github.com/xriss/plated/blob/master/js/plated_plugin_redirect.js</a></div>
+<div class="source"><a href="../js/plated_plugin_redirect.js#L105">../js/plated_plugin_redirect.js</a></div>
 <div><pre><code>dirs = plated_plugin_redirect.process_dirs(dirs)</code></pre><p>Tweak all the base chunks grouped by dir name and pre cascaded/merged</p>
 </div>
 </div>
 
 <div class="wrap">
 <h1><a href="../docs/js.plated_plugin.redirect.process_file">js.plated_plugin.redirect.process_file</a></h1>
-<div class="source"><a href="https://github.com/xriss/plated/blob/master/js/plated_plugin_redirect.js#L152">https://github.com/xriss/plated/blob/master/js/plated_plugin_redirect.js</a></div>
+<div class="source"><a href="../js/plated_plugin_redirect.js#L151">../js/plated_plugin_redirect.js</a></div>
 <div><pre><code>chunks = plated_plugin_redirect.process_file(chunks)</code></pre><p>Tweak a single file of chunks, only chunks found in this file will be 
 available.</p>
 <pre><code>#^_redirect_json</code></pre><p>Is a special chunk name that we will parse as json and contain 

@@ -66,7 +66,7 @@
    "name": "html.plated_plugin.redirect"
   },
   {
-   "count": 66,
+   "count": 71,
    "name": "js"
   },
   {
@@ -166,7 +166,7 @@
    "name": "js.plated_chunks.set_namespace"
   },
   {
-   "count": 20,
+   "count": 25,
    "name": "js.plated_files"
   },
   {
@@ -227,6 +227,14 @@
   },
   {
    "count": 1,
+   "name": "js.plated_files.joinpath"
+  },
+  {
+   "count": 1,
+   "name": "js.plated_files.lstat"
+  },
+  {
+   "count": 1,
    "name": "js.plated_files.mkdir"
   },
   {
@@ -235,7 +243,19 @@
   },
   {
    "count": 1,
+   "name": "js.plated_files.readdir"
+  },
+  {
+   "count": 1,
    "name": "js.plated_files.source_to_output"
+  },
+  {
+   "count": 1,
+   "name": "js.plated_files.stat"
+  },
+  {
+   "count": 1,
+   "name": "js.plated_files.trimpath"
   },
   {
    "count": 1,
@@ -333,7 +353,7 @@
  "_docs_json": {
   "dirname": "{_root}docs",
   "dirs": {
-   "../js": ".js"
+   "../../js": ""
   },
   "ignore": {
    "node_modules": true
@@ -376,26 +396,26 @@
   {
    "body": "<pre><code>plated</code></pre><p>The commandline interface to plated, the options passed into this \ncommand are actually the same as the options passed into the opt object \nwhen creating the js.plated module.</p>\n",
    "count": 3,
-   "file": "js/cmd.js",
+   "file": "../js/cmd.js",
    "line": 6,
    "name": "cmd.plated",
-   "url": "https://github.com/xriss/plated/blob/master/js/cmd.js"
+   "url": "../js/cmd.js"
   },
   {
    "body": "<pre><code>plated build </code></pre><p>The build action, output files are created once and then the command \nreturns.</p>\n<pre><code>--site=</code></pre><p>How we should link to this site if the link can not be relative, eg \nnormally we would just use /index.html to reach a file in the root of \nthe current site but if this html is going to be rendered somewhere \nelse then this trick would no longer work and we would have to use this \nvalue instead. An example of when this might happen is the publishing of \nrss feeds.</p>\n<pre><code>--root=</code></pre><p>The root of the site we are building, normally empty in which case we \nmaintain a relative path back to the root depending on how far we have \ndescended into the directory structure, eg ../../ It is recomended that \nthis be used whenever constructing a url, for instance linking to the \nroot index.html should be done like sp {_root}index.html rather than \n/index.html if you want to ensure you have a site that can be built \ninto a directory as well as a domain.</p>\n<pre><code>--source=source</code></pre><p>Where to read the source files from, this is relative to the current \ndirectory and all files are found recursively from this point. We also \nfollow soft directory symlinks so we can easily pull in extra files from \nelsewhere.</p>\n<pre><code>--output=output</code></pre><p>The output directory relative to the current directory. Please be very \ncareful with this location as this will be emptied recursively before we \nwrite anything into it.</p>\n<pre><code>--hashfile=^</code></pre><p>The magic string used to trigger special chunk parsing, files are \neither scoped to the directory in which case they are just this magic \nstring plus any extension. For example ^.html or they are intended to \ncreate specific files in which case ^. will be stripped and the \nremainder used as an output. For example index.^.html which would \ncreate an index.html in the output, the extension is used to pick the \nchunk that is rendered into the output file. In this case it would be \nthe html chunk.</p>\n<pre><code>--hashchunk=#^</code></pre><p>The magic string used to split the input files into chunks, it must be \nused at the start of a line to trigger special processing and the \ndefault has been specifically chosen as something unlikely to be typed \nby accident.</p>\n<pre><code>--delimiter={}</code></pre><p>The magic string used to wrap tags for special processing in chunk \nfiles. It must be an even number of characters as we spit it in the \nmiddle and use both sides as start/stop strings. The default, might \nlook dangerous for C like languages which use {} to wrap blocks but due \nto the limits on contents (no white space) and the fallback of \noutputting exactly the same as the input, eg {} will output {}. C like \nlanguages are very unlikely to trigger any special processing,</p>\n<pre><code>--dumpjson</code></pre><p>A Boolean flag to enable the output of .json chunk dumps as well as \nprocessed output files. This is useful for debugging and also provides \nenough data to recreate pages at run time should that be necessary.</p>\n",
    "count": 1,
-   "file": "js/cmd.js",
+   "file": "../js/cmd.js",
    "line": 17,
    "name": "cmd.plated.build",
-   "url": "https://github.com/xriss/plated/blob/master/js/cmd.js"
+   "url": "../js/cmd.js"
   },
   {
    "body": "<pre><code>plated watch</code></pre><p>Build once and then watch all the files in source folder with any \nchange triggering a rebuild.</p>\n<p>This combined with a simple server and being careful to disable the \nhtml cache, can be used for live updates as you edit the source files.</p>\n<p>This uses the same options as plated.build so please view the \ndescriptions of all available options there.</p>\n",
    "count": 1,
-   "file": "js/cmd.js",
+   "file": "../js/cmd.js",
    "line": 95,
    "name": "cmd.plated.watch",
-   "url": "https://github.com/xriss/plated/blob/master/js/cmd.js"
+   "url": "../js/cmd.js"
   }
  ],
  "_output_chunkname": "html",

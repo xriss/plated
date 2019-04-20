@@ -66,7 +66,7 @@
    "name": "html.plated_plugin.redirect"
   },
   {
-   "count": 66,
+   "count": 71,
    "name": "js"
   },
   {
@@ -166,7 +166,7 @@
    "name": "js.plated_chunks.set_namespace"
   },
   {
-   "count": 20,
+   "count": 25,
    "name": "js.plated_files"
   },
   {
@@ -227,6 +227,14 @@
   },
   {
    "count": 1,
+   "name": "js.plated_files.joinpath"
+  },
+  {
+   "count": 1,
+   "name": "js.plated_files.lstat"
+  },
+  {
+   "count": 1,
    "name": "js.plated_files.mkdir"
   },
   {
@@ -235,7 +243,19 @@
   },
   {
    "count": 1,
+   "name": "js.plated_files.readdir"
+  },
+  {
+   "count": 1,
    "name": "js.plated_files.source_to_output"
+  },
+  {
+   "count": 1,
+   "name": "js.plated_files.stat"
+  },
+  {
+   "count": 1,
+   "name": "js.plated_files.trimpath"
   },
   {
    "count": 1,
@@ -333,7 +353,7 @@
  "_docs_json": {
   "dirname": "{_root}docs",
   "dirs": {
-   "../js": ".js"
+   "../../js": ""
   },
   "ignore": {
    "node_modules": true
@@ -376,10 +396,10 @@
   {
    "body": "<pre><code>#^_redirect_json\n{\n    files:{\n        &quot;from/index.html&quot;:&quot;to/&quot;,\n        &quot;other/index.html&quot;:&quot;to/&quot;,\n    },\n}</code></pre><p>A chunk of this name must be created in a directory scope file for this \nplugin to parse it. files is a map of redirections we require.</p>\n<p>Perform a redirect of files, using simple html javascript redirection, \nto another url. We mostly make use of the automatic use of an \nindex.html inside a given directory so in the case above ./from will \nget redirected to ./to note that these can contain one level of macro \nexpansion so {_root}dir is a reasonable redirection.</p>\n<p>Multiple redirections can be performed in a single json configuration \nbut be aware that we end up actually creating files to perform these \nredirections so be careful not to clash with other files.</p>\n<p>An example can be found in test-source/005-redirect</p>\n",
    "count": 1,
-   "file": "js/plated_plugin_redirect.js",
+   "file": "../js/plated_plugin_redirect.js",
    "line": 21,
    "name": "html.plated_plugin.redirect",
-   "url": "https://github.com/xriss/plated/blob/master/js/plated_plugin_redirect.js"
+   "url": "../js/plated_plugin_redirect.js"
   }
  ],
  "_output_chunkname": "html",

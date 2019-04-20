@@ -75,9 +75,14 @@
 <a class="sub" href="../../docs/js.plated_files.filename_to_output"><span>/js.plated_files.filename_to_output</span></a>
 <a class="sub" href="../../docs/js.plated_files.find_dirs"><span>/js.plated_files.find_dirs</span></a>
 <a class="sub" href="../../docs/js.plated_files.find_files"><span>/js.plated_files.find_files</span></a>
+<a class="sub" href="../../docs/js.plated_files.joinpath"><span>/js.plated_files.joinpath</span></a>
+<a class="sub" href="../../docs/js.plated_files.lstat"><span>/js.plated_files.lstat</span></a>
 <a class="sub" href="../../docs/js.plated_files.mkdir"><span>/js.plated_files.mkdir</span></a>
 <a class="sub" href="../../docs/js.plated_files.prepare_namespace"><span>/js.plated_files.prepare_namespace</span></a>
+<a class="sub" href="../../docs/js.plated_files.readdir"><span>/js.plated_files.readdir</span></a>
 <a class="sub" href="../../docs/js.plated_files.source_to_output"><span>/js.plated_files.source_to_output</span></a>
+<a class="sub" href="../../docs/js.plated_files.stat"><span>/js.plated_files.stat</span></a>
+<a class="sub" href="../../docs/js.plated_files.trimpath"><span>/js.plated_files.trimpath</span></a>
 <a class="sub" href="../../docs/js.plated_files.watch"><span>/js.plated_files.watch</span></a>
 <a class="sub" href="../../docs/js.plated_files.write"><span>/js.plated_files.write</span></a><a class="par" href="../../docs/js.plated_output"><span>/js.plated_output</span></a>
 
@@ -107,7 +112,7 @@
 		
 <div class="wrap">
 <h1><a href="../../docs/js.plated">js.plated</a></h1>
-<div class="source"><a href="https://github.com/xriss/plated/blob/master/js/plated.js#L3">https://github.com/xriss/plated/blob/master/js/plated.js</a></div>
+<div class="source"><a href="../js/plated.js#L3">../js/plated.js</a></div>
 <div><p>Plated is a static site generator that uses a cascading chunk system to 
 describe the output pages.</p>
 <p>Since we are using node we are also able to dynamically build the pages 
@@ -132,14 +137,14 @@ look at these for a full description of what can be passed in here.</p>
 
 <div class="wrap">
 <h1><a href="../../docs/js.plated.build">js.plated.build</a></h1>
-<div class="source"><a href="https://github.com/xriss/plated/blob/master/js/plated.js#L459">https://github.com/xriss/plated/blob/master/js/plated.js</a></div>
+<div class="source"><a href="../js/plated.js#L458">../js/plated.js</a></div>
 <div><pre><code>plated.build()</code></pre><p>Build all the output files from the inputs.</p>
 </div>
 </div>
 
 <div class="wrap">
 <h1><a href="../../docs/js.plated.plugin">js.plated.plugin</a></h1>
-<div class="source"><a href="https://github.com/xriss/plated/blob/master/js/plated.js#L431">https://github.com/xriss/plated/blob/master/js/plated.js</a></div>
+<div class="source"><a href="../js/plated.js#L430">../js/plated.js</a></div>
 <div><pre><code>plated.plugin(it)</code></pre><p>Register a plugin, each plugin can provide the following function hooks.</p>
 <pre><code>dirs = it.process_dirs( dirs )</code></pre><p>Adjust the registered dirs data and return it.</p>
 <pre><code>file = it.process_file( file )</code></pre><p>Adjust or react to the file data and return it.</p>
@@ -150,7 +155,7 @@ associated with these chunks.</p>
 
 <div class="wrap">
 <h1><a href="../../docs/js.plated.setup">js.plated.setup</a></h1>
-<div class="source"><a href="https://github.com/xriss/plated/blob/master/js/plated.js#L410">https://github.com/xriss/plated/blob/master/js/plated.js</a></div>
+<div class="source"><a href="../js/plated.js#L409">../js/plated.js</a></div>
 <div><pre><code>plated.setup(opts)</code></pre><p>Initialise plated and require the base plated modules: files, chunks 
 and output.</p>
 </div>
@@ -158,7 +163,7 @@ and output.</p>
 
 <div class="wrap">
 <h1><a href="../../docs/js.plated.watch">js.plated.watch</a></h1>
-<div class="source"><a href="https://github.com/xriss/plated/blob/master/js/plated.js#L472">https://github.com/xriss/plated/blob/master/js/plated.js</a></div>
+<div class="source"><a href="../js/plated.js#L471">../js/plated.js</a></div>
 <div><pre><code>plated.watch()</code></pre><p>Continuously build the output files from the inputs whenever one of the input files changes</p>
 </div>
 </div>

@@ -66,7 +66,7 @@
    "name": "html.plated_plugin.redirect"
   },
   {
-   "count": 66,
+   "count": 71,
    "name": "js"
   },
   {
@@ -166,7 +166,7 @@
    "name": "js.plated_chunks.set_namespace"
   },
   {
-   "count": 20,
+   "count": 25,
    "name": "js.plated_files"
   },
   {
@@ -227,6 +227,14 @@
   },
   {
    "count": 1,
+   "name": "js.plated_files.joinpath"
+  },
+  {
+   "count": 1,
+   "name": "js.plated_files.lstat"
+  },
+  {
+   "count": 1,
    "name": "js.plated_files.mkdir"
   },
   {
@@ -235,7 +243,19 @@
   },
   {
    "count": 1,
+   "name": "js.plated_files.readdir"
+  },
+  {
+   "count": 1,
    "name": "js.plated_files.source_to_output"
+  },
+  {
+   "count": 1,
+   "name": "js.plated_files.stat"
+  },
+  {
+   "count": 1,
+   "name": "js.plated_files.trimpath"
   },
   {
    "count": 1,
@@ -333,7 +353,7 @@
  "_docs_json": {
   "dirname": "{_root}docs",
   "dirs": {
-   "../js": ".js"
+   "../../js": ""
   },
   "ignore": {
    "node_modules": true
@@ -376,10 +396,10 @@
   {
    "body": "<pre><code>chunks = plated_chunks.merge_namespace(dat)</code></pre><p>Merge all of the namespaces together, along with the dat, then return \nthis new set of chunks for easy lookup it should be safe to modify the \noutput merged chunks without accidentally changing anything in the \nnamespace.</p>\n<p>This gives us a final chunks object that we can use to build the output \npage.</p>\n",
    "count": 1,
-   "file": "js/plated_chunks.js",
-   "line": 471,
+   "file": "../js/plated_chunks.js",
+   "line": 472,
    "name": "js.plated_chunks.merge_namespace",
-   "url": "https://github.com/xriss/plated/blob/master/js/plated_chunks.js"
+   "url": "../js/plated_chunks.js"
   }
  ],
  "_output_chunkname": "html",

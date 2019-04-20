@@ -66,7 +66,7 @@
    "name": "html.plated_plugin.redirect"
   },
   {
-   "count": 66,
+   "count": 71,
    "name": "js"
   },
   {
@@ -166,7 +166,7 @@
    "name": "js.plated_chunks.set_namespace"
   },
   {
-   "count": 20,
+   "count": 25,
    "name": "js.plated_files"
   },
   {
@@ -227,6 +227,14 @@
   },
   {
    "count": 1,
+   "name": "js.plated_files.joinpath"
+  },
+  {
+   "count": 1,
+   "name": "js.plated_files.lstat"
+  },
+  {
+   "count": 1,
    "name": "js.plated_files.mkdir"
   },
   {
@@ -235,7 +243,19 @@
   },
   {
    "count": 1,
+   "name": "js.plated_files.readdir"
+  },
+  {
+   "count": 1,
    "name": "js.plated_files.source_to_output"
+  },
+  {
+   "count": 1,
+   "name": "js.plated_files.stat"
+  },
+  {
+   "count": 1,
+   "name": "js.plated_files.trimpath"
   },
   {
    "count": 1,
@@ -333,7 +353,7 @@
  "_docs_json": {
   "dirname": "{_root}docs",
   "dirs": {
-   "../js": ".js"
+   "../../js": ""
   },
   "ignore": {
    "node_modules": true
@@ -374,12 +394,12 @@
  },
  "_list": [
   {
-   "body": "<pre><code>newchunks = plated_chunks.remove_underscorechunks(chunks)</code></pre><p>Remove any chunks that begin with &quot;_&quot; these are all internal chunks \nused by plated code. The user should not be creating any chunks whose \nnames begin with an underscore. Also none of these chunks should ever \nbubble down through the heir achy, they belong only to the page in \nwhich they are created..</p>\n<p>A new object full of only chunks that do not begin with an underscore \nis returned.</p>\n",
+   "body": "<pre><code>newchunks = plated_chunks.remove_underscorechunks(chunks)</code></pre><p>Remove any chunks that begin with &quot;_&quot; these are all internal chunks \nused by plated code. The user should not be creating any chunks whose \nnames begin with an underscore. Also none of these chunks should ever \nbubble down through the heirachy, they belong only to the page in \nwhich they are created..</p>\n<p>A new object full of only chunks that do not begin with an underscore \nis returned.</p>\n",
    "count": 1,
-   "file": "js/plated_chunks.js",
-   "line": 386,
+   "file": "../js/plated_chunks.js",
+   "line": 387,
    "name": "js.plated_chunks.remove_underscorechunks",
-   "url": "https://github.com/xriss/plated/blob/master/js/plated_chunks.js"
+   "url": "../js/plated_chunks.js"
   }
  ],
  "_output_chunkname": "html",

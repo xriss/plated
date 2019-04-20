@@ -66,7 +66,7 @@
    "name": "html.plated_plugin.redirect"
   },
   {
-   "count": 66,
+   "count": 71,
    "name": "js"
   },
   {
@@ -166,7 +166,7 @@
    "name": "js.plated_chunks.set_namespace"
   },
   {
-   "count": 20,
+   "count": 25,
    "name": "js.plated_files"
   },
   {
@@ -227,6 +227,14 @@
   },
   {
    "count": 1,
+   "name": "js.plated_files.joinpath"
+  },
+  {
+   "count": 1,
+   "name": "js.plated_files.lstat"
+  },
+  {
+   "count": 1,
    "name": "js.plated_files.mkdir"
   },
   {
@@ -235,7 +243,19 @@
   },
   {
    "count": 1,
+   "name": "js.plated_files.readdir"
+  },
+  {
+   "count": 1,
    "name": "js.plated_files.source_to_output"
+  },
+  {
+   "count": 1,
+   "name": "js.plated_files.stat"
+  },
+  {
+   "count": 1,
+   "name": "js.plated_files.trimpath"
   },
   {
    "count": 1,
@@ -333,7 +353,7 @@
  "_docs_json": {
   "dirname": "{_root}docs",
   "dirs": {
-   "../js": ".js"
+   "../../js": ""
   },
   "ignore": {
    "node_modules": true
@@ -376,42 +396,42 @@
   {
    "body": "<p>Plated is a static site generator that uses a cascading chunk system to \ndescribe the output pages.</p>\n<p>Since we are using node we are also able to dynamically build the pages \nin the browser, which is why we include json dumps of the chunk data. \nThis provides enough data to reconstruct pages client side.</p>\n<p>Included are a handful of plugins that do slightly more complicated \nthings to enable extra functionality such as page redirects or \ngenerating blogs.</p>\n<p>This module only exposes one function, which is used to create \nthe actual module with bound state data.</p>\n<pre><code>plated=require(&quot;./plated.js&quot;).create(opts,plated)</code></pre><p>opts is an object of options and plated is an optional input if \nprovided it will be modified and returned otherwise a new object will \nbe created and returned.</p>\n<p>We also load and setup this and all the builtin plugins so after \ncalling this we are good to go.</p>\n<p>In the future when we talk about plated and its available functions we \nare referring to the return from this create function.</p>\n<p>The opts is intended to be filled with command line options so take a \nlook at these for a full description of what can be passed in here.</p>\n",
    "count": 5,
-   "file": "js/plated.js",
+   "file": "../js/plated.js",
    "line": 3,
    "name": "js.plated",
-   "url": "https://github.com/xriss/plated/blob/master/js/plated.js"
+   "url": "../js/plated.js"
   },
   {
    "body": "<pre><code>plated.build()</code></pre><p>Build all the output files from the inputs.</p>\n",
    "count": 1,
-   "file": "js/plated.js",
-   "line": 459,
+   "file": "../js/plated.js",
+   "line": 458,
    "name": "js.plated.build",
-   "url": "https://github.com/xriss/plated/blob/master/js/plated.js"
+   "url": "../js/plated.js"
   },
   {
    "body": "<pre><code>plated.plugin(it)</code></pre><p>Register a plugin, each plugin can provide the following function hooks.</p>\n<pre><code>dirs = it.process_dirs( dirs )</code></pre><p>Adjust the registered dirs data and return it.</p>\n<pre><code>file = it.process_file( file )</code></pre><p>Adjust or react to the file data and return it.</p>\n<pre><code>it.process_output( chunks )</code></pre><p>Adjust a files chunks prior to writing it out, or, output extra data \nassociated with these chunks.</p>\n",
    "count": 1,
-   "file": "js/plated.js",
-   "line": 431,
+   "file": "../js/plated.js",
+   "line": 430,
    "name": "js.plated.plugin",
-   "url": "https://github.com/xriss/plated/blob/master/js/plated.js"
+   "url": "../js/plated.js"
   },
   {
    "body": "<pre><code>plated.setup(opts)</code></pre><p>Initialise plated and require the base plated modules: files, chunks \nand output.</p>\n",
    "count": 1,
-   "file": "js/plated.js",
-   "line": 410,
+   "file": "../js/plated.js",
+   "line": 409,
    "name": "js.plated.setup",
-   "url": "https://github.com/xriss/plated/blob/master/js/plated.js"
+   "url": "../js/plated.js"
   },
   {
    "body": "<pre><code>plated.watch()</code></pre><p>Continuously build the output files from the inputs whenever one of the input files changes</p>\n",
    "count": 1,
-   "file": "js/plated.js",
-   "line": 472,
+   "file": "../js/plated.js",
+   "line": 471,
    "name": "js.plated.watch",
-   "url": "https://github.com/xriss/plated/blob/master/js/plated.js"
+   "url": "../js/plated.js"
   }
  ],
  "_output_chunkname": "html",

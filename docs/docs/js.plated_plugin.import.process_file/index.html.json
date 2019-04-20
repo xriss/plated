@@ -66,7 +66,7 @@
    "name": "html.plated_plugin.redirect"
   },
   {
-   "count": 66,
+   "count": 71,
    "name": "js"
   },
   {
@@ -166,7 +166,7 @@
    "name": "js.plated_chunks.set_namespace"
   },
   {
-   "count": 20,
+   "count": 25,
    "name": "js.plated_files"
   },
   {
@@ -227,6 +227,14 @@
   },
   {
    "count": 1,
+   "name": "js.plated_files.joinpath"
+  },
+  {
+   "count": 1,
+   "name": "js.plated_files.lstat"
+  },
+  {
+   "count": 1,
    "name": "js.plated_files.mkdir"
   },
   {
@@ -235,7 +243,19 @@
   },
   {
    "count": 1,
+   "name": "js.plated_files.readdir"
+  },
+  {
+   "count": 1,
    "name": "js.plated_files.source_to_output"
+  },
+  {
+   "count": 1,
+   "name": "js.plated_files.stat"
+  },
+  {
+   "count": 1,
+   "name": "js.plated_files.trimpath"
   },
   {
    "count": 1,
@@ -333,7 +353,7 @@
  "_docs_json": {
   "dirname": "{_root}docs",
   "dirs": {
-   "../js": ".js"
+   "../../js": ""
   },
   "ignore": {
    "node_modules": true
@@ -376,10 +396,10 @@
   {
    "body": "<pre><code>chunks = plated_plugin_import.process_file(chunks)</code></pre><p>Tweak a single file of chunks, only chunks found in this file will be \navailable.</p>\n",
    "count": 1,
-   "file": "js/plated_plugin_import.js",
-   "line": 50,
+   "file": "../js/plated_plugin_import.js",
+   "line": 49,
    "name": "js.plated_plugin.import.process_file",
-   "url": "https://github.com/xriss/plated/blob/master/js/plated_plugin_import.js"
+   "url": "../js/plated_plugin_import.js"
   }
  ],
  "_output_chunkname": "html",

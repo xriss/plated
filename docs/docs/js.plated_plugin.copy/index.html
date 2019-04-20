@@ -75,9 +75,14 @@
 <a class="sub" href="../../docs/js.plated_files.filename_to_output"><span>/js.plated_files.filename_to_output</span></a>
 <a class="sub" href="../../docs/js.plated_files.find_dirs"><span>/js.plated_files.find_dirs</span></a>
 <a class="sub" href="../../docs/js.plated_files.find_files"><span>/js.plated_files.find_files</span></a>
+<a class="sub" href="../../docs/js.plated_files.joinpath"><span>/js.plated_files.joinpath</span></a>
+<a class="sub" href="../../docs/js.plated_files.lstat"><span>/js.plated_files.lstat</span></a>
 <a class="sub" href="../../docs/js.plated_files.mkdir"><span>/js.plated_files.mkdir</span></a>
 <a class="sub" href="../../docs/js.plated_files.prepare_namespace"><span>/js.plated_files.prepare_namespace</span></a>
+<a class="sub" href="../../docs/js.plated_files.readdir"><span>/js.plated_files.readdir</span></a>
 <a class="sub" href="../../docs/js.plated_files.source_to_output"><span>/js.plated_files.source_to_output</span></a>
+<a class="sub" href="../../docs/js.plated_files.stat"><span>/js.plated_files.stat</span></a>
+<a class="sub" href="../../docs/js.plated_files.trimpath"><span>/js.plated_files.trimpath</span></a>
 <a class="sub" href="../../docs/js.plated_files.watch"><span>/js.plated_files.watch</span></a>
 <a class="sub" href="../../docs/js.plated_files.write"><span>/js.plated_files.write</span></a><a class="par" href="../../docs/js.plated_output"><span>/js.plated_output</span></a>
 
@@ -107,7 +112,7 @@
 		
 <div class="wrap">
 <h1><a href="../../docs/js.plated_plugin.copy">js.plated_plugin.copy</a></h1>
-<div class="source"><a href="https://github.com/xriss/plated/blob/master/js/plated_plugin_copy.js#L4">https://github.com/xriss/plated/blob/master/js/plated_plugin_copy.js</a></div>
+<div class="source"><a href="../js/plated_plugin_copy.js#L4">../js/plated_plugin_copy.js</a></div>
 <div><p>A blog plugin.</p>
 <p>This module only exposes one function, which is used to create 
 the actual module with bound state data.</p>
@@ -127,7 +132,7 @@ only about duplicating files that are rendered from chunks.</p>
 
 <div class="wrap">
 <h1><a href="../../docs/js.plated_plugin.copy.process_dirs">js.plated_plugin.copy.process_dirs</a></h1>
-<div class="source"><a href="https://github.com/xriss/plated/blob/master/js/plated_plugin_copy.js#L87">https://github.com/xriss/plated/blob/master/js/plated_plugin_copy.js</a></div>
+<div class="source"><a href="../js/plated_plugin_copy.js#L87">../js/plated_plugin_copy.js</a></div>
 <div><pre><code>dirs = plated_plugin_copy.process_dirs(dirs)</code></pre><p>Remember all the _copy_json chunks we can find inside our 
 plated_plugin_copy.chunks array. This will be used later to 
 replicated output into other locations with slight chunk tweaks.</p>
@@ -136,14 +141,14 @@ replicated output into other locations with slight chunk tweaks.</p>
 
 <div class="wrap">
 <h1><a href="../../docs/js.plated_plugin.copy.process_file">js.plated_plugin.copy.process_file</a></h1>
-<div class="source"><a href="https://github.com/xriss/plated/blob/master/js/plated_plugin_copy.js#L113">https://github.com/xriss/plated/blob/master/js/plated_plugin_copy.js</a></div>
+<div class="source"><a href="../js/plated_plugin_copy.js#L113">../js/plated_plugin_copy.js</a></div>
 <div><pre><code>chunks = plated_plugin_copy.process_file(chunks)</code></pre><p>Auto magically parse _copy_json chunks as json.</p>
 </div>
 </div>
 
 <div class="wrap">
 <h1><a href="../../docs/js.plated_plugin.copy.process_output">js.plated_plugin.copy.process_output</a></h1>
-<div class="source"><a href="https://github.com/xriss/plated/blob/master/js/plated_plugin_copy.js#L136">https://github.com/xriss/plated/blob/master/js/plated_plugin_copy.js</a></div>
+<div class="source"><a href="../js/plated_plugin_copy.js#L136">../js/plated_plugin_copy.js</a></div>
 <div><pre><code>plated_plugin_copy.process_output(chunks)</code></pre><p>Compare this output file with cached copy chunks and duplicate it 
 into these directories with slightly tweaked chunks if it matches.</p>
 </div>

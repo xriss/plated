@@ -66,7 +66,7 @@
    "name": "html.plated_plugin.redirect"
   },
   {
-   "count": 66,
+   "count": 71,
    "name": "js"
   },
   {
@@ -166,7 +166,7 @@
    "name": "js.plated_chunks.set_namespace"
   },
   {
-   "count": 20,
+   "count": 25,
    "name": "js.plated_files"
   },
   {
@@ -227,6 +227,14 @@
   },
   {
    "count": 1,
+   "name": "js.plated_files.joinpath"
+  },
+  {
+   "count": 1,
+   "name": "js.plated_files.lstat"
+  },
+  {
+   "count": 1,
    "name": "js.plated_files.mkdir"
   },
   {
@@ -235,7 +243,19 @@
   },
   {
    "count": 1,
+   "name": "js.plated_files.readdir"
+  },
+  {
+   "count": 1,
    "name": "js.plated_files.source_to_output"
+  },
+  {
+   "count": 1,
+   "name": "js.plated_files.stat"
+  },
+  {
+   "count": 1,
+   "name": "js.plated_files.trimpath"
   },
   {
    "count": 1,
@@ -333,7 +353,7 @@
  "_docs_json": {
   "dirname": "{_root}docs",
   "dirs": {
-   "../js": ".js"
+   "../../js": ""
   },
   "ignore": {
    "node_modules": true
@@ -381,122 +401,122 @@
   {
    "body": "<p>A blog plugin.</p>\n<p>This module only exposes one function, which is used to create \nthe actual module with bound state data.</p>\n<pre><code>plated_plugin_blog = require(&quot;./plated_plugin_blog.js&quot;).create(opts,plated)</code></pre><p>This is called automatically when the plated module is created and the \nreturned plugin functions are added to the plugin call stack. Note that \nall of these modules are bound together and operate as a group with \nshared data.</p>\n",
    "count": 3,
-   "file": "js/plated_plugin_blog.js",
+   "file": "../js/plated_plugin_blog.js",
    "line": 3,
    "name": "js.plated_plugin.blog",
-   "url": "https://github.com/xriss/plated/blob/master/js/plated_plugin_blog.js"
+   "url": "../js/plated_plugin_blog.js"
   },
   {
    "body": "<pre><code>dirs = plated_plugin_blog.process_dirs(dirs)</code></pre><p>Tweak all the base chunks grouped by dir name and pre cascaded/merged</p>\n",
    "count": 1,
-   "file": "js/plated_plugin_blog.js",
-   "line": 148,
+   "file": "../js/plated_plugin_blog.js",
+   "line": 147,
    "name": "js.plated_plugin.blog.process_dirs",
-   "url": "https://github.com/xriss/plated/blob/master/js/plated_plugin_blog.js"
+   "url": "../js/plated_plugin_blog.js"
   },
   {
    "body": "<pre><code>chunks = plated_plugin_blog.process_file(chunks)</code></pre><p>Tweak a single file of chunks, only chunks found in this file will be available.</p>\n",
    "count": 1,
-   "file": "js/plated_plugin_blog.js",
-   "line": 388,
+   "file": "../js/plated_plugin_blog.js",
+   "line": 387,
    "name": "js.plated_plugin.blog.process_file",
-   "url": "https://github.com/xriss/plated/blob/master/js/plated_plugin_blog.js"
+   "url": "../js/plated_plugin_blog.js"
   },
   {
    "body": "<p>A blog plugin.</p>\n<p>This module only exposes one function, which is used to create \nthe actual module with bound state data.</p>\n<pre><code>plated_plugin_copy = require(&quot;./plated_plugin_copy.js&quot;).create(opts,plated)</code></pre><p>This is called automatically when the plated module is created and the \nreturned plugin functions are added to the plugin call stack. Note that \nall of these modules are bound together and operate as a group with \nshared data.</p>\n<p>This plugin is intended to duplicate part of a site into another \ndirectory with possibly tweaked chunks, this is primarily intended for \ntext translations. We produce for instance pure text chunks containing \njust english text and replace these chunks with french versions inside \na fra directory.</p>\n<p>Note that we only copy chunkfiles not all data files, so this is \nonly about duplicating files that are rendered from chunks.</p>\n",
    "count": 4,
-   "file": "js/plated_plugin_copy.js",
+   "file": "../js/plated_plugin_copy.js",
    "line": 4,
    "name": "js.plated_plugin.copy",
-   "url": "https://github.com/xriss/plated/blob/master/js/plated_plugin_copy.js"
+   "url": "../js/plated_plugin_copy.js"
   },
   {
    "body": "<pre><code>dirs = plated_plugin_copy.process_dirs(dirs)</code></pre><p>Remember all the _copy_json chunks we can find inside our \nplated_plugin_copy.chunks array. This will be used later to \nreplicated output into other locations with slight chunk tweaks.</p>\n",
    "count": 1,
-   "file": "js/plated_plugin_copy.js",
+   "file": "../js/plated_plugin_copy.js",
    "line": 87,
    "name": "js.plated_plugin.copy.process_dirs",
-   "url": "https://github.com/xriss/plated/blob/master/js/plated_plugin_copy.js"
+   "url": "../js/plated_plugin_copy.js"
   },
   {
    "body": "<pre><code>chunks = plated_plugin_copy.process_file(chunks)</code></pre><p>Auto magically parse _copy_json chunks as json.</p>\n",
    "count": 1,
-   "file": "js/plated_plugin_copy.js",
+   "file": "../js/plated_plugin_copy.js",
    "line": 113,
    "name": "js.plated_plugin.copy.process_file",
-   "url": "https://github.com/xriss/plated/blob/master/js/plated_plugin_copy.js"
+   "url": "../js/plated_plugin_copy.js"
   },
   {
    "body": "<pre><code>plated_plugin_copy.process_output(chunks)</code></pre><p>Compare this output file with cached copy chunks and duplicate it \ninto these directories with slightly tweaked chunks if it matches.</p>\n",
    "count": 1,
-   "file": "js/plated_plugin_copy.js",
+   "file": "../js/plated_plugin_copy.js",
    "line": 136,
    "name": "js.plated_plugin.copy.process_output",
-   "url": "https://github.com/xriss/plated/blob/master/js/plated_plugin_copy.js"
+   "url": "../js/plated_plugin_copy.js"
   },
   {
    "body": "<p>A docs plugin.</p>\n<p>This module only exposes one function, which is used to create \nthe actual module with bound state data.</p>\n<pre><code>plated_plugin_docs = require(&quot;./plated_plugin_docs.js&quot;).create(opts,plated)</code></pre><p>This is called automatically when the plated module is created and the \nreturned plugin functions are added to the plugin call stack. Note that \nall of these modules are bound together and operate as a group with \nshared data.</p>\n",
    "count": 3,
-   "file": "js/plated_plugin_docs.js",
+   "file": "../js/plated_plugin_docs.js",
    "line": 3,
    "name": "js.plated_plugin.docs",
-   "url": "https://github.com/xriss/plated/blob/master/js/plated_plugin_docs.js"
+   "url": "../js/plated_plugin_docs.js"
   },
   {
    "body": "<pre><code>dirs = plated_plugin_docs.process_dirs(dirs)</code></pre><p>Tweak all the base chunks grouped by dir name and pre cascaded/merged</p>\n",
    "count": 1,
-   "file": "js/plated_plugin_docs.js",
-   "line": 94,
+   "file": "../js/plated_plugin_docs.js",
+   "line": 93,
    "name": "js.plated_plugin.docs.process_dirs",
-   "url": "https://github.com/xriss/plated/blob/master/js/plated_plugin_docs.js"
+   "url": "../js/plated_plugin_docs.js"
   },
   {
    "body": "<pre><code>chunks = plated_plugin_docs.process_file(chunks)</code></pre><p>Tweak a single file of chunks, only chunks found in this file will be available.</p>\n",
    "count": 1,
-   "file": "js/plated_plugin_docs.js",
+   "file": "../js/plated_plugin_docs.js",
    "line": 300,
    "name": "js.plated_plugin.docs.process_file",
-   "url": "https://github.com/xriss/plated/blob/master/js/plated_plugin_docs.js"
+   "url": "../js/plated_plugin_docs.js"
   },
   {
    "body": "<p>A way of importing chunks from another page.</p>\n<p>This module only exposes one function, which is used to create \nthe actual module with bound state data.</p>\n<pre><code>plated_plugin_import = require(&quot;./plated_plugin_import.js&quot;).create(opts,plated)</code></pre><p>This is called automatically when the plated module is created and the \nreturned plugin functions are added to the plugin call stack. Note that \nall of these modules are bound together and operate as a group with \nshared data.</p>\n",
    "count": 2,
-   "file": "js/plated_plugin_import.js",
+   "file": "../js/plated_plugin_import.js",
    "line": 4,
    "name": "js.plated_plugin.import",
-   "url": "https://github.com/xriss/plated/blob/master/js/plated_plugin_import.js"
+   "url": "../js/plated_plugin_import.js"
   },
   {
    "body": "<pre><code>chunks = plated_plugin_import.process_file(chunks)</code></pre><p>Tweak a single file of chunks, only chunks found in this file will be \navailable.</p>\n",
    "count": 1,
-   "file": "js/plated_plugin_import.js",
-   "line": 50,
+   "file": "../js/plated_plugin_import.js",
+   "line": 49,
    "name": "js.plated_plugin.import.process_file",
-   "url": "https://github.com/xriss/plated/blob/master/js/plated_plugin_import.js"
+   "url": "../js/plated_plugin_import.js"
   },
   {
    "body": "<p>A blog plugin.</p>\n<p>This module only exposes one function, which is used to create \nthe actual module with bound state data.</p>\n<pre><code>plated_plugin_redirect = require(&quot;./plated_plugin_redirect.js&quot;).create(opts,plated)</code></pre><p>This is called automatically when the plated module is created and the \nreturned plugin functions are added to the plugin call stack. Note that \nall of these modules are bound together and operate as a group with \nshared data.</p>\n",
    "count": 3,
-   "file": "js/plated_plugin_redirect.js",
+   "file": "../js/plated_plugin_redirect.js",
    "line": 4,
    "name": "js.plated_plugin.redirect",
-   "url": "https://github.com/xriss/plated/blob/master/js/plated_plugin_redirect.js"
+   "url": "../js/plated_plugin_redirect.js"
   },
   {
    "body": "<pre><code>dirs = plated_plugin_redirect.process_dirs(dirs)</code></pre><p>Tweak all the base chunks grouped by dir name and pre cascaded/merged</p>\n",
    "count": 1,
-   "file": "js/plated_plugin_redirect.js",
-   "line": 106,
+   "file": "../js/plated_plugin_redirect.js",
+   "line": 105,
    "name": "js.plated_plugin.redirect.process_dirs",
-   "url": "https://github.com/xriss/plated/blob/master/js/plated_plugin_redirect.js"
+   "url": "../js/plated_plugin_redirect.js"
   },
   {
    "body": "<pre><code>chunks = plated_plugin_redirect.process_file(chunks)</code></pre><p>Tweak a single file of chunks, only chunks found in this file will be \navailable.</p>\n<pre><code>#^_redirect_json</code></pre><p>Is a special chunk name that we will parse as json and contain \nconfiguration data to setup redirects.</p>\n",
    "count": 1,
-   "file": "js/plated_plugin_redirect.js",
-   "line": 152,
+   "file": "../js/plated_plugin_redirect.js",
+   "line": 151,
    "name": "js.plated_plugin.redirect.process_file",
-   "url": "https://github.com/xriss/plated/blob/master/js/plated_plugin_redirect.js"
+   "url": "../js/plated_plugin_redirect.js"
   }
  ],
  "_output_chunkname": "html",
