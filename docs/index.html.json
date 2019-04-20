@@ -36,7 +36,7 @@
  "foot": "<div class=\"footer\">\n\t<ul>\n\t\t<li>Hosted with Github pages</li>\n\t\t<li><a href=\"#\">^.^</a></li>\n\t\t<li><a href=\"https://github.com/xriss/plated/blob/master/LICENSE\">2018 MIT License</a></li>\n\t</ul>\n</div>\n",
  "head": "<title>{title}</title>\n<meta name=\"theme-color\" content=\"#2a3133\">\n<link href=\"https://fonts.googleapis.com/css?family=Patua+One\" rel=\"stylesheet\">\n<style>\n{css}\n</style>",
  "html": "<html>\n<head>{head}</head>\n<body>{content}{foot}</body>\n</html>",
- "install": "<div class=\"install\">\n\t<div>\n\t\tStart by running either\n\t</div>\n\t<div>\n\t\t{npm}\n\t</div>\n</div>\n<div class=\"install full\">\n\t<div>\n\t\t{clone}\n\t</div>\n</div>\n\n\n\n",
+ "install": "<div class=\"install\">\n\t<div>\n\t\tStart with an example website you can fiddle with.\n\t</div>\n</div>\n<div class=\"install full\">\n\t<div>\n\t\t{clone}\n\t</div>\n</div>\n\n\n\n",
  "nav": "<div class=\"nav_wrap\">\n\t<div class=\"nav\">\n\t\t<a href=\"{_root}\" class=\"logo\">plated^</a>\n\t\t<ul>\n\t\t\t<li><a href=\"https://github.com/xriss/plated\">Github</a></li>\n\t\t\t<li><a href=\"{_root}blog\">Blog</a></li>\n\t\t\t<li><a href=\"{_root}docs\">Documentation</a></li>\n\t\t</ul>\n\t</div>\n</div>\n",
  "npm": "<pre><code class=\"language-shell\">~ $    npm install -g plated</code></pre>\n",
  "title": "plated^"
