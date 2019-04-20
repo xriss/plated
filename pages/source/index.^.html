@@ -1,14 +1,42 @@
-
-#^------------------------------
 #^title trim=ends
+plated^
 
-This is the title
 
-#^------------------------------
-#^body trim=ends form=markdown
+#^body
+<div class="blog_wrap">
+	<div class="logo">
+		<h1>{title}</h1>
+		<p>Generate a static website from hierarchical text and data files.</p>
+	</div>
+	<div class="line"></div>
+	{install}
+</div>
 
-Welcome
--------
 
-Here is a web page rendered from markdown.
+#^install
+<div class="install">
+	<div>
+		Start by running either
+	</div>
+	<div>
+		{npm}
+	</div>
+</div>
+<div class="install full">
+	<div>
+		{clone}
+	</div>
+</div>
 
+
+
+
+#^npm form=markdown
+```shell
+~ $	npm install -g plated
+```
+
+#^clone form=markdown
+```shell
+~ $	git clone https://github.com/xriss/plated-example.git
+```
