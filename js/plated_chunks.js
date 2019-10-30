@@ -744,7 +744,7 @@ use will survive.
 							{
 								for(var ii=0;ii<last.length;ii++)
 								{
-									var d=plated_chunks.deepmerge(dat,{},dat._flags)
+									var d=Object.create(dat)
 									d._it=last[ii]
 									d._idx=ii+1
 									dp.push( plated_chunks.replace_once(next,d) );
@@ -757,7 +757,7 @@ use will survive.
 							}
 							else // just apply plate to this single object or string
 							{
-								var d=plated_chunks.deepmerge(dat,{},dat._flags)
+								var d=Object.create(dat)
 								d._it=last
 								d._idx=1
 								dp.push( plated_chunks.replace_once(next,d) );
