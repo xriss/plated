@@ -697,22 +697,22 @@ use will survive.
 					case "lt":
 						next=plated_chunks.lookup(a,dat)
 						if(next===undefined) { next=a }
-						last=last < next
+						last=Number(last) < Number(next)
 					break;
 					case "lteq":
 						next=plated_chunks.lookup(a,dat)
 						if(next===undefined) { next=a }
-						last=(last <= next)
+						last=(Number(last) <= Number(next))
 					break;
 					case "gt":
 						next=plated_chunks.lookup(a,dat)
 						if(next===undefined) { next=a }
-						last=(last >  next)
+						last=(Number(last) >  Number(next))
 					break;
 					case "gteq":
 						next=plated_chunks.lookup(a,dat)
 						if(next===undefined) { next=a }
-						last=(last >= next)
+						last=(Number(last) >= Number(next))
 					break;
 					case "eq":
 						next=plated_chunks.lookup(a,dat)
