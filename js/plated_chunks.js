@@ -38,12 +38,7 @@ marked.setOptions({
 });
 
 var isArray = function (arg) {
-    if (typeof arg === 'object' &&
-            ('join' in arg && typeof arg.join === 'function') &&
-            ('length' in arg && typeof arg.length === 'number')) {
-        return true;
-    }
-    return false;
+	return Array.isArray(arg)
 }
 
 var nl_to_br=function(t) // lets break markdown
@@ -658,111 +653,96 @@ use will survive.
 	{
 		var v_unesc=v.split("&amp;").join("&"); //turn html escaped & back into just & so we can let markdown break our tags
 
-		var aa=v_unesc.split(/([^0-9a-zA-Z_\-\.\/\@]+)/g); // valid chars for chunk names and indexes
+		var aa=v_unesc.split(/([^0-9a-zA-Z_\-\.\/\@\:]+)/g); // valid chars for chunk names and indexes
+
+		var lookup=function(a)
+		{
+			if(a=="") { return "" }
+
+			var aa=a.split(":")
+			var itname=aa[0]
+			var platename=aa[1]
+
+			if(!platename) // not an "it:plate" style string so just do lookup
+			{
+				return plated_chunks.lookup(a,dat)
+			}
+			
+			var it=plated_chunks.lookup(itname,dat)
+			var plate=plated_chunks.lookup(platename,dat)
+			
+			if(!it) { return "" } // it not found
+			if(!plate) { return "" } // plate not found
+			
+			if(isArray(it)) // apply plate to all objects in array
+			{
+				var dp=[];
+				for(var ii=0;ii<it.length;ii++)
+				{
+					var d=Object.create(dat)
+					d._it=it[ii]
+					d._idx=ii+1
+					dp.push( plated_chunks.replace_once(plate,d) );
+				}
+				return ( dp.join("") ); // join all items
+			}
+			else // just apply plate to this single object or string
+			{
+				var d=Object.create(dat)
+				d._it=it
+				d._idx=1
+				return plated_chunks.replace_once(plate,d);
+			}
+		}
 
 		var last,next;
 		var opp="replace";
+				
 		for(var i=0;i<aa.length;i++)
 		{
 			var a=aa[i];
-			if(a=="") // when we want to spit out nothing if a value is unset we can end on an empty string eg {value||}
-			{
-				switch(opp)
-				{
-					case "and":
-						if(last)
-						{
-							last=a;
-						}
-					break;
-					case "or":
-						if(!last)
-						{
-							last=a;
-						}
-					break;
-					default: // error
-						opp="error";
-					break;
-				}
-			}
-			else
-			if(a.match(/^[0-9a-zA-Z_\-\.\/\@]+$/)) // a chunk name
+			if( (a.match(/^[0-9a-zA-Z_\-\.\/\@\:]+$/)) || (a=="") ) // a chunk name
 			{
 				switch(opp)
 				{
 					case "replace":
-						last=plated_chunks.lookup(a,dat);
+						last=lookup(a)
 					break;
 					case "lt":
-						next=plated_chunks.lookup(a,dat)
+						next=lookup(a)
 						if(next===undefined) { next=a }
 						last=Number(last) < Number(next)
 					break;
 					case "lteq":
-						next=plated_chunks.lookup(a,dat)
+						next=lookup(a);
 						if(next===undefined) { next=a }
 						last=(Number(last) <= Number(next))
 					break;
 					case "gt":
-						next=plated_chunks.lookup(a,dat)
+						next=lookup(a)
 						if(next===undefined) { next=a }
 						last=(Number(last) >  Number(next))
 					break;
 					case "gteq":
-						next=plated_chunks.lookup(a,dat)
+						next=lookup(a)
 						if(next===undefined) { next=a }
 						last=(Number(last) >= Number(next))
 					break;
 					case "eq":
-						next=plated_chunks.lookup(a,dat)
+						next=lookup(a)
 						if(next===undefined) { next=a }
 						last=(last == next)
 					break;
 					case "and":
 						if(last)
 						{
-							last=plated_chunks.lookup(a,dat);
+							last=lookup(a)
 						}
 					break;
 					case "or":
 						if(!last)
 						{
-							last=plated_chunks.lookup(a,dat);
-						}
-					break;
-					case "plate":
-						next=plated_chunks.lookup(a,dat);
-						if(!next)
-						{
-							opp="error"; // template must be valid
-						}
-						else
-						{
-							var dp=[];
-							if(isArray(last)) // apply plate to all objects in array
-							{
-								for(var ii=0;ii<last.length;ii++)
-								{
-									var d=Object.create(dat)
-									d._it=last[ii]
-									d._idx=ii+1
-									dp.push( plated_chunks.replace_once(next,d) );
-								}
-							}
-							else
-							if(!last)
-							{
-								dp.push(""); // false in, is an empty string out
-							}
-							else // just apply plate to this single object or string
-							{
-								var d=Object.create(dat)
-								d._it=last
-								d._idx=1
-								dp.push( plated_chunks.replace_once(next,d) );
-							}
-							last=( dp.join("") ); // join all items
+							last=lookup(a)
 						}
 					break;
 					default: // error

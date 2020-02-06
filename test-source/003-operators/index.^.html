@@ -23,26 +23,32 @@
 	{
 		name:"one",
 		number:1,
+		test:1,
 	},
 	{
 		name:"two",
 		number:2,
+		test:"2",
 	},
 	{
 		name:"three",
 		number:3,
+		test:true,
 	},
 	{
 		name:"four",
 		number:4,
+		test:false,
 	},
 	{
 		name:"five",
 		number:5,
+		test:5,
 	},
 	{
 		name:"six",
 		number:6,
+		test:false,
 	},
 ]
 
@@ -56,19 +62,19 @@
 #^----------------------------------------------------------------------
 #^objs_plate1 trim=ends
 
-{_it.number<3&&_it:objs_plate}
+{_it.number<3&&_it:objs_plate||}
 
 #^----------------------------------------------------------------------
 #^----------------------------------------------------------------------
 #^objs_plate2 trim=ends
 
-{_it.number==3&&_it:objs_plate}
+{_it.number==3&&_it:objs_plate||}
 
 #^----------------------------------------------------------------------
 #^----------------------------------------------------------------------
 #^objs_plate3 trim=ends
 
-{_it.number>3&&_it:objs_plate}
+{_it.number>3&&_it:objs_plate||}
 
 #^----------------------------------------------------------------------
 #^----------------------------------------------------------------------
@@ -160,6 +166,10 @@ test 6
 ------
 {rooted}
 
+test 7
+------
+{objs:booltest}
+
 #^----------------------------------------------------------------------
 #^rootdata form=json
 {
@@ -170,4 +180,16 @@ test 6
 #^rooted root=rootdata
 
 Did you know that "{i_am_root}".
+
+#^----------------------------------------------------------------------
+#^booltest
+{_it.test&&_it:booltest_and||_it:booltest_or}
+
+#^booltest_and
+
+AND {_it.test}
+
+#^booltest_or
+
+OR false
 
