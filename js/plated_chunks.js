@@ -23,6 +23,7 @@ function.
 var util=require('util');
 var marked=require('marked');
 var JSON5=require('json5');
+var JSON_stringify = require('json-stable-stringify')
 
 
 // is this crap global?
@@ -788,7 +789,18 @@ use will survive.
 		}
 
 		if(last==="") { return ""; } // so we can return an empty string
-		return last || ( plated_chunks.delimiter_open_str() +v+ plated_chunks.delimiter_close_str() );
+		if(!last)
+		{
+			return ( plated_chunks.delimiter_open_str() +v+ plated_chunks.delimiter_close_str() )
+		}
+		if(typeof last === "object") // output json text
+		{
+			console.log("V="+v)
+			console.log("T="+typeof last)
+			console.log("L="+last)
+			return JSON_stringify(last,{ space: ' ' })
+		}
+		return last
 	}
 
 /***************************************************************************
