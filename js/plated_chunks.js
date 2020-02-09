@@ -683,7 +683,14 @@ use will survive.
 					var d=Object.create(dat)
 					d._it=it[ii]
 					d._idx=ii+1
-					dp.push( plated_chunks.replace_once(plate,d) );
+					if( "function" == typeof plate )
+					{
+						dp.push( plate(d) );
+					}
+					else
+					{
+						dp.push( plated_chunks.replace_once(plate,d) );
+					}
 				}
 				return ( dp.join("") ); // join all items
 			}
@@ -692,7 +699,14 @@ use will survive.
 				var d=Object.create(dat)
 				d._it=it
 				d._idx=1
-				return plated_chunks.replace_once(plate,d);
+				if( "function" == typeof plate )
+				{
+					return plate(d)
+				}
+				else
+				{
+					return plated_chunks.replace_once(plate,d);
+				}
 			}
 		}
 
