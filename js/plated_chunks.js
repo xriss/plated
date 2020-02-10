@@ -809,9 +809,6 @@ use will survive.
 		}
 		if(typeof last === "object") // output json text
 		{
-			console.log("V="+v)
-			console.log("T="+typeof last)
-			console.log("L="+last)
 			return JSON_stringify(last,{ space: ' ' })
 		}
 		return last
