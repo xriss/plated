@@ -22,10 +22,13 @@
    0,
    0
   ],
+  "tags": [
+   "odd"
+  ],
   "title": "This is test post 1",
   "unixtime": 1482451200
  },
- "_blog_post_newer": "{_root}002-blog/2016-12-24-this-is-a-test-post-2/",
+ "_blog_post_newer": "{_root}002-blog/2016-12-25-this-is-a-test-post-3/",
  "_dirname": "{_root}002-blog/2016-12-23-this-is-a-test-post-1",
  "_filename": "{_root}002-blog/2016-12-23-this-is-a-test-post-1/index.html",
  "_flags": {

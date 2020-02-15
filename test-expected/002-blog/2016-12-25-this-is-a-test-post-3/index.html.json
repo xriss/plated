@@ -22,11 +22,14 @@
    0,
    0
   ],
+  "tags": [
+   "odd"
+  ],
   "title": "This is test post 3",
   "unixtime": 1482624000
  },
- "_blog_post_newer": "{_root}002-blog/2016-12-26-this-is-a-test-post-4/",
- "_blog_post_older": "{_root}002-blog/2016-12-24-this-is-a-test-post-2/",
+ "_blog_post_newer": "{_root}002-blog/2016-12-27-this-is-a-test-post-5/",
+ "_blog_post_older": "{_root}002-blog/2016-12-23-this-is-a-test-post-1/",
  "_dirname": "{_root}002-blog/2016-12-25-this-is-a-test-post-3",
  "_filename": "{_root}002-blog/2016-12-25-this-is-a-test-post-3/index.html",
  "_flags": {
