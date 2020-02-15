@@ -49,8 +49,8 @@ of these directories we look for.
 	{
 		"title":"my title",
 		"author":"my name",
+		tags=["tag1","tag2"],
 		feed={
-			tags=["feed","tags"],
 			atatchments=[{url="http://domain.full/thing.mp3",mimie_type="mime/type"}],
 		}
 	}
@@ -204,177 +204,218 @@ Tweak all the base chunks grouped by dir name and pre cascaded/merged
 			console.log(timestr()+" BLOGDRAFT "+fname)
 		}
 
-		for(var blogname in blogs) { var blog=blogs[blogname];
+		for(var blogname in blogs)
+		{
+			var blog=blogs[blogname];
 
 			var blog_json=blog[0]._blog_json;
 			
-			var posts=[];
-			var posts_body=[];
-			
+			// assign to tags arrays and all
+			var tags={"":[]}
 			for(var idx=0;idx<blog.length;idx++)
 			{
 				if(blog[idx]._blog_post_json) // got a blogpost
 				{
-					posts.push(blog[idx]);
-				}
-			}
-	
-// sort new to old...	
-			posts.sort(function(a,b){
-				return b._blog_post_json.unixtime - a._blog_post_json.unixtime;
-			});
-			
-			for(var i=0;i<posts.length;i++) {
-				
-				var post=posts[i];
-
-				var post_newer=posts[i-1];
-				var post_older=posts[i+1];
-				
-				post._blog_post_newer=post_newer && post_newer._filename+"/";
-				post._blog_post_older=post_older && post_older._filename+"/";
-			}
-// write individual blog posts and cache the merged chunks for paged output
-			for(var idx=0;idx<posts.length;idx++) { var post=posts[idx];
-				
-
-				var fname=plated.files.filename_to_dirname(post._sourcename)+"/index.html"
-//				var output_filename = plated.files.joinpath( opts.output , plated.files.filename_to_output(fname) );
-				var chunks={};
-				
-				plated.files.set_source(chunks,fname)
-
-				chunks.body=plated.chunks.delimiter_wrap_str("_blog_post_body_one");
-
-				plated.files.prepare_namespace(fname); // prepare merged namespace
-				var merged_chunks=plated.chunks.merge_namespace(chunks);
-
-				merged_chunks._output_filename=plated.files.filename_to_output(fname)
-				merged_chunks._output_chunkname="html"
-				await plated.output.remember_and_write( merged_chunks )
-
-				var cache_root=merged_chunks._root
-				delete merged_chunks._root // do not expand_root here, leave it for later so relative path works
-				chunks._body=plated.chunks.replace( plated.chunks.delimiter_wrap_str("_blog_post_body_many"),merged_chunks); // prebuild body
-				posts_body[idx]=plated.chunks.merge_namespace(chunks);
-				merged_chunks._root=cache_root
-
-				console.log(timestr()+" BLOGPOST "+fname)
-			}
-
-			var pageidx=1;
-			var pagename=plated.files.filename_to_dirname(blog[0]._sourcename)+"/index.html";
-			var pagename_older;
-			var pagename_newer;
-			for( var postidx=0 ; postidx<posts.length ; postidx+=blog_json.posts_per_page )
-			{
-				pageidx++;
-				pagename_older=plated.files.filename_to_dirname(blog[0]._sourcename)+"/page"+pageidx+".html";
-
-				if( postidx+blog_json.posts_per_page >= posts.length) // no more pages
-				{
-					pagename_older=undefined;
-				}
-				var list=[];
-				
-				for(var i=postidx ; i<postidx+blog_json.posts_per_page ; i++ )
-				{
-					if(posts_body[i])
+					tags[""].push(blog[idx])
+					if( blog[idx]._blog_post_json.tags )
 					{
-						list.push(posts_body[i]);
-					}
-				}
-				if(postidx==0) // export the first page of posts to global visibility
-				{
-					blog[0]._blog_export=list
-				}
-
-				var fname=pagename
-				var chunks={};
-				
-				plated.files.set_source(chunks,fname)
-
-				chunks._list=list;
-				chunks._blog_page_older=pagename_older && ("{_root}"+pagename_older);
-				chunks._blog_page_newer=pagename_newer && ("{_root}"+pagename_newer);
-
-				chunks.body=plated.chunks.delimiter_wrap_str("_blog_page_body");
-
-				plated.files.prepare_namespace(fname); // prepare merged namespace
-				var merged_chunks=plated.chunks.merge_namespace(chunks);
-
-				merged_chunks._output_filename=plated.files.filename_to_output(fname)
-				merged_chunks._output_chunkname="html"
-				await plated.output.remember_and_write( merged_chunks )
-
-				console.log(timestr()+" BLOG "+fname)
-
-				pagename_newer=pagename;
-				pagename=pagename_older;
-			}
-
-			var feed={}
-
-			feed.version="https://jsonfeed.org/version/1"
-			feed.title=blog_json.title
-			feed.home_page_url=blog_json.url
-			feed.feed_url=blog_json.url+plated.files.filename_to_dirname(blog[0]._sourcename)+"/feed.json"
-
-			if(blog_json.feed)
-			{
-				for(var n in blog_json.feed)
-				{
-					feed[n]=blog_json.feed[n]
-				}
-			}
-			feed.items=[] // force this to empty just in case
-
-			for(var i=0 ; i<blog_json.posts_per_feed ; i++ )
-			{
-				var chunks=posts_body[i]
-				if(chunks)
-				{
-					var cache_root=chunks._root
-					chunks._root=blog_json.url
-					
-					var it={};
-					
-					it.title=chunks._blog_post_json.title
-					if(chunks._blog_post_json.author)
-					{
-						it.author={name:chunks._blog_post_json.author}
-					}
-					it.url=plated.chunks.replace( plated.chunks.delimiter_wrap_str( "_dirname" ) , chunks )
-					it.id=it.url // id and url can be the same
-					it.content_html=plated.chunks.replace( plated.chunks.delimiter_wrap_str( "_body" ) , chunks )
-					it.date_published=(new Date(chunks._blog_post_json.unixtime*1000)).toISOString()
-
-
-					if(chunks._blog_post_json.feed)
-					{
-						for(var n in chunks._blog_post_json.feed)
+						for(var tidx=0;tidx<blog[idx]._blog_post_json.tags.length;tidx++)
 						{
-							it[n]=chunks._blog_post_json.feed[n]
+							var tag=blog[idx]._blog_post_json.tags[tidx]
+							if(tag)
+							{
+								tags[tag]=tags[tag] || []
+								tags[tag].push(blog[idx])
+							}
 						}
 					}
-
-					feed.items.push(it);
-
-					chunks._root=cache_root
 				}
 			}
-			var fname=plated.files.filename_to_output(plated.files.filename_to_dirname(blog[0]._sourcename))
+			
+			var tagnames=Object.keys(tags) //array of tag names
+			
+			for( var tidx=0 ; tidx<=tagnames.length ; tidx++ )
+			{
+				var posts;
+				var posts_body=[];
+				var tagdir=""
+				var tag=tagnames[tidx]
+				if(tag)
+				{
+					posts=tags[tag]
+					tagdir="/"+tag
+				}
+				else
+				if( tidx==tagnames.length )
+				{
+					posts=tags[""]
+				}
+			
+// sort new to old...
+				if(posts)
+				{
+					posts.sort(function(a,b){
+						return b._blog_post_json.unixtime - a._blog_post_json.unixtime;
+					});
+					
+					
+					for(var i=0;i<posts.length;i++) {
+						
+						var post=posts[i];
 
-			console.log(timestr()+" BLOGFEED "+fname+"/feed.json")
+						var post_newer=posts[i-1];
+						var post_older=posts[i+1];
+						
+						post._blog_post_newer=post_newer && post_newer._filename+"/";
+						post._blog_post_older=post_older && post_older._filename+"/";
+					}
+	// write individual blog posts and cache the merged chunks for paged output
+					for(var idx=0;idx<posts.length;idx++) { var post=posts[idx];
+						
 
-			await plated.files.write(
-				plated.files.joinpath( opts.output , fname+"/feed.json"),
-				JSON_stringify(feed,{space:1}) )
-			await plated.files.write(
-				plated.files.joinpath( opts.output , fname+"/feed.xml") ,
-				jsonfeedToAtom(feed) )
+						var fname=plated.files.filename_to_dirname(post._sourcename)+"/index.html"
+	//					var output_filename = plated.files.joinpath( opts.output , plated.files.filename_to_output(fname) );
+						var chunks={};
+						
+						plated.files.set_source(chunks,fname)
+
+						chunks.body=plated.chunks.delimiter_wrap_str("_blog_post_body_one");
+
+						plated.files.prepare_namespace(fname); // prepare merged namespace
+						var merged_chunks=plated.chunks.merge_namespace(chunks);
+
+						merged_chunks._output_filename=plated.files.filename_to_output(fname)
+						merged_chunks._output_chunkname="html"
+						if(tagdir) // only output the root as single files
+						{
+							await plated.output.remember_and_write( merged_chunks )
+						}
+						var cache_root=merged_chunks._root
+						delete merged_chunks._root // do not expand_root here, leave it for later so relative path works
+						chunks._body=plated.chunks.replace( plated.chunks.delimiter_wrap_str("_blog_post_body_many"),merged_chunks); // prebuild body
+						posts_body[idx]=plated.chunks.merge_namespace(chunks);
+						merged_chunks._root=cache_root
+
+						console.log(timestr()+" BLOGPOST "+fname)
+					}
+
+					var pageidx=1;
+					var pagename=plated.files.filename_to_dirname(blog[0]._sourcename)+tagdir+"/index.html";
+					var pagename_older;
+					var pagename_newer;
+					for( var postidx=0 ; postidx<posts.length ; postidx+=blog_json.posts_per_page )
+					{
+						pageidx++;
+						pagename_older=plated.files.filename_to_dirname(blog[0]._sourcename)+tagdir+"/page"+pageidx+".html";
+
+						if( postidx+blog_json.posts_per_page >= posts.length) // no more pages
+						{
+							pagename_older=undefined;
+						}
+						var list=[];
+						
+						for(var i=postidx ; i<postidx+blog_json.posts_per_page ; i++ )
+						{
+							if(posts_body[i])
+							{
+								list.push(posts_body[i]);
+							}
+						}
+						if(postidx==0) // export the first page of posts to global visibility
+						{
+							blog[0]._blog_export=list
+						}
+
+						var fname=pagename
+						var chunks={};
+						
+						plated.files.set_source(chunks,fname)
+
+						chunks._list=list;
+						chunks._blog_page_older=pagename_older && ("{_root}"+pagename_older);
+						chunks._blog_page_newer=pagename_newer && ("{_root}"+pagename_newer);
+
+						chunks.body=plated.chunks.delimiter_wrap_str("_blog_page_body");
+
+						plated.files.prepare_namespace(fname); // prepare merged namespace
+						var merged_chunks=plated.chunks.merge_namespace(chunks);
+
+						merged_chunks._output_filename=plated.files.filename_to_output(fname)
+						merged_chunks._output_chunkname="html"
+						await plated.output.remember_and_write( merged_chunks )
+
+						console.log(timestr()+" BLOG "+fname)
+
+						pagename_newer=pagename;
+						pagename=pagename_older;
+					}
+				
+					var feed={}
+
+					feed.version="https://jsonfeed.org/version/1"
+					feed.title=blog_json.title
+					feed.home_page_url=blog_json.url
+					feed.feed_url=blog_json.url+plated.files.filename_to_dirname(blog[0]._sourcename)+tagdir+"/feed.json"
+
+					if(blog_json.feed)
+					{
+						for(var n in blog_json.feed)
+						{
+							feed[n]=blog_json.feed[n]
+						}
+					}
+					feed.items=[] // force this to empty just in case
+
+					for(var i=0 ; i<blog_json.posts_per_feed ; i++ )
+					{
+						var chunks=posts_body[i]
+						if(chunks)
+						{
+							var cache_root=chunks._root
+							chunks._root=blog_json.url
+							
+							var it={};
+							
+							it.title=chunks._blog_post_json.title
+							if(chunks._blog_post_json.author)
+							{
+								it.author={name:chunks._blog_post_json.author}
+							}
+							if(chunks._blog_post_json.tags)
+							{
+								it.tags=chunks._blog_post_json.tags
+							}
+							it.url=plated.chunks.replace( plated.chunks.delimiter_wrap_str( "_dirname" ) , chunks )
+							it.id=it.url // id and url can be the same
+							it.content_html=plated.chunks.replace( plated.chunks.delimiter_wrap_str( "_body" ) , chunks )
+							it.date_published=(new Date(chunks._blog_post_json.unixtime*1000)).toISOString()
 
 
+							if(chunks._blog_post_json.feed)
+							{
+								for(var n in chunks._blog_post_json.feed)
+								{
+									it[n]=chunks._blog_post_json.feed[n]
+								}
+							}
+
+							feed.items.push(it);
+
+							chunks._root=cache_root
+						}
+					}
+					var fname=plated.files.filename_to_output(plated.files.filename_to_dirname(blog[0]._sourcename))
+
+					console.log(timestr()+" BLOGFEED "+fname+tagdir+"/feed.json")
+
+					await plated.files.write(
+						plated.files.joinpath( opts.output , fname+tagdir+"/feed.json"),
+						JSON_stringify(feed,{space:1}) )
+					await plated.files.write(
+						plated.files.joinpath( opts.output , fname+tagdir+"/feed.xml") ,
+						jsonfeedToAtom(feed) )
+				}
+			}
 
 // write pages of multiple blog posts
 		}
