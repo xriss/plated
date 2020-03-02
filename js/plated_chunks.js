@@ -803,7 +803,8 @@ use will survive.
 		}
 
 		if(last==="") { return ""; } // so we can return an empty string
-		if(!last)
+		if(last===0)  { return 0;  } // so we can return a zero
+		if(!last) // truthy
 		{
 			return ( plated_chunks.delimiter_open_str() +v+ plated_chunks.delimiter_close_str() )
 		}
