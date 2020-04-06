@@ -286,7 +286,7 @@ Tweak all the base chunks grouped by dir name and pre cascaded/merged
 
 						merged_chunks._output_filename=plated.files.filename_to_output(fname)
 						merged_chunks._output_chunkname="html"
-						if(tagdir) // only output the root as single files
+						if(!tagdir) // only output the root as single files
 						{
 							await plated.output.remember_and_write( merged_chunks )
 						}

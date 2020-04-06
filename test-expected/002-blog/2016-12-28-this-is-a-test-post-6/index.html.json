@@ -120,29 +120,25 @@
   "url": "/"
  },
  "_blog_page_body": "\n<div>some blog posts</div>\n{_list:blog_list}\n<div> {_blog_page_older:link_older_page} {_blog_page_newer:link_newer_page} </div>\n\n",
- "_blog_post_body": "<h2 id=\"title\">{title}</h2>\n<p>The title is {title} and this is an example blog post number 3.\n<br/>\n<br/></p>\n",
+ "_blog_post_body": "<h2 id=\"title\">{title}</h2>\n<p>The title is {title} and this is an example blog post number 6.\n<br/>\n<br/></p>\n",
  "_blog_post_body_many": "\n<a href=\"{_dirname}\">link</a>\n{_blog_post_body}\n\n",
  "_blog_post_body_one": "\n{_blog_post_body}\n<div> {_blog_post_older:link_older_post} {_blog_post_newer:link_newer_post} </div>\nSome comments belong here\n\n",
  "_blog_post_json": {
-  "datedash": "2016-12-25",
+  "datedash": "2016-12-28",
   "datetime": [
    2016,
    12,
-   25,
+   28,
    0,
    0,
    0
   ],
-  "tags": [
-   "odd"
-  ],
-  "title": "This is test post 3",
-  "unixtime": 1482624000
+  "title": "This is test post 6",
+  "unixtime": 1482883200
  },
- "_blog_post_newer": "{_root}002-blog/2016-12-26-this-is-a-test-post-4/",
- "_blog_post_older": "{_root}002-blog/2016-12-24-this-is-a-test-post-2/",
- "_dirname": "{_root}002-blog/2016-12-25-this-is-a-test-post-3",
- "_filename": "{_root}002-blog/2016-12-25-this-is-a-test-post-3/index.html",
+ "_blog_post_older": "{_root}002-blog/2016-12-27-this-is-a-test-post-5/",
+ "_dirname": "{_root}002-blog/2016-12-28-this-is-a-test-post-6",
+ "_filename": "{_root}002-blog/2016-12-28-this-is-a-test-post-6/index.html",
  "_flags": {
   "_blog_post_body": {
    "form": "markdown"
@@ -152,10 +148,10 @@
   }
  },
  "_output_chunkname": "html",
- "_output_filename": "002-blog/2016-12-25-this-is-a-test-post-3/index.html",
+ "_output_filename": "002-blog/2016-12-28-this-is-a-test-post-6/index.html",
  "_root": "../../",
  "_site": "{_root}",
- "_sourcename": "002-blog/2016-12-25-this-is-a-test-post-3/index.html",
+ "_sourcename": "002-blog/2016-12-28-this-is-a-test-post-6/index.html",
  "blog_list": "\n<div>item head</div>\n{_it._body}\n<div>item tail</div>\n\n",
  "body": "{_blog_post_body_one}",
  "html": "\n<html>\n\t<head>\n\t\t<title>{title}</title>\n\t</head>\n\t<body>{body}</body>\n</html>\n\n",
