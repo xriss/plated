@@ -493,6 +493,27 @@ page.
 	};
 
 /***************************************************************************
+--[[#js.plated_chunks.lookup_in_namespace
+
+	chunks = plated_chunks.lookup_in_namespace(str)
+
+lookup the string inside all namespaces using the same rules as 
+plated_chunks.lookup
+
+]]*/
+	plated_chunks.lookup_in_namespace=function(str)
+	{
+		var val
+		for( let idx=plated_chunks.namespaces.length-1 ; idx>=0 ; idx-- ) // check all namespaces
+		{
+			val=plated_chunks.lookup(str,plated_chunks.namespaces[idx])
+			if(val!==undefined) { return val } // return first real value
+		}
+	}
+
+
+	
+/***************************************************************************
 --[[#js.plated_chunks.lookup
 
 	chunks = plated_chunks.lookup(str,dat)
@@ -637,6 +658,9 @@ our documentation.
 Do all the magical things that enables a tag to expand, normally we 
 just lookup the value inside dat but a few operators can be applied.
 
+if dat is null then we use data pushed into the namespaces otherwise we 
+will only use data available in dat.
+
 Operators are applied from left to right so we have no precedence 
 besides this.
 
@@ -666,11 +690,28 @@ use will survive.
 
 			if(!platename) // not an "it:plate" style string so just do lookup
 			{
-				return plated_chunks.lookup(a,dat)
+				if(dat)
+				{
+					return plated_chunks.lookup(a,dat)
+				}
+				else // use namespace
+				{
+					return plated_chunks.lookup_in_namespace(a)
+				}
 			}
 			
-			var it=plated_chunks.lookup(itname,dat)
-			var plate=plated_chunks.lookup(platename,dat)
+			var it
+			var plate
+			if(dat)
+			{
+				it=plated_chunks.lookup(itname,dat)
+				plate=plated_chunks.lookup(platename,dat)
+			}
+			else // use namespace
+			{
+				it=plated_chunks.lookup_in_namespace(itname)
+				plate=plated_chunks.lookup_in_namespace(platename)
+			}
 			
 			if(!it) { return "" } // it not found
 			if(!plate) { return "" } // plate not found
@@ -825,6 +866,9 @@ expanded, or we ran out of sanity. Sanity is 100 levels of recursion,
 just to be on the safe side.
 
 We then call a final replace_once with the lastpass flag set.
+
+if dat is null then we use data pushed into the namespaces otherwise we 
+will only use data available in dat.
 
 ]]*/
 	plated_chunks.replace=function(str,dat)
