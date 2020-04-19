@@ -12,10 +12,10 @@
       "posts_per_page": 2,
       "url": "/"
      },
-     "_blog_page_body": "\n<div>some blog posts</div>\n{_list:blog_list}\n<div> {_blog_page_older:link_older_page} {_blog_page_newer:link_newer_page} </div>\n\n",
+     "_blog_page_body": "\n<div>some blog posts</div>\n{_list:blog_list}\n<div> {_blog_page_older:link_older_page||} {_blog_page_newer:link_newer_page||} </div>\n\n",
      "_blog_post_body": "<h2 id=\"title\">{title}</h2>\n<p>The title is {title} and this is an example blog post number 5.\n<br/>\n<br/></p>\n",
      "_blog_post_body_many": "\n<a href=\"{_dirname}\">link</a>\n{_blog_post_body}\n\n",
-     "_blog_post_body_one": "\n{_blog_post_body}\n<div> {_blog_post_older:link_older_post} {_blog_post_newer:link_newer_post} </div>\nSome comments belong here\n\n",
+     "_blog_post_body_one": "\n{_blog_post_body}\n<div> {_blog_post_older:link_older_post||} {_blog_post_newer:link_newer_post||} </div>\nSome comments belong here\n\n",
      "_blog_post_json": {
       "datedash": "2016-12-27",
       "datetime": [
@@ -66,10 +66,10 @@
       "posts_per_page": 2,
       "url": "/"
      },
-     "_blog_page_body": "\n<div>some blog posts</div>\n{_list:blog_list}\n<div> {_blog_page_older:link_older_page} {_blog_page_newer:link_newer_page} </div>\n\n",
+     "_blog_page_body": "\n<div>some blog posts</div>\n{_list:blog_list}\n<div> {_blog_page_older:link_older_page||} {_blog_page_newer:link_newer_page||} </div>\n\n",
      "_blog_post_body": "<h2 id=\"title\">{title}</h2>\n<p>The title is {title} and this is an example blog post number 3.\n<br/>\n<br/></p>\n",
      "_blog_post_body_many": "\n<a href=\"{_dirname}\">link</a>\n{_blog_post_body}\n\n",
-     "_blog_post_body_one": "\n{_blog_post_body}\n<div> {_blog_post_older:link_older_post} {_blog_post_newer:link_newer_post} </div>\nSome comments belong here\n\n",
+     "_blog_post_body_one": "\n{_blog_post_body}\n<div> {_blog_post_older:link_older_post||} {_blog_post_newer:link_newer_post||} </div>\nSome comments belong here\n\n",
      "_blog_post_json": {
       "datedash": "2016-12-25",
       "datetime": [
@@ -121,10 +121,10 @@
     "posts_per_page": 2,
     "url": "/"
    },
-   "_blog_page_body": "\n<div>some blog posts</div>\n{_list:blog_list}\n<div> {_blog_page_older:link_older_page} {_blog_page_newer:link_newer_page} </div>\n\n",
+   "_blog_page_body": "\n<div>some blog posts</div>\n{_list:blog_list}\n<div> {_blog_page_older:link_older_page||} {_blog_page_newer:link_newer_page||} </div>\n\n",
    "_blog_post_body": "<h2 id=\"title\">{title}</h2>\n<p>The title is {title} and this is an example blog post number 6.\n<br/>\n<br/></p>\n",
    "_blog_post_body_many": "\n<a href=\"{_dirname}\">link</a>\n{_blog_post_body}\n\n",
-   "_blog_post_body_one": "\n{_blog_post_body}\n<div> {_blog_post_older:link_older_post} {_blog_post_newer:link_newer_post} </div>\nSome comments belong here\n\n",
+   "_blog_post_body_one": "\n{_blog_post_body}\n<div> {_blog_post_older:link_older_post||} {_blog_post_newer:link_newer_post||} </div>\nSome comments belong here\n\n",
    "_blog_post_json": {
     "datedash": "2016-12-28",
     "datetime": [
@@ -174,10 +174,10 @@
       "posts_per_page": 2,
       "url": "/"
      },
-     "_blog_page_body": "\n<div>some blog posts</div>\n{_list:blog_list}\n<div> {_blog_page_older:link_older_page} {_blog_page_newer:link_newer_page} </div>\n\n",
+     "_blog_page_body": "\n<div>some blog posts</div>\n{_list:blog_list}\n<div> {_blog_page_older:link_older_page||} {_blog_page_newer:link_newer_page||} </div>\n\n",
      "_blog_post_body": "<h2 id=\"title\">{title}</h2>\n<p>The title is {title} and this is an example blog post number 5.\n<br/>\n<br/></p>\n",
      "_blog_post_body_many": "\n<a href=\"{_dirname}\">link</a>\n{_blog_post_body}\n\n",
-     "_blog_post_body_one": "\n{_blog_post_body}\n<div> {_blog_post_older:link_older_post} {_blog_post_newer:link_newer_post} </div>\nSome comments belong here\n\n",
+     "_blog_post_body_one": "\n{_blog_post_body}\n<div> {_blog_post_older:link_older_post||} {_blog_post_newer:link_newer_post||} </div>\nSome comments belong here\n\n",
      "_blog_post_json": {
       "datedash": "2016-12-27",
       "datetime": [
@@ -228,10 +228,10 @@
       "posts_per_page": 2,
       "url": "/"
      },
-     "_blog_page_body": "\n<div>some blog posts</div>\n{_list:blog_list}\n<div> {_blog_page_older:link_older_page} {_blog_page_newer:link_newer_page} </div>\n\n",
+     "_blog_page_body": "\n<div>some blog posts</div>\n{_list:blog_list}\n<div> {_blog_page_older:link_older_page||} {_blog_page_newer:link_newer_page||} </div>\n\n",
      "_blog_post_body": "<h2 id=\"title\">{title}</h2>\n<p>The title is {title} and this is an example blog post number 3.\n<br/>\n<br/></p>\n",
      "_blog_post_body_many": "\n<a href=\"{_dirname}\">link</a>\n{_blog_post_body}\n\n",
-     "_blog_post_body_one": "\n{_blog_post_body}\n<div> {_blog_post_older:link_older_post} {_blog_post_newer:link_newer_post} </div>\nSome comments belong here\n\n",
+     "_blog_post_body_one": "\n{_blog_post_body}\n<div> {_blog_post_older:link_older_post||} {_blog_post_newer:link_newer_post||} </div>\nSome comments belong here\n\n",
      "_blog_post_json": {
       "datedash": "2016-12-25",
       "datetime": [
@@ -283,10 +283,10 @@
     "posts_per_page": 2,
     "url": "/"
    },
-   "_blog_page_body": "\n<div>some blog posts</div>\n{_list:blog_list}\n<div> {_blog_page_older:link_older_page} {_blog_page_newer:link_newer_page} </div>\n\n",
+   "_blog_page_body": "\n<div>some blog posts</div>\n{_list:blog_list}\n<div> {_blog_page_older:link_older_page||} {_blog_page_newer:link_newer_page||} </div>\n\n",
    "_blog_post_body": "<h2 id=\"title\">{title}</h2>\n<p>The title is {title} and this is an example blog post number 5.\n<br/>\n<br/></p>\n",
    "_blog_post_body_many": "\n<a href=\"{_dirname}\">link</a>\n{_blog_post_body}\n\n",
-   "_blog_post_body_one": "\n{_blog_post_body}\n<div> {_blog_post_older:link_older_post} {_blog_post_newer:link_newer_post} </div>\nSome comments belong here\n\n",
+   "_blog_post_body_one": "\n{_blog_post_body}\n<div> {_blog_post_older:link_older_post||} {_blog_post_newer:link_newer_post||} </div>\nSome comments belong here\n\n",
    "_blog_post_json": {
     "datedash": "2016-12-27",
     "datetime": [
@@ -338,10 +338,10 @@
   "posts_per_page": 2,
   "url": "/"
  },
- "_blog_page_body": "\n<div>some blog posts</div>\n{_list:blog_list}\n<div> {_blog_page_older:link_older_page} {_blog_page_newer:link_newer_page} </div>\n\n",
+ "_blog_page_body": "\n<div>some blog posts</div>\n{_list:blog_list}\n<div> {_blog_page_older:link_older_page||} {_blog_page_newer:link_newer_page||} </div>\n\n",
  "_blog_post_body": "<h2 id=\"title\">{title}</h2>\n<p>The title is {title}.\n<br/>\n<br/></p>\n",
  "_blog_post_body_many": "\n<a href=\"{_dirname}\">link</a>\n{_blog_post_body}\n\n",
- "_blog_post_body_one": "\n{_blog_post_body}\n<div> {_blog_post_older:link_older_post} {_blog_post_newer:link_newer_post} </div>\nSome comments belong here\n\n",
+ "_blog_post_body_one": "\n{_blog_post_body}\n<div> {_blog_post_older:link_older_post||} {_blog_post_newer:link_newer_post||} </div>\nSome comments belong here\n\n",
  "_blog_post_json": {
   "datedash": "1970-01-00",
   "datetime": [

@@ -713,8 +713,8 @@ use will survive.
 				plate=plated_chunks.lookup_in_namespace(platename)
 			}
 			
-			if(!it) { return "" } // it not found
-			if(!plate) { return "" } // plate not found
+			if(!plate) { return } // plate not found so leave tag in output
+			if(!it) { return } // it is not found but plate was so leave tag in output
 			
 			if(isArray(it)) // apply plate to all objects in array
 			{

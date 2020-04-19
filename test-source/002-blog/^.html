@@ -64,7 +64,7 @@ page2,page3 etc.
 
 <div>some blog posts</div>
 {_list:blog_list}
-<div> {_blog_page_older:link_older_page} {_blog_page_newer:link_newer_page} </div>
+<div> {_blog_page_older:link_older_page||} {_blog_page_newer:link_newer_page||} </div>
 
 
 #^----------------------------------------------------------------------
@@ -109,7 +109,7 @@ hierarchy as well as _blog_post_json and _blog_post_body
 #^_blog_post_body_one
 
 {_blog_post_body}
-<div> {_blog_post_older:link_older_post} {_blog_post_newer:link_newer_post} </div>
+<div> {_blog_post_older:link_older_post||} {_blog_post_newer:link_newer_post||} </div>
 Some comments belong here
 
 
