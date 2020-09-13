@@ -301,8 +301,8 @@ Tweak all the base chunks grouped by dir name and pre cascaded/merged
 
 					var pageidx=1;
 					var pagename=plated.files.filename_to_dirname(blog[0]._sourcename)+tagdir+"/index.html";
-					var pagename_older;
-					var pagename_newer;
+					var pagename_older=undefined;
+					var pagename_newer=undefined;
 					for( var postidx=0 ; postidx<posts.length ; postidx+=blog_json.posts_per_page )
 					{
 						pageidx++;
