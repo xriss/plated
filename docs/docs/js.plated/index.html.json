@@ -363,7 +363,7 @@
    "node_modules": true
   },
   "urlprefix": {
-   "js/": "https://github.com/xriss/plated/blob/master/js/"
+   "../js/": "https://github.com/xriss/plated/blob/master/js/"
   }
  },
  "_filename": "{_root}docs/js.plated/index.html",
@@ -403,7 +403,7 @@
    "file": "../js/plated.js",
    "line": 3,
    "name": "js.plated",
-   "url": "../js/plated.js"
+   "url": "https://github.com/xriss/plated/blob/master/js/plated.js"
   },
   {
    "body": "<pre><code>plated.build()</code></pre><p>Build all the output files from the inputs.</p>\n",
@@ -411,7 +411,7 @@
    "file": "../js/plated.js",
    "line": 458,
    "name": "js.plated.build",
-   "url": "../js/plated.js"
+   "url": "https://github.com/xriss/plated/blob/master/js/plated.js"
   },
   {
    "body": "<pre><code>plated.plugin(it)</code></pre><p>Register a plugin, each plugin can provide the following function hooks.</p>\n<pre><code>dirs = it.process_dirs( dirs )</code></pre><p>Adjust the registered dirs data and return it.</p>\n<pre><code>file = it.process_file( file )</code></pre><p>Adjust or react to the file data and return it.</p>\n<pre><code>it.process_output( chunks )</code></pre><p>Adjust a files chunks prior to writing it out, or, output extra data \nassociated with these chunks.</p>\n",
@@ -419,7 +419,7 @@
    "file": "../js/plated.js",
    "line": 430,
    "name": "js.plated.plugin",
-   "url": "../js/plated.js"
+   "url": "https://github.com/xriss/plated/blob/master/js/plated.js"
   },
   {
    "body": "<pre><code>plated.setup(opts)</code></pre><p>Initialise plated and require the base plated modules: files, chunks \nand output.</p>\n",
@@ -427,7 +427,7 @@
    "file": "../js/plated.js",
    "line": 409,
    "name": "js.plated.setup",
-   "url": "../js/plated.js"
+   "url": "https://github.com/xriss/plated/blob/master/js/plated.js"
   },
   {
    "body": "<pre><code>plated.watch()</code></pre><p>Continuously build the output files from the inputs whenever one of the input files changes</p>\n",
@@ -435,7 +435,7 @@
    "file": "../js/plated.js",
    "line": 471,
    "name": "js.plated.watch",
-   "url": "../js/plated.js"
+   "url": "https://github.com/xriss/plated/blob/master/js/plated.js"
   }
  ],
  "_output_chunkname": "html",

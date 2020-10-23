@@ -363,7 +363,7 @@
    "node_modules": true
   },
   "urlprefix": {
-   "js/": "https://github.com/xriss/plated/blob/master/js/"
+   "../js/": "https://github.com/xriss/plated/blob/master/js/"
   }
  },
  "_filename": "{_root}docs/cmd.plated.watch/index.html",
@@ -403,7 +403,7 @@
    "file": "../js/cmd.js",
    "line": 95,
    "name": "cmd.plated.watch",
-   "url": "../js/cmd.js"
+   "url": "https://github.com/xriss/plated/blob/master/js/cmd.js"
   }
  ],
  "_output_chunkname": "html",

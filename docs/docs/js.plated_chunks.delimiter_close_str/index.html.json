@@ -363,7 +363,7 @@
    "node_modules": true
   },
   "urlprefix": {
-   "js/": "https://github.com/xriss/plated/blob/master/js/"
+   "../js/": "https://github.com/xriss/plated/blob/master/js/"
   }
  },
  "_filename": "{_root}docs/js.plated_chunks.delimiter_close_str/index.html",
@@ -403,7 +403,7 @@
    "file": "../js/plated_chunks.js",
    "line": 78,
    "name": "js.plated_chunks.delimiter_close_str",
-   "url": "../js/plated_chunks.js"
+   "url": "https://github.com/xriss/plated/blob/master/js/plated_chunks.js"
   }
  ],
  "_output_chunkname": "html",

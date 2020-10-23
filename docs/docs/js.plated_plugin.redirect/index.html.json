@@ -363,7 +363,7 @@
    "node_modules": true
   },
   "urlprefix": {
-   "js/": "https://github.com/xriss/plated/blob/master/js/"
+   "../js/": "https://github.com/xriss/plated/blob/master/js/"
   }
  },
  "_filename": "{_root}docs/js.plated_plugin.redirect/index.html",
@@ -403,7 +403,7 @@
    "file": "../js/plated_plugin_redirect.js",
    "line": 4,
    "name": "js.plated_plugin.redirect",
-   "url": "../js/plated_plugin_redirect.js"
+   "url": "https://github.com/xriss/plated/blob/master/js/plated_plugin_redirect.js"
   },
   {
    "body": "<pre><code>dirs = plated_plugin_redirect.process_dirs(dirs)</code></pre><p>Tweak all the base chunks grouped by dir name and pre cascaded/merged</p>\n",
@@ -411,7 +411,7 @@
    "file": "../js/plated_plugin_redirect.js",
    "line": 105,
    "name": "js.plated_plugin.redirect.process_dirs",
-   "url": "../js/plated_plugin_redirect.js"
+   "url": "https://github.com/xriss/plated/blob/master/js/plated_plugin_redirect.js"
   },
   {
    "body": "<pre><code>chunks = plated_plugin_redirect.process_file(chunks)</code></pre><p>Tweak a single file of chunks, only chunks found in this file will be \navailable.</p>\n<pre><code>#^_redirect_json</code></pre><p>Is a special chunk name that we will parse as json and contain \nconfiguration data to setup redirects.</p>\n",
@@ -419,7 +419,7 @@
    "file": "../js/plated_plugin_redirect.js",
    "line": 151,
    "name": "js.plated_plugin.redirect.process_file",
-   "url": "../js/plated_plugin_redirect.js"
+   "url": "https://github.com/xriss/plated/blob/master/js/plated_plugin_redirect.js"
   }
  ],
  "_output_chunkname": "html",

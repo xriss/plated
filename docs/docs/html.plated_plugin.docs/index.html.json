@@ -363,7 +363,7 @@
    "node_modules": true
   },
   "urlprefix": {
-   "js/": "https://github.com/xriss/plated/blob/master/js/"
+   "../js/": "https://github.com/xriss/plated/blob/master/js/"
   }
  },
  "_filename": "{_root}docs/html.plated_plugin.docs/index.html",
@@ -403,7 +403,7 @@
    "file": "../js/plated_plugin_docs.js",
    "line": 20,
    "name": "html.plated_plugin.docs",
-   "url": "../js/plated_plugin_docs.js"
+   "url": "https://github.com/xriss/plated/blob/master/js/plated_plugin_docs.js"
   }
  ],
  "_output_chunkname": "html",

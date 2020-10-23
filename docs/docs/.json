@@ -363,7 +363,7 @@
    "node_modules": true
   },
   "urlprefix": {
-   "js/": "https://github.com/xriss/plated/blob/master/js/"
+   "../js/": "https://github.com/xriss/plated/blob/master/js/"
   }
  },
  "_filename": "{_root}docs",
@@ -408,7 +408,7 @@
    "file": "../js/cmd.js",
    "line": 6,
    "name": "cmd.plated",
-   "url": "../js/cmd.js"
+   "url": "https://github.com/xriss/plated/blob/master/js/cmd.js"
   },
   {
    "body": "<pre><code>plated build </code></pre><p>The build action, output files are created once and then the command \nreturns.</p>\n<pre><code>--site=</code></pre><p>How we should link to this site if the link can not be relative, eg \nnormally we would just use /index.html to reach a file in the root of \nthe current site but if this html is going to be rendered somewhere \nelse then this trick would no longer work and we would have to use this \nvalue instead. An example of when this might happen is the publishing of \nrss feeds.</p>\n<pre><code>--root=</code></pre><p>The root of the site we are building, normally empty in which case we \nmaintain a relative path back to the root depending on how far we have \ndescended into the directory structure, eg ../../ It is recomended that \nthis be used whenever constructing a url, for instance linking to the \nroot index.html should be done like sp {_root}index.html rather than \n/index.html if you want to ensure you have a site that can be built \ninto a directory as well as a domain.</p>\n<pre><code>--source=source</code></pre><p>Where to read the source files from, this is relative to the current \ndirectory and all files are found recursively from this point. We also \nfollow soft directory symlinks so we can easily pull in extra files from \nelsewhere.</p>\n<pre><code>--output=output</code></pre><p>The output directory relative to the current directory. Please be very \ncareful with this location as this will be emptied recursively before we \nwrite anything into it.</p>\n<pre><code>--hashfile=^</code></pre><p>The magic string used to trigger special chunk parsing, files are \neither scoped to the directory in which case they are just this magic \nstring plus any extension. For example ^.html or they are intended to \ncreate specific files in which case ^. will be stripped and the \nremainder used as an output. For example index.^.html which would \ncreate an index.html in the output, the extension is used to pick the \nchunk that is rendered into the output file. In this case it would be \nthe html chunk.</p>\n<pre><code>--hashchunk=#^</code></pre><p>The magic string used to split the input files into chunks, it must be \nused at the start of a line to trigger special processing and the \ndefault has been specifically chosen as something unlikely to be typed \nby accident.</p>\n<pre><code>--delimiter={}</code></pre><p>The magic string used to wrap tags for special processing in chunk \nfiles. It must be an even number of characters as we spit it in the \nmiddle and use both sides as start/stop strings. The default, might \nlook dangerous for C like languages which use {} to wrap blocks but due \nto the limits on contents (no white space) and the fallback of \noutputting exactly the same as the input, eg {} will output {}. C like \nlanguages are very unlikely to trigger any special processing,</p>\n<pre><code>--dumpjson</code></pre><p>A Boolean flag to enable the output of .json chunk dumps as well as \nprocessed output files. This is useful for debugging and also provides \nenough data to recreate pages at run time should that be necessary.</p>\n",
@@ -416,7 +416,7 @@
    "file": "../js/cmd.js",
    "line": 17,
    "name": "cmd.plated.build",
-   "url": "../js/cmd.js"
+   "url": "https://github.com/xriss/plated/blob/master/js/cmd.js"
   },
   {
    "body": "<pre><code>plated watch</code></pre><p>Build once and then watch all the files in source folder with any \nchange triggering a rebuild.</p>\n<p>This combined with a simple server and being careful to disable the \nhtml cache, can be used for live updates as you edit the source files.</p>\n<p>This uses the same options as plated.build so please view the \ndescriptions of all available options there.</p>\n",
@@ -424,7 +424,7 @@
    "file": "../js/cmd.js",
    "line": 95,
    "name": "cmd.plated.watch",
-   "url": "../js/cmd.js"
+   "url": "https://github.com/xriss/plated/blob/master/js/cmd.js"
   },
   {
    "body": "",
@@ -437,7 +437,7 @@
    "file": "../js/plated.js",
    "line": 37,
    "name": "html.plated",
-   "url": "../js/plated.js"
+   "url": "https://github.com/xriss/plated/blob/master/js/plated.js"
   },
   {
    "body": "<p>Chunk files are parsed one line at a time to break them into a number \nof named chunks, lines that begin with the special characters #^ \ntrigger special processing all other lines are simple assigned to the \ncurrent chunk. eg:</p>\n<pre><code>#^chunkname\nhere is some text\nthat will be assigned to chunkname</code></pre><p>A chunk ends when we run out of file or we start another chunk.</p>\n<p>As well as the chunk name we can also add some flags to change how the \nchunk is processed. These flags are added by name=value pairs after the \nchunkname and separated by white space.</p>\n<pre><code>#^chunkname flag=value otherflag=othervalue</code></pre><p>These values are intended to change how the chunk is processed here are \nthe ones that we currently support. Multiple flags can of course be \napplied to the same chunk.</p>\n<pre><code>#^chunkname trim=ends</code></pre><p>This flag will cause all whitespace to be removed from the beginning \nand end of the chunk. Useful if you intend to include a chunk in a html \nattributes as newlines would would mess that up.</p>\n<pre><code>#^chunkname form=json</code></pre><p>Parse the text as json, this allows for structured data or arrays to be \ndefined in chunks. This data can be referenced inside macro expansion \nusing the . operator to reference members. Most plugins have a json \nchunk containing their settings.</p>\n<pre><code>#^chunkname form=markdown</code></pre><p>This text will be parsed as markdown and converted into html. Markdown \nis an easy way to create simple formated content for blog posts or just \npages in general. Note that the default format is just to leave the \ntext of the chunk unprocessed which means normal html tags.</p>\n<p>Chunk names that begin with an underscore are considered internal \nplated chunks ans some will be provided by the plated code for each \npage rendered. Here is a list of chunks that will be provided by the \nsystem.</p>\n<pre><code>#^chunkname same=replace</code></pre><p>This alters how we replace chunks when they are declared twice, \nnormally the chunk in the lowest level will simply replace a chunk \ndeclared elsewhere. This is the default setting.</p>\n<pre><code>#^chunkname same=append</code></pre><p>If we change to append mode then chunks lower down will be appended to \nthe higher up chunks. This is very useful for css chunks where we can \nappend rules as we cascade down and these rules will take precedence \nover the earlier rules due to the magic of css.</p>\n<pre><code>#^chunkname same=merge</code></pre><p>This should only be used with a json chunk, it merges the data with its \nparent chunk so we can change or add values as we cascade down through \nthe directories similar to append but working as objects rather than \njust plan text. This is why it should only be used with json chunks.</p>\n<pre><code>#^_root</code></pre><p>This will be set to a url that gets to the root of this website and \nshould be used in front of all urls to make sure that we can find the \nfiles we want. This can be passed in on the command line and / is a \ngood way to think of this value. The default is actually for plated to \nprovide a relative url such as ../../ that would get you to the root of \nthe site from the current page. You should be using _root as the prefix \nfor all urls when including css or js or images etc in a html file.</p>\n<pre><code>#^_site</code></pre><p>Similar to root but intended to explicitly link to the root of the \nnamed site. This is intended for use in links that can never be \nrelative to the current url so must be full and explicit urls, eg in \nRSS feeds.</p>\n<pre><code>#^_sourcename</code></pre><p>This will be set to the filename of the input source file that we are \ncurrently rendering.</p>\n<pre><code>#^_filename</code></pre><p>This will be set to url of the file that we are currently rendering.</p>\n<pre><code>#^_dirname</code></pre><p>This will be set to url of the directory containing the file that we \nare currently rendering.</p>\n<pre><code>#^_flags</code></pre><p>This is an object containing flag data for the defined chunks, most \nchunks will not have any flags defined but if they are they can be \nfound in for example  _flags.chunkname.flagname which would hold the \nvalue of flagname for the given chunkname. This is really just for \ninternal processing and should not need to be referenced by the user.</p>\n<p>As well as the provided chunks there are some special names exist to \ntrigger plugin behaviour and need to be defined with the correct \nconfiguration data, for instance</p>\n<pre><code>#^_docs_json</code></pre><p>Is the name of a chunk containing configuration data in json format \nthat enables the docs plugin to create pages such as the ones that you \nare currently reading. See html.plated.plugins for documentation on how \nto use them and what data must be provided. All you need to know is \nthat any chunk name that begins with an underscore belongs to the \nplated system itself and must only be created according to the \ndocumentation.</p>\n<p>As well as chunknames there are two other things we can do with special \ncharacters at the start of a line.</p>\n<pre><code>#^-this is a comment line</code></pre><p>The comment line will simply be ignored, in case you wish to include \nsome comments about what a chunk will be used for.</p>\n<pre><code>#^=##</code></pre><p>Allows the redefinition of the magic string, for the rest of the file, \nin this case, it would be ## instead of #^ but any string could be \nused. This is intended as an escape clause in case the magic string is \nundesirable in a certain file. It can also be changed on the command \nline when plated is invoked if you wish to change it globally.</p>\n",
@@ -445,7 +445,7 @@
    "file": "../js/plated.js",
    "line": 110,
    "name": "html.plated.chunks",
-   "url": "../js/plated.js"
+   "url": "https://github.com/xriss/plated/blob/master/js/plated.js"
   },
   {
    "body": "<p>A special string in the filename triggers chunk file processing, by \ndefault this is ^. but it can be changed to another character or string \nwhen plated is invoked. ^. seems to be a reasonably safe yet generally \nunused sequence of characters in file names.</p>\n<p>Chunk files are text files containing chunks of text assigned to \nsymbolic chunknames, these chunks can then be referenced by tags \ncontained in other chunks and expanded to build final output files. </p>\n<p>This is intended to be simple macro expansion only rather than a \ncomplex programming language. Any programming would take place in a \nplugin, for instance we include a blog plugin that helps build blog \nstyle websites on top of this base chunk system.</p>\n<p>There are two basic types of chunk files, directory scope and file \nscope. Directory scope chunk files contain chunks that can be \nreferenced by any other chunk file in their directory as well as any \nsub directories. Directory scope chunks declared inside a sub directory \nwill replace any chunks defined higher up the path, this allows us to \nadjust and group data using hierarchical directories.</p>\n<pre><code>^.html\n^.css\n^.md\n^.what.ever.you.like</code></pre><p>Are all examples of directory scoped chunk files, they do not create \nany output files themselves but are parsed to provide directory scope \nchunks which can be used in other chunk files. It does not matter what \nextension is used, primarily it is intended to be used as a clue to \neditors to provide appropriate language highlighting. By convention css \nchunks would be placed inside ^.css and html chunks inside ^.html but \nthis is in no way enforced or necessary for plated to work.\n<br/>\n<br/></p>\n<pre><code>index.^.html\nlayout.^.css\nhacks.^.js</code></pre><p>Are all examples of file scoped chunk files. Each one will create a \nfile in the output directory with the same path but the name altered \nslightly to remove ^. from it. For example index.^.html becomes \nindex.html</p>\n<p>The extension used selects the chunk name that will be rendered into \nthe output file. So index.^.html will render the html chunk into the \noutput file and layout.^.css will render the css chunk.</p>\n<p>Usually pages in a directory will share the same layout, so a html \nchunk will be declared at the directory level with the file just adding \na content chunk to be rendered inside this page structure. The \ncascading chunk system means you are free to alter this in sub \ndirectories but often pages have a lot in common so keeping a bunch of \ngeneric layout chunks in the root with sub directories just picking \nfrom them works perfectly. The idea is to provide data organisational \ntools but not to dictate the use.</p>\n",
@@ -453,7 +453,7 @@
    "file": "../js/plated.js",
    "line": 48,
    "name": "html.plated.files",
-   "url": "../js/plated.js"
+   "url": "https://github.com/xriss/plated/blob/master/js/plated.js"
   },
   {
    "body": "<p>Once we have some chunks defined we need to provide a way of refering to them \ninside other chunks as a macro expansion.</p>\n<pre><code>#^chunkname trim=ends\nI am expanded\n#^mainchunk\nExpand the {chunkname} to its contents.</code></pre><p>If the above mainchunk was rendered then {chunkname} would be replace \nwith the contents of the chunk that was defined as #^chunkname this \nmacro expansion is recursive so you can include chunks within chunks \nwithin chunks. Combined with the cascading chunks this provides a huge \namount of flexibility without any additional programming logic. Similar \nto {{moustache}} templates but with slightly less logic and a bit more \nrecursion.</p>\n<p>If {chunkname} does not exist then the text will be left untouched as \n{chunkname} also there must be no white space in this macro expansion. \nso { chunkname } will never expand to anything.</p>\n<p>This may sound dangerous but we are able to get away with {} even \ninside C like languages that contain {} all over the place. If this \nscares you then you are free to redefine {} to {{}} when invoking \nplated but I assure you it is not necessary.</p>\n<pre><code>{jsonchunk.member}</code></pre><p>When using a json chunk a . can be used to pull out a value from the object</p>\n<pre><code>{jsonarray.0.name}</code></pre><p>If it is an array then the first item could be picked out with a number \nand then its member.</p>\n<pre><code>{jsonarray.-1.name}</code></pre><p>Negative numbers are allowed in which case it counts backwards from the \nend, in this case the last name of the last object in the array would \nbe used.</p>\n<p>Finally a json chunk may have another chunk applied as a layout.</p>\n<pre><code>{jsonchunk:plate}</code></pre><p>In this case plate is a chunk name that renders with {_it} being \nsynonymous with {jsonchunk} This is similar to calling a macro with a \nnumber of values.</p>\n<pre><code>{jsonarray:plate}</code></pre><p>If a template is applied to an array then it is applied repeatedly to \neach item in that array. This allows for simple formatting of json data \nheld within an array. The loop happens auto-magically with {_it} \nexpanding to a different value each time.</p>\n<p>All of these templating expansions are intended for use by plugins \nwhich provide arrays or objects of data for you to display.</p>\n<p>If a plate is applied to empty data then the empty string is returned. \nEg no expansion happens, this can help with layout logic removing some \nchunks and showing others depending on their existence.</p>\n<p>Finally because we also need to be able to talk about these macros here \nwithout them accidently expanding then we have a simple way to escape \nthem.</p>\n<pre><code>{[}{chunkname}{]}</code></pre><p>No matter how valid the chunkname is it will not expand because it is \ncontained within the comment tags {[}{]} these tags will be removed \nafter the text is rendered.</p>\n<pre><code>{[[}{chunkname}{]]}</code></pre><p>If multiple [ are used instead of one then it allows one level macro \nreplacement per extra [ so we can control expansion this way. In the \nabove example {chunkname} will expand once but any macros within that \nchunk will stay untouched. A tad complex but escape syntax is always a \npain.</p>\n<p>Due to the way this expands you must be careful to balance any use of \n{[}{]} within this chunk so as not to accidentally close the tag \nprematurely. This documentation for instance is designed to be used \ninside such a chunk so all square brackets inside {} have been \ncarefully balanced to stop anything from going wrong.</p>\n",
@@ -461,7 +461,7 @@
    "file": "../js/plated.js",
    "line": 250,
    "name": "html.plated.macros",
-   "url": "../js/plated.js"
+   "url": "https://github.com/xriss/plated/blob/master/js/plated.js"
   },
   {
    "body": "<p>As well as chunknames we can also combine some logic operators to \ncontrol how macros expand. This is mostly of use with json chunks where \nyou wish to make a choice between a number of possibilities. For instance</p>\n<pre><code>{obj.count==1&amp;&amp;obj:showit||obj:hideit}</code></pre><p>The above is an example of a value?one:two style logic test. First \nobj.count is compared to the value 1 this will work if it is a string \nor a number due to the loose typing used. If true then obj will be \nrendered with the template chunk showit if false then instead obj will \nbe rendered with the template chunk hideit. You can guess what these \ntwo templates are intended to do.</p>\n<p>The operators are evaluated left to right with no precedence and are C \nlike, hence == rather than just a single = sign. Here are all the \npossible operators that can be used.</p>\n<pre><code>{a&lt;b}\n    returns true if a is less than b\n{a&lt;=b}\n    returns true if a is less than or equal to b\n{a&gt;b}\n    returns true if a is more than b\n{a&gt;=b}\n    returns true if a is more than or equal to b\n{a==b}\n    returns true if a is equal to b\n{a&amp;&amp;b}\n    a and b returns b if a is true else returns a\n{a||b}\n    a or b returns b if a is false else returns a\n{a||}\n    returns a if it exists else return an empty string</code></pre><p>The last one is useful for making macros invisible if they refer to \nempty data. Normally macros remain in the output if they are invalid. \nSo {a} on its own would either expand to something else or remain as \n{a} in the output. {a||} is just using the || operator to make it go \naway if empty.</p>\n",
@@ -469,7 +469,7 @@
    "file": "../js/plated.js",
    "line": 343,
    "name": "html.plated.operators",
-   "url": "../js/plated.js"
+   "url": "https://github.com/xriss/plated/blob/master/js/plated.js"
   },
   {
    "body": "",
@@ -482,7 +482,7 @@
    "file": "../js/plated_plugin_blog.js",
    "line": 20,
    "name": "html.plated_plugin.blog",
-   "url": "../js/plated_plugin_blog.js"
+   "url": "https://github.com/xriss/plated/blob/master/js/plated_plugin_blog.js"
   },
   {
    "body": "<pre><code>#^_copy_json\n{\n    include:[\n        &quot;&quot;,\n    ],\n    exclude:[\n        &quot;fra&quot;,\n        &quot;spa&quot;,\n    ],\n}</code></pre><p>A chunk of this name must be created in a directory scope file for this \nplugin to parse it. include is a list of prefixes to include and \nexclude is a list of prefixes within the include to exclude.</p>\n<p>The above configuration is assumed to be within a file fra/^.index and \nspa/^.index so it would include all chunkfiles from root but exclude \nfiles in fra or spa, ie itself. This way we can have a default english \nsite and a spanish translation under spa/ or french under fra/</p>\n<p>The files are copied into the current directory without the prefix used \nin include.</p>\n<p>An example can be found in test-source/006-copy</p>\n",
@@ -490,7 +490,7 @@
    "file": "../js/plated_plugin_copy.js",
    "line": 30,
    "name": "html.plated_plugin.copy",
-   "url": "../js/plated_plugin_copy.js"
+   "url": "https://github.com/xriss/plated/blob/master/js/plated_plugin_copy.js"
   },
   {
    "body": "<pre><code>#^_docs_json\n{\n    ignore:{\n        &quot;node_modules&quot;:true,\n    },\n    dirs:{\n        &quot;../js&quot;:&quot;.js&quot;,\n    },\n}</code></pre><p>A chunk of this name must be created in a directory scope file for this \nplugin to parse it. We should ignore any paths containing the key \nstrings in the ignore object and will include (recursively) the keys in \nthe dirs object but only if the filename ends in the given string.</p>\n<p>So in the above case we will scan ../js for all .js files but ignore \neverything in node_modules. One should always ignore everything in \nnode_modules.</p>\n<p>These files are searched for special auto doc documentation syntax \nwhere any line that begins with --[#name.of.the.chunk will begin a \nspecial documentation chunk and ]] will end it. In both cases the \nstring must be at the start of a line.</p>\n<p>Each of these chunks will then be rendered into its own page as well as \nits parent pages, we use dot notation to describe this relationship. In \nthe case of name.of.the.chunk it will exist in name.of.the name.of name \nand the always present /</p>\n<p>Take a look at the source code that generates this site documentation \nin source/docs for an example of how this can be themed and presented.</p>\n",
@@ -498,7 +498,7 @@
    "file": "../js/plated_plugin_docs.js",
    "line": 20,
    "name": "html.plated_plugin.docs",
-   "url": "../js/plated_plugin_docs.js"
+   "url": "https://github.com/xriss/plated/blob/master/js/plated_plugin_docs.js"
   },
   {
    "body": "<pre><code>#^importedchunk import=dir/dir\n...</code></pre><p>The content if this chunk is unimportant as it will be replaced by the \nchunk referenced from another file via the import=dir flag. </p>\n",
@@ -506,7 +506,7 @@
    "file": "../js/plated_plugin_import.js",
    "line": 21,
    "name": "html.plated_plugin.import",
-   "url": "../js/plated_plugin_import.js"
+   "url": "https://github.com/xriss/plated/blob/master/js/plated_plugin_import.js"
   },
   {
    "body": "<pre><code>#^_redirect_json\n{\n    files:{\n        &quot;from/index.html&quot;:&quot;to/&quot;,\n        &quot;other/index.html&quot;:&quot;to/&quot;,\n    },\n}</code></pre><p>A chunk of this name must be created in a directory scope file for this \nplugin to parse it. files is a map of redirections we require.</p>\n<p>Perform a redirect of files, using simple html javascript redirection, \nto another url. We mostly make use of the automatic use of an \nindex.html inside a given directory so in the case above ./from will \nget redirected to ./to note that these can contain one level of macro \nexpansion so {_root}dir is a reasonable redirection.</p>\n<p>Multiple redirections can be performed in a single json configuration \nbut be aware that we end up actually creating files to perform these \nredirections so be careful not to clash with other files.</p>\n<p>An example can be found in test-source/005-redirect</p>\n",
@@ -514,7 +514,7 @@
    "file": "../js/plated_plugin_redirect.js",
    "line": 21,
    "name": "html.plated_plugin.redirect",
-   "url": "../js/plated_plugin_redirect.js"
+   "url": "https://github.com/xriss/plated/blob/master/js/plated_plugin_redirect.js"
   },
   {
    "body": "",
@@ -527,7 +527,7 @@
    "file": "../js/plated.js",
    "line": 3,
    "name": "js.plated",
-   "url": "../js/plated.js"
+   "url": "https://github.com/xriss/plated/blob/master/js/plated.js"
   },
   {
    "body": "<pre><code>plated.build()</code></pre><p>Build all the output files from the inputs.</p>\n",
@@ -535,7 +535,7 @@
    "file": "../js/plated.js",
    "line": 458,
    "name": "js.plated.build",
-   "url": "../js/plated.js"
+   "url": "https://github.com/xriss/plated/blob/master/js/plated.js"
   },
   {
    "body": "<pre><code>plated.plugin(it)</code></pre><p>Register a plugin, each plugin can provide the following function hooks.</p>\n<pre><code>dirs = it.process_dirs( dirs )</code></pre><p>Adjust the registered dirs data and return it.</p>\n<pre><code>file = it.process_file( file )</code></pre><p>Adjust or react to the file data and return it.</p>\n<pre><code>it.process_output( chunks )</code></pre><p>Adjust a files chunks prior to writing it out, or, output extra data \nassociated with these chunks.</p>\n",
@@ -543,7 +543,7 @@
    "file": "../js/plated.js",
    "line": 430,
    "name": "js.plated.plugin",
-   "url": "../js/plated.js"
+   "url": "https://github.com/xriss/plated/blob/master/js/plated.js"
   },
   {
    "body": "<pre><code>plated.setup(opts)</code></pre><p>Initialise plated and require the base plated modules: files, chunks \nand output.</p>\n",
@@ -551,7 +551,7 @@
    "file": "../js/plated.js",
    "line": 409,
    "name": "js.plated.setup",
-   "url": "../js/plated.js"
+   "url": "https://github.com/xriss/plated/blob/master/js/plated.js"
   },
   {
    "body": "<pre><code>plated.watch()</code></pre><p>Continuously build the output files from the inputs whenever one of the input files changes</p>\n",
@@ -559,7 +559,7 @@
    "file": "../js/plated.js",
    "line": 471,
    "name": "js.plated.watch",
-   "url": "../js/plated.js"
+   "url": "https://github.com/xriss/plated/blob/master/js/plated.js"
   },
   {
    "body": "<p>Manage the chunks of text that are combined into a page.</p>\n<p>This module only exposes one function, which is used to create \nthe actual module with bound state data.</p>\n<pre><code>plated_chunks = require(&quot;./plated_chunks.js&quot;).create(opts,plated)</code></pre><p>This is called automatically when the plated module is created and the \nreturn value is made available in plated.chunks note that all of these \nmodules are bound together and operate as a group with shared data.</p>\n<p>In the future when we talk about this module and its available \nfunctions we are referring to the return value from this create \nfunction.</p>\n",
@@ -567,7 +567,7 @@
    "file": "../js/plated_chunks.js",
    "line": 3,
    "name": "js.plated_chunks",
-   "url": "../js/plated_chunks.js"
+   "url": "https://github.com/xriss/plated/blob/master/js/plated_chunks.js"
   },
   {
    "body": "<pre><code>too = plated_chunks.deepmerge(frm,too,_flags)</code></pre><p>Merge the object, frm, into an object too. How values merge can be \nadjusted by _flags the same way _flags works in parsing chunks. \nsame=merge is honoured here so some chunks can be appended rather than \nreplace. We need to keep this separate as the act of merging will break \nhow such things work.</p>\n<p>This function is called recursively so as not to end up sharing values \nwith any inputs.</p>\n",
@@ -575,7 +575,7 @@
    "file": "../js/plated_chunks.js",
    "line": 410,
    "name": "js.plated_chunks.deepmerge",
-   "url": "../js/plated_chunks.js"
+   "url": "https://github.com/xriss/plated/blob/master/js/plated_chunks.js"
   },
   {
    "body": "<pre><code>s = plated_chunks.delimiter_close_str()</code></pre><p>Return the last half of the opts.delimiter string.</p>\n",
@@ -583,7 +583,7 @@
    "file": "../js/plated_chunks.js",
    "line": 78,
    "name": "js.plated_chunks.delimiter_close_str",
-   "url": "../js/plated_chunks.js"
+   "url": "https://github.com/xriss/plated/blob/master/js/plated_chunks.js"
   },
   {
    "body": "<pre><code>s = plated_chunks.delimiter_open_str()</code></pre><p>Return the first half of the opts.delimiter string.</p>\n",
@@ -591,7 +591,7 @@
    "file": "../js/plated_chunks.js",
    "line": 66,
    "name": "js.plated_chunks.delimiter_open_str",
-   "url": "../js/plated_chunks.js"
+   "url": "https://github.com/xriss/plated/blob/master/js/plated_chunks.js"
   },
   {
    "body": "<pre><code>s = plated_chunks.delimiter_wrap_str(s)</code></pre><p>Return the given string wrapped in the opts.delimiter string.</p>\n",
@@ -599,7 +599,7 @@
    "file": "../js/plated_chunks.js",
    "line": 90,
    "name": "js.plated_chunks.delimiter_wrap_str",
-   "url": "../js/plated_chunks.js"
+   "url": "https://github.com/xriss/plated/blob/master/js/plated_chunks.js"
   },
   {
    "body": "<pre><code>value = plated_chunks.expand_tag(v,dat,lastpass)</code></pre><p>Do all the magical things that enables a tag to expand, normally we \njust lookup the value inside dat but a few operators can be applied.</p>\n<p>if dat is null then we use data pushed into the namespaces otherwise we \nwill only use data available in dat.</p>\n<p>Operators are applied from left to right so we have no precedence \nbesides this.</p>\n<p>If we fail to lookup a valid value then we return input string wrapped \nin delimiters, essentially any values we do not understand will come \nout of the process unscathed  exactly as they went in.</p>\n<p>There must be no white space inside {} or we will not process it.</p>\n<p>This combined is why we can safely use {} rather than {{}} and any accidental \nuse will survive.</p>\n",
@@ -607,7 +607,7 @@
    "file": "../js/plated_chunks.js",
    "line": 654,
    "name": "js.plated_chunks.expand_tag",
-   "url": "../js/plated_chunks.js"
+   "url": "https://github.com/xriss/plated/blob/master/js/plated_chunks.js"
   },
   {
    "body": "<pre><code>chunks = plated_chunks.fill_chunks(str,chunks)</code></pre><p>break a string into chunks ( can merged with or replace other chunks ) \nso chunks can be a previously filled list of chunks that we will \ncombine any chunks we find in the string with.</p>\n<p>A chunk is defined by a line that begins with #^ this has been chosen \nso as not to be something that occurs by mistake in any language, but \ncan be altered either inside the chunk file or via the command line \nopts. Note that any future reference is referring to this default and \nwould work with any other string if this has been changed.</p>\n<p>A line that begins with #^=## would redefine this from one to the other \nfor the remainder of the file and can be changed globally by the option \nopt.hashchunk</p>\n<p>The first word after this would be the name of the chunk and can then \nbe followed by a number of optional flag arguments like flag=value we \nstore these flags in the chunks table using chunks._flags[name]=value \nthis includes trimming options and request for how chunks should be \nmerged.</p>\n<p>A comment begins with #^- and the rest of the line will be ignored.</p>\n<p>The flag same=append will cause future chunks of the same name to be \nappended to this chunk rather than replace it. This is useful for CSS \nchunks where we wish to bubble down css values into sub directories.</p>\n",
@@ -615,7 +615,7 @@
    "file": "../js/plated_chunks.js",
    "line": 104,
    "name": "js.plated_chunks.fill_chunks",
-   "url": "../js/plated_chunks.js"
+   "url": "https://github.com/xriss/plated/blob/master/js/plated_chunks.js"
   },
   {
    "body": "<pre><code>chunks = plated_chunks.format_chunks(chunks)</code></pre><p>Process the chunks according to their flags, a chunk with trim=ends set \nwill have white space removed from its beginning and end.</p>\n<p>A chunk with form=json will be parsed as json rather than a string. It \ncan then be referenced inside chunks using chunk.member style lookups.</p>\n<p>A chunk with form=markdown will be processed as markdown and turned \ninto a html string.</p>\n",
@@ -623,7 +623,7 @@
    "file": "../js/plated_chunks.js",
    "line": 235,
    "name": "js.plated_chunks.format_chunks",
-   "url": "../js/plated_chunks.js"
+   "url": "https://github.com/xriss/plated/blob/master/js/plated_chunks.js"
   },
   {
    "body": "<pre><code>chunks = plated_chunks.lookup(str,dat)</code></pre><p>lookup the string inside dat, the string can use dot notation such as \nparent.member to lookup a value inside an object.</p>\n<p>Numbers can also be used to reverence arrays such as array.0 or array.1 \nand negative indexes such as array.-1 can be used to fetch the last \nvalue from the array.</p>\n",
@@ -631,7 +631,7 @@
    "file": "../js/plated_chunks.js",
    "line": 517,
    "name": "js.plated_chunks.lookup",
-   "url": "../js/plated_chunks.js"
+   "url": "https://github.com/xriss/plated/blob/master/js/plated_chunks.js"
   },
   {
    "body": "<pre><code>chunks = plated_chunks.lookup_in_namespace(str)</code></pre><p>lookup the string inside all namespaces using the same rules as \nplated_chunks.lookup</p>\n",
@@ -639,7 +639,7 @@
    "file": "../js/plated_chunks.js",
    "line": 496,
    "name": "js.plated_chunks.lookup_in_namespace",
-   "url": "../js/plated_chunks.js"
+   "url": "https://github.com/xriss/plated/blob/master/js/plated_chunks.js"
   },
   {
    "body": "<pre><code>html = plated_chunks.markdown(str)</code></pre><p>Convert a markdown string to a html string. As a personal quirk We keep \nnewlines a little more eagerly than standard markdown allowing some \ncontrol over the spacing between your text.</p>\n<p>Markdown is hardly a standard thing, after all.</p>\n",
@@ -647,7 +647,7 @@
    "file": "../js/plated_chunks.js",
    "line": 892,
    "name": "js.plated_chunks.markdown",
-   "url": "../js/plated_chunks.js"
+   "url": "https://github.com/xriss/plated/blob/master/js/plated_chunks.js"
   },
   {
    "body": "<pre><code>chunks = plated_chunks.merge_namespace(dat)</code></pre><p>Merge all of the namespaces together, along with the dat, then return \nthis new set of chunks for easy lookup it should be safe to modify the \noutput merged chunks without accidentally changing anything in the \nnamespace.</p>\n<p>This gives us a final chunks object that we can use to build the output \npage.</p>\n",
@@ -655,7 +655,7 @@
    "file": "../js/plated_chunks.js",
    "line": 468,
    "name": "js.plated_chunks.merge_namespace",
-   "url": "../js/plated_chunks.js"
+   "url": "https://github.com/xriss/plated/blob/master/js/plated_chunks.js"
   },
   {
    "body": "<pre><code>plated_chunks.pop_namespace(value)</code></pre><p>Remove last namespace from top of the stack.</p>\n",
@@ -663,7 +663,7 @@
    "file": "../js/plated_chunks.js",
    "line": 369,
    "name": "js.plated_chunks.pop_namespace",
-   "url": "../js/plated_chunks.js"
+   "url": "https://github.com/xriss/plated/blob/master/js/plated_chunks.js"
   },
   {
    "body": "<pre><code>array = plated_chunks.prepare(chunks)</code></pre><p>break a string on {data} ready to find the lookup values and do all the \ntemplating actions. This just gets us an array of string parts we can \neasily parse.</p>\n",
@@ -671,7 +671,7 @@
    "file": "../js/plated_chunks.js",
    "line": 284,
    "name": "js.plated_chunks.prepare",
-   "url": "../js/plated_chunks.js"
+   "url": "https://github.com/xriss/plated/blob/master/js/plated_chunks.js"
   },
   {
    "body": "<pre><code>plated_chunks.push_namespace(value)</code></pre><p>Add this value into the namespaces, we check this namespace as well as \nthe current chunk data when filling in chunks.</p>\n",
@@ -679,7 +679,7 @@
    "file": "../js/plated_chunks.js",
    "line": 352,
    "name": "js.plated_chunks.push_namespace",
-   "url": "../js/plated_chunks.js"
+   "url": "https://github.com/xriss/plated/blob/master/js/plated_chunks.js"
   },
   {
    "body": "<pre><code>newchunks = plated_chunks.remove_underscorechunks(chunks)</code></pre><p>Remove any chunks that begin with &quot;_&quot; these are all internal chunks \nused by plated code. The user should not be creating any chunks whose \nnames begin with an underscore. Also none of these chunks should ever \nbubble down through the heirachy, they belong only to the page in \nwhich they are created..</p>\n<p>A new object full of only chunks that do not begin with an underscore \nis returned.</p>\n",
@@ -687,7 +687,7 @@
    "file": "../js/plated_chunks.js",
    "line": 383,
    "name": "js.plated_chunks.remove_underscorechunks",
-   "url": "../js/plated_chunks.js"
+   "url": "https://github.com/xriss/plated/blob/master/js/plated_chunks.js"
   },
   {
    "body": "<pre><code>value = plated_chunks.replace(str,dat)</code></pre><p>Repeatedly call replace_once until all things that can expand, have \nexpanded, or we ran out of sanity. Sanity is 100 levels of recursion, \njust to be on the safe side.</p>\n<p>We then call a final replace_once with the lastpass flag set.</p>\n<p>if dat is null then we use data pushed into the namespaces otherwise we \nwill only use data available in dat.</p>\n",
@@ -695,7 +695,7 @@
    "file": "../js/plated_chunks.js",
    "line": 860,
    "name": "js.plated_chunks.replace",
-   "url": "../js/plated_chunks.js"
+   "url": "https://github.com/xriss/plated/blob/master/js/plated_chunks.js"
   },
   {
    "body": "<pre><code>chunks = plated_chunks.replace_once(str,dat,lastpass)</code></pre><p>Parse the str and replace {} values once only using dat values. \nlastpass is a flag as on the lastpass we allow final expansion and removal.</p>\n<p>We can use {[} {]} around areas of text to prevent further expansion \ninside. So we can talk about plated inside plated, this is necesary for \nour documentation.</p>\n",
@@ -703,7 +703,7 @@
    "file": "../js/plated_chunks.js",
    "line": 564,
    "name": "js.plated_chunks.replace_once",
-   "url": "../js/plated_chunks.js"
+   "url": "https://github.com/xriss/plated/blob/master/js/plated_chunks.js"
   },
   {
    "body": "<pre><code>plated_chunks.reset_namespace()</code></pre><p>clear the namespace, a namespace is a list of chunks that will be \nmerged together as we descend into directories. The lower or later \nchunks replacing or merging with the previous ones.</p>\n",
@@ -711,7 +711,7 @@
    "file": "../js/plated_chunks.js",
    "line": 324,
    "name": "js.plated_chunks.reset_namespace",
-   "url": "../js/plated_chunks.js"
+   "url": "https://github.com/xriss/plated/blob/master/js/plated_chunks.js"
   },
   {
    "body": "<pre><code>plated_chunks.set_namespace(values)</code></pre><p>Set the namespace to the given value.</p>\n",
@@ -719,7 +719,7 @@
    "file": "../js/plated_chunks.js",
    "line": 339,
    "name": "js.plated_chunks.set_namespace",
-   "url": "../js/plated_chunks.js"
+   "url": "https://github.com/xriss/plated/blob/master/js/plated_chunks.js"
   },
   {
    "body": "<p>Manage the files that we read from and watch or write to.</p>\n<p>This module only exposes one function, which is used to create \nthe actual module with bound state data.</p>\n<pre><code>plated_files = require(&quot;./plated_files.js&quot;).create(opts,plated)</code></pre><p>This is called automatically when the plated module is created and the \nreturn value is made available in plated.chunks note that all of these \nmodules are bound together and operate as a group with shared data.</p>\n<p>In the future when we talk about this module and its available \nfunctions we are referring to the return value from this create \nfunction.</p>\n",
@@ -727,7 +727,7 @@
    "file": "../js/plated_files.js",
    "line": 3,
    "name": "js.plated_files",
-   "url": "../js/plated_files.js"
+   "url": "https://github.com/xriss/plated/blob/master/js/plated_files.js"
   },
   {
    "body": "<pre><code>chunks = await plated_files.base_files_to_chunks(fname)</code></pre><p>Check this directory and all directories above for generic chunks build \nall of these into the current chunk namespace for this file.</p>\n",
@@ -735,7 +735,7 @@
    "file": "../js/plated_files.js",
    "line": 533,
    "name": "js.plated_files.base_files_to_chunks",
-   "url": "../js/plated_files.js"
+   "url": "https://github.com/xriss/plated/blob/master/js/plated_files.js"
   },
   {
    "body": "<pre><code>plated_files.build()</code></pre><p>Build all files found in the source dir into the output dir.</p>\n",
@@ -743,7 +743,7 @@
    "file": "../js/plated_files.js",
    "line": 612,
    "name": "js.plated_files.build",
-   "url": "../js/plated_files.js"
+   "url": "https://github.com/xriss/plated/blob/master/js/plated_files.js"
   },
   {
    "body": "<pre><code>plated_files.build_file(fname)</code></pre><p>Build the given source filename, using chunks or maybe just a raw copy \nfrom source into the output.</p>\n",
@@ -751,7 +751,7 @@
    "file": "../js/plated_files.js",
    "line": 565,
    "name": "js.plated_files.build_file",
-   "url": "../js/plated_files.js"
+   "url": "https://github.com/xriss/plated/blob/master/js/plated_files.js"
   },
   {
    "body": "<pre><code>plated_files.empty_cache()</code></pre><p>Empty the current file cache, we fill it up as read files.</p>\n",
@@ -759,7 +759,7 @@
    "file": "../js/plated_files.js",
    "line": 466,
    "name": "js.plated_files.empty_cache",
-   "url": "../js/plated_files.js"
+   "url": "https://github.com/xriss/plated/blob/master/js/plated_files.js"
   },
   {
    "body": "<pre><code>plated_files.empty_folder(path)</code></pre><p>Empty the (output) folder or make it if it does not exist. This is \nrather dangerous so please be careful.</p>\n",
@@ -767,7 +767,7 @@
    "file": "../js/plated_files.js",
    "line": 373,
    "name": "js.plated_files.empty_folder",
-   "url": "../js/plated_files.js"
+   "url": "https://github.com/xriss/plated/blob/master/js/plated_files.js"
   },
   {
    "body": "<pre><code>await plated_files.exists(path)</code></pre><p>Returns true if a file or dir at the given path exists.</p>\n",
@@ -775,7 +775,7 @@
    "file": "../js/plated_files.js",
    "line": 94,
    "name": "js.plated_files.exists",
-   "url": "../js/plated_files.js"
+   "url": "https://github.com/xriss/plated/blob/master/js/plated_files.js"
   },
   {
    "body": "<pre><code>chunks = plated_files.file_to_chunks(root,fname,chunks)</code></pre><p>Load root/fname or get it from the cache and then turn it into chunks \nusing plated_chunks.fill_chunks(date,chunks) chunks is returned.</p>\n",
@@ -783,7 +783,7 @@
    "file": "../js/plated_files.js",
    "line": 479,
    "name": "js.plated_files.file_to_chunks",
-   "url": "../js/plated_files.js"
+   "url": "https://github.com/xriss/plated/blob/master/js/plated_files.js"
   },
   {
    "body": "<pre><code>filename = plated_files.filename_fixup(filename)</code></pre><p>Fix the filename, so it becomes an empty string rather than a &quot;.&quot; or \n&quot;/.&quot; or &quot;/&quot; this makes it easier to use in urls.</p>\n",
@@ -791,7 +791,7 @@
    "file": "../js/plated_files.js",
    "line": 264,
    "name": "js.plated_files.filename_fixup",
-   "url": "../js/plated_files.js"
+   "url": "https://github.com/xriss/plated/blob/master/js/plated_files.js"
   },
   {
    "body": "<pre><code>bool = plated_files.filename_is_basechunk(filename)</code></pre><p>Is this filename part of the basechunks for a dir?</p>\n<p>A base chunk is something like ^.html or ^.css all of these files get \nmerged into the base chunks for the directory they are found in. Their \nextension is ignored and just to help syntax highlighting when the file \nis viewed.</p>\n",
@@ -799,7 +799,7 @@
    "file": "../js/plated_files.js",
    "line": 307,
    "name": "js.plated_files.filename_is_basechunk",
-   "url": "../js/plated_files.js"
+   "url": "https://github.com/xriss/plated/blob/master/js/plated_files.js"
   },
   {
    "body": "<pre><code>bool = plated_files.filename_is_plated(filename)</code></pre><p>Is this filename something we need to run through plated. Returns true \nif filename contains the ^ trigger string. This string can be changed \nby altering opts.hashfile from &quot;^&quot; to something else.</p>\n",
@@ -807,7 +807,7 @@
    "file": "../js/plated_files.js",
    "line": 330,
    "name": "js.plated_files.filename_is_plated",
-   "url": "../js/plated_files.js"
+   "url": "https://github.com/xriss/plated/blob/master/js/plated_files.js"
   },
   {
    "body": "<pre><code>dirname = plated_files.filename_to_dirname(filename)</code></pre><p>Get the dirname of this filename.</p>\n",
@@ -815,7 +815,7 @@
    "file": "../js/plated_files.js",
    "line": 280,
    "name": "js.plated_files.filename_to_dirname",
-   "url": "../js/plated_files.js"
+   "url": "https://github.com/xriss/plated/blob/master/js/plated_files.js"
   },
   {
    "body": "<pre><code>filename = plated_files.filename_to_output(filename)</code></pre><p>Work out the output filename from an input filename, the trigger string \n&quot;^.&quot; gets removed as we process a file.</p>\n",
@@ -823,7 +823,7 @@
    "file": "../js/plated_files.js",
    "line": 350,
    "name": "js.plated_files.filename_to_output",
-   "url": "../js/plated_files.js"
+   "url": "https://github.com/xriss/plated/blob/master/js/plated_files.js"
   },
   {
    "body": "<pre><code>plated_files.find_dirs(root,name,func)</code></pre><p>Call func(name) with every directory we find inside the root/name \ndirectory. We follow symlinks into other directories.</p>\n",
@@ -831,7 +831,7 @@
    "file": "../js/plated_files.js",
    "line": 440,
    "name": "js.plated_files.find_dirs",
-   "url": "../js/plated_files.js"
+   "url": "https://github.com/xriss/plated/blob/master/js/plated_files.js"
   },
   {
    "body": "<pre><code>plated_files.find_files(root,name)</code></pre><p>REturn an array with every file we find inside the root/name directory. \nWe follow symlinks into other directories.</p>\n",
@@ -839,7 +839,7 @@
    "file": "../js/plated_files.js",
    "line": 413,
    "name": "js.plated_files.find_files",
-   "url": "../js/plated_files.js"
+   "url": "https://github.com/xriss/plated/blob/master/js/plated_files.js"
   },
   {
    "body": "<pre><code>await plated_files.joinpath(...)</code></pre><p>join components into a full path.</p>\n",
@@ -847,7 +847,7 @@
    "file": "../js/plated_files.js",
    "line": 79,
    "name": "js.plated_files.joinpath",
-   "url": "../js/plated_files.js"
+   "url": "https://github.com/xriss/plated/blob/master/js/plated_files.js"
   },
   {
    "body": "<pre><code>await plated_files.lstat(path)</code></pre><p>Return the lstat of this path</p>\n",
@@ -855,7 +855,7 @@
    "file": "../js/plated_files.js",
    "line": 126,
    "name": "js.plated_files.lstat",
-   "url": "../js/plated_files.js"
+   "url": "https://github.com/xriss/plated/blob/master/js/plated_files.js"
   },
   {
    "body": "<pre><code>plated_files.mkdir(dir)</code></pre><p>Fill in _source and related chunks such as.</p>\n<p>_sourcename the file that this set of chunks came from.</p>\n<p>_filename the output filename.</p>\n<p>_dirname the output dirname.</p>\n<p>_root the root of the site, normally a relative path to the current \ndirectory, eg ../ since some things such as github pages need to exist \nin a directory rather than the root of a site. This should always be \nused in html paths, {_root} instead of / to make sure that you always \nget to the right place and can find your files.</p>\n<p>_filename the url path of the filename, eg /dirname/filename</p>\n<p>_dirname the url path of the dir this file exists in, eg /dirname</p>\n",
@@ -863,7 +863,7 @@
    "file": "../js/plated_files.js",
    "line": 182,
    "name": "js.plated_files.mkdir",
-   "url": "../js/plated_files.js"
+   "url": "https://github.com/xriss/plated/blob/master/js/plated_files.js"
   },
   {
    "body": "<pre><code>plated_files.prepare_namespace(fname)</code></pre><p>Check this directory and all directories above for generic chunks then \nbuild all of these into the current chunk namespace for this file.</p>\n",
@@ -871,7 +871,7 @@
    "file": "../js/plated_files.js",
    "line": 502,
    "name": "js.plated_files.prepare_namespace",
-   "url": "../js/plated_files.js"
+   "url": "https://github.com/xriss/plated/blob/master/js/plated_files.js"
   },
   {
    "body": "<pre><code>await plated_files.readdir(path)</code></pre><p>Return the readdir of this path</p>\n",
@@ -879,7 +879,7 @@
    "file": "../js/plated_files.js",
    "line": 140,
    "name": "js.plated_files.readdir",
-   "url": "../js/plated_files.js"
+   "url": "https://github.com/xriss/plated/blob/master/js/plated_files.js"
   },
   {
    "body": "<pre><code>filename = plated_files.source_to_output(filename)</code></pre><p>Convert a source path into an output path.</p>\n",
@@ -887,7 +887,7 @@
    "file": "../js/plated_files.js",
    "line": 293,
    "name": "js.plated_files.source_to_output",
-   "url": "../js/plated_files.js"
+   "url": "https://github.com/xriss/plated/blob/master/js/plated_files.js"
   },
   {
    "body": "<pre><code>await plated_files.stat(path)</code></pre><p>Return the stat of this path</p>\n",
@@ -895,7 +895,7 @@
    "file": "../js/plated_files.js",
    "line": 112,
    "name": "js.plated_files.stat",
-   "url": "../js/plated_files.js"
+   "url": "https://github.com/xriss/plated/blob/master/js/plated_files.js"
   },
   {
    "body": "<pre><code>plated_files.trimpath(path)</code></pre><p>Remove a trailing / from the path</p>\n",
@@ -903,7 +903,7 @@
    "file": "../js/plated_files.js",
    "line": 58,
    "name": "js.plated_files.trimpath",
-   "url": "../js/plated_files.js"
+   "url": "https://github.com/xriss/plated/blob/master/js/plated_files.js"
   },
   {
    "body": "<pre><code>plated_files.watch()</code></pre><p>Build all files found in the source dir into the output dir and then \nsit watching for changes to these files that would trigger rebuilds.</p>\n<p>This does not return, instead the user is expected to ctrl+c when \nfinished.</p>\n",
@@ -911,7 +911,7 @@
    "file": "../js/plated_files.js",
    "line": 676,
    "name": "js.plated_files.watch",
-   "url": "../js/plated_files.js"
+   "url": "https://github.com/xriss/plated/blob/master/js/plated_files.js"
   },
   {
    "body": "<pre><code>plated_files.write(filename,data)</code></pre><p>Create parent dir if necessary and write the data into this file.</p>\n",
@@ -919,7 +919,7 @@
    "file": "../js/plated_files.js",
    "line": 250,
    "name": "js.plated_files.write",
-   "url": "../js/plated_files.js"
+   "url": "https://github.com/xriss/plated/blob/master/js/plated_files.js"
   },
   {
    "body": "<p>Manage the chunks of text that are combined into a page.</p>\n<p>This module only exposes one function, which is used to create \nthe actual module with bound state data.</p>\n<pre><code>plated_output = require(&quot;./plated_output.js&quot;).create(opts,plated)</code></pre><p>This is called automatically when the plated module is created and the \nreturn value is made available in plated.chunks note that all of these \nmodules are bound together and operate as a group with shared data.</p>\n<p>In the future when we talk about this module and its available \nfunctions we are referring to the return value from this create \nfunction.</p>\n",
@@ -927,7 +927,7 @@
    "file": "../js/plated_output.js",
    "line": 3,
    "name": "js.plated_output",
-   "url": "../js/plated_output.js"
+   "url": "https://github.com/xriss/plated/blob/master/js/plated_output.js"
   },
   {
    "body": "<pre><code>chunks = plated_output.remember(chunks)</code></pre><p>Remember this page, the name is expected to be found in \nchunks._output_filename and this is used as the key to store these \nchunks.</p>\n",
@@ -935,7 +935,7 @@
    "file": "../js/plated_output.js",
    "line": 37,
    "name": "js.plated_output.remember",
-   "url": "../js/plated_output.js"
+   "url": "https://github.com/xriss/plated/blob/master/js/plated_output.js"
   },
   {
    "body": "<pre><code>chunks = await plated_output.remember_and_write(chunks)</code></pre><p>The same as remember but also instantly write out the chunks using \nplated_output.write</p>\n",
@@ -943,7 +943,7 @@
    "file": "../js/plated_output.js",
    "line": 53,
    "name": "js.plated_output.remember_and_write",
-   "url": "../js/plated_output.js"
+   "url": "https://github.com/xriss/plated/blob/master/js/plated_output.js"
   },
   {
    "body": "<pre><code>await plated_output.write(chunks)</code></pre><p>Write out the chunks to to _output_filename as its final page like \nform. chunks._output_chunkname is the name of the chunk that we intend \nto render into this page, eg &quot;html&quot; </p>\n<p>opts.output is the directory we are going to write the file into.</p>\n<p>If the opts.dumpjson flag is set then we also output a \n.json file which contains the chunks used to construct this page.</p>\n",
@@ -951,7 +951,7 @@
    "file": "../js/plated_output.js",
    "line": 69,
    "name": "js.plated_output.write",
-   "url": "../js/plated_output.js"
+   "url": "https://github.com/xriss/plated/blob/master/js/plated_output.js"
   },
   {
    "body": "<pre><code>plated_output.write_all()</code></pre><p>Go through all the remembered chunks and write each one out using \nplated_output.write</p>\n",
@@ -959,7 +959,7 @@
    "file": "../js/plated_output.js",
    "line": 109,
    "name": "js.plated_output.write_all",
-   "url": "../js/plated_output.js"
+   "url": "https://github.com/xriss/plated/blob/master/js/plated_output.js"
   },
   {
    "body": "",
@@ -972,7 +972,7 @@
    "file": "../js/plated_plugin_blog.js",
    "line": 3,
    "name": "js.plated_plugin.blog",
-   "url": "../js/plated_plugin_blog.js"
+   "url": "https://github.com/xriss/plated/blob/master/js/plated_plugin_blog.js"
   },
   {
    "body": "<pre><code>dirs = plated_plugin_blog.process_dirs(dirs)</code></pre><p>Tweak all the base chunks grouped by dir name and pre cascaded/merged</p>\n",
@@ -980,7 +980,7 @@
    "file": "../js/plated_plugin_blog.js",
    "line": 147,
    "name": "js.plated_plugin.blog.process_dirs",
-   "url": "../js/plated_plugin_blog.js"
+   "url": "https://github.com/xriss/plated/blob/master/js/plated_plugin_blog.js"
   },
   {
    "body": "<pre><code>chunks = plated_plugin_blog.process_file(chunks)</code></pre><p>Tweak a single file of chunks, only chunks found in this file will be available.</p>\n",
@@ -988,7 +988,7 @@
    "file": "../js/plated_plugin_blog.js",
    "line": 428,
    "name": "js.plated_plugin.blog.process_file",
-   "url": "../js/plated_plugin_blog.js"
+   "url": "https://github.com/xriss/plated/blob/master/js/plated_plugin_blog.js"
   },
   {
    "body": "<p>A blog plugin.</p>\n<p>This module only exposes one function, which is used to create \nthe actual module with bound state data.</p>\n<pre><code>plated_plugin_copy = require(&quot;./plated_plugin_copy.js&quot;).create(opts,plated)</code></pre><p>This is called automatically when the plated module is created and the \nreturned plugin functions are added to the plugin call stack. Note that \nall of these modules are bound together and operate as a group with \nshared data.</p>\n<p>This plugin is intended to duplicate part of a site into another \ndirectory with possibly tweaked chunks, this is primarily intended for \ntext translations. We produce for instance pure text chunks containing \njust english text and replace these chunks with french versions inside \na fra directory.</p>\n<p>Note that we only copy chunkfiles not all data files, so this is \nonly about duplicating files that are rendered from chunks.</p>\n",
@@ -996,7 +996,7 @@
    "file": "../js/plated_plugin_copy.js",
    "line": 4,
    "name": "js.plated_plugin.copy",
-   "url": "../js/plated_plugin_copy.js"
+   "url": "https://github.com/xriss/plated/blob/master/js/plated_plugin_copy.js"
   },
   {
    "body": "<pre><code>dirs = plated_plugin_copy.process_dirs(dirs)</code></pre><p>Remember all the _copy_json chunks we can find inside our \nplated_plugin_copy.chunks array. This will be used later to \nreplicated output into other locations with slight chunk tweaks.</p>\n",
@@ -1004,7 +1004,7 @@
    "file": "../js/plated_plugin_copy.js",
    "line": 87,
    "name": "js.plated_plugin.copy.process_dirs",
-   "url": "../js/plated_plugin_copy.js"
+   "url": "https://github.com/xriss/plated/blob/master/js/plated_plugin_copy.js"
   },
   {
    "body": "<pre><code>chunks = plated_plugin_copy.process_file(chunks)</code></pre><p>Auto magically parse _copy_json chunks as json.</p>\n",
@@ -1012,7 +1012,7 @@
    "file": "../js/plated_plugin_copy.js",
    "line": 113,
    "name": "js.plated_plugin.copy.process_file",
-   "url": "../js/plated_plugin_copy.js"
+   "url": "https://github.com/xriss/plated/blob/master/js/plated_plugin_copy.js"
   },
   {
    "body": "<pre><code>plated_plugin_copy.process_output(chunks)</code></pre><p>Compare this output file with cached copy chunks and duplicate it \ninto these directories with slightly tweaked chunks if it matches.</p>\n",
@@ -1020,7 +1020,7 @@
    "file": "../js/plated_plugin_copy.js",
    "line": 136,
    "name": "js.plated_plugin.copy.process_output",
-   "url": "../js/plated_plugin_copy.js"
+   "url": "https://github.com/xriss/plated/blob/master/js/plated_plugin_copy.js"
   },
   {
    "body": "<p>A docs plugin.</p>\n<p>This module only exposes one function, which is used to create \nthe actual module with bound state data.</p>\n<pre><code>plated_plugin_docs = require(&quot;./plated_plugin_docs.js&quot;).create(opts,plated)</code></pre><p>This is called automatically when the plated module is created and the \nreturned plugin functions are added to the plugin call stack. Note that \nall of these modules are bound together and operate as a group with \nshared data.</p>\n",
@@ -1028,7 +1028,7 @@
    "file": "../js/plated_plugin_docs.js",
    "line": 3,
    "name": "js.plated_plugin.docs",
-   "url": "../js/plated_plugin_docs.js"
+   "url": "https://github.com/xriss/plated/blob/master/js/plated_plugin_docs.js"
   },
   {
    "body": "<pre><code>dirs = plated_plugin_docs.process_dirs(dirs)</code></pre><p>Tweak all the base chunks grouped by dir name and pre cascaded/merged</p>\n",
@@ -1036,7 +1036,7 @@
    "file": "../js/plated_plugin_docs.js",
    "line": 93,
    "name": "js.plated_plugin.docs.process_dirs",
-   "url": "../js/plated_plugin_docs.js"
+   "url": "https://github.com/xriss/plated/blob/master/js/plated_plugin_docs.js"
   },
   {
    "body": "<pre><code>chunks = plated_plugin_docs.process_file(chunks)</code></pre><p>Tweak a single file of chunks, only chunks found in this file will be available.</p>\n",
@@ -1044,7 +1044,7 @@
    "file": "../js/plated_plugin_docs.js",
    "line": 300,
    "name": "js.plated_plugin.docs.process_file",
-   "url": "../js/plated_plugin_docs.js"
+   "url": "https://github.com/xriss/plated/blob/master/js/plated_plugin_docs.js"
   },
   {
    "body": "<p>A way of importing chunks from another page.</p>\n<p>This module only exposes one function, which is used to create \nthe actual module with bound state data.</p>\n<pre><code>plated_plugin_import = require(&quot;./plated_plugin_import.js&quot;).create(opts,plated)</code></pre><p>This is called automatically when the plated module is created and the \nreturned plugin functions are added to the plugin call stack. Note that \nall of these modules are bound together and operate as a group with \nshared data.</p>\n",
@@ -1052,7 +1052,7 @@
    "file": "../js/plated_plugin_import.js",
    "line": 4,
    "name": "js.plated_plugin.import",
-   "url": "../js/plated_plugin_import.js"
+   "url": "https://github.com/xriss/plated/blob/master/js/plated_plugin_import.js"
   },
   {
    "body": "<pre><code>chunks = plated_plugin_import.process_file(chunks)</code></pre><p>Tweak a single file of chunks, only chunks found in this file will be \navailable.</p>\n",
@@ -1060,7 +1060,7 @@
    "file": "../js/plated_plugin_import.js",
    "line": 49,
    "name": "js.plated_plugin.import.process_file",
-   "url": "../js/plated_plugin_import.js"
+   "url": "https://github.com/xriss/plated/blob/master/js/plated_plugin_import.js"
   },
   {
    "body": "<p>A blog plugin.</p>\n<p>This module only exposes one function, which is used to create \nthe actual module with bound state data.</p>\n<pre><code>plated_plugin_redirect = require(&quot;./plated_plugin_redirect.js&quot;).create(opts,plated)</code></pre><p>This is called automatically when the plated module is created and the \nreturned plugin functions are added to the plugin call stack. Note that \nall of these modules are bound together and operate as a group with \nshared data.</p>\n",
@@ -1068,7 +1068,7 @@
    "file": "../js/plated_plugin_redirect.js",
    "line": 4,
    "name": "js.plated_plugin.redirect",
-   "url": "../js/plated_plugin_redirect.js"
+   "url": "https://github.com/xriss/plated/blob/master/js/plated_plugin_redirect.js"
   },
   {
    "body": "<pre><code>dirs = plated_plugin_redirect.process_dirs(dirs)</code></pre><p>Tweak all the base chunks grouped by dir name and pre cascaded/merged</p>\n",
@@ -1076,7 +1076,7 @@
    "file": "../js/plated_plugin_redirect.js",
    "line": 105,
    "name": "js.plated_plugin.redirect.process_dirs",
-   "url": "../js/plated_plugin_redirect.js"
+   "url": "https://github.com/xriss/plated/blob/master/js/plated_plugin_redirect.js"
   },
   {
    "body": "<pre><code>chunks = plated_plugin_redirect.process_file(chunks)</code></pre><p>Tweak a single file of chunks, only chunks found in this file will be \navailable.</p>\n<pre><code>#^_redirect_json</code></pre><p>Is a special chunk name that we will parse as json and contain \nconfiguration data to setup redirects.</p>\n",
@@ -1084,7 +1084,7 @@
    "file": "../js/plated_plugin_redirect.js",
    "line": 151,
    "name": "js.plated_plugin.redirect.process_file",
-   "url": "../js/plated_plugin_redirect.js"
+   "url": "https://github.com/xriss/plated/blob/master/js/plated_plugin_redirect.js"
   }
  ],
  "_output_filename": "docs/",
