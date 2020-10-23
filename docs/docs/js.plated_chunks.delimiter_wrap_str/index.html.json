@@ -66,7 +66,7 @@
    "name": "html.plated_plugin.redirect"
   },
   {
-   "count": 71,
+   "count": 72,
    "name": "js"
   },
   {
@@ -90,7 +90,7 @@
    "name": "js.plated.watch"
   },
   {
-   "count": 19,
+   "count": 20,
    "name": "js.plated_chunks"
   },
   {
@@ -124,6 +124,10 @@
   {
    "count": 1,
    "name": "js.plated_chunks.lookup"
+  },
+  {
+   "count": 1,
+   "name": "js.plated_chunks.lookup_in_namespace"
   },
   {
    "count": 1,
@@ -397,7 +401,7 @@
    "body": "<pre><code>s = plated_chunks.delimiter_wrap_str(s)</code></pre><p>Return the given string wrapped in the opts.delimiter string.</p>\n",
    "count": 1,
    "file": "../js/plated_chunks.js",
-   "line": 94,
+   "line": 90,
    "name": "js.plated_chunks.delimiter_wrap_str",
    "url": "../js/plated_chunks.js"
   }

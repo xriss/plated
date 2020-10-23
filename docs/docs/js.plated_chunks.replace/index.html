@@ -50,6 +50,7 @@
 <a class="sub" href="../../docs/js.plated_chunks.fill_chunks"><span>/js.plated_chunks.fill_chunks</span></a>
 <a class="sub" href="../../docs/js.plated_chunks.format_chunks"><span>/js.plated_chunks.format_chunks</span></a>
 <a class="sub" href="../../docs/js.plated_chunks.lookup"><span>/js.plated_chunks.lookup</span></a>
+<a class="sub" href="../../docs/js.plated_chunks.lookup_in_namespace"><span>/js.plated_chunks.lookup_in_namespace</span></a>
 <a class="sub" href="../../docs/js.plated_chunks.markdown"><span>/js.plated_chunks.markdown</span></a>
 <a class="sub" href="../../docs/js.plated_chunks.merge_namespace"><span>/js.plated_chunks.merge_namespace</span></a>
 <a class="sub" href="../../docs/js.plated_chunks.pop_namespace"><span>/js.plated_chunks.pop_namespace</span></a>
@@ -112,11 +113,13 @@
 		
 <div class="wrap">
 <h1><a href="../../docs/js.plated_chunks.replace">js.plated_chunks.replace</a></h1>
-<div class="source"><a href="../js/plated_chunks.js#L815">../js/plated_chunks.js</a></div>
+<div class="source"><a href="../js/plated_chunks.js#L860">../js/plated_chunks.js</a></div>
 <div><pre><code>value = plated_chunks.replace(str,dat)</code></pre><p>Repeatedly call replace_once until all things that can expand, have 
 expanded, or we ran out of sanity. Sanity is 100 levels of recursion, 
 just to be on the safe side.</p>
 <p>We then call a final replace_once with the lastpass flag set.</p>
+<p>if dat is null then we use data pushed into the namespaces otherwise we 
+will only use data available in dat.</p>
 </div>
 </div>
 

@@ -66,7 +66,7 @@
    "name": "html.plated_plugin.redirect"
   },
   {
-   "count": 71,
+   "count": 72,
    "name": "js"
   },
   {
@@ -90,7 +90,7 @@
    "name": "js.plated.watch"
   },
   {
-   "count": 19,
+   "count": 20,
    "name": "js.plated_chunks"
   },
   {
@@ -124,6 +124,10 @@
   {
    "count": 1,
    "name": "js.plated_chunks.lookup"
+  },
+  {
+   "count": 1,
+   "name": "js.plated_chunks.lookup_in_namespace"
   },
   {
    "count": 1,
@@ -395,7 +399,7 @@
  "_list": [
   {
    "body": "<p>Manage the chunks of text that are combined into a page.</p>\n<p>This module only exposes one function, which is used to create \nthe actual module with bound state data.</p>\n<pre><code>plated_chunks = require(&quot;./plated_chunks.js&quot;).create(opts,plated)</code></pre><p>This is called automatically when the plated module is created and the \nreturn value is made available in plated.chunks note that all of these \nmodules are bound together and operate as a group with shared data.</p>\n<p>In the future when we talk about this module and its available \nfunctions we are referring to the return value from this create \nfunction.</p>\n",
-   "count": 19,
+   "count": 20,
    "file": "../js/plated_chunks.js",
    "line": 3,
    "name": "js.plated_chunks",
@@ -405,7 +409,7 @@
    "body": "<pre><code>too = plated_chunks.deepmerge(frm,too,_flags)</code></pre><p>Merge the object, frm, into an object too. How values merge can be \nadjusted by _flags the same way _flags works in parsing chunks. \nsame=merge is honoured here so some chunks can be appended rather than \nreplace. We need to keep this separate as the act of merging will break \nhow such things work.</p>\n<p>This function is called recursively so as not to end up sharing values \nwith any inputs.</p>\n",
    "count": 1,
    "file": "../js/plated_chunks.js",
-   "line": 414,
+   "line": 410,
    "name": "js.plated_chunks.deepmerge",
    "url": "../js/plated_chunks.js"
   },
@@ -413,7 +417,7 @@
    "body": "<pre><code>s = plated_chunks.delimiter_close_str()</code></pre><p>Return the last half of the opts.delimiter string.</p>\n",
    "count": 1,
    "file": "../js/plated_chunks.js",
-   "line": 82,
+   "line": 78,
    "name": "js.plated_chunks.delimiter_close_str",
    "url": "../js/plated_chunks.js"
   },
@@ -421,7 +425,7 @@
    "body": "<pre><code>s = plated_chunks.delimiter_open_str()</code></pre><p>Return the first half of the opts.delimiter string.</p>\n",
    "count": 1,
    "file": "../js/plated_chunks.js",
-   "line": 70,
+   "line": 66,
    "name": "js.plated_chunks.delimiter_open_str",
    "url": "../js/plated_chunks.js"
   },
@@ -429,15 +433,15 @@
    "body": "<pre><code>s = plated_chunks.delimiter_wrap_str(s)</code></pre><p>Return the given string wrapped in the opts.delimiter string.</p>\n",
    "count": 1,
    "file": "../js/plated_chunks.js",
-   "line": 94,
+   "line": 90,
    "name": "js.plated_chunks.delimiter_wrap_str",
    "url": "../js/plated_chunks.js"
   },
   {
-   "body": "<pre><code>value = plated_chunks.expand_tag(v,dat,lastpass)</code></pre><p>Do all the magical things that enables a tag to expand, normally we \njust lookup the value inside dat but a few operators can be applied.</p>\n<p>Operators are applied from left to right so we have no precedence \nbesides this.</p>\n<p>If we fail to lookup a valid value then we return input string wrapped \nin delimiters, essentially any values we do not understand will come \nout of the process unscathed  exactly as they went in.</p>\n<p>There must be no white space inside {} or we will not process it.</p>\n<p>This combined is why we can safely use {} rather than {{}} and any accidental \nuse will survive.</p>\n",
+   "body": "<pre><code>value = plated_chunks.expand_tag(v,dat,lastpass)</code></pre><p>Do all the magical things that enables a tag to expand, normally we \njust lookup the value inside dat but a few operators can be applied.</p>\n<p>if dat is null then we use data pushed into the namespaces otherwise we \nwill only use data available in dat.</p>\n<p>Operators are applied from left to right so we have no precedence \nbesides this.</p>\n<p>If we fail to lookup a valid value then we return input string wrapped \nin delimiters, essentially any values we do not understand will come \nout of the process unscathed  exactly as they went in.</p>\n<p>There must be no white space inside {} or we will not process it.</p>\n<p>This combined is why we can safely use {} rather than {{}} and any accidental \nuse will survive.</p>\n",
    "count": 1,
    "file": "../js/plated_chunks.js",
-   "line": 637,
+   "line": 654,
    "name": "js.plated_chunks.expand_tag",
    "url": "../js/plated_chunks.js"
   },
@@ -445,7 +449,7 @@
    "body": "<pre><code>chunks = plated_chunks.fill_chunks(str,chunks)</code></pre><p>break a string into chunks ( can merged with or replace other chunks ) \nso chunks can be a previously filled list of chunks that we will \ncombine any chunks we find in the string with.</p>\n<p>A chunk is defined by a line that begins with #^ this has been chosen \nso as not to be something that occurs by mistake in any language, but \ncan be altered either inside the chunk file or via the command line \nopts. Note that any future reference is referring to this default and \nwould work with any other string if this has been changed.</p>\n<p>A line that begins with #^=## would redefine this from one to the other \nfor the remainder of the file and can be changed globally by the option \nopt.hashchunk</p>\n<p>The first word after this would be the name of the chunk and can then \nbe followed by a number of optional flag arguments like flag=value we \nstore these flags in the chunks table using chunks._flags[name]=value \nthis includes trimming options and request for how chunks should be \nmerged.</p>\n<p>A comment begins with #^- and the rest of the line will be ignored.</p>\n<p>The flag same=append will cause future chunks of the same name to be \nappended to this chunk rather than replace it. This is useful for CSS \nchunks where we wish to bubble down css values into sub directories.</p>\n",
    "count": 1,
    "file": "../js/plated_chunks.js",
-   "line": 108,
+   "line": 104,
    "name": "js.plated_chunks.fill_chunks",
    "url": "../js/plated_chunks.js"
   },
@@ -453,7 +457,7 @@
    "body": "<pre><code>chunks = plated_chunks.format_chunks(chunks)</code></pre><p>Process the chunks according to their flags, a chunk with trim=ends set \nwill have white space removed from its beginning and end.</p>\n<p>A chunk with form=json will be parsed as json rather than a string. It \ncan then be referenced inside chunks using chunk.member style lookups.</p>\n<p>A chunk with form=markdown will be processed as markdown and turned \ninto a html string.</p>\n",
    "count": 1,
    "file": "../js/plated_chunks.js",
-   "line": 239,
+   "line": 235,
    "name": "js.plated_chunks.format_chunks",
    "url": "../js/plated_chunks.js"
   },
@@ -461,15 +465,23 @@
    "body": "<pre><code>chunks = plated_chunks.lookup(str,dat)</code></pre><p>lookup the string inside dat, the string can use dot notation such as \nparent.member to lookup a value inside an object.</p>\n<p>Numbers can also be used to reverence arrays such as array.0 or array.1 \nand negative indexes such as array.-1 can be used to fetch the last \nvalue from the array.</p>\n",
    "count": 1,
    "file": "../js/plated_chunks.js",
-   "line": 500,
+   "line": 517,
    "name": "js.plated_chunks.lookup",
+   "url": "../js/plated_chunks.js"
+  },
+  {
+   "body": "<pre><code>chunks = plated_chunks.lookup_in_namespace(str)</code></pre><p>lookup the string inside all namespaces using the same rules as \nplated_chunks.lookup</p>\n",
+   "count": 1,
+   "file": "../js/plated_chunks.js",
+   "line": 496,
+   "name": "js.plated_chunks.lookup_in_namespace",
    "url": "../js/plated_chunks.js"
   },
   {
    "body": "<pre><code>html = plated_chunks.markdown(str)</code></pre><p>Convert a markdown string to a html string. As a personal quirk We keep \nnewlines a little more eagerly than standard markdown allowing some \ncontrol over the spacing between your text.</p>\n<p>Markdown is hardly a standard thing, after all.</p>\n",
    "count": 1,
    "file": "../js/plated_chunks.js",
-   "line": 844,
+   "line": 892,
    "name": "js.plated_chunks.markdown",
    "url": "../js/plated_chunks.js"
   },
@@ -477,7 +489,7 @@
    "body": "<pre><code>chunks = plated_chunks.merge_namespace(dat)</code></pre><p>Merge all of the namespaces together, along with the dat, then return \nthis new set of chunks for easy lookup it should be safe to modify the \noutput merged chunks without accidentally changing anything in the \nnamespace.</p>\n<p>This gives us a final chunks object that we can use to build the output \npage.</p>\n",
    "count": 1,
    "file": "../js/plated_chunks.js",
-   "line": 472,
+   "line": 468,
    "name": "js.plated_chunks.merge_namespace",
    "url": "../js/plated_chunks.js"
   },
@@ -485,7 +497,7 @@
    "body": "<pre><code>plated_chunks.pop_namespace(value)</code></pre><p>Remove last namespace from top of the stack.</p>\n",
    "count": 1,
    "file": "../js/plated_chunks.js",
-   "line": 373,
+   "line": 369,
    "name": "js.plated_chunks.pop_namespace",
    "url": "../js/plated_chunks.js"
   },
@@ -493,7 +505,7 @@
    "body": "<pre><code>array = plated_chunks.prepare(chunks)</code></pre><p>break a string on {data} ready to find the lookup values and do all the \ntemplating actions. This just gets us an array of string parts we can \neasily parse.</p>\n",
    "count": 1,
    "file": "../js/plated_chunks.js",
-   "line": 288,
+   "line": 284,
    "name": "js.plated_chunks.prepare",
    "url": "../js/plated_chunks.js"
   },
@@ -501,7 +513,7 @@
    "body": "<pre><code>plated_chunks.push_namespace(value)</code></pre><p>Add this value into the namespaces, we check this namespace as well as \nthe current chunk data when filling in chunks.</p>\n",
    "count": 1,
    "file": "../js/plated_chunks.js",
-   "line": 356,
+   "line": 352,
    "name": "js.plated_chunks.push_namespace",
    "url": "../js/plated_chunks.js"
   },
@@ -509,15 +521,15 @@
    "body": "<pre><code>newchunks = plated_chunks.remove_underscorechunks(chunks)</code></pre><p>Remove any chunks that begin with &quot;_&quot; these are all internal chunks \nused by plated code. The user should not be creating any chunks whose \nnames begin with an underscore. Also none of these chunks should ever \nbubble down through the heirachy, they belong only to the page in \nwhich they are created..</p>\n<p>A new object full of only chunks that do not begin with an underscore \nis returned.</p>\n",
    "count": 1,
    "file": "../js/plated_chunks.js",
-   "line": 387,
+   "line": 383,
    "name": "js.plated_chunks.remove_underscorechunks",
    "url": "../js/plated_chunks.js"
   },
   {
-   "body": "<pre><code>value = plated_chunks.replace(str,dat)</code></pre><p>Repeatedly call replace_once until all things that can expand, have \nexpanded, or we ran out of sanity. Sanity is 100 levels of recursion, \njust to be on the safe side.</p>\n<p>We then call a final replace_once with the lastpass flag set.</p>\n",
+   "body": "<pre><code>value = plated_chunks.replace(str,dat)</code></pre><p>Repeatedly call replace_once until all things that can expand, have \nexpanded, or we ran out of sanity. Sanity is 100 levels of recursion, \njust to be on the safe side.</p>\n<p>We then call a final replace_once with the lastpass flag set.</p>\n<p>if dat is null then we use data pushed into the namespaces otherwise we \nwill only use data available in dat.</p>\n",
    "count": 1,
    "file": "../js/plated_chunks.js",
-   "line": 815,
+   "line": 860,
    "name": "js.plated_chunks.replace",
    "url": "../js/plated_chunks.js"
   },
@@ -525,7 +537,7 @@
    "body": "<pre><code>chunks = plated_chunks.replace_once(str,dat,lastpass)</code></pre><p>Parse the str and replace {} values once only using dat values. \nlastpass is a flag as on the lastpass we allow final expansion and removal.</p>\n<p>We can use {[} {]} around areas of text to prevent further expansion \ninside. So we can talk about plated inside plated, this is necesary for \nour documentation.</p>\n",
    "count": 1,
    "file": "../js/plated_chunks.js",
-   "line": 547,
+   "line": 564,
    "name": "js.plated_chunks.replace_once",
    "url": "../js/plated_chunks.js"
   },
@@ -533,7 +545,7 @@
    "body": "<pre><code>plated_chunks.reset_namespace()</code></pre><p>clear the namespace, a namespace is a list of chunks that will be \nmerged together as we descend into directories. The lower or later \nchunks replacing or merging with the previous ones.</p>\n",
    "count": 1,
    "file": "../js/plated_chunks.js",
-   "line": 328,
+   "line": 324,
    "name": "js.plated_chunks.reset_namespace",
    "url": "../js/plated_chunks.js"
   },
@@ -541,7 +553,7 @@
    "body": "<pre><code>plated_chunks.set_namespace(values)</code></pre><p>Set the namespace to the given value.</p>\n",
    "count": 1,
    "file": "../js/plated_chunks.js",
-   "line": 343,
+   "line": 339,
    "name": "js.plated_chunks.set_namespace",
    "url": "../js/plated_chunks.js"
   }

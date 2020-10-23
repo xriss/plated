@@ -66,7 +66,7 @@
    "name": "html.plated_plugin.redirect"
   },
   {
-   "count": 71,
+   "count": 72,
    "name": "js"
   },
   {
@@ -90,7 +90,7 @@
    "name": "js.plated.watch"
   },
   {
-   "count": 19,
+   "count": 20,
    "name": "js.plated_chunks"
   },
   {
@@ -124,6 +124,10 @@
   {
    "count": 1,
    "name": "js.plated_chunks.lookup"
+  },
+  {
+   "count": 1,
+   "name": "js.plated_chunks.lookup_in_namespace"
   },
   {
    "count": 1,
@@ -394,10 +398,10 @@
  },
  "_list": [
   {
-   "body": "<pre><code>value = plated_chunks.replace(str,dat)</code></pre><p>Repeatedly call replace_once until all things that can expand, have \nexpanded, or we ran out of sanity. Sanity is 100 levels of recursion, \njust to be on the safe side.</p>\n<p>We then call a final replace_once with the lastpass flag set.</p>\n",
+   "body": "<pre><code>value = plated_chunks.replace(str,dat)</code></pre><p>Repeatedly call replace_once until all things that can expand, have \nexpanded, or we ran out of sanity. Sanity is 100 levels of recursion, \njust to be on the safe side.</p>\n<p>We then call a final replace_once with the lastpass flag set.</p>\n<p>if dat is null then we use data pushed into the namespaces otherwise we \nwill only use data available in dat.</p>\n",
    "count": 1,
    "file": "../js/plated_chunks.js",
-   "line": 815,
+   "line": 860,
    "name": "js.plated_chunks.replace",
    "url": "../js/plated_chunks.js"
   }

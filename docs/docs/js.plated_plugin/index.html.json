@@ -66,7 +66,7 @@
    "name": "html.plated_plugin.redirect"
   },
   {
-   "count": 71,
+   "count": 72,
    "name": "js"
   },
   {
@@ -90,7 +90,7 @@
    "name": "js.plated.watch"
   },
   {
-   "count": 19,
+   "count": 20,
    "name": "js.plated_chunks"
   },
   {
@@ -124,6 +124,10 @@
   {
    "count": 1,
    "name": "js.plated_chunks.lookup"
+  },
+  {
+   "count": 1,
+   "name": "js.plated_chunks.lookup_in_namespace"
   },
   {
    "count": 1,
@@ -418,7 +422,7 @@
    "body": "<pre><code>chunks = plated_plugin_blog.process_file(chunks)</code></pre><p>Tweak a single file of chunks, only chunks found in this file will be available.</p>\n",
    "count": 1,
    "file": "../js/plated_plugin_blog.js",
-   "line": 387,
+   "line": 428,
    "name": "js.plated_plugin.blog.process_file",
    "url": "../js/plated_plugin_blog.js"
   },

@@ -66,7 +66,7 @@
    "name": "html.plated_plugin.redirect"
   },
   {
-   "count": 71,
+   "count": 72,
    "name": "js"
   },
   {
@@ -90,7 +90,7 @@
    "name": "js.plated.watch"
   },
   {
-   "count": 19,
+   "count": 20,
    "name": "js.plated_chunks"
   },
   {
@@ -124,6 +124,10 @@
   {
    "count": 1,
    "name": "js.plated_chunks.lookup"
+  },
+  {
+   "count": 1,
+   "name": "js.plated_chunks.lookup_in_namespace"
   },
   {
    "count": 1,
@@ -394,7 +398,7 @@
  },
  "_list": [
   {
-   "body": "<pre><code>#^_blog_json\n{\n    posts_per_page:5,\n    posts_per_feed:20,\n    url=&quot;http://base.site/url/&quot;,\n    feed={\n        title=&quot;Feed Title&quot;,\n    }\n}</code></pre><p>A chunk of this name must be created in a directory scope file for this \nplugin to parse it. posts_per_page is the number of posts per page, we \nwill create as many pages as we need.</p>\n<p>posts_per_feed specifys the number of posts to publish in the feed.json \nfile. Which will be published using any data suplied in feed which can \ncontain any valid jsonfeed values. The base url must also be suplied \nsince feeds are expected to be copied to other domains. This url is \nintentionally seperate from _root as it must be explictly set and we \ncan not get away with relative paths here.</p>\n<p>Every directory within this blog directory will now be treated as a blogpost.</p>\n<p>See source/blog for an example of this all fits together. Inside each \nof these directories we look for.</p>\n<pre><code>#^_blog_post_json\n{\n    &quot;title&quot;:&quot;my title&quot;,\n    &quot;author&quot;:&quot;my name&quot;,\n    feed={\n        tags=[&quot;feed&quot;,&quot;tags&quot;],\n        atatchments=[{url=&quot;http://domain.full/thing.mp3&quot;,mimie_type=&quot;mime/type&quot;}],\n    }\n}</code></pre><p>Which contains metadata about the blog post, the feed object can \ncontain any valid jsonfeed settings, by we try and set useful defaults \nfrom the rest of the metadata. All of these values can also be used in \nyour templates to render the blog posts.</p>\n<pre><code>#^_blog_post_body form=markdown\nThis is my blog post body.</code></pre><p>Our blog body is to be found in this chunk name, probably best to use \nmarkdown as it makes writing blog posts easier.</p>\n<p>When it comes to generating the pages then the following chunks should \nbe setup in base directory.</p>\n<pre><code>#^_blog_page_body\nThis is a page of blog posts, eg the front page.</code></pre><p>Within this chunk we provide _blog_page_older as the url of an older \npage and _blog_page_newer as the url of a newer page. If there is no \nnewer or older page then this will be empty. _list will contain an \narray of blog posts that we intend to display in this page. It will be \nat least one post and no more than the posts_per_page setting.</p>\n<pre><code>#^_blog_post_body\nThis is a single blog post, when viewed on its own page.</code></pre><p>Within this chunk we provide _blog_post_older as the url of an older \npage and _blog_post_newer as the url of a newer page. If there is no \nnewer or older page then this will be empty. _blog_post_body will \ncontain the _blog_post_body as defined in the blog post directory.</p>\n",
+   "body": "<pre><code>#^_blog_json\n{\n    posts_per_page:5,\n    posts_per_feed:20,\n    url=&quot;http://base.site/url/&quot;,\n    feed={\n        title=&quot;Feed Title&quot;,\n    }\n}</code></pre><p>A chunk of this name must be created in a directory scope file for this \nplugin to parse it. posts_per_page is the number of posts per page, we \nwill create as many pages as we need.</p>\n<p>posts_per_feed specifys the number of posts to publish in the feed.json \nfile. Which will be published using any data suplied in feed which can \ncontain any valid jsonfeed values. The base url must also be suplied \nsince feeds are expected to be copied to other domains. This url is \nintentionally seperate from _root as it must be explictly set and we \ncan not get away with relative paths here.</p>\n<p>Every directory within this blog directory will now be treated as a blogpost.</p>\n<p>See source/blog for an example of this all fits together. Inside each \nof these directories we look for.</p>\n<pre><code>#^_blog_post_json\n{\n    &quot;title&quot;:&quot;my title&quot;,\n    &quot;author&quot;:&quot;my name&quot;,\n    tags=[&quot;tag1&quot;,&quot;tag2&quot;],\n    feed={\n        atatchments=[{url=&quot;http://domain.full/thing.mp3&quot;,mimie_type=&quot;mime/type&quot;}],\n    }\n}</code></pre><p>Which contains metadata about the blog post, the feed object can \ncontain any valid jsonfeed settings, by we try and set useful defaults \nfrom the rest of the metadata. All of these values can also be used in \nyour templates to render the blog posts.</p>\n<pre><code>#^_blog_post_body form=markdown\nThis is my blog post body.</code></pre><p>Our blog body is to be found in this chunk name, probably best to use \nmarkdown as it makes writing blog posts easier.</p>\n<p>When it comes to generating the pages then the following chunks should \nbe setup in base directory.</p>\n<pre><code>#^_blog_page_body\nThis is a page of blog posts, eg the front page.</code></pre><p>Within this chunk we provide _blog_page_older as the url of an older \npage and _blog_page_newer as the url of a newer page. If there is no \nnewer or older page then this will be empty. _list will contain an \narray of blog posts that we intend to display in this page. It will be \nat least one post and no more than the posts_per_page setting.</p>\n<pre><code>#^_blog_post_body\nThis is a single blog post, when viewed on its own page.</code></pre><p>Within this chunk we provide _blog_post_older as the url of an older \npage and _blog_post_newer as the url of a newer page. If there is no \nnewer or older page then this will be empty. _blog_post_body will \ncontain the _blog_post_body as defined in the blog post directory.</p>\n",
    "count": 1,
    "file": "../js/plated_plugin_blog.js",
    "line": 20,
