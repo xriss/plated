@@ -25,8 +25,8 @@ _Commands above are for debian/ubuntu. For other operating systems, please the u
    - Paste `https://github.com/xriss/plated-example` into the URL
    - Create a name for your new repository and click **Begin import**
     
-2. Go to ![settings](https://cloud.githubusercontent.com/assets/1515961/25015092/dcf5b398-2069-11e7-9740-424784716088.png)
-    - Change the GitHub Pages source to use **master branch /docs folder**
+2. Go to https://github.com/notshi/pmp/settings/pages
+    - Under **Source** change Branch to **master** and **/docs**
     - Save
 
 3. Woohoo! You should now have a brand new website.
