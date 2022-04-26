@@ -271,7 +271,7 @@ into a html string.
 				if(flags.form=="markdown")
 				{
 					
-					chunks[n]=marked(nl_to_br(chunks[n]));
+					chunks[n]=marked.parse(nl_to_br(chunks[n]));
 				}
 			}
 
@@ -902,7 +902,7 @@ Markdown is hardly a standard thing, after all.
 ]]*/
 	plated_chunks.markdown=function(s)
 	{
-		return marked(nl_to_br(s));
+		return marked.parse(nl_to_br(s));
 	}
 		
 

@@ -44,7 +44,7 @@
  },
  "_list": [
   {
-   "body": "<p>This is some markdown explaining a function and its use</p>\n<pre><code>result = example.function(arguments)</code></pre><p>Please remember to pass in arguments or you will not get a result.</p>\n",
+   "body": "<p>This is some markdown explaining a function and its use</p>\n<pre><code>result = example.function(arguments)\n</code></pre>\n<p>Please remember to pass in arguments or you will not get a result.</p>\n",
    "count": 1,
    "file": "test-source/007-docs/example.c",
    "line": 11,
