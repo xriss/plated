@@ -7,3 +7,5 @@ test-output
 
 #our generated files
 live/html/lib/plated_live.*
+docs
+
