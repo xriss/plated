@@ -43,7 +43,7 @@ Plated^ docs!
 
 <div class="wrap">
 <h1><a href="{_docs_json.dirname}/{_it.name}">{_it.name}</a></h1>
-<div class="source"><a href="{_it.url}#L{_it.line}">{_it.url}</a></div>
+<div class="source"><a href="{_it.url||}#L{_it.line||}">{_it.url||}</a></div>
 <div>{[[}{_it.body}{]]}</div>
 </div>
 
@@ -53,8 +53,8 @@ Plated^ docs!
 
 #^menuwrap_link trim=ends
 
-{_it.count>1&&_it:menuwrap_link2}
-{_it.count==1&&_it:menuwrap_link1}
+{_it.count>1&&_it:menuwrap_link2||}
+{_it.count==1&&_it:menuwrap_link1||}
 
 #^menuwrap_link1 trim=ends
 <a class="sub" href="{_docs_json.dirname}/{_it.name}"><span>/{_it.name}</span></a>
