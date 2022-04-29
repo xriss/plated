@@ -1,0 +1,6 @@
+cd `dirname $0`
+
+npx npm-check-updates -u
+npm install
+npm update
+
