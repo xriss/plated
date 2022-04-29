@@ -66,7 +66,7 @@
    "name": "html.plated_plugin.redirect"
   },
   {
-   "count": 64,
+   "count": 72,
    "name": "js"
   },
   {
@@ -90,7 +90,7 @@
    "name": "js.plated.watch"
   },
   {
-   "count": 19,
+   "count": 20,
    "name": "js.plated_chunks"
   },
   {
@@ -124,6 +124,10 @@
   {
    "count": 1,
    "name": "js.plated_chunks.lookup"
+  },
+  {
+   "count": 1,
+   "name": "js.plated_chunks.lookup_in_namespace"
   },
   {
    "count": 1,
@@ -166,7 +170,7 @@
    "name": "js.plated_chunks.set_namespace"
   },
   {
-   "count": 18,
+   "count": 25,
    "name": "js.plated_files"
   },
   {
@@ -188,6 +192,10 @@
   {
    "count": 1,
    "name": "js.plated_files.empty_folder"
+  },
+  {
+   "count": 1,
+   "name": "js.plated_files.exists"
   },
   {
    "count": 1,
@@ -215,7 +223,19 @@
   },
   {
    "count": 1,
+   "name": "js.plated_files.find_dirs"
+  },
+  {
+   "count": 1,
    "name": "js.plated_files.find_files"
+  },
+  {
+   "count": 1,
+   "name": "js.plated_files.joinpath"
+  },
+  {
+   "count": 1,
+   "name": "js.plated_files.lstat"
   },
   {
    "count": 1,
@@ -227,7 +247,19 @@
   },
   {
    "count": 1,
+   "name": "js.plated_files.readdir"
+  },
+  {
+   "count": 1,
    "name": "js.plated_files.source_to_output"
+  },
+  {
+   "count": 1,
+   "name": "js.plated_files.stat"
+  },
+  {
+   "count": 1,
+   "name": "js.plated_files.trimpath"
   },
   {
    "count": 1,
@@ -325,13 +357,13 @@
  "_docs_json": {
   "dirname": "{_root}docs",
   "dirs": {
-   "../js": ".js"
+   "../../js": ""
   },
   "ignore": {
    "node_modules": true
   },
   "urlprefix": {
-   "js/": "https://github.com/xriss/plated/blob/master/js/"
+   "../js/": "https://github.com/xriss/plated/blob/master/js/"
   }
  },
  "_filename": "{_root}docs/js.plated_chunks.format_chunks/index.html",
@@ -366,10 +398,10 @@
  },
  "_list": [
   {
-   "body": "<pre><code>chunks = plated_chunks.format_chunks(chunks)\n</code></pre><p>Process the chunks according to their flags, a chunk with trim=ends set \nwill have white space removed from its beginning and end.</p>\n<p>A chunk with form=json will be parsed as json rather than a string. It \ncan then be referenced inside chunks using chunk.member style lookups.</p>\n<p>A chunk with form=markdown will be processed as markdown and turned \ninto a html string.</p>\n",
+   "body": "<pre><code>chunks = plated_chunks.format_chunks(chunks)\n</code></pre>\n<p>Process the chunks according to their flags, a chunk with trim=ends set \nwill have white space removed from its beginning and end.</p>\n<p>A chunk with form=json will be parsed as json rather than a string. It \ncan then be referenced inside chunks using chunk.member style lookups.</p>\n<p>A chunk with form=markdown will be processed as markdown and turned \ninto a html string.</p>\n",
    "count": 1,
-   "file": "js/plated_chunks.js",
-   "line": 238,
+   "file": "../js/plated_chunks.js",
+   "line": 235,
    "name": "js.plated_chunks.format_chunks",
    "url": "https://github.com/xriss/plated/blob/master/js/plated_chunks.js"
   }

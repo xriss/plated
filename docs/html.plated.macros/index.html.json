@@ -66,7 +66,7 @@
    "name": "html.plated_plugin.redirect"
   },
   {
-   "count": 64,
+   "count": 72,
    "name": "js"
   },
   {
@@ -90,7 +90,7 @@
    "name": "js.plated.watch"
   },
   {
-   "count": 19,
+   "count": 20,
    "name": "js.plated_chunks"
   },
   {
@@ -124,6 +124,10 @@
   {
    "count": 1,
    "name": "js.plated_chunks.lookup"
+  },
+  {
+   "count": 1,
+   "name": "js.plated_chunks.lookup_in_namespace"
   },
   {
    "count": 1,
@@ -166,7 +170,7 @@
    "name": "js.plated_chunks.set_namespace"
   },
   {
-   "count": 18,
+   "count": 25,
    "name": "js.plated_files"
   },
   {
@@ -188,6 +192,10 @@
   {
    "count": 1,
    "name": "js.plated_files.empty_folder"
+  },
+  {
+   "count": 1,
+   "name": "js.plated_files.exists"
   },
   {
    "count": 1,
@@ -215,7 +223,19 @@
   },
   {
    "count": 1,
+   "name": "js.plated_files.find_dirs"
+  },
+  {
+   "count": 1,
    "name": "js.plated_files.find_files"
+  },
+  {
+   "count": 1,
+   "name": "js.plated_files.joinpath"
+  },
+  {
+   "count": 1,
+   "name": "js.plated_files.lstat"
   },
   {
    "count": 1,
@@ -227,7 +247,19 @@
   },
   {
    "count": 1,
+   "name": "js.plated_files.readdir"
+  },
+  {
+   "count": 1,
    "name": "js.plated_files.source_to_output"
+  },
+  {
+   "count": 1,
+   "name": "js.plated_files.stat"
+  },
+  {
+   "count": 1,
+   "name": "js.plated_files.trimpath"
   },
   {
    "count": 1,
@@ -325,13 +357,13 @@
  "_docs_json": {
   "dirname": "{_root}docs",
   "dirs": {
-   "../js": ".js"
+   "../../js": ""
   },
   "ignore": {
    "node_modules": true
   },
   "urlprefix": {
-   "js/": "https://github.com/xriss/plated/blob/master/js/"
+   "../js/": "https://github.com/xriss/plated/blob/master/js/"
   }
  },
  "_filename": "{_root}docs/html.plated.macros/index.html",
@@ -366,9 +398,9 @@
  },
  "_list": [
   {
-   "body": "<p>Once we have some chunks defined we need to provide a way of refering to them \ninside other chunks as a macro expansion.</p>\n<pre><code>#^chunkname trim=ends\nI am expanded\n#^mainchunk\nExpand the {chunkname} to its contents.\n</code></pre><p>If the above mainchunk was rendered then {chunkname} would be replace \nwith the contents of the chunk that was defined as #^chunkname this \nmacro expansion is recursive so you can include chunks within chunks \nwithin chunks. Combined with the cascading chunks this provides a huge \namount of flexibility without any additional programming logic. Similar \nto {{moustache}} templates but with slightly less logic and a bit more \nrecursion.</p>\n<p>If {chunkname} does not exist then the text will be left untouched as \n{chunkname} also there must be no white space in this macro expansion. \nso { chunkname } will never expand to anything.</p>\n<p>This may sound dangerous but we are able to get away with {} even \ninside C like languages that contain {} all over the place. If this \nscares you then you are free to redefine {} to {{}} when invoking \nplated but I assure you it is not necessary.</p>\n<pre><code>{jsonchunk.member}\n</code></pre><p>When using a json chunk a . can be used to pull out a value from the object</p>\n<pre><code>{jsonarray.0.name}\n</code></pre><p>If it is an array then the first item could be picked out with a number \nand then its member.</p>\n<pre><code>{jsonarray.-1.name}\n</code></pre><p>Negative numbers are allowed in which case it counts backwards from the \nend, in this case the last name of the last object in the array would \nbe used.</p>\n<p>Finally a json chunk may have another chunk applied as a layout.</p>\n<pre><code>{jsonchunk:plate}\n</code></pre><p>In this case plate is a chunk name that renders with {_it} being \nsynonymous with {jsonchunk} This is similar to calling a macro with a \nnumber of values.</p>\n<pre><code>{jsonarray:plate}\n</code></pre><p>If a template is applied to an array then it is applied repeatedly to \neach item in that array. This allows for simple formatting of json data \nheld within an array. The loop happens auto-magically with {_it} \nexpanding to a different value each time.</p>\n<p>All of these templating expansions are intended for use by plugins \nwhich provide arrays or objects of data for you to display.</p>\n<p>If a plate is applied to empty data then the empty string is returned. \nEg no expansion happens, this can help with layout logic removing some \nchunks and showing others depending on their existence.</p>\n<p>Finally because we also need to be able to talk about these macros here \nwithout them accidently expanding then we have a simple way to escape \nthem.</p>\n<pre><code>{[}{chunkname}{]}\n</code></pre><p>No matter how valid the chunkname is it will not expand because it is \ncontained within the comment tags {[}{]} these tags will be removed \nafter the text is rendered.</p>\n<pre><code>{[[}{chunkname}{]]}\n</code></pre><p>If multiple [ are used instead of one then it allows one level macro \nreplacement per extra [ so we can control expansion this way. In the \nabove example {chunkname} will expand once but any macros within that \nchunk will stay untouched. A tad complex but escape syntax is always a \npain.</p>\n<p>Due to the way this expands you must be careful to balance any use of \n{[}{]} within this chunk so as not to accidentally close the tag \nprematurely. This documentation for instance is designed to be used \ninside such a chunk so all square brackets inside {} have been \ncarefully balanced to stop anything from going wrong.</p>\n",
+   "body": "<p>Once we have some chunks defined we need to provide a way of refering to them \ninside other chunks as a macro expansion.</p>\n<pre><code>#^chunkname trim=ends\nI am expanded\n#^mainchunk\nExpand the {chunkname} to its contents.\n</code></pre>\n<p>If the above mainchunk was rendered then {chunkname} would be replace \nwith the contents of the chunk that was defined as #^chunkname this \nmacro expansion is recursive so you can include chunks within chunks \nwithin chunks. Combined with the cascading chunks this provides a huge \namount of flexibility without any additional programming logic. Similar \nto {{moustache}} templates but with slightly less logic and a bit more \nrecursion.</p>\n<p>If {chunkname} does not exist then the text will be left untouched as \n{chunkname} also there must be no white space in this macro expansion. \nso { chunkname } will never expand to anything.</p>\n<p>This may sound dangerous but we are able to get away with {} even \ninside C like languages that contain {} all over the place. If this \nscares you then you are free to redefine {} to {{}} when invoking \nplated but I assure you it is not necessary.</p>\n<pre><code>{jsonchunk.member}\n</code></pre>\n<p>When using a json chunk a . can be used to pull out a value from the object</p>\n<pre><code>{jsonarray.0.name}\n</code></pre>\n<p>If it is an array then the first item could be picked out with a number \nand then its member.</p>\n<pre><code>{jsonarray.-1.name}\n</code></pre>\n<p>Negative numbers are allowed in which case it counts backwards from the \nend, in this case the last name of the last object in the array would \nbe used.</p>\n<p>Finally a json chunk may have another chunk applied as a layout.</p>\n<pre><code>{jsonchunk:plate}\n</code></pre>\n<p>In this case plate is a chunk name that renders with {_it} being \nsynonymous with {jsonchunk} This is similar to calling a macro with a \nnumber of values.</p>\n<pre><code>{jsonarray:plate}\n</code></pre>\n<p>If a template is applied to an array then it is applied repeatedly to \neach item in that array. This allows for simple formatting of json data \nheld within an array. The loop happens auto-magically with {_it} \nexpanding to a different value each time.</p>\n<p>All of these templating expansions are intended for use by plugins \nwhich provide arrays or objects of data for you to display.</p>\n<p>If a plate is applied to empty data then the empty string is returned. \nEg no expansion happens, this can help with layout logic removing some \nchunks and showing others depending on their existence.</p>\n<p>Finally because we also need to be able to talk about these macros here \nwithout them accidently expanding then we have a simple way to escape \nthem.</p>\n<pre><code>{[}{chunkname}{]}\n</code></pre>\n<p>No matter how valid the chunkname is it will not expand because it is \ncontained within the comment tags {[}{]} these tags will be removed \nafter the text is rendered.</p>\n<pre><code>{[[}{chunkname}{]]}\n</code></pre>\n<p>If multiple [ are used instead of one then it allows one level macro \nreplacement per extra [ so we can control expansion this way. In the \nabove example {chunkname} will expand once but any macros within that \nchunk will stay untouched. A tad complex but escape syntax is always a \npain.</p>\n<p>Due to the way this expands you must be careful to balance any use of \n{[}{]} within this chunk so as not to accidentally close the tag \nprematurely. This documentation for instance is designed to be used \ninside such a chunk so all square brackets inside {} have been \ncarefully balanced to stop anything from going wrong.</p>\n",
    "count": 1,
-   "file": "js/plated.js",
+   "file": "../js/plated.js",
    "line": 250,
    "name": "html.plated.macros",
    "url": "https://github.com/xriss/plated/blob/master/js/plated.js"

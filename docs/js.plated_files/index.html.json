@@ -66,7 +66,7 @@
    "name": "html.plated_plugin.redirect"
   },
   {
-   "count": 64,
+   "count": 72,
    "name": "js"
   },
   {
@@ -90,7 +90,7 @@
    "name": "js.plated.watch"
   },
   {
-   "count": 19,
+   "count": 20,
    "name": "js.plated_chunks"
   },
   {
@@ -124,6 +124,10 @@
   {
    "count": 1,
    "name": "js.plated_chunks.lookup"
+  },
+  {
+   "count": 1,
+   "name": "js.plated_chunks.lookup_in_namespace"
   },
   {
    "count": 1,
@@ -166,7 +170,7 @@
    "name": "js.plated_chunks.set_namespace"
   },
   {
-   "count": 18,
+   "count": 25,
    "name": "js.plated_files"
   },
   {
@@ -188,6 +192,10 @@
   {
    "count": 1,
    "name": "js.plated_files.empty_folder"
+  },
+  {
+   "count": 1,
+   "name": "js.plated_files.exists"
   },
   {
    "count": 1,
@@ -215,7 +223,19 @@
   },
   {
    "count": 1,
+   "name": "js.plated_files.find_dirs"
+  },
+  {
+   "count": 1,
    "name": "js.plated_files.find_files"
+  },
+  {
+   "count": 1,
+   "name": "js.plated_files.joinpath"
+  },
+  {
+   "count": 1,
+   "name": "js.plated_files.lstat"
   },
   {
    "count": 1,
@@ -227,7 +247,19 @@
   },
   {
    "count": 1,
+   "name": "js.plated_files.readdir"
+  },
+  {
+   "count": 1,
    "name": "js.plated_files.source_to_output"
+  },
+  {
+   "count": 1,
+   "name": "js.plated_files.stat"
+  },
+  {
+   "count": 1,
+   "name": "js.plated_files.trimpath"
   },
   {
    "count": 1,
@@ -325,13 +357,13 @@
  "_docs_json": {
   "dirname": "{_root}docs",
   "dirs": {
-   "../js": ".js"
+   "../../js": ""
   },
   "ignore": {
    "node_modules": true
   },
   "urlprefix": {
-   "js/": "https://github.com/xriss/plated/blob/master/js/"
+   "../js/": "https://github.com/xriss/plated/blob/master/js/"
   }
  },
  "_filename": "{_root}docs/js.plated_files/index.html",
@@ -366,146 +398,202 @@
  },
  "_list": [
   {
-   "body": "<p>Manage the files that we read from and watch or write to.</p>\n<p>This module only exposes one function, which is used to create \nthe actual module with bound state data.</p>\n<pre><code>plated_files = require(&quot;./plated_files.js&quot;).create(opts,plated)\n</code></pre><p>This is called automatically when the plated module is created and the \nreturn value is made available in plated.chunks note that all of these \nmodules are bound together and operate as a group with shared data.</p>\n<p>In the future when we talk about this module and its available \nfunctions we are referring to the return value from this create \nfunction.</p>\n",
-   "count": 18,
-   "file": "js/plated_files.js",
+   "body": "<p>Manage the files that we read from and watch or write to.</p>\n<p>This module only exposes one function, which is used to create \nthe actual module with bound state data.</p>\n<pre><code>plated_files = require(&quot;./plated_files.js&quot;).create(opts,plated)\n</code></pre>\n<p>This is called automatically when the plated module is created and the \nreturn value is made available in plated.chunks note that all of these \nmodules are bound together and operate as a group with shared data.</p>\n<p>In the future when we talk about this module and its available \nfunctions we are referring to the return value from this create \nfunction.</p>\n",
+   "count": 25,
+   "file": "../js/plated_files.js",
    "line": 3,
    "name": "js.plated_files",
    "url": "https://github.com/xriss/plated/blob/master/js/plated_files.js"
   },
   {
-   "body": "<pre><code>chunks = plated_files.base_files_to_chunks(fname)\n</code></pre><p>Check this directory and all directories above for generic chunks build \nall of these into the current chunk namespace for this file.</p>\n",
+   "body": "<pre><code>chunks = await plated_files.base_files_to_chunks(fname)\n</code></pre>\n<p>Check this directory and all directories above for generic chunks build \nall of these into the current chunk namespace for this file.</p>\n",
    "count": 1,
-   "file": "js/plated_files.js",
-   "line": 400,
+   "file": "../js/plated_files.js",
+   "line": 533,
    "name": "js.plated_files.base_files_to_chunks",
    "url": "https://github.com/xriss/plated/blob/master/js/plated_files.js"
   },
   {
-   "body": "<pre><code>plated_files.build()\n</code></pre><p>Build all files found in the source dir into the output dir.</p>\n",
+   "body": "<pre><code>plated_files.build()\n</code></pre>\n<p>Build all files found in the source dir into the output dir.</p>\n",
    "count": 1,
-   "file": "js/plated_files.js",
-   "line": 483,
+   "file": "../js/plated_files.js",
+   "line": 612,
    "name": "js.plated_files.build",
    "url": "https://github.com/xriss/plated/blob/master/js/plated_files.js"
   },
   {
-   "body": "<pre><code>plated_files.build_file(fname)\n</code></pre><p>Build the given source filename, using chunks or maybe just a raw copy \nfrom source into the output.</p>\n",
+   "body": "<pre><code>plated_files.build_file(fname)\n</code></pre>\n<p>Build the given source filename, using chunks or maybe just a raw copy \nfrom source into the output.</p>\n",
    "count": 1,
-   "file": "js/plated_files.js",
-   "line": 435,
+   "file": "../js/plated_files.js",
+   "line": 565,
    "name": "js.plated_files.build_file",
    "url": "https://github.com/xriss/plated/blob/master/js/plated_files.js"
   },
   {
-   "body": "<pre><code>plated_files.empty_cache()\n</code></pre><p>Empty the current file cache, we fill it up as read files.</p>\n",
+   "body": "<pre><code>plated_files.empty_cache()\n</code></pre>\n<p>Empty the current file cache, we fill it up as read files.</p>\n",
    "count": 1,
-   "file": "js/plated_files.js",
-   "line": 332,
+   "file": "../js/plated_files.js",
+   "line": 466,
    "name": "js.plated_files.empty_cache",
    "url": "https://github.com/xriss/plated/blob/master/js/plated_files.js"
   },
   {
-   "body": "<pre><code>plated_files.empty_folder(path)\n</code></pre><p>Empty the (output) folder or make it if it does not exist. This is \nrather dangerous so please be careful.</p>\n",
+   "body": "<pre><code>plated_files.empty_folder(path)\n</code></pre>\n<p>Empty the (output) folder or make it if it does not exist. This is \nrather dangerous so please be careful.</p>\n",
    "count": 1,
-   "file": "js/plated_files.js",
-   "line": 253,
+   "file": "../js/plated_files.js",
+   "line": 373,
    "name": "js.plated_files.empty_folder",
    "url": "https://github.com/xriss/plated/blob/master/js/plated_files.js"
   },
   {
-   "body": "<pre><code>chunks = plated_files.file_to_chunks(root,fname,chunks)\n</code></pre><p>Load root/fname or get it from the cache and then turn it into chunks \nusing plated_chunks.fill_chunks(date,chunks) chunks is returned.</p>\n",
+   "body": "<pre><code>await plated_files.exists(path)\n</code></pre>\n<p>Returns true if a file or dir at the given path exists.</p>\n",
    "count": 1,
-   "file": "js/plated_files.js",
-   "line": 345,
+   "file": "../js/plated_files.js",
+   "line": 94,
+   "name": "js.plated_files.exists",
+   "url": "https://github.com/xriss/plated/blob/master/js/plated_files.js"
+  },
+  {
+   "body": "<pre><code>chunks = plated_files.file_to_chunks(root,fname,chunks)\n</code></pre>\n<p>Load root/fname or get it from the cache and then turn it into chunks \nusing plated_chunks.fill_chunks(date,chunks) chunks is returned.</p>\n",
+   "count": 1,
+   "file": "../js/plated_files.js",
+   "line": 479,
    "name": "js.plated_files.file_to_chunks",
    "url": "https://github.com/xriss/plated/blob/master/js/plated_files.js"
   },
   {
-   "body": "<pre><code>filename = plated_files.filename_fixup(filename)\n</code></pre><p>Fix the filename, so it becomes an empty string rather than a &quot;.&quot; or \n&quot;/.&quot; or &quot;/&quot; this makes it easier to use in urls.</p>\n",
+   "body": "<pre><code>filename = plated_files.filename_fixup(filename)\n</code></pre>\n<p>Fix the filename, so it becomes an empty string rather than a &quot;.&quot; or \n&quot;/.&quot; or &quot;/&quot; this makes it easier to use in urls.</p>\n",
    "count": 1,
-   "file": "js/plated_files.js",
-   "line": 144,
+   "file": "../js/plated_files.js",
+   "line": 264,
    "name": "js.plated_files.filename_fixup",
    "url": "https://github.com/xriss/plated/blob/master/js/plated_files.js"
   },
   {
-   "body": "<pre><code>bool = plated_files.filename_is_basechunk(filename)\n</code></pre><p>Is this filename part of the basechunks for a dir?</p>\n<p>A base chunk is something like ^.html or ^.css all of these files get \nmerged into the base chunks for the directory they are found in. Their \nextension is ignored and just to help syntax highlighting when the file \nis viewed.</p>\n",
+   "body": "<pre><code>bool = plated_files.filename_is_basechunk(filename)\n</code></pre>\n<p>Is this filename part of the basechunks for a dir?</p>\n<p>A base chunk is something like ^.html or ^.css all of these files get \nmerged into the base chunks for the directory they are found in. Their \nextension is ignored and just to help syntax highlighting when the file \nis viewed.</p>\n",
    "count": 1,
-   "file": "js/plated_files.js",
-   "line": 187,
+   "file": "../js/plated_files.js",
+   "line": 307,
    "name": "js.plated_files.filename_is_basechunk",
    "url": "https://github.com/xriss/plated/blob/master/js/plated_files.js"
   },
   {
-   "body": "<pre><code>bool = plated_files.filename_is_plated(filename)\n</code></pre><p>Is this filename something we need to run through plated. Returns true \nif filename contains the ^ trigger string. This string can be changed \nby altering opts.hashfile from &quot;^&quot; to something else.</p>\n",
+   "body": "<pre><code>bool = plated_files.filename_is_plated(filename)\n</code></pre>\n<p>Is this filename something we need to run through plated. Returns true \nif filename contains the ^ trigger string. This string can be changed \nby altering opts.hashfile from &quot;^&quot; to something else.</p>\n",
    "count": 1,
-   "file": "js/plated_files.js",
-   "line": 210,
+   "file": "../js/plated_files.js",
+   "line": 330,
    "name": "js.plated_files.filename_is_plated",
    "url": "https://github.com/xriss/plated/blob/master/js/plated_files.js"
   },
   {
-   "body": "<pre><code>dirname = plated_files.filename_to_dirname(filename)\n</code></pre><p>Get the dirname of this filename.</p>\n",
+   "body": "<pre><code>dirname = plated_files.filename_to_dirname(filename)\n</code></pre>\n<p>Get the dirname of this filename.</p>\n",
    "count": 1,
-   "file": "js/plated_files.js",
-   "line": 160,
+   "file": "../js/plated_files.js",
+   "line": 280,
    "name": "js.plated_files.filename_to_dirname",
    "url": "https://github.com/xriss/plated/blob/master/js/plated_files.js"
   },
   {
-   "body": "<pre><code>filename = plated_files.filename_to_output(filename)\n</code></pre><p>Work out the output filename from an input filename, the trigger string \n&quot;^.&quot; gets removed as we process a file.</p>\n",
+   "body": "<pre><code>filename = plated_files.filename_to_output(filename)\n</code></pre>\n<p>Work out the output filename from an input filename, the trigger string \n&quot;^.&quot; gets removed as we process a file.</p>\n",
    "count": 1,
-   "file": "js/plated_files.js",
-   "line": 230,
+   "file": "../js/plated_files.js",
+   "line": 350,
    "name": "js.plated_files.filename_to_output",
    "url": "https://github.com/xriss/plated/blob/master/js/plated_files.js"
   },
   {
-   "body": "<pre><code>plated_files.find_files(root,name,func)\n</code></pre><p>Call func(name) with every directory we find inside the root/name \ndirectory. We follow symlinks into other directories.</p>\n",
+   "body": "<pre><code>plated_files.find_dirs(root,name,func)\n</code></pre>\n<p>Call func(name) with every directory we find inside the root/name \ndirectory. We follow symlinks into other directories.</p>\n",
    "count": 1,
-   "file": "js/plated_files.js",
-   "line": 309,
+   "file": "../js/plated_files.js",
+   "line": 440,
+   "name": "js.plated_files.find_dirs",
+   "url": "https://github.com/xriss/plated/blob/master/js/plated_files.js"
+  },
+  {
+   "body": "<pre><code>plated_files.find_files(root,name)\n</code></pre>\n<p>REturn an array with every file we find inside the root/name directory. \nWe follow symlinks into other directories.</p>\n",
+   "count": 1,
+   "file": "../js/plated_files.js",
+   "line": 413,
    "name": "js.plated_files.find_files",
    "url": "https://github.com/xriss/plated/blob/master/js/plated_files.js"
   },
   {
-   "body": "<pre><code>plated_files.mkdir(dir)\n</code></pre><p>Fill in _source and related chunks such as.</p>\n<p>_sourcename the file that this set of chunks came from.</p>\n<p>_filename the output filename.</p>\n<p>_dirname the output dirname.</p>\n<p>_root the root of the site, normally a relative path to the current \ndirectory, eg ../ since some things such as github pages need to exist \nin a directory rather than the root of a site. This should always be \nused in html paths, {_root} instead of / to make sure that you always \nget to the right place and can find your files.</p>\n<p>_filename the url path of the filename, eg /dirname/filename</p>\n<p>_dirname the url path of the dir this file exists in, eg /dirname</p>\n",
+   "body": "<pre><code>await plated_files.joinpath(...)\n</code></pre>\n<p>join components into a full path.</p>\n",
    "count": 1,
-   "file": "js/plated_files.js",
-   "line": 63,
+   "file": "../js/plated_files.js",
+   "line": 79,
+   "name": "js.plated_files.joinpath",
+   "url": "https://github.com/xriss/plated/blob/master/js/plated_files.js"
+  },
+  {
+   "body": "<pre><code>await plated_files.lstat(path)\n</code></pre>\n<p>Return the lstat of this path</p>\n",
+   "count": 1,
+   "file": "../js/plated_files.js",
+   "line": 126,
+   "name": "js.plated_files.lstat",
+   "url": "https://github.com/xriss/plated/blob/master/js/plated_files.js"
+  },
+  {
+   "body": "<pre><code>plated_files.mkdir(dir)\n</code></pre>\n<p>Fill in _source and related chunks such as.</p>\n<p>_sourcename the file that this set of chunks came from.</p>\n<p>_filename the output filename.</p>\n<p>_dirname the output dirname.</p>\n<p>_root the root of the site, normally a relative path to the current \ndirectory, eg ../ since some things such as github pages need to exist \nin a directory rather than the root of a site. This should always be \nused in html paths, {_root} instead of / to make sure that you always \nget to the right place and can find your files.</p>\n<p>_filename the url path of the filename, eg /dirname/filename</p>\n<p>_dirname the url path of the dir this file exists in, eg /dirname</p>\n",
+   "count": 1,
+   "file": "../js/plated_files.js",
+   "line": 182,
    "name": "js.plated_files.mkdir",
    "url": "https://github.com/xriss/plated/blob/master/js/plated_files.js"
   },
   {
-   "body": "<pre><code>plated_files.prepare_namespace(fname)\n</code></pre><p>Check this directory and all directories above for generic chunks then \nbuild all of these into the current chunk namespace for this file.</p>\n",
+   "body": "<pre><code>plated_files.prepare_namespace(fname)\n</code></pre>\n<p>Check this directory and all directories above for generic chunks then \nbuild all of these into the current chunk namespace for this file.</p>\n",
    "count": 1,
-   "file": "js/plated_files.js",
-   "line": 369,
+   "file": "../js/plated_files.js",
+   "line": 502,
    "name": "js.plated_files.prepare_namespace",
    "url": "https://github.com/xriss/plated/blob/master/js/plated_files.js"
   },
   {
-   "body": "<pre><code>filename = plated_files.source_to_output(filename)\n</code></pre><p>Convert a source path into an output path.</p>\n",
+   "body": "<pre><code>await plated_files.readdir(path)\n</code></pre>\n<p>Return the readdir of this path</p>\n",
    "count": 1,
-   "file": "js/plated_files.js",
-   "line": 173,
+   "file": "../js/plated_files.js",
+   "line": 140,
+   "name": "js.plated_files.readdir",
+   "url": "https://github.com/xriss/plated/blob/master/js/plated_files.js"
+  },
+  {
+   "body": "<pre><code>filename = plated_files.source_to_output(filename)\n</code></pre>\n<p>Convert a source path into an output path.</p>\n",
+   "count": 1,
+   "file": "../js/plated_files.js",
+   "line": 293,
    "name": "js.plated_files.source_to_output",
    "url": "https://github.com/xriss/plated/blob/master/js/plated_files.js"
   },
   {
-   "body": "<pre><code>plated_files.watch()\n</code></pre><p>Build all files found in the source dir into the output dir and then \nsit watching for changes to these files that would trigger rebuilds.</p>\n<p>This does not return, instead the user is expected to ctrl+c when \nfinished.</p>\n",
+   "body": "<pre><code>await plated_files.stat(path)\n</code></pre>\n<p>Return the stat of this path</p>\n",
    "count": 1,
-   "file": "js/plated_files.js",
-   "line": 544,
+   "file": "../js/plated_files.js",
+   "line": 112,
+   "name": "js.plated_files.stat",
+   "url": "https://github.com/xriss/plated/blob/master/js/plated_files.js"
+  },
+  {
+   "body": "<pre><code>plated_files.trimpath(path)\n</code></pre>\n<p>Remove a trailing / from the path</p>\n",
+   "count": 1,
+   "file": "../js/plated_files.js",
+   "line": 58,
+   "name": "js.plated_files.trimpath",
+   "url": "https://github.com/xriss/plated/blob/master/js/plated_files.js"
+  },
+  {
+   "body": "<pre><code>plated_files.watch()\n</code></pre>\n<p>Build all files found in the source dir into the output dir and then \nsit watching for changes to these files that would trigger rebuilds.</p>\n<p>This does not return, instead the user is expected to ctrl+c when \nfinished.</p>\n",
+   "count": 1,
+   "file": "../js/plated_files.js",
+   "line": 676,
    "name": "js.plated_files.watch",
    "url": "https://github.com/xriss/plated/blob/master/js/plated_files.js"
   },
   {
-   "body": "<pre><code>plated_files.write(filename,data)\n</code></pre><p>Create parent dir if necessary and write the data into this file.</p>\n",
+   "body": "<pre><code>plated_files.write(filename,data)\n</code></pre>\n<p>Create parent dir if necessary and write the data into this file.</p>\n",
    "count": 1,
-   "file": "js/plated_files.js",
-   "line": 131,
+   "file": "../js/plated_files.js",
+   "line": 250,
    "name": "js.plated_files.write",
    "url": "https://github.com/xriss/plated/blob/master/js/plated_files.js"
   }

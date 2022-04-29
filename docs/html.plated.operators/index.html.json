@@ -66,7 +66,7 @@
    "name": "html.plated_plugin.redirect"
   },
   {
-   "count": 64,
+   "count": 72,
    "name": "js"
   },
   {
@@ -90,7 +90,7 @@
    "name": "js.plated.watch"
   },
   {
-   "count": 19,
+   "count": 20,
    "name": "js.plated_chunks"
   },
   {
@@ -124,6 +124,10 @@
   {
    "count": 1,
    "name": "js.plated_chunks.lookup"
+  },
+  {
+   "count": 1,
+   "name": "js.plated_chunks.lookup_in_namespace"
   },
   {
    "count": 1,
@@ -166,7 +170,7 @@
    "name": "js.plated_chunks.set_namespace"
   },
   {
-   "count": 18,
+   "count": 25,
    "name": "js.plated_files"
   },
   {
@@ -188,6 +192,10 @@
   {
    "count": 1,
    "name": "js.plated_files.empty_folder"
+  },
+  {
+   "count": 1,
+   "name": "js.plated_files.exists"
   },
   {
    "count": 1,
@@ -215,7 +223,19 @@
   },
   {
    "count": 1,
+   "name": "js.plated_files.find_dirs"
+  },
+  {
+   "count": 1,
    "name": "js.plated_files.find_files"
+  },
+  {
+   "count": 1,
+   "name": "js.plated_files.joinpath"
+  },
+  {
+   "count": 1,
+   "name": "js.plated_files.lstat"
   },
   {
    "count": 1,
@@ -227,7 +247,19 @@
   },
   {
    "count": 1,
+   "name": "js.plated_files.readdir"
+  },
+  {
+   "count": 1,
    "name": "js.plated_files.source_to_output"
+  },
+  {
+   "count": 1,
+   "name": "js.plated_files.stat"
+  },
+  {
+   "count": 1,
+   "name": "js.plated_files.trimpath"
   },
   {
    "count": 1,
@@ -325,13 +357,13 @@
  "_docs_json": {
   "dirname": "{_root}docs",
   "dirs": {
-   "../js": ".js"
+   "../../js": ""
   },
   "ignore": {
    "node_modules": true
   },
   "urlprefix": {
-   "js/": "https://github.com/xriss/plated/blob/master/js/"
+   "../js/": "https://github.com/xriss/plated/blob/master/js/"
   }
  },
  "_filename": "{_root}docs/html.plated.operators/index.html",
@@ -366,9 +398,9 @@
  },
  "_list": [
   {
-   "body": "<p>As well as chunknames we can also combine some logic operators to \ncontrol how macros expand. This is mostly of use with json chunks where \nyou wish to make a choice between a number of possibilities. For instance</p>\n<pre><code>{obj.count==1&amp;&amp;obj:showit||obj:hideit}\n</code></pre><p>The above is an example of a value?one:two style logic test. First \nobj.count is compared to the value 1 this will work if it is a string \nor a number due to the loose typing used. If true then obj will be \nrendered with the template chunk showit if false then instead obj will \nbe rendered with the template chunk hideit. You can guess what these \ntwo templates are intended to do.</p>\n<p>The operators are evaluated left to right with no precedence and are C \nlike, hence == rather than just a single = sign. Here are all the \npossible operators that can be used.</p>\n<pre><code>{a&lt;b}\n    returns true if a is less than b\n{a&lt;=b}\n    returns true if a is less than or equal to b\n{a&gt;b}\n    returns true if a is more than b\n{a&gt;=b}\n    returns true if a is more than or equal to b\n{a==b}\n    returns true if a is equal to b\n{a&amp;&amp;b}\n    a and b returns b if a is true else returns a\n{a||b}\n    a or b returns b if a is false else returns a\n{a||}\n    returns a if it exists else return an empty string\n</code></pre><p>The last one is useful for making macros invisible if they refer to \nempty data. Normally macros remain in the output if they are invalid. \nSo {a} on its own would either expand to something else or remain as \n{a} in the output. {a||} is just using the || operator to make it go \naway if empty.</p>\n",
+   "body": "<p>As well as chunknames we can also combine some logic operators to \ncontrol how macros expand. This is mostly of use with json chunks where \nyou wish to make a choice between a number of possibilities. For instance</p>\n<pre><code>{obj.count==1&amp;&amp;obj:showit||obj:hideit}\n</code></pre>\n<p>The above is an example of a value?one:two style logic test. First \nobj.count is compared to the value 1 this will work if it is a string \nor a number due to the loose typing used. If true then obj will be \nrendered with the template chunk showit if false then instead obj will \nbe rendered with the template chunk hideit. You can guess what these \ntwo templates are intended to do.</p>\n<p>The operators are evaluated left to right with no precedence and are C \nlike, hence == rather than just a single = sign. Here are all the \npossible operators that can be used.</p>\n<pre><code>{a&lt;b}\n    returns true if a is less than b\n{a&lt;=b}\n    returns true if a is less than or equal to b\n{a&gt;b}\n    returns true if a is more than b\n{a&gt;=b}\n    returns true if a is more than or equal to b\n{a==b}\n    returns true if a is equal to b\n{a&amp;&amp;b}\n    a and b returns b if a is true else returns a\n{a||b}\n    a or b returns b if a is false else returns a\n{a||}\n    returns a if it exists else return an empty string\n</code></pre>\n<p>The last one is useful for making macros invisible if they refer to \nempty data. Normally macros remain in the output if they are invalid. \nSo {a} on its own would either expand to something else or remain as \n{a} in the output. {a||} is just using the || operator to make it go \naway if empty.</p>\n",
    "count": 1,
-   "file": "js/plated.js",
+   "file": "../js/plated.js",
    "line": 343,
    "name": "html.plated.operators",
    "url": "https://github.com/xriss/plated/blob/master/js/plated.js"

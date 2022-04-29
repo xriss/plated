@@ -66,7 +66,7 @@
    "name": "html.plated_plugin.redirect"
   },
   {
-   "count": 64,
+   "count": 72,
    "name": "js"
   },
   {
@@ -90,7 +90,7 @@
    "name": "js.plated.watch"
   },
   {
-   "count": 19,
+   "count": 20,
    "name": "js.plated_chunks"
   },
   {
@@ -124,6 +124,10 @@
   {
    "count": 1,
    "name": "js.plated_chunks.lookup"
+  },
+  {
+   "count": 1,
+   "name": "js.plated_chunks.lookup_in_namespace"
   },
   {
    "count": 1,
@@ -166,7 +170,7 @@
    "name": "js.plated_chunks.set_namespace"
   },
   {
-   "count": 18,
+   "count": 25,
    "name": "js.plated_files"
   },
   {
@@ -188,6 +192,10 @@
   {
    "count": 1,
    "name": "js.plated_files.empty_folder"
+  },
+  {
+   "count": 1,
+   "name": "js.plated_files.exists"
   },
   {
    "count": 1,
@@ -215,7 +223,19 @@
   },
   {
    "count": 1,
+   "name": "js.plated_files.find_dirs"
+  },
+  {
+   "count": 1,
    "name": "js.plated_files.find_files"
+  },
+  {
+   "count": 1,
+   "name": "js.plated_files.joinpath"
+  },
+  {
+   "count": 1,
+   "name": "js.plated_files.lstat"
   },
   {
    "count": 1,
@@ -227,7 +247,19 @@
   },
   {
    "count": 1,
+   "name": "js.plated_files.readdir"
+  },
+  {
+   "count": 1,
    "name": "js.plated_files.source_to_output"
+  },
+  {
+   "count": 1,
+   "name": "js.plated_files.stat"
+  },
+  {
+   "count": 1,
+   "name": "js.plated_files.trimpath"
   },
   {
    "count": 1,
@@ -325,13 +357,13 @@
  "_docs_json": {
   "dirname": "{_root}docs",
   "dirs": {
-   "../js": ".js"
+   "../../js": ""
   },
   "ignore": {
    "node_modules": true
   },
   "urlprefix": {
-   "js/": "https://github.com/xriss/plated/blob/master/js/"
+   "../js/": "https://github.com/xriss/plated/blob/master/js/"
   }
  },
  "_filename": "{_root}docs/cmd.plated.watch/index.html",
@@ -366,9 +398,9 @@
  },
  "_list": [
   {
-   "body": "<pre><code>plated watch\n</code></pre><p>Build once and then watch all the files in source folder with any \nchange triggering a rebuild.</p>\n<p>This combined with a simple server and being careful to disable the \nhtml cache, can be used for live updates as you edit the source files.</p>\n<p>This uses the same options as plated.build so please view the \ndescriptions of all available options there.</p>\n",
+   "body": "<pre><code>plated watch\n</code></pre>\n<p>Build once and then watch all the files in source folder with any \nchange triggering a rebuild.</p>\n<p>This combined with a simple server and being careful to disable the \nhtml cache, can be used for live updates as you edit the source files.</p>\n<p>This uses the same options as plated.build so please view the \ndescriptions of all available options there.</p>\n",
    "count": 1,
-   "file": "js/cmd.js",
+   "file": "../js/cmd.js",
    "line": 95,
    "name": "cmd.plated.watch",
    "url": "https://github.com/xriss/plated/blob/master/js/cmd.js"

@@ -66,7 +66,7 @@
    "name": "html.plated_plugin.redirect"
   },
   {
-   "count": 64,
+   "count": 72,
    "name": "js"
   },
   {
@@ -90,7 +90,7 @@
    "name": "js.plated.watch"
   },
   {
-   "count": 19,
+   "count": 20,
    "name": "js.plated_chunks"
   },
   {
@@ -124,6 +124,10 @@
   {
    "count": 1,
    "name": "js.plated_chunks.lookup"
+  },
+  {
+   "count": 1,
+   "name": "js.plated_chunks.lookup_in_namespace"
   },
   {
    "count": 1,
@@ -166,7 +170,7 @@
    "name": "js.plated_chunks.set_namespace"
   },
   {
-   "count": 18,
+   "count": 25,
    "name": "js.plated_files"
   },
   {
@@ -188,6 +192,10 @@
   {
    "count": 1,
    "name": "js.plated_files.empty_folder"
+  },
+  {
+   "count": 1,
+   "name": "js.plated_files.exists"
   },
   {
    "count": 1,
@@ -215,7 +223,19 @@
   },
   {
    "count": 1,
+   "name": "js.plated_files.find_dirs"
+  },
+  {
+   "count": 1,
    "name": "js.plated_files.find_files"
+  },
+  {
+   "count": 1,
+   "name": "js.plated_files.joinpath"
+  },
+  {
+   "count": 1,
+   "name": "js.plated_files.lstat"
   },
   {
    "count": 1,
@@ -227,7 +247,19 @@
   },
   {
    "count": 1,
+   "name": "js.plated_files.readdir"
+  },
+  {
+   "count": 1,
    "name": "js.plated_files.source_to_output"
+  },
+  {
+   "count": 1,
+   "name": "js.plated_files.stat"
+  },
+  {
+   "count": 1,
+   "name": "js.plated_files.trimpath"
   },
   {
    "count": 1,
@@ -325,13 +357,13 @@
  "_docs_json": {
   "dirname": "{_root}docs",
   "dirs": {
-   "../js": ".js"
+   "../../js": ""
   },
   "ignore": {
    "node_modules": true
   },
   "urlprefix": {
-   "js/": "https://github.com/xriss/plated/blob/master/js/"
+   "../js/": "https://github.com/xriss/plated/blob/master/js/"
   }
  },
  "_filename": "{_root}docs/html.plated.files/index.html",
@@ -366,9 +398,9 @@
  },
  "_list": [
   {
-   "body": "<p>A special string in the filename triggers chunk file processing, by \ndefault this is ^. but it can be changed to another character or string \nwhen plated is invoked. ^. seems to be a reasonably safe yet generally \nunused sequence of characters in file names.</p>\n<p>Chunk files are text files containing chunks of text assigned to \nsymbolic chunknames, these chunks can then be referenced by tags \ncontained in other chunks and expanded to build final output files. </p>\n<p>This is intended to be simple macro expansion only rather than a \ncomplex programming language. Any programming would take place in a \nplugin, for instance we include a blog plugin that helps build blog \nstyle websites on top of this base chunk system.</p>\n<p>There are two basic types of chunk files, directory scope and file \nscope. Directory scope chunk files contain chunks that can be \nreferenced by any other chunk file in their directory as well as any \nsub directories. Directory scope chunks declared inside a sub directory \nwill replace any chunks defined higher up the path, this allows us to \nadjust and group data using hierarchical directories.</p>\n<pre><code>^.html\n^.css\n^.md\n^.what.ever.you.like\n</code></pre><p>Are all examples of directory scoped chunk files, they do not create \nany output files themselves but are parsed to provide directory scope \nchunks which can be used in other chunk files. It does not matter what \nextension is used, primarily it is intended to be used as a clue to \neditors to provide appropriate language highlighting. By convention css \nchunks would be placed inside ^.css and html chunks inside ^.html but \nthis is in no way enforced or necessary for plated to work.\n<br/>\n<br/></p>\n<pre><code>index.^.html\nlayout.^.css\nhacks.^.js\n</code></pre><p>Are all examples of file scoped chunk files. Each one will create a \nfile in the output directory with the same path but the name altered \nslightly to remove ^. from it. For example index.^.html becomes \nindex.html</p>\n<p>The extension used selects the chunk name that will be rendered into \nthe output file. So index.^.html will render the html chunk into the \noutput file and layout.^.css will render the css chunk.</p>\n<p>Usually pages in a directory will share the same layout, so a html \nchunk will be declared at the directory level with the file just adding \na content chunk to be rendered inside this page structure. The \ncascading chunk system means you are free to alter this in sub \ndirectories but often pages have a lot in common so keeping a bunch of \ngeneric layout chunks in the root with sub directories just picking \nfrom them works perfectly. The idea is to provide data organisational \ntools but not to dictate the use.</p>\n",
+   "body": "<p>A special string in the filename triggers chunk file processing, by \ndefault this is ^. but it can be changed to another character or string \nwhen plated is invoked. ^. seems to be a reasonably safe yet generally \nunused sequence of characters in file names.</p>\n<p>Chunk files are text files containing chunks of text assigned to \nsymbolic chunknames, these chunks can then be referenced by tags \ncontained in other chunks and expanded to build final output files. </p>\n<p>This is intended to be simple macro expansion only rather than a \ncomplex programming language. Any programming would take place in a \nplugin, for instance we include a blog plugin that helps build blog \nstyle websites on top of this base chunk system.</p>\n<p>There are two basic types of chunk files, directory scope and file \nscope. Directory scope chunk files contain chunks that can be \nreferenced by any other chunk file in their directory as well as any \nsub directories. Directory scope chunks declared inside a sub directory \nwill replace any chunks defined higher up the path, this allows us to \nadjust and group data using hierarchical directories.</p>\n<pre><code>^.html\n^.css\n^.md\n^.what.ever.you.like\n</code></pre>\n<p>Are all examples of directory scoped chunk files, they do not create \nany output files themselves but are parsed to provide directory scope \nchunks which can be used in other chunk files. It does not matter what \nextension is used, primarily it is intended to be used as a clue to \neditors to provide appropriate language highlighting. By convention css \nchunks would be placed inside ^.css and html chunks inside ^.html but \nthis is in no way enforced or necessary for plated to work.\n<br/>\n<br/></p>\n<pre><code>index.^.html\nlayout.^.css\nhacks.^.js\n</code></pre>\n<p>Are all examples of file scoped chunk files. Each one will create a \nfile in the output directory with the same path but the name altered \nslightly to remove ^. from it. For example index.^.html becomes \nindex.html</p>\n<p>The extension used selects the chunk name that will be rendered into \nthe output file. So index.^.html will render the html chunk into the \noutput file and layout.^.css will render the css chunk.</p>\n<p>Usually pages in a directory will share the same layout, so a html \nchunk will be declared at the directory level with the file just adding \na content chunk to be rendered inside this page structure. The \ncascading chunk system means you are free to alter this in sub \ndirectories but often pages have a lot in common so keeping a bunch of \ngeneric layout chunks in the root with sub directories just picking \nfrom them works perfectly. The idea is to provide data organisational \ntools but not to dictate the use.</p>\n",
    "count": 1,
-   "file": "js/plated.js",
+   "file": "../js/plated.js",
    "line": 48,
    "name": "html.plated.files",
    "url": "https://github.com/xriss/plated/blob/master/js/plated.js"

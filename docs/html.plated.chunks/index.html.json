@@ -66,7 +66,7 @@
    "name": "html.plated_plugin.redirect"
   },
   {
-   "count": 64,
+   "count": 72,
    "name": "js"
   },
   {
@@ -90,7 +90,7 @@
    "name": "js.plated.watch"
   },
   {
-   "count": 19,
+   "count": 20,
    "name": "js.plated_chunks"
   },
   {
@@ -124,6 +124,10 @@
   {
    "count": 1,
    "name": "js.plated_chunks.lookup"
+  },
+  {
+   "count": 1,
+   "name": "js.plated_chunks.lookup_in_namespace"
   },
   {
    "count": 1,
@@ -166,7 +170,7 @@
    "name": "js.plated_chunks.set_namespace"
   },
   {
-   "count": 18,
+   "count": 25,
    "name": "js.plated_files"
   },
   {
@@ -188,6 +192,10 @@
   {
    "count": 1,
    "name": "js.plated_files.empty_folder"
+  },
+  {
+   "count": 1,
+   "name": "js.plated_files.exists"
   },
   {
    "count": 1,
@@ -215,7 +223,19 @@
   },
   {
    "count": 1,
+   "name": "js.plated_files.find_dirs"
+  },
+  {
+   "count": 1,
    "name": "js.plated_files.find_files"
+  },
+  {
+   "count": 1,
+   "name": "js.plated_files.joinpath"
+  },
+  {
+   "count": 1,
+   "name": "js.plated_files.lstat"
   },
   {
    "count": 1,
@@ -227,7 +247,19 @@
   },
   {
    "count": 1,
+   "name": "js.plated_files.readdir"
+  },
+  {
+   "count": 1,
    "name": "js.plated_files.source_to_output"
+  },
+  {
+   "count": 1,
+   "name": "js.plated_files.stat"
+  },
+  {
+   "count": 1,
+   "name": "js.plated_files.trimpath"
   },
   {
    "count": 1,
@@ -325,13 +357,13 @@
  "_docs_json": {
   "dirname": "{_root}docs",
   "dirs": {
-   "../js": ".js"
+   "../../js": ""
   },
   "ignore": {
    "node_modules": true
   },
   "urlprefix": {
-   "js/": "https://github.com/xriss/plated/blob/master/js/"
+   "../js/": "https://github.com/xriss/plated/blob/master/js/"
   }
  },
  "_filename": "{_root}docs/html.plated.chunks/index.html",
@@ -366,9 +398,9 @@
  },
  "_list": [
   {
-   "body": "<p>Chunk files are parsed one line at a time to break them into a number \nof named chunks, lines that begin with the special characters #^ \ntrigger special processing all other lines are simple assigned to the \ncurrent chunk. eg:</p>\n<pre><code>#^chunkname\nhere is some text\nthat will be assigned to chunkname\n</code></pre><p>A chunk ends when we run out of file or we start another chunk.</p>\n<p>As well as the chunk name we can also add some flags to change how the \nchunk is processed. These flags are added by name=value pairs after the \nchunkname and separated by white space.</p>\n<pre><code>#^chunkname flag=value otherflag=othervalue\n</code></pre><p>These values are intended to change how the chunk is processed here are \nthe ones that we currently support. Multiple flags can of course be \napplied to the same chunk.</p>\n<pre><code>#^chunkname trim=ends\n</code></pre><p>This flag will cause all whitespace to be removed from the beginning \nand end of the chunk. Useful if you intend to include a chunk in a html \nattributes as newlines would would mess that up.</p>\n<pre><code>#^chunkname form=json\n</code></pre><p>Parse the text as json, this allows for structured data or arrays to be \ndefined in chunks. This data can be referenced inside macro expansion \nusing the . operator to reference members. Most plugins have a json \nchunk containing their settings.</p>\n<pre><code>#^chunkname form=markdown\n</code></pre><p>This text will be parsed as markdown and converted into html. Markdown \nis an easy way to create simple formated content for blog posts or just \npages in general. Note that the default format is just to leave the \ntext of the chunk unprocessed which means normal html tags.</p>\n<p>Chunk names that begin with an underscore are considered internal \nplated chunks ans some will be provided by the plated code for each \npage rendered. Here is a list of chunks that will be provided by the \nsystem.</p>\n<pre><code>#^chunkname same=replace\n</code></pre><p>This alters how we replace chunks when they are declared twice, \nnormally the chunk in the lowest level will simply replace a chunk \ndeclared elsewhere. This is the default setting.</p>\n<pre><code>#^chunkname same=append\n</code></pre><p>If we change to append mode then chunks lower down will be appended to \nthe higher up chunks. This is very useful for css chunks where we can \nappend rules as we cascade down and these rules will take precedence \nover the earlier rules due to the magic of css.</p>\n<pre><code>#^chunkname same=merge\n</code></pre><p>This should only be used with a json chunk, it merges the data with its \nparent chunk so we can change or add values as we cascade down through \nthe directories similar to append but working as objects rather than \njust plan text. This is why it should only be used with json chunks.</p>\n<pre><code>#^_root\n</code></pre><p>This will be set to a url that gets to the root of this website and \nshould be used in front of all urls to make sure that we can find the \nfiles we want. This can be passed in on the command line and / is a \ngood way to think of this value. The default is actually for plated to \nprovide a relative url such as ../../ that would get you to the root of \nthe site from the current page. You should be using _root as the prefix \nfor all urls when including css or js or images etc in a html file.</p>\n<pre><code>#^_site\n</code></pre><p>Similar to root but intended to explicitly link to the root of the \nnamed site. This is intended for use in links that can never be \nrelative to the current url so must be full and explicit urls, eg in \nRSS feeds.</p>\n<pre><code>#^_sourcename\n</code></pre><p>This will be set to the filename of the input source file that we are \ncurrently rendering.</p>\n<pre><code>#^_filename\n</code></pre><p>This will be set to url of the file that we are currently rendering.</p>\n<pre><code>#^_dirname\n</code></pre><p>This will be set to url of the directory containing the file that we \nare currently rendering.</p>\n<pre><code>#^_flags\n</code></pre><p>This is an object containing flag data for the defined chunks, most \nchunks will not have any flags defined but if they are they can be \nfound in for example  _flags.chunkname.flagname which would hold the \nvalue of flagname for the given chunkname. This is really just for \ninternal processing and should not need to be referenced by the user.</p>\n<p>As well as the provided chunks there are some special names exist to \ntrigger plugin behaviour and need to be defined with the correct \nconfiguration data, for instance</p>\n<pre><code>#^_docs_json\n</code></pre><p>Is the name of a chunk containing configuration data in json format \nthat enables the docs plugin to create pages such as the ones that you \nare currently reading. See html.plated.plugins for documentation on how \nto use them and what data must be provided. All you need to know is \nthat any chunk name that begins with an underscore belongs to the \nplated system itself and must only be created according to the \ndocumentation.</p>\n<p>As well as chunknames there are two other things we can do with special \ncharacters at the start of a line.</p>\n<pre><code>#^-this is a comment line\n</code></pre><p>The comment line will simply be ignored, in case you wish to include \nsome comments about what a chunk will be used for.</p>\n<pre><code>#^=##\n</code></pre><p>Allows the redefinition of the magic string, for the rest of the file, \nin this case, it would be ## instead of #^ but any string could be \nused. This is intended as an escape clause in case the magic string is \nundesirable in a certain file. It can also be changed on the command \nline when plated is invoked if you wish to change it globally.</p>\n",
+   "body": "<p>Chunk files are parsed one line at a time to break them into a number \nof named chunks, lines that begin with the special characters #^ \ntrigger special processing all other lines are simple assigned to the \ncurrent chunk. eg:</p>\n<pre><code>#^chunkname\nhere is some text\nthat will be assigned to chunkname\n</code></pre>\n<p>A chunk ends when we run out of file or we start another chunk.</p>\n<p>As well as the chunk name we can also add some flags to change how the \nchunk is processed. These flags are added by name=value pairs after the \nchunkname and separated by white space.</p>\n<pre><code>#^chunkname flag=value otherflag=othervalue\n</code></pre>\n<p>These values are intended to change how the chunk is processed here are \nthe ones that we currently support. Multiple flags can of course be \napplied to the same chunk.</p>\n<pre><code>#^chunkname trim=ends\n</code></pre>\n<p>This flag will cause all whitespace to be removed from the beginning \nand end of the chunk. Useful if you intend to include a chunk in a html \nattributes as newlines would would mess that up.</p>\n<pre><code>#^chunkname form=json\n</code></pre>\n<p>Parse the text as json, this allows for structured data or arrays to be \ndefined in chunks. This data can be referenced inside macro expansion \nusing the . operator to reference members. Most plugins have a json \nchunk containing their settings.</p>\n<pre><code>#^chunkname form=markdown\n</code></pre>\n<p>This text will be parsed as markdown and converted into html. Markdown \nis an easy way to create simple formated content for blog posts or just \npages in general. Note that the default format is just to leave the \ntext of the chunk unprocessed which means normal html tags.</p>\n<p>Chunk names that begin with an underscore are considered internal \nplated chunks ans some will be provided by the plated code for each \npage rendered. Here is a list of chunks that will be provided by the \nsystem.</p>\n<pre><code>#^chunkname same=replace\n</code></pre>\n<p>This alters how we replace chunks when they are declared twice, \nnormally the chunk in the lowest level will simply replace a chunk \ndeclared elsewhere. This is the default setting.</p>\n<pre><code>#^chunkname same=append\n</code></pre>\n<p>If we change to append mode then chunks lower down will be appended to \nthe higher up chunks. This is very useful for css chunks where we can \nappend rules as we cascade down and these rules will take precedence \nover the earlier rules due to the magic of css.</p>\n<pre><code>#^chunkname same=merge\n</code></pre>\n<p>This should only be used with a json chunk, it merges the data with its \nparent chunk so we can change or add values as we cascade down through \nthe directories similar to append but working as objects rather than \njust plan text. This is why it should only be used with json chunks.</p>\n<pre><code>#^_root\n</code></pre>\n<p>This will be set to a url that gets to the root of this website and \nshould be used in front of all urls to make sure that we can find the \nfiles we want. This can be passed in on the command line and / is a \ngood way to think of this value. The default is actually for plated to \nprovide a relative url such as ../../ that would get you to the root of \nthe site from the current page. You should be using _root as the prefix \nfor all urls when including css or js or images etc in a html file.</p>\n<pre><code>#^_site\n</code></pre>\n<p>Similar to root but intended to explicitly link to the root of the \nnamed site. This is intended for use in links that can never be \nrelative to the current url so must be full and explicit urls, eg in \nRSS feeds.</p>\n<pre><code>#^_sourcename\n</code></pre>\n<p>This will be set to the filename of the input source file that we are \ncurrently rendering.</p>\n<pre><code>#^_filename\n</code></pre>\n<p>This will be set to url of the file that we are currently rendering.</p>\n<pre><code>#^_dirname\n</code></pre>\n<p>This will be set to url of the directory containing the file that we \nare currently rendering.</p>\n<pre><code>#^_flags\n</code></pre>\n<p>This is an object containing flag data for the defined chunks, most \nchunks will not have any flags defined but if they are they can be \nfound in for example  _flags.chunkname.flagname which would hold the \nvalue of flagname for the given chunkname. This is really just for \ninternal processing and should not need to be referenced by the user.</p>\n<p>As well as the provided chunks there are some special names exist to \ntrigger plugin behaviour and need to be defined with the correct \nconfiguration data, for instance</p>\n<pre><code>#^_docs_json\n</code></pre>\n<p>Is the name of a chunk containing configuration data in json format \nthat enables the docs plugin to create pages such as the ones that you \nare currently reading. See html.plated.plugins for documentation on how \nto use them and what data must be provided. All you need to know is \nthat any chunk name that begins with an underscore belongs to the \nplated system itself and must only be created according to the \ndocumentation.</p>\n<p>As well as chunknames there are two other things we can do with special \ncharacters at the start of a line.</p>\n<pre><code>#^-this is a comment line\n</code></pre>\n<p>The comment line will simply be ignored, in case you wish to include \nsome comments about what a chunk will be used for.</p>\n<pre><code>#^=##\n</code></pre>\n<p>Allows the redefinition of the magic string, for the rest of the file, \nin this case, it would be ## instead of #^ but any string could be \nused. This is intended as an escape clause in case the magic string is \nundesirable in a certain file. It can also be changed on the command \nline when plated is invoked if you wish to change it globally.</p>\n",
    "count": 1,
-   "file": "js/plated.js",
+   "file": "../js/plated.js",
    "line": 110,
    "name": "html.plated.chunks",
    "url": "https://github.com/xriss/plated/blob/master/js/plated.js"
