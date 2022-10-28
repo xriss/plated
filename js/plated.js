@@ -404,6 +404,7 @@ exports.create=function(opts,plated){
 	opts.hashchunk = opts.hashchunk || "#^" 
 	opts.delimiter = opts.delimiter || "{}" 
 	opts.hashfile  = opts.hashfile  || "^" 
+	opts.blog      = opts.blog      || "blog";
 
 /***************************************************************************
 --[[#js.plated.setup
@@ -480,6 +481,65 @@ Continuously build the output files from the inputs whenever one of the input fi
 		return plated.files.watch();
 	};
 
+/***************************************************************************
+--[[#js.plated.watch
+
+	plated.blog()
+
+Create a starting blogpost with todays date in the main blog directory.
+
+Title is taken from opts._[1] onwards IE the command line.
+
+]]*/
+	plated.blog=async function()
+	{
+		let title="Blog post title."
+		if( opts._ && opts._[1] )
+		{
+			title=null
+			for( let i=1 ; i<opts._.length ; i++ )
+			{
+				if(title) { title=title+" "+opts._[i] }
+				else { title=opts._[i] }
+			}
+		}
+		let titledash=title.replace(/[^A-Za-z0-9]+/g," ").trim().toLowerCase().replace(/ /g,"-")
+		let d=new Date()
+		let titledate=d.getFullYear()+"-"+String(d.getMonth() + 1).padStart(2, '0')+"-"+String(d.getDate()).padStart(2, '0')
+		let blogname=titledate+"-"+titledash
+
+		let blogtext=`
+${opts.hashchunk}_blog_post_json
+{
+	"title":"${title}",
+	"author":"me",
+	tags=[],
+}
+
+${opts.hashchunk}title trim=ends
+{_blog_post_json.title}
+
+${opts.hashchunk}_blog_post_body form=markdown
+
+{title}
+-------
+
+Type words here.
+
+`
+
+		let fname=plated.files.joinpath(opts.source,opts.blog,blogname,opts.hashfile+".html")
+		if( await plated.files.exists(fname) )
+		{
+			console.log( "Blog already exists at : "+fname );
+		}
+		else
+		{
+			console.log( "Creating : "+fname );
+			await plated.files.write( fname, blogtext );
+		}
+
+	};
 
 // load default plugins
 

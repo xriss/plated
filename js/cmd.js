@@ -143,6 +143,12 @@ if( argv._[0]=="watch" )
 	var plated=require("./plated.js").create(argv);
 	return await plated.watch();
 }
+else
+if( argv._[0]=="blog" )
+{
+	var plated=require("./plated.js").create(argv);
+	return await plated.blog();
+}
 
 // help text
 console.log(
@@ -160,6 +166,11 @@ console.log(
 	"\n"+
 	"> plated watch \n"+
 	"\tBuild and then watch all files in source folder, rebuilding if they change.\n"+
+	"\t\t...same options as build\n"+
+	"\n"+
+	"> plated blog this is the title of my blog post \n"+
+	"\tCreate an empty blogpost with todays date and the given title in the source blog directory.\n"+
+	"\t\t--blog=blog      -- choose the blog folder. \n"+
 	"\t\t...same options as build\n"+
 	"\n"+
 "");

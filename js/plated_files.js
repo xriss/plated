@@ -179,9 +179,9 @@ necessary.
 	}
 
 /***************************************************************************
---[[#js.plated_files.mkdir
+--[[#js.plated_files.set_source
 
-	plated_files.mkdir(dir)
+	plated_files.set_source(dir)
 
 Fill in _source and related chunks such as.
 
