@@ -66,12 +66,16 @@
    "name": "html.plated_plugin.redirect"
   },
   {
-   "count": 73,
+   "count": 74,
    "name": "js"
   },
   {
-   "count": 5,
+   "count": 6,
    "name": "js.plated"
+  },
+  {
+   "count": 1,
+   "name": "js.plated.blog"
   },
   {
    "count": 1,

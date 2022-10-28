@@ -66,12 +66,16 @@
    "name": "html.plated_plugin.redirect"
   },
   {
-   "count": 73,
+   "count": 74,
    "name": "js"
   },
   {
-   "count": 5,
+   "count": 6,
    "name": "js.plated"
+  },
+  {
+   "count": 1,
+   "name": "js.plated.blog"
   },
   {
    "count": 1,
@@ -403,10 +407,18 @@
  "_list": [
   {
    "body": "<p>Plated is a static site generator that uses a cascading chunk system to \ndescribe the output pages.</p>\n<p>Since we are using node we are also able to dynamically build the pages \nin the browser, which is why we include json dumps of the chunk data. \nThis provides enough data to reconstruct pages client side.</p>\n<p>Included are a handful of plugins that do slightly more complicated \nthings to enable extra functionality such as page redirects or \ngenerating blogs.</p>\n<p>This module only exposes one function, which is used to create \nthe actual module with bound state data.</p>\n<pre><code>plated=require(&quot;./plated.js&quot;).create(opts,plated)\n</code></pre>\n<p>opts is an object of options and plated is an optional input if \nprovided it will be modified and returned otherwise a new object will \nbe created and returned.</p>\n<p>We also load and setup this and all the builtin plugins so after \ncalling this we are good to go.</p>\n<p>In the future when we talk about plated and its available functions we \nare referring to the return from this create function.</p>\n<p>The opts is intended to be filled with command line options so take a \nlook at these for a full description of what can be passed in here.</p>\n",
-   "count": 5,
+   "count": 6,
    "file": "../js/plated.js",
    "line": 3,
    "name": "js.plated",
+   "url": "https://github.com/xriss/plated/blob/master/js/plated.js"
+  },
+  {
+   "body": "<pre><code>plated.blog()\n</code></pre>\n<p>Create a starting blogpost with todays date in the main blog directory.</p>\n<p>Title is taken from opts._[1] onwards IE the command line.</p>\n",
+   "count": 1,
+   "file": "../js/plated.js",
+   "line": 485,
+   "name": "js.plated.blog",
    "url": "https://github.com/xriss/plated/blob/master/js/plated.js"
   },
   {
@@ -434,10 +446,10 @@
    "url": "https://github.com/xriss/plated/blob/master/js/plated.js"
   },
   {
-   "body": "<pre><code>plated.blog()\n</code></pre>\n<p>Create a starting blogpost with todays date in the main blog directory.</p>\n<p>Title is taken from opts._[1] onwards IE the command line.</p>\n",
+   "body": "<pre><code>plated.watch()\n</code></pre>\n<p>Continuously build the output files from the inputs whenever one of the input files changes</p>\n",
    "count": 1,
    "file": "../js/plated.js",
-   "line": 485,
+   "line": 472,
    "name": "js.plated.watch",
    "url": "https://github.com/xriss/plated/blob/master/js/plated.js"
   }

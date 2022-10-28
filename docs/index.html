@@ -37,6 +37,7 @@
 <a class="sub" href="../docs/html.plated_plugin.redirect"><span>/html.plated_plugin.redirect</span></a><a class="par" href="../docs/js"><span>/js</span></a>
 <a class="par" href="../docs/js.plated"><span>/js.plated</span></a>
 
+<a class="sub" href="../docs/js.plated.blog"><span>/js.plated.blog</span></a>
 <a class="sub" href="../docs/js.plated.build"><span>/js.plated.build</span></a>
 <a class="sub" href="../docs/js.plated.plugin"><span>/js.plated.plugin</span></a>
 <a class="sub" href="../docs/js.plated.setup"><span>/js.plated.setup</span></a>
@@ -721,6 +722,16 @@ look at these for a full description of what can be passed in here.</p>
 </div>
 
 <div class="wrap">
+<h1><a href="../docs/js.plated.blog">js.plated.blog</a></h1>
+<div class="source"><a href="https://github.com/xriss/plated/blob/master/js/plated.js#L485">https://github.com/xriss/plated/blob/master/js/plated.js</a></div>
+<div><pre><code>plated.blog()
+</code></pre>
+<p>Create a starting blogpost with todays date in the main blog directory.</p>
+<p>Title is taken from opts._[1] onwards IE the command line.</p>
+</div>
+</div>
+
+<div class="wrap">
 <h1><a href="../docs/js.plated.build">js.plated.build</a></h1>
 <div class="source"><a href="https://github.com/xriss/plated/blob/master/js/plated.js#L459">https://github.com/xriss/plated/blob/master/js/plated.js</a></div>
 <div><pre><code>plated.build()
@@ -760,11 +771,10 @@ and output.</p>
 
 <div class="wrap">
 <h1><a href="../docs/js.plated.watch">js.plated.watch</a></h1>
-<div class="source"><a href="https://github.com/xriss/plated/blob/master/js/plated.js#L485">https://github.com/xriss/plated/blob/master/js/plated.js</a></div>
-<div><pre><code>plated.blog()
+<div class="source"><a href="https://github.com/xriss/plated/blob/master/js/plated.js#L472">https://github.com/xriss/plated/blob/master/js/plated.js</a></div>
+<div><pre><code>plated.watch()
 </code></pre>
-<p>Create a starting blogpost with todays date in the main blog directory.</p>
-<p>Title is taken from opts._[1] onwards IE the command line.</p>
+<p>Continuously build the output files from the inputs whenever one of the input files changes</p>
 </div>
 </div>
 
