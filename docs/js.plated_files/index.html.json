@@ -66,7 +66,7 @@
    "name": "html.plated_plugin.redirect"
   },
   {
-   "count": 72,
+   "count": 73,
    "name": "js"
   },
   {
@@ -170,7 +170,7 @@
    "name": "js.plated_chunks.set_namespace"
   },
   {
-   "count": 25,
+   "count": 26,
    "name": "js.plated_files"
   },
   {
@@ -248,6 +248,10 @@
   {
    "count": 1,
    "name": "js.plated_files.readdir"
+  },
+  {
+   "count": 1,
+   "name": "js.plated_files.set_source"
   },
   {
    "count": 1,
@@ -399,7 +403,7 @@
  "_list": [
   {
    "body": "<p>Manage the files that we read from and watch or write to.</p>\n<p>This module only exposes one function, which is used to create \nthe actual module with bound state data.</p>\n<pre><code>plated_files = require(&quot;./plated_files.js&quot;).create(opts,plated)\n</code></pre>\n<p>This is called automatically when the plated module is created and the \nreturn value is made available in plated.chunks note that all of these \nmodules are bound together and operate as a group with shared data.</p>\n<p>In the future when we talk about this module and its available \nfunctions we are referring to the return value from this create \nfunction.</p>\n",
-   "count": 25,
+   "count": 26,
    "file": "../js/plated_files.js",
    "line": 3,
    "name": "js.plated_files",
@@ -534,10 +538,10 @@
    "url": "https://github.com/xriss/plated/blob/master/js/plated_files.js"
   },
   {
-   "body": "<pre><code>plated_files.mkdir(dir)\n</code></pre>\n<p>Fill in _source and related chunks such as.</p>\n<p>_sourcename the file that this set of chunks came from.</p>\n<p>_filename the output filename.</p>\n<p>_dirname the output dirname.</p>\n<p>_root the root of the site, normally a relative path to the current \ndirectory, eg ../ since some things such as github pages need to exist \nin a directory rather than the root of a site. This should always be \nused in html paths, {_root} instead of / to make sure that you always \nget to the right place and can find your files.</p>\n<p>_filename the url path of the filename, eg /dirname/filename</p>\n<p>_dirname the url path of the dir this file exists in, eg /dirname</p>\n",
+   "body": "<pre><code>plated_files.mkdir(dir)\n</code></pre>\n<p>Create the given dir and recursively create its parent dirs as well if \nnecessary.</p>\n",
    "count": 1,
    "file": "../js/plated_files.js",
-   "line": 182,
+   "line": 155,
    "name": "js.plated_files.mkdir",
    "url": "https://github.com/xriss/plated/blob/master/js/plated_files.js"
   },
@@ -555,6 +559,14 @@
    "file": "../js/plated_files.js",
    "line": 140,
    "name": "js.plated_files.readdir",
+   "url": "https://github.com/xriss/plated/blob/master/js/plated_files.js"
+  },
+  {
+   "body": "<pre><code>plated_files.set_source(dir)\n</code></pre>\n<p>Fill in _source and related chunks such as.</p>\n<p>_sourcename the file that this set of chunks came from.</p>\n<p>_filename the output filename.</p>\n<p>_dirname the output dirname.</p>\n<p>_root the root of the site, normally a relative path to the current \ndirectory, eg ../ since some things such as github pages need to exist \nin a directory rather than the root of a site. This should always be \nused in html paths, {_root} instead of / to make sure that you always \nget to the right place and can find your files.</p>\n<p>_filename the url path of the filename, eg /dirname/filename</p>\n<p>_dirname the url path of the dir this file exists in, eg /dirname</p>\n",
+   "count": 1,
+   "file": "../js/plated_files.js",
+   "line": 182,
+   "name": "js.plated_files.set_source",
    "url": "https://github.com/xriss/plated/blob/master/js/plated_files.js"
   },
   {

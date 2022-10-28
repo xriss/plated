@@ -66,7 +66,7 @@
    "name": "html.plated_plugin.redirect"
   },
   {
-   "count": 72,
+   "count": 73,
    "name": "js"
   },
   {
@@ -170,7 +170,7 @@
    "name": "js.plated_chunks.set_namespace"
   },
   {
-   "count": 25,
+   "count": 26,
    "name": "js.plated_files"
   },
   {
@@ -248,6 +248,10 @@
   {
    "count": 1,
    "name": "js.plated_files.readdir"
+  },
+  {
+   "count": 1,
+   "name": "js.plated_files.set_source"
   },
   {
    "count": 1,
@@ -409,7 +413,7 @@
    "body": "<pre><code>plated.build()\n</code></pre>\n<p>Build all the output files from the inputs.</p>\n",
    "count": 1,
    "file": "../js/plated.js",
-   "line": 458,
+   "line": 459,
    "name": "js.plated.build",
    "url": "https://github.com/xriss/plated/blob/master/js/plated.js"
   },
@@ -417,7 +421,7 @@
    "body": "<pre><code>plated.plugin(it)\n</code></pre>\n<p>Register a plugin, each plugin can provide the following function hooks.</p>\n<pre><code>dirs = it.process_dirs( dirs )\n</code></pre>\n<p>Adjust the registered dirs data and return it.</p>\n<pre><code>file = it.process_file( file )\n</code></pre>\n<p>Adjust or react to the file data and return it.</p>\n<pre><code>it.process_output( chunks )\n</code></pre>\n<p>Adjust a files chunks prior to writing it out, or, output extra data \nassociated with these chunks.</p>\n",
    "count": 1,
    "file": "../js/plated.js",
-   "line": 430,
+   "line": 431,
    "name": "js.plated.plugin",
    "url": "https://github.com/xriss/plated/blob/master/js/plated.js"
   },
@@ -425,15 +429,15 @@
    "body": "<pre><code>plated.setup(opts)\n</code></pre>\n<p>Initialise plated and require the base plated modules: files, chunks \nand output.</p>\n",
    "count": 1,
    "file": "../js/plated.js",
-   "line": 409,
+   "line": 410,
    "name": "js.plated.setup",
    "url": "https://github.com/xriss/plated/blob/master/js/plated.js"
   },
   {
-   "body": "<pre><code>plated.watch()\n</code></pre>\n<p>Continuously build the output files from the inputs whenever one of the input files changes</p>\n",
+   "body": "<pre><code>plated.blog()\n</code></pre>\n<p>Create a starting blogpost with todays date in the main blog directory.</p>\n<p>Title is taken from opts._[1] onwards IE the command line.</p>\n",
    "count": 1,
    "file": "../js/plated.js",
-   "line": 471,
+   "line": 485,
    "name": "js.plated.watch",
    "url": "https://github.com/xriss/plated/blob/master/js/plated.js"
   }

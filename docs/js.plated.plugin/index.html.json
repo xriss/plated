@@ -66,7 +66,7 @@
    "name": "html.plated_plugin.redirect"
   },
   {
-   "count": 72,
+   "count": 73,
    "name": "js"
   },
   {
@@ -170,7 +170,7 @@
    "name": "js.plated_chunks.set_namespace"
   },
   {
-   "count": 25,
+   "count": 26,
    "name": "js.plated_files"
   },
   {
@@ -248,6 +248,10 @@
   {
    "count": 1,
    "name": "js.plated_files.readdir"
+  },
+  {
+   "count": 1,
+   "name": "js.plated_files.set_source"
   },
   {
    "count": 1,
@@ -401,7 +405,7 @@
    "body": "<pre><code>plated.plugin(it)\n</code></pre>\n<p>Register a plugin, each plugin can provide the following function hooks.</p>\n<pre><code>dirs = it.process_dirs( dirs )\n</code></pre>\n<p>Adjust the registered dirs data and return it.</p>\n<pre><code>file = it.process_file( file )\n</code></pre>\n<p>Adjust or react to the file data and return it.</p>\n<pre><code>it.process_output( chunks )\n</code></pre>\n<p>Adjust a files chunks prior to writing it out, or, output extra data \nassociated with these chunks.</p>\n",
    "count": 1,
    "file": "../js/plated.js",
-   "line": 430,
+   "line": 431,
    "name": "js.plated.plugin",
    "url": "https://github.com/xriss/plated/blob/master/js/plated.js"
   }

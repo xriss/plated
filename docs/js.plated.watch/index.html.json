@@ -66,7 +66,7 @@
    "name": "html.plated_plugin.redirect"
   },
   {
-   "count": 72,
+   "count": 73,
    "name": "js"
   },
   {
@@ -170,7 +170,7 @@
    "name": "js.plated_chunks.set_namespace"
   },
   {
-   "count": 25,
+   "count": 26,
    "name": "js.plated_files"
   },
   {
@@ -248,6 +248,10 @@
   {
    "count": 1,
    "name": "js.plated_files.readdir"
+  },
+  {
+   "count": 1,
+   "name": "js.plated_files.set_source"
   },
   {
    "count": 1,
@@ -398,10 +402,10 @@
  },
  "_list": [
   {
-   "body": "<pre><code>plated.watch()\n</code></pre>\n<p>Continuously build the output files from the inputs whenever one of the input files changes</p>\n",
+   "body": "<pre><code>plated.blog()\n</code></pre>\n<p>Create a starting blogpost with todays date in the main blog directory.</p>\n<p>Title is taken from opts._[1] onwards IE the command line.</p>\n",
    "count": 1,
    "file": "../js/plated.js",
-   "line": 471,
+   "line": 485,
    "name": "js.plated.watch",
    "url": "https://github.com/xriss/plated/blob/master/js/plated.js"
   }
