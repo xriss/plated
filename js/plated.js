@@ -482,7 +482,7 @@ Continuously build the output files from the inputs whenever one of the input fi
 	};
 
 /***************************************************************************
---[[#js.plated.watch
+--[[#js.plated.blog
 
 	plated.blog()
 
