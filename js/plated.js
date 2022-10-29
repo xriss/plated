@@ -513,7 +513,7 @@ ${opts.hashchunk}_blog_post_json
 {
 	"title":"${title}",
 	"author":"me",
-	tags=[],
+	tags:[],
 }
 
 ${opts.hashchunk}title trim=ends
