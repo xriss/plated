@@ -1,59 +1,59 @@
 {
- "feed_url": "/002-blog/feed.json",
- "home_page_url": "/",
+ "feed_url": "http://feed.blog.com/002-blog/feed.json",
+ "home_page_url": "http://feed.blog.com/",
  "items": [
   {
-   "content_html": "\n<a href=\"/002-blog/2016-12-28-this-is-a-test-post-6\">link</a>\n<h2 id=\"title\">This is test post 6</h2>\n<p>The title is This is test post 6 and this is an example blog post number 6.\n<br/>\n<br/></p>\n\n\n",
+   "content_html": "\n<a href=\"http://feed.blog.com/002-blog/2016-12-28-this-is-a-test-post-6\">link</a>\n<h2 id=\"title\">This is test post 6</h2>\n<p>The title is This is test post 6 and this is an example blog post number 6.\n<br/>\n<br/></p>\n\n\n",
    "date_published": "2016-12-28T00:00:00.000Z",
-   "id": "/002-blog/2016-12-28-this-is-a-test-post-6",
+   "id": "http://feed.blog.com/002-blog/2016-12-28-this-is-a-test-post-6",
    "title": "This is test post 6",
-   "url": "/002-blog/2016-12-28-this-is-a-test-post-6"
+   "url": "http://feed.blog.com/002-blog/2016-12-28-this-is-a-test-post-6"
   },
   {
-   "content_html": "\n<a href=\"/002-blog/2016-12-27-this-is-a-test-post-5\">link</a>\n<h2 id=\"title\">This is test post 5</h2>\n<p>The title is This is test post 5 and this is an example blog post number 5.\n<br/>\n<br/></p>\n\n\n",
+   "content_html": "\n<a href=\"http://feed.blog.com/002-blog/2016-12-27-this-is-a-test-post-5\">link</a>\n<h2 id=\"title\">This is test post 5</h2>\n<p>The title is This is test post 5 and this is an example blog post number 5.\n<br/>\n<br/></p>\n\n\n",
    "date_published": "2016-12-27T00:00:00.000Z",
-   "id": "/002-blog/2016-12-27-this-is-a-test-post-5",
+   "id": "http://feed.blog.com/002-blog/2016-12-27-this-is-a-test-post-5",
    "tags": [
     "odd"
    ],
    "title": "This is test post 5",
-   "url": "/002-blog/2016-12-27-this-is-a-test-post-5"
+   "url": "http://feed.blog.com/002-blog/2016-12-27-this-is-a-test-post-5"
   },
   {
-   "content_html": "\n<a href=\"/002-blog/2016-12-26-this-is-a-test-post-4\">link</a>\n<h2 id=\"title\">This is test post 4</h2>\n<p>The title is This is test post 4 and this is an example blog post number 4.\n<br/>\n<br/></p>\n\n\n",
+   "content_html": "\n<a href=\"http://feed.blog.com/002-blog/2016-12-26-this-is-a-test-post-4\">link</a>\n<h2 id=\"title\">This is test post 4</h2>\n<p>The title is This is test post 4 and this is an example blog post number 4.\n<br/>\n<br/></p>\n\n\n",
    "date_published": "2016-12-26T00:00:00.000Z",
-   "id": "/002-blog/2016-12-26-this-is-a-test-post-4",
+   "id": "http://feed.blog.com/002-blog/2016-12-26-this-is-a-test-post-4",
    "title": "This is test post 4",
-   "url": "/002-blog/2016-12-26-this-is-a-test-post-4"
+   "url": "http://feed.blog.com/002-blog/2016-12-26-this-is-a-test-post-4"
   },
   {
-   "content_html": "\n<a href=\"/002-blog/2016-12-25-this-is-a-test-post-3\">link</a>\n<h2 id=\"title\">This is test post 3</h2>\n<p>The title is This is test post 3 and this is an example blog post number 3.\n<br/>\n<br/></p>\n\n\n",
+   "content_html": "\n<a href=\"http://feed.blog.com/002-blog/2016-12-25-this-is-a-test-post-3\">link</a>\n<h2 id=\"title\">This is test post 3</h2>\n<p>The title is This is test post 3 and this is an example blog post number 3.\n<br/>\n<br/></p>\n\n\n",
    "date_published": "2016-12-25T00:00:00.000Z",
-   "id": "/002-blog/2016-12-25-this-is-a-test-post-3",
+   "id": "http://feed.blog.com/002-blog/2016-12-25-this-is-a-test-post-3",
    "tags": [
     "odd"
    ],
    "title": "This is test post 3",
-   "url": "/002-blog/2016-12-25-this-is-a-test-post-3"
+   "url": "http://feed.blog.com/002-blog/2016-12-25-this-is-a-test-post-3"
   },
   {
-   "content_html": "\n<a href=\"/002-blog/2016-12-24-this-is-a-test-post-2\">link</a>\n<h2 id=\"title\">This is test post 2</h2>\n<p>The title is This is test post 2 and this is an example blog post number 2.\n<br/>\n<br/></p>\n\n\n",
+   "content_html": "\n<a href=\"http://feed.blog.com/002-blog/2016-12-24-this-is-a-test-post-2\">link</a>\n<h2 id=\"title\">This is test post 2</h2>\n<p>The title is This is test post 2 and this is an example blog post number 2.\n<br/>\n<br/></p>\n\n\n",
    "date_published": "2016-12-24T00:00:00.000Z",
-   "id": "/002-blog/2016-12-24-this-is-a-test-post-2",
+   "id": "http://feed.blog.com/002-blog/2016-12-24-this-is-a-test-post-2",
    "title": "This is test post 2",
-   "url": "/002-blog/2016-12-24-this-is-a-test-post-2"
+   "url": "http://feed.blog.com/002-blog/2016-12-24-this-is-a-test-post-2"
   },
   {
-   "content_html": "\n<a href=\"/002-blog/2016-12-23-this-is-a-test-post-1\">link</a>\n<h2 id=\"title\">This is test post 1</h2>\n<p>The title is This is test post 1 and this is an example blog post number 1.\n<br/>\n<br/></p>\n\n\n",
+   "content_html": "\n<a href=\"http://feed.blog.com/002-blog/2016-12-23-this-is-a-test-post-1\">link</a>\n<h2 id=\"title\">This is test post 1</h2>\n<p>The title is This is test post 1 and this is an example blog post number 1.\n<br/>\n<br/></p>\n\n\n",
    "date_published": "2016-12-23T00:00:00.000Z",
-   "id": "/002-blog/2016-12-23-this-is-a-test-post-1",
+   "id": "http://feed.blog.com/002-blog/2016-12-23-this-is-a-test-post-1",
    "tags": [
     "odd"
    ],
    "title": "This is test post 1",
-   "url": "/002-blog/2016-12-23-this-is-a-test-post-1"
+   "url": "http://feed.blog.com/002-blog/2016-12-23-this-is-a-test-post-1"
   }
  ],
- "title": "Title",
+ "title": "Special Blog Title",
  "version": "https://jsonfeed.org/version/1"
 }

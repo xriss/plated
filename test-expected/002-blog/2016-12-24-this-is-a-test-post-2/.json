@@ -6,11 +6,11 @@
      "_blog_json": {
       "dir": "002-blog/.",
       "feed": {
-       "title": "Title"
+       "title": "Special Blog Title"
       },
       "posts_per_feed": 20,
       "posts_per_page": 2,
-      "url": "/"
+      "url": "http://feed.blog.com/"
      },
      "_blog_page_body": "\n<div>some blog posts</div>\n{_list:blog_list}\n<div> {_blog_page_older:link_older_page||} {_blog_page_newer:link_newer_page||} </div>\n\n",
      "_blog_post_body": "<h2 id=\"title\">{title}</h2>\n<p>The title is {title} and this is an example blog post number 5.\n<br/>\n<br/></p>\n",
@@ -60,11 +60,11 @@
      "_blog_json": {
       "dir": "002-blog/.",
       "feed": {
-       "title": "Title"
+       "title": "Special Blog Title"
       },
       "posts_per_feed": 20,
       "posts_per_page": 2,
-      "url": "/"
+      "url": "http://feed.blog.com/"
      },
      "_blog_page_body": "\n<div>some blog posts</div>\n{_list:blog_list}\n<div> {_blog_page_older:link_older_page||} {_blog_page_newer:link_newer_page||} </div>\n\n",
      "_blog_post_body": "<h2 id=\"title\">{title}</h2>\n<p>The title is {title} and this is an example blog post number 3.\n<br/>\n<br/></p>\n",
@@ -115,11 +115,11 @@
    "_blog_json": {
     "dir": "002-blog/.",
     "feed": {
-     "title": "Title"
+     "title": "Special Blog Title"
     },
     "posts_per_feed": 20,
     "posts_per_page": 2,
-    "url": "/"
+    "url": "http://feed.blog.com/"
    },
    "_blog_page_body": "\n<div>some blog posts</div>\n{_list:blog_list}\n<div> {_blog_page_older:link_older_page||} {_blog_page_newer:link_newer_page||} </div>\n\n",
    "_blog_post_body": "<h2 id=\"title\">{title}</h2>\n<p>The title is {title} and this is an example blog post number 6.\n<br/>\n<br/></p>\n",
@@ -168,11 +168,11 @@
      "_blog_json": {
       "dir": "002-blog/.",
       "feed": {
-       "title": "Title"
+       "title": "Special Blog Title"
       },
       "posts_per_feed": 20,
       "posts_per_page": 2,
-      "url": "/"
+      "url": "http://feed.blog.com/"
      },
      "_blog_page_body": "\n<div>some blog posts</div>\n{_list:blog_list}\n<div> {_blog_page_older:link_older_page||} {_blog_page_newer:link_newer_page||} </div>\n\n",
      "_blog_post_body": "<h2 id=\"title\">{title}</h2>\n<p>The title is {title} and this is an example blog post number 5.\n<br/>\n<br/></p>\n",
@@ -222,11 +222,11 @@
      "_blog_json": {
       "dir": "002-blog/.",
       "feed": {
-       "title": "Title"
+       "title": "Special Blog Title"
       },
       "posts_per_feed": 20,
       "posts_per_page": 2,
-      "url": "/"
+      "url": "http://feed.blog.com/"
      },
      "_blog_page_body": "\n<div>some blog posts</div>\n{_list:blog_list}\n<div> {_blog_page_older:link_older_page||} {_blog_page_newer:link_newer_page||} </div>\n\n",
      "_blog_post_body": "<h2 id=\"title\">{title}</h2>\n<p>The title is {title} and this is an example blog post number 3.\n<br/>\n<br/></p>\n",
@@ -277,11 +277,11 @@
    "_blog_json": {
     "dir": "002-blog/.",
     "feed": {
-     "title": "Title"
+     "title": "Special Blog Title"
     },
     "posts_per_feed": 20,
     "posts_per_page": 2,
-    "url": "/"
+    "url": "http://feed.blog.com/"
    },
    "_blog_page_body": "\n<div>some blog posts</div>\n{_list:blog_list}\n<div> {_blog_page_older:link_older_page||} {_blog_page_newer:link_newer_page||} </div>\n\n",
    "_blog_post_body": "<h2 id=\"title\">{title}</h2>\n<p>The title is {title} and this is an example blog post number 5.\n<br/>\n<br/></p>\n",
@@ -332,11 +332,11 @@
  "_blog_json": {
   "dir": "002-blog/.",
   "feed": {
-   "title": "Title"
+   "title": "Special Blog Title"
   },
   "posts_per_feed": 20,
   "posts_per_page": 2,
-  "url": "/"
+  "url": "http://feed.blog.com/"
  },
  "_blog_page_body": "\n<div>some blog posts</div>\n{_list:blog_list}\n<div> {_blog_page_older:link_older_page||} {_blog_page_newer:link_newer_page||} </div>\n\n",
  "_blog_post_body": "<h2 id=\"title\">{title}</h2>\n<p>The title is {title} and this is an example blog post number 2.\n<br/>\n<br/></p>\n",

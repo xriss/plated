@@ -23,9 +23,9 @@ shared data.
 	{
 		posts_per_page:5,
 		posts_per_feed:20,
-		url="http://base.site/url/",
-		feed={
-			title="Feed Title",
+		url:"http://base.site/url/",
+		feed:{
+			title:"Feed Title",
 		}
 	}
 
@@ -49,9 +49,9 @@ of these directories we look for.
 	{
 		"title":"my title",
 		"author":"my name",
-		tags=["tag1","tag2"],
-		feed={
-			atatchments=[{url="http://domain.full/thing.mp3",mimie_type="mime/type"}],
+		tags:["tag1","tag2"],
+		feed:{
+			attachments:[{url:"http://domain.full/thing.mp3",mime_type:"mime/type"}],
 		}
 	}
 	
@@ -353,7 +353,6 @@ Tweak all the base chunks grouped by dir name and pre cascaded/merged
 					var feed={}
 
 					feed.version="https://jsonfeed.org/version/1"
-					feed.title=blog_json.title
 					feed.home_page_url=blog_json.url
 					feed.feed_url=blog_json.url+plated.files.filename_to_dirname(blog[0]._sourcename)+tagdir+"/feed.json"
 
