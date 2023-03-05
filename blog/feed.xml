@@ -8,7 +8,7 @@
   <link rel="alternate" type="text/html" href="https://xriss.github.io/plated/"/>
   <generator uri="https://github.com/bcomnes/jsonfeed-to-atom#readme" version="1.2.2">jsonfeed-to-atom</generator>
   <entry>
-    <id>https://xriss.github.io/plated/blog/2017-12-12-more-relative-than-relative</id>
+    <id>https://xriss.github.io/plated/blog/2017-12-12-more-relative-than-relative/</id>
     <title>More relative than relative</title>
     <updated>2017-12-12T00:00:00.000Z</updated>
     <published>2017-12-12T00:00:00.000Z</published>
@@ -43,10 +43,10 @@ wont work too well on the windows, but then again, what does?</p>
 
 </div>
 ]]></content>
-    <link rel="alternate" href="https://xriss.github.io/plated/blog/2017-12-12-more-relative-than-relative"/>
+    <link rel="alternate" href="https://xriss.github.io/plated/blog/2017-12-12-more-relative-than-relative/"/>
   </entry>
   <entry>
-    <id>https://xriss.github.io/plated/blog/2017-01-09-fixing-whilst-using</id>
+    <id>https://xriss.github.io/plated/blog/2017-01-09-fixing-whilst-using/</id>
     <title>Fixing whilst using</title>
     <updated>2017-01-09T00:00:00.000Z</updated>
     <published>2017-01-09T00:00:00.000Z</published>
@@ -66,10 +66,10 @@ the needs of all those years of use and this can only be a good thing.</p>
 
 </div>
 ]]></content>
-    <link rel="alternate" href="https://xriss.github.io/plated/blog/2017-01-09-fixing-whilst-using"/>
+    <link rel="alternate" href="https://xriss.github.io/plated/blog/2017-01-09-fixing-whilst-using/"/>
   </entry>
   <entry>
-    <id>https://xriss.github.io/plated/blog/2017-01-01-happy-new-year</id>
+    <id>https://xriss.github.io/plated/blog/2017-01-01-happy-new-year/</id>
     <title>Happy new year!</title>
     <updated>2017-01-01T00:00:00.000Z</updated>
     <published>2017-01-01T00:00:00.000Z</published>
@@ -100,6 +100,6 @@ old code and attempt to unify it into something simple.</p>
 
 </div>
 ]]></content>
-    <link rel="alternate" href="https://xriss.github.io/plated/blog/2017-01-01-happy-new-year"/>
+    <link rel="alternate" href="https://xriss.github.io/plated/blog/2017-01-01-happy-new-year/"/>
   </entry>
 </feed>
