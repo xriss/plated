@@ -8,12 +8,12 @@
   <link rel="alternate" type="text/html" href="http://feed.blog.com/"/>
   <generator uri="https://github.com/bcomnes/jsonfeed-to-atom#readme" version="1.2.2">jsonfeed-to-atom</generator>
   <entry>
-    <id>http://feed.blog.com/002-blog/2016-12-27-this-is-a-test-post-5</id>
+    <id>http://feed.blog.com/002-blog/2016-12-27-this-is-a-test-post-5/</id>
     <title>This is test post 5</title>
     <updated>2016-12-27T00:00:00.000Z</updated>
     <published>2016-12-27T00:00:00.000Z</published>
     <content type="html"><![CDATA[
-<a href="http://feed.blog.com/002-blog/2016-12-27-this-is-a-test-post-5">link</a>
+<a href="http://feed.blog.com/002-blog/2016-12-27-this-is-a-test-post-5/">link</a>
 <h2 id="title">This is test post 5</h2>
 <p>The title is This is test post 5 and this is an example blog post number 5.
 <br/>
@@ -21,16 +21,16 @@
 
 
 ]]></content>
-    <link rel="alternate" href="http://feed.blog.com/002-blog/2016-12-27-this-is-a-test-post-5"/>
+    <link rel="alternate" href="http://feed.blog.com/002-blog/2016-12-27-this-is-a-test-post-5/"/>
     <category term="odd"/>
   </entry>
   <entry>
-    <id>http://feed.blog.com/002-blog/2016-12-25-this-is-a-test-post-3</id>
+    <id>http://feed.blog.com/002-blog/2016-12-25-this-is-a-test-post-3/</id>
     <title>This is test post 3</title>
     <updated>2016-12-25T00:00:00.000Z</updated>
     <published>2016-12-25T00:00:00.000Z</published>
     <content type="html"><![CDATA[
-<a href="http://feed.blog.com/002-blog/2016-12-25-this-is-a-test-post-3">link</a>
+<a href="http://feed.blog.com/002-blog/2016-12-25-this-is-a-test-post-3/">link</a>
 <h2 id="title">This is test post 3</h2>
 <p>The title is This is test post 3 and this is an example blog post number 3.
 <br/>
@@ -38,16 +38,16 @@
 
 
 ]]></content>
-    <link rel="alternate" href="http://feed.blog.com/002-blog/2016-12-25-this-is-a-test-post-3"/>
+    <link rel="alternate" href="http://feed.blog.com/002-blog/2016-12-25-this-is-a-test-post-3/"/>
     <category term="odd"/>
   </entry>
   <entry>
-    <id>http://feed.blog.com/002-blog/2016-12-23-this-is-a-test-post-1</id>
+    <id>http://feed.blog.com/002-blog/2016-12-23-this-is-a-test-post-1/</id>
     <title>This is test post 1</title>
     <updated>2016-12-23T00:00:00.000Z</updated>
     <published>2016-12-23T00:00:00.000Z</published>
     <content type="html"><![CDATA[
-<a href="http://feed.blog.com/002-blog/2016-12-23-this-is-a-test-post-1">link</a>
+<a href="http://feed.blog.com/002-blog/2016-12-23-this-is-a-test-post-1/">link</a>
 <h2 id="title">This is test post 1</h2>
 <p>The title is This is test post 1 and this is an example blog post number 1.
 <br/>
@@ -55,7 +55,7 @@
 
 
 ]]></content>
-    <link rel="alternate" href="http://feed.blog.com/002-blog/2016-12-23-this-is-a-test-post-1"/>
+    <link rel="alternate" href="http://feed.blog.com/002-blog/2016-12-23-this-is-a-test-post-1/"/>
     <category term="odd"/>
   </entry>
 </feed>
