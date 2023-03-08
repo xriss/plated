@@ -74,12 +74,14 @@ by accident.
 	--delimiter={}
 	
 The magic string used to wrap tags for special processing in chunk 
-files. It must be an even number of characters as we spit it in the 
-middle and use both sides as start/stop strings. The default, might 
-look dangerous for C like languages which use {} to wrap blocks but due 
-to the limits on contents (no white space) and the fallback of 
-outputting exactly the same as the input, eg {} will output {}. C like 
-languages are very unlikely to trigger any special processing,
+files. We spit this string in the middle with the beginning getting the 
+larger half if the string is an odd length and use both sides as 
+start/stop strings. So "${}" will work as expected with the opener 
+being "${" and the closer "}". The default of "{}", might look 
+dangerous for C like languages which use {} to wrap blocks but due to 
+the limits on contents (no white space) and the fallback of outputting 
+exactly the same as the input, eg {} will output {}. C like languages 
+are very unlikely to trigger any special processing. 
 
 	--dumpjson
 	

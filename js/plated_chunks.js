@@ -71,7 +71,7 @@ Return the first half of the opts.delimiter string.
 
 ]]*/
 	plated_chunks.delimiter_open_str=function(){
-		return opts.delimiter.substr(0,opts.delimiter.length/2);
+		return opts.delimiter.substr(0,Math.ceil(opts.delimiter.length/2));
 	};
 
 /***************************************************************************
@@ -83,7 +83,7 @@ Return the last half of the opts.delimiter string.
 
 ]]*/
 	plated_chunks.delimiter_close_str=function(){
-		return opts.delimiter.substr(opts.delimiter.length/2);
+		return opts.delimiter.substr(Math.ceil(opts.delimiter.length/2));
 	};
 	
 /***************************************************************************
