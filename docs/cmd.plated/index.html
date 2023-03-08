@@ -178,12 +178,14 @@ by accident.</p>
 <pre><code>--delimiter={}
 </code></pre>
 <p>The magic string used to wrap tags for special processing in chunk 
-files. It must be an even number of characters as we spit it in the 
-middle and use both sides as start/stop strings. The default, might 
-look dangerous for C like languages which use {} to wrap blocks but due 
-to the limits on contents (no white space) and the fallback of 
-outputting exactly the same as the input, eg {} will output {}. C like 
-languages are very unlikely to trigger any special processing,</p>
+files. We spit this string in the middle with the beginning getting the 
+larger half if the string is an odd length and use both sides as 
+start/stop strings. So &quot;${}&quot; will work as expected with the opener 
+being &quot;${&quot; and the closer &quot;}&quot;. The default of &quot;{}&quot;, might look 
+dangerous for C like languages which use {} to wrap blocks but due to 
+the limits on contents (no white space) and the fallback of outputting 
+exactly the same as the input, eg {} will output {}. C like languages 
+are very unlikely to trigger any special processing. </p>
 <pre><code>--dumpjson
 </code></pre>
 <p>A Boolean flag to enable the output of .json chunk dumps as well as 
@@ -194,7 +196,7 @@ enough data to recreate pages at run time should that be necessary.</p>
 
 <div class="wrap">
 <h1><a href="../../docs/cmd.plated.watch">cmd.plated.watch</a></h1>
-<div class="source"><a href="https://github.com/xriss/plated/blob/master/js/cmd.js#L95">https://github.com/xriss/plated/blob/master/js/cmd.js</a></div>
+<div class="source"><a href="https://github.com/xriss/plated/blob/master/js/cmd.js#L97">https://github.com/xriss/plated/blob/master/js/cmd.js</a></div>
 <div><pre><code>plated watch
 </code></pre>
 <p>Build once and then watch all the files in source folder with any 
