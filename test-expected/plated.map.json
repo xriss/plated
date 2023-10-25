@@ -1,0 +1,1500 @@
+{
+ "": {
+  "_dirname": "{_root}",
+  "_filename": "{_root}",
+  "_root": "./",
+  "_site": "{_root}",
+  "_sourcename": ""
+ },
+ "001-cascading-chunks": {
+  "_dirname": "{_root}001-cascading-chunks",
+  "_filename": "{_root}001-cascading-chunks",
+  "_flags": {
+   "json": {
+    "form": "json"
+   },
+   "json_merge": {
+    "form": "json",
+    "same": "merge"
+   },
+   "not_json_append": {
+    "same": "append"
+   }
+  },
+  "_root": "../",
+  "_site": "{_root}",
+  "_sourcename": "001-cascading-chunks/.",
+  "base": "\nBASE\n",
+  "json": {
+   "hello": {
+    "world": true
+   }
+  },
+  "json_merge": {
+   "hello": {
+    "world": true
+   }
+  },
+  "not_json": "\n{\n\n\t\"hello\":{\n\t\t\"world\":true\n\t}\n\n}\n",
+  "not_json_append": "\n{\n\n\t\"hello\":{\n\t\t\"world\":true\n\t}\n\n}\n"
+ },
+ "001-cascading-chunks/one": {
+  "_dirname": "{_root}001-cascading-chunks/one",
+  "_filename": "{_root}001-cascading-chunks/one",
+  "_flags": {
+   "json": {
+    "form": "json"
+   },
+   "json_merge": {
+    "form": "json",
+    "same": "merge"
+   },
+   "not_json_append": {
+    "same": "append"
+   }
+  },
+  "_root": "../../",
+  "_site": "{_root}",
+  "_sourcename": "001-cascading-chunks/one/.",
+  "base": "\nBASE ONE\n",
+  "json": {
+   "extra": {
+    "data": true
+   }
+  },
+  "json_merge": {
+   "extra": {
+    "data": true
+   }
+  },
+  "not_json": "\n{\n\n\t\"extra\":{\n\t\t\"data\":true\n\t}\n\n}\n",
+  "not_json_append": "\n{\n\n\t\"extra\":{\n\t\t\"data\":true\n\t}\n\n}\n\n"
+ },
+ "002-blog": {
+  "_blog_export": [
+   {
+    "_blog_export": [
+     {
+      "_blog_json": {
+       "dir": "002-blog/.",
+       "feed": {
+        "title": "Special Blog Title"
+       },
+       "posts_per_feed": 20,
+       "posts_per_page": 2,
+       "url": "http://feed.blog.com/"
+      },
+      "_blog_page_body": "\n<div>some blog posts</div>\n{_list:blog_list}\n<div> {_blog_page_older:link_older_page||} {_blog_page_newer:link_newer_page||} </div>\n\n",
+      "_blog_post_body": "<h2 id=\"title\">{title}</h2>\n<p>The title is {title} and this is an example blog post number 5.\n<br/>\n<br/></p>\n",
+      "_blog_post_body_many": "\n<a href=\"{_dirname}/\">link</a>\n{_blog_post_body}\n\n",
+      "_blog_post_body_one": "\n{_blog_post_body}\n<div> {_blog_post_older:link_older_post||} {_blog_post_newer:link_newer_post||} </div>\nSome comments belong here\n\n",
+      "_blog_post_json": {
+       "datedash": "2016-12-27",
+       "datetime": [
+        2016,
+        12,
+        27,
+        0,
+        0,
+        0
+       ],
+       "tags": [
+        "odd"
+       ],
+       "title": "This is test post 5",
+       "unixtime": 1482796800
+      },
+      "_blog_post_older": "{_root}002-blog/2016-12-25-this-is-a-test-post-3/",
+      "_body": "\n<a href=\"{_root}002-blog/2016-12-27-this-is-a-test-post-5/\">link</a>\n<h2 id=\"title\">This is test post 5</h2>\n<p>The title is This is test post 5 and this is an example blog post number 5.\n<br/>\n<br/></p>\n\n\n",
+      "_dirname": "{_root}002-blog/2016-12-27-this-is-a-test-post-5",
+      "_filename": "{_root}002-blog/2016-12-27-this-is-a-test-post-5/index.html",
+      "_flags": {
+       "_blog_post_body": {
+        "form": "markdown"
+       },
+       "title": {
+        "trim": "ends"
+       }
+      },
+      "_root": "../../",
+      "_site": "{_root}",
+      "_sourcename": "002-blog/2016-12-27-this-is-a-test-post-5/index.html",
+      "blog_list": "\n<div>item head</div>\n{_it._body}\n<div>item tail</div>\n\n",
+      "body": "{_blog_post_body_one}",
+      "html": "\n<html>\n\t<head>\n\t\t<title>{title}</title>\n\t</head>\n\t<body>{body}</body>\n</html>\n\n",
+      "link_newer_page": "\n<a href=\"{_it}\">newer posts</a>\n\n",
+      "link_newer_post": "\n<a href=\"{_it}\">newer post</a>\n",
+      "link_older_page": "\n<a href=\"{_it}\">older posts</a>\n\n",
+      "link_older_post": "\n<a href=\"{_it}\">older post</a>\n\n",
+      "title": "{_blog_post_json.title}"
+     },
+     {
+      "_blog_json": {
+       "dir": "002-blog/.",
+       "feed": {
+        "title": "Special Blog Title"
+       },
+       "posts_per_feed": 20,
+       "posts_per_page": 2,
+       "url": "http://feed.blog.com/"
+      },
+      "_blog_page_body": "\n<div>some blog posts</div>\n{_list:blog_list}\n<div> {_blog_page_older:link_older_page||} {_blog_page_newer:link_newer_page||} </div>\n\n",
+      "_blog_post_body": "<h2 id=\"title\">{title}</h2>\n<p>The title is {title} and this is an example blog post number 3.\n<br/>\n<br/></p>\n",
+      "_blog_post_body_many": "\n<a href=\"{_dirname}/\">link</a>\n{_blog_post_body}\n\n",
+      "_blog_post_body_one": "\n{_blog_post_body}\n<div> {_blog_post_older:link_older_post||} {_blog_post_newer:link_newer_post||} </div>\nSome comments belong here\n\n",
+      "_blog_post_json": {
+       "datedash": "2016-12-25",
+       "datetime": [
+        2016,
+        12,
+        25,
+        0,
+        0,
+        0
+       ],
+       "tags": [
+        "odd"
+       ],
+       "title": "This is test post 3",
+       "unixtime": 1482624000
+      },
+      "_blog_post_newer": "{_root}002-blog/2016-12-27-this-is-a-test-post-5/",
+      "_blog_post_older": "{_root}002-blog/2016-12-23-this-is-a-test-post-1/",
+      "_body": "\n<a href=\"{_root}002-blog/2016-12-25-this-is-a-test-post-3/\">link</a>\n<h2 id=\"title\">This is test post 3</h2>\n<p>The title is This is test post 3 and this is an example blog post number 3.\n<br/>\n<br/></p>\n\n\n",
+      "_dirname": "{_root}002-blog/2016-12-25-this-is-a-test-post-3",
+      "_filename": "{_root}002-blog/2016-12-25-this-is-a-test-post-3/index.html",
+      "_flags": {
+       "_blog_post_body": {
+        "form": "markdown"
+       },
+       "title": {
+        "trim": "ends"
+       }
+      },
+      "_root": "../../",
+      "_site": "{_root}",
+      "_sourcename": "002-blog/2016-12-25-this-is-a-test-post-3/index.html",
+      "blog_list": "\n<div>item head</div>\n{_it._body}\n<div>item tail</div>\n\n",
+      "body": "{_blog_post_body_one}",
+      "html": "\n<html>\n\t<head>\n\t\t<title>{title}</title>\n\t</head>\n\t<body>{body}</body>\n</html>\n\n",
+      "link_newer_page": "\n<a href=\"{_it}\">newer posts</a>\n\n",
+      "link_newer_post": "\n<a href=\"{_it}\">newer post</a>\n",
+      "link_older_page": "\n<a href=\"{_it}\">older posts</a>\n\n",
+      "link_older_post": "\n<a href=\"{_it}\">older post</a>\n\n",
+      "title": "{_blog_post_json.title}"
+     }
+    ],
+    "_blog_json": {
+     "dir": "002-blog/.",
+     "feed": {
+      "title": "Special Blog Title"
+     },
+     "posts_per_feed": 20,
+     "posts_per_page": 2,
+     "url": "http://feed.blog.com/"
+    },
+    "_blog_page_body": "\n<div>some blog posts</div>\n{_list:blog_list}\n<div> {_blog_page_older:link_older_page||} {_blog_page_newer:link_newer_page||} </div>\n\n",
+    "_blog_post_body": "<h2 id=\"title\">{title}</h2>\n<p>The title is {title} and this is an example blog post number 6.\n<br/>\n<br/></p>\n",
+    "_blog_post_body_many": "\n<a href=\"{_dirname}/\">link</a>\n{_blog_post_body}\n\n",
+    "_blog_post_body_one": "\n{_blog_post_body}\n<div> {_blog_post_older:link_older_post||} {_blog_post_newer:link_newer_post||} </div>\nSome comments belong here\n\n",
+    "_blog_post_json": {
+     "datedash": "2016-12-28",
+     "datetime": [
+      2016,
+      12,
+      28,
+      0,
+      0,
+      0
+     ],
+     "title": "This is test post 6",
+     "unixtime": 1482883200
+    },
+    "_blog_post_older": "{_root}002-blog/2016-12-27-this-is-a-test-post-5/",
+    "_body": "\n<a href=\"{_root}002-blog/2016-12-28-this-is-a-test-post-6/\">link</a>\n<h2 id=\"title\">This is test post 6</h2>\n<p>The title is This is test post 6 and this is an example blog post number 6.\n<br/>\n<br/></p>\n\n\n",
+    "_dirname": "{_root}002-blog/2016-12-28-this-is-a-test-post-6",
+    "_filename": "{_root}002-blog/2016-12-28-this-is-a-test-post-6/index.html",
+    "_flags": {
+     "_blog_post_body": {
+      "form": "markdown"
+     },
+     "title": {
+      "trim": "ends"
+     }
+    },
+    "_root": "../../",
+    "_site": "{_root}",
+    "_sourcename": "002-blog/2016-12-28-this-is-a-test-post-6/index.html",
+    "blog_list": "\n<div>item head</div>\n{_it._body}\n<div>item tail</div>\n\n",
+    "body": "{_blog_post_body_one}",
+    "html": "\n<html>\n\t<head>\n\t\t<title>{title}</title>\n\t</head>\n\t<body>{body}</body>\n</html>\n\n",
+    "link_newer_page": "\n<a href=\"{_it}\">newer posts</a>\n\n",
+    "link_newer_post": "\n<a href=\"{_it}\">newer post</a>\n",
+    "link_older_page": "\n<a href=\"{_it}\">older posts</a>\n\n",
+    "link_older_post": "\n<a href=\"{_it}\">older post</a>\n\n",
+    "title": "{_blog_post_json.title}"
+   },
+   {
+    "_blog_export": [
+     {
+      "_blog_json": {
+       "dir": "002-blog/.",
+       "feed": {
+        "title": "Special Blog Title"
+       },
+       "posts_per_feed": 20,
+       "posts_per_page": 2,
+       "url": "http://feed.blog.com/"
+      },
+      "_blog_page_body": "\n<div>some blog posts</div>\n{_list:blog_list}\n<div> {_blog_page_older:link_older_page||} {_blog_page_newer:link_newer_page||} </div>\n\n",
+      "_blog_post_body": "<h2 id=\"title\">{title}</h2>\n<p>The title is {title} and this is an example blog post number 5.\n<br/>\n<br/></p>\n",
+      "_blog_post_body_many": "\n<a href=\"{_dirname}/\">link</a>\n{_blog_post_body}\n\n",
+      "_blog_post_body_one": "\n{_blog_post_body}\n<div> {_blog_post_older:link_older_post||} {_blog_post_newer:link_newer_post||} </div>\nSome comments belong here\n\n",
+      "_blog_post_json": {
+       "datedash": "2016-12-27",
+       "datetime": [
+        2016,
+        12,
+        27,
+        0,
+        0,
+        0
+       ],
+       "tags": [
+        "odd"
+       ],
+       "title": "This is test post 5",
+       "unixtime": 1482796800
+      },
+      "_blog_post_older": "{_root}002-blog/2016-12-25-this-is-a-test-post-3/",
+      "_body": "\n<a href=\"{_root}002-blog/2016-12-27-this-is-a-test-post-5/\">link</a>\n<h2 id=\"title\">This is test post 5</h2>\n<p>The title is This is test post 5 and this is an example blog post number 5.\n<br/>\n<br/></p>\n\n\n",
+      "_dirname": "{_root}002-blog/2016-12-27-this-is-a-test-post-5",
+      "_filename": "{_root}002-blog/2016-12-27-this-is-a-test-post-5/index.html",
+      "_flags": {
+       "_blog_post_body": {
+        "form": "markdown"
+       },
+       "title": {
+        "trim": "ends"
+       }
+      },
+      "_root": "../../",
+      "_site": "{_root}",
+      "_sourcename": "002-blog/2016-12-27-this-is-a-test-post-5/index.html",
+      "blog_list": "\n<div>item head</div>\n{_it._body}\n<div>item tail</div>\n\n",
+      "body": "{_blog_post_body_one}",
+      "html": "\n<html>\n\t<head>\n\t\t<title>{title}</title>\n\t</head>\n\t<body>{body}</body>\n</html>\n\n",
+      "link_newer_page": "\n<a href=\"{_it}\">newer posts</a>\n\n",
+      "link_newer_post": "\n<a href=\"{_it}\">newer post</a>\n",
+      "link_older_page": "\n<a href=\"{_it}\">older posts</a>\n\n",
+      "link_older_post": "\n<a href=\"{_it}\">older post</a>\n\n",
+      "title": "{_blog_post_json.title}"
+     },
+     {
+      "_blog_json": {
+       "dir": "002-blog/.",
+       "feed": {
+        "title": "Special Blog Title"
+       },
+       "posts_per_feed": 20,
+       "posts_per_page": 2,
+       "url": "http://feed.blog.com/"
+      },
+      "_blog_page_body": "\n<div>some blog posts</div>\n{_list:blog_list}\n<div> {_blog_page_older:link_older_page||} {_blog_page_newer:link_newer_page||} </div>\n\n",
+      "_blog_post_body": "<h2 id=\"title\">{title}</h2>\n<p>The title is {title} and this is an example blog post number 3.\n<br/>\n<br/></p>\n",
+      "_blog_post_body_many": "\n<a href=\"{_dirname}/\">link</a>\n{_blog_post_body}\n\n",
+      "_blog_post_body_one": "\n{_blog_post_body}\n<div> {_blog_post_older:link_older_post||} {_blog_post_newer:link_newer_post||} </div>\nSome comments belong here\n\n",
+      "_blog_post_json": {
+       "datedash": "2016-12-25",
+       "datetime": [
+        2016,
+        12,
+        25,
+        0,
+        0,
+        0
+       ],
+       "tags": [
+        "odd"
+       ],
+       "title": "This is test post 3",
+       "unixtime": 1482624000
+      },
+      "_blog_post_newer": "{_root}002-blog/2016-12-27-this-is-a-test-post-5/",
+      "_blog_post_older": "{_root}002-blog/2016-12-23-this-is-a-test-post-1/",
+      "_body": "\n<a href=\"{_root}002-blog/2016-12-25-this-is-a-test-post-3/\">link</a>\n<h2 id=\"title\">This is test post 3</h2>\n<p>The title is This is test post 3 and this is an example blog post number 3.\n<br/>\n<br/></p>\n\n\n",
+      "_dirname": "{_root}002-blog/2016-12-25-this-is-a-test-post-3",
+      "_filename": "{_root}002-blog/2016-12-25-this-is-a-test-post-3/index.html",
+      "_flags": {
+       "_blog_post_body": {
+        "form": "markdown"
+       },
+       "title": {
+        "trim": "ends"
+       }
+      },
+      "_root": "../../",
+      "_site": "{_root}",
+      "_sourcename": "002-blog/2016-12-25-this-is-a-test-post-3/index.html",
+      "blog_list": "\n<div>item head</div>\n{_it._body}\n<div>item tail</div>\n\n",
+      "body": "{_blog_post_body_one}",
+      "html": "\n<html>\n\t<head>\n\t\t<title>{title}</title>\n\t</head>\n\t<body>{body}</body>\n</html>\n\n",
+      "link_newer_page": "\n<a href=\"{_it}\">newer posts</a>\n\n",
+      "link_newer_post": "\n<a href=\"{_it}\">newer post</a>\n",
+      "link_older_page": "\n<a href=\"{_it}\">older posts</a>\n\n",
+      "link_older_post": "\n<a href=\"{_it}\">older post</a>\n\n",
+      "title": "{_blog_post_json.title}"
+     }
+    ],
+    "_blog_json": {
+     "dir": "002-blog/.",
+     "feed": {
+      "title": "Special Blog Title"
+     },
+     "posts_per_feed": 20,
+     "posts_per_page": 2,
+     "url": "http://feed.blog.com/"
+    },
+    "_blog_page_body": "\n<div>some blog posts</div>\n{_list:blog_list}\n<div> {_blog_page_older:link_older_page||} {_blog_page_newer:link_newer_page||} </div>\n\n",
+    "_blog_post_body": "<h2 id=\"title\">{title}</h2>\n<p>The title is {title} and this is an example blog post number 5.\n<br/>\n<br/></p>\n",
+    "_blog_post_body_many": "\n<a href=\"{_dirname}/\">link</a>\n{_blog_post_body}\n\n",
+    "_blog_post_body_one": "\n{_blog_post_body}\n<div> {_blog_post_older:link_older_post||} {_blog_post_newer:link_newer_post||} </div>\nSome comments belong here\n\n",
+    "_blog_post_json": {
+     "datedash": "2016-12-27",
+     "datetime": [
+      2016,
+      12,
+      27,
+      0,
+      0,
+      0
+     ],
+     "tags": [
+      "odd"
+     ],
+     "title": "This is test post 5",
+     "unixtime": 1482796800
+    },
+    "_blog_post_newer": "{_root}002-blog/2016-12-28-this-is-a-test-post-6/",
+    "_blog_post_older": "{_root}002-blog/2016-12-26-this-is-a-test-post-4/",
+    "_body": "\n<a href=\"{_root}002-blog/2016-12-27-this-is-a-test-post-5/\">link</a>\n<h2 id=\"title\">This is test post 5</h2>\n<p>The title is This is test post 5 and this is an example blog post number 5.\n<br/>\n<br/></p>\n\n\n",
+    "_dirname": "{_root}002-blog/2016-12-27-this-is-a-test-post-5",
+    "_filename": "{_root}002-blog/2016-12-27-this-is-a-test-post-5/index.html",
+    "_flags": {
+     "_blog_post_body": {
+      "form": "markdown"
+     },
+     "title": {
+      "trim": "ends"
+     }
+    },
+    "_root": "../../",
+    "_site": "{_root}",
+    "_sourcename": "002-blog/2016-12-27-this-is-a-test-post-5/index.html",
+    "blog_list": "\n<div>item head</div>\n{_it._body}\n<div>item tail</div>\n\n",
+    "body": "{_blog_post_body_one}",
+    "html": "\n<html>\n\t<head>\n\t\t<title>{title}</title>\n\t</head>\n\t<body>{body}</body>\n</html>\n\n",
+    "link_newer_page": "\n<a href=\"{_it}\">newer posts</a>\n\n",
+    "link_newer_post": "\n<a href=\"{_it}\">newer post</a>\n",
+    "link_older_page": "\n<a href=\"{_it}\">older posts</a>\n\n",
+    "link_older_post": "\n<a href=\"{_it}\">older post</a>\n\n",
+    "title": "{_blog_post_json.title}"
+   }
+  ],
+  "_blog_json": {
+   "dir": "002-blog/.",
+   "feed": {
+    "title": "Special Blog Title"
+   },
+   "posts_per_feed": 20,
+   "posts_per_page": 2,
+   "url": "http://feed.blog.com/"
+  },
+  "_blog_page_body": "\n<div>some blog posts</div>\n{_list:blog_list}\n<div> {_blog_page_older:link_older_page||} {_blog_page_newer:link_newer_page||} </div>\n\n",
+  "_blog_post_body_many": "\n<a href=\"{_dirname}/\">link</a>\n{_blog_post_body}\n\n",
+  "_blog_post_body_one": "\n{_blog_post_body}\n<div> {_blog_post_older:link_older_post||} {_blog_post_newer:link_newer_post||} </div>\nSome comments belong here\n\n",
+  "_dirname": "{_root}002-blog",
+  "_filename": "{_root}002-blog",
+  "_flags": {
+   "title": {
+    "trim": "ends"
+   }
+  },
+  "_root": "../",
+  "_site": "{_root}",
+  "_sourcename": "002-blog/.",
+  "blog_list": "\n<div>item head</div>\n{_it._body}\n<div>item tail</div>\n\n",
+  "html": "\n<html>\n\t<head>\n\t\t<title>{title}</title>\n\t</head>\n\t<body>{body}</body>\n</html>\n\n",
+  "link_newer_page": "\n<a href=\"{_it}\">newer posts</a>\n\n",
+  "link_newer_post": "\n<a href=\"{_it}\">newer post</a>\n",
+  "link_older_page": "\n<a href=\"{_it}\">older posts</a>\n\n",
+  "link_older_post": "\n<a href=\"{_it}\">older post</a>\n\n",
+  "title": "Welcome to blog!"
+ },
+ "002-blog/2016-12-23-this-is-a-test-post-1": {
+  "_blog_post_body": "<h2 id=\"title\">{title}</h2>\n<p>The title is {title} and this is an example blog post number 1.\n<br/>\n<br/></p>\n",
+  "_blog_post_json": {
+   "datedash": "2016-12-23",
+   "datetime": [
+    2016,
+    12,
+    23,
+    0,
+    0,
+    0
+   ],
+   "tags": [
+    "odd"
+   ],
+   "title": "This is test post 1",
+   "unixtime": 1482451200
+  },
+  "_blog_post_newer": "{_root}002-blog/2016-12-24-this-is-a-test-post-2/",
+  "_dirname": "{_root}002-blog/2016-12-23-this-is-a-test-post-1",
+  "_filename": "{_root}002-blog/2016-12-23-this-is-a-test-post-1",
+  "_flags": {
+   "_blog_post_body": {
+    "form": "markdown"
+   },
+   "title": {
+    "trim": "ends"
+   }
+  },
+  "_root": "../../",
+  "_site": "{_root}",
+  "_sourcename": "002-blog/2016-12-23-this-is-a-test-post-1/.",
+  "title": "{_blog_post_json.title}"
+ },
+ "002-blog/2016-12-24-this-is-a-test-post-2": {
+  "_blog_post_body": "<h2 id=\"title\">{title}</h2>\n<p>The title is {title} and this is an example blog post number 2.\n<br/>\n<br/></p>\n",
+  "_blog_post_json": {
+   "datedash": "2016-12-24",
+   "datetime": [
+    2016,
+    12,
+    24,
+    0,
+    0,
+    0
+   ],
+   "title": "This is test post 2",
+   "unixtime": 1482537600
+  },
+  "_blog_post_newer": "{_root}002-blog/2016-12-25-this-is-a-test-post-3/",
+  "_blog_post_older": "{_root}002-blog/2016-12-23-this-is-a-test-post-1/",
+  "_dirname": "{_root}002-blog/2016-12-24-this-is-a-test-post-2",
+  "_filename": "{_root}002-blog/2016-12-24-this-is-a-test-post-2",
+  "_flags": {
+   "_blog_post_body": {
+    "form": "markdown"
+   },
+   "title": {
+    "trim": "ends"
+   }
+  },
+  "_root": "../../",
+  "_site": "{_root}",
+  "_sourcename": "002-blog/2016-12-24-this-is-a-test-post-2/.",
+  "title": "{_blog_post_json.title}"
+ },
+ "002-blog/2016-12-25-this-is-a-test-post-3": {
+  "_blog_post_body": "<h2 id=\"title\">{title}</h2>\n<p>The title is {title} and this is an example blog post number 3.\n<br/>\n<br/></p>\n",
+  "_blog_post_json": {
+   "datedash": "2016-12-25",
+   "datetime": [
+    2016,
+    12,
+    25,
+    0,
+    0,
+    0
+   ],
+   "tags": [
+    "odd"
+   ],
+   "title": "This is test post 3",
+   "unixtime": 1482624000
+  },
+  "_blog_post_newer": "{_root}002-blog/2016-12-26-this-is-a-test-post-4/",
+  "_blog_post_older": "{_root}002-blog/2016-12-24-this-is-a-test-post-2/",
+  "_dirname": "{_root}002-blog/2016-12-25-this-is-a-test-post-3",
+  "_filename": "{_root}002-blog/2016-12-25-this-is-a-test-post-3",
+  "_flags": {
+   "_blog_post_body": {
+    "form": "markdown"
+   },
+   "title": {
+    "trim": "ends"
+   }
+  },
+  "_root": "../../",
+  "_site": "{_root}",
+  "_sourcename": "002-blog/2016-12-25-this-is-a-test-post-3/.",
+  "title": "{_blog_post_json.title}"
+ },
+ "002-blog/2016-12-26-this-is-a-test-post-4": {
+  "_blog_post_body": "<h2 id=\"title\">{title}</h2>\n<p>The title is {title} and this is an example blog post number 4.\n<br/>\n<br/></p>\n",
+  "_blog_post_json": {
+   "datedash": "2016-12-26",
+   "datetime": [
+    2016,
+    12,
+    26,
+    0,
+    0,
+    0
+   ],
+   "title": "This is test post 4",
+   "unixtime": 1482710400
+  },
+  "_blog_post_newer": "{_root}002-blog/2016-12-27-this-is-a-test-post-5/",
+  "_blog_post_older": "{_root}002-blog/2016-12-25-this-is-a-test-post-3/",
+  "_dirname": "{_root}002-blog/2016-12-26-this-is-a-test-post-4",
+  "_filename": "{_root}002-blog/2016-12-26-this-is-a-test-post-4",
+  "_flags": {
+   "_blog_post_body": {
+    "form": "markdown"
+   },
+   "title": {
+    "trim": "ends"
+   }
+  },
+  "_root": "../../",
+  "_site": "{_root}",
+  "_sourcename": "002-blog/2016-12-26-this-is-a-test-post-4/.",
+  "title": "{_blog_post_json.title}"
+ },
+ "002-blog/2016-12-27-this-is-a-test-post-5": {
+  "_blog_post_body": "<h2 id=\"title\">{title}</h2>\n<p>The title is {title} and this is an example blog post number 5.\n<br/>\n<br/></p>\n",
+  "_blog_post_json": {
+   "datedash": "2016-12-27",
+   "datetime": [
+    2016,
+    12,
+    27,
+    0,
+    0,
+    0
+   ],
+   "tags": [
+    "odd"
+   ],
+   "title": "This is test post 5",
+   "unixtime": 1482796800
+  },
+  "_blog_post_newer": "{_root}002-blog/2016-12-28-this-is-a-test-post-6/",
+  "_blog_post_older": "{_root}002-blog/2016-12-26-this-is-a-test-post-4/",
+  "_dirname": "{_root}002-blog/2016-12-27-this-is-a-test-post-5",
+  "_filename": "{_root}002-blog/2016-12-27-this-is-a-test-post-5",
+  "_flags": {
+   "_blog_post_body": {
+    "form": "markdown"
+   },
+   "title": {
+    "trim": "ends"
+   }
+  },
+  "_root": "../../",
+  "_site": "{_root}",
+  "_sourcename": "002-blog/2016-12-27-this-is-a-test-post-5/.",
+  "title": "{_blog_post_json.title}"
+ },
+ "002-blog/2016-12-28-this-is-a-test-post-6": {
+  "_blog_post_body": "<h2 id=\"title\">{title}</h2>\n<p>The title is {title} and this is an example blog post number 6.\n<br/>\n<br/></p>\n",
+  "_blog_post_json": {
+   "datedash": "2016-12-28",
+   "datetime": [
+    2016,
+    12,
+    28,
+    0,
+    0,
+    0
+   ],
+   "title": "This is test post 6",
+   "unixtime": 1482883200
+  },
+  "_blog_post_older": "{_root}002-blog/2016-12-27-this-is-a-test-post-5/",
+  "_dirname": "{_root}002-blog/2016-12-28-this-is-a-test-post-6",
+  "_filename": "{_root}002-blog/2016-12-28-this-is-a-test-post-6",
+  "_flags": {
+   "_blog_post_body": {
+    "form": "markdown"
+   },
+   "title": {
+    "trim": "ends"
+   }
+  },
+  "_root": "../../",
+  "_site": "{_root}",
+  "_sourcename": "002-blog/2016-12-28-this-is-a-test-post-6/.",
+  "title": "{_blog_post_json.title}"
+ },
+ "002-blog/draft-this-is-a-test-post": {
+  "_blog_post_body": "<h2 id=\"title\">{title}</h2>\n<p>The title is {title}.\n<br/>\n<br/></p>\n",
+  "_blog_post_json": {
+   "datedash": "1970-01-00",
+   "datetime": [
+    1970,
+    1,
+    0,
+    0,
+    0,
+    0
+   ],
+   "draft": true,
+   "title": "This is a draft post",
+   "unixtime": -86400
+  },
+  "_dirname": "{_root}002-blog/draft-this-is-a-test-post",
+  "_filename": "{_root}002-blog/draft-this-is-a-test-post",
+  "_flags": {
+   "_blog_post_body": {
+    "form": "markdown"
+   },
+   "title": {
+    "trim": "ends"
+   }
+  },
+  "_root": "../../",
+  "_site": "{_root}",
+  "_sourcename": "002-blog/draft-this-is-a-test-post/.",
+  "title": "{_blog_post_json.title}"
+ },
+ "003-operators": {
+  "_dirname": "{_root}003-operators",
+  "_filename": "{_root}003-operators",
+  "_root": "../",
+  "_site": "{_root}",
+  "_sourcename": "003-operators/."
+ },
+ "003-operators/index.html": {
+  "_dirname": "{_root}003-operators",
+  "_filename": "{_root}003-operators/index.html",
+  "_flags": {
+   "body": {
+    "form": "markdown",
+    "trim": "ends"
+   },
+   "data": {
+    "trim": "ends"
+   },
+   "expand": {
+    "trim": "ends"
+   },
+   "json": {
+    "form": "json"
+   },
+   "looks": {
+    "form": "json"
+   },
+   "objs": {
+    "form": "json"
+   },
+   "objs_plate": {
+    "trim": "ends"
+   },
+   "objs_plate1": {
+    "trim": "ends"
+   },
+   "objs_plate2": {
+    "trim": "ends"
+   },
+   "objs_plate3": {
+    "trim": "ends"
+   },
+   "rootdata": {
+    "form": "json"
+   },
+   "rooted": {
+    "root": "rootdata"
+   },
+   "true": {
+    "trim": "ends"
+   },
+   "wrap_curve": {
+    "trim": "ends"
+   },
+   "wrap_square": {
+    "trim": "ends"
+   }
+  },
+  "_output_chunkname": "html",
+  "_output_filename": "003-operators/index.html",
+  "_root": "../",
+  "_site": "{_root}",
+  "_sourcename": "003-operators/index.^.html",
+  "body": "<h2 id=\"test-1\">test 1</h2>\n<p>{data}</p>\n<p>{data:wrap_square}</p>\n<p>{data:wrap_square:wrap_curve}</p>\n<h2 id=\"test-2\">test 2</h2>\n<p>{missing&amp;&amp;data||}</p>\n<p>{missing||data}</p>\n<p>{true||data}</p>\n<p>{missing||}\n<br/>\n<br/></p>\n<h2 id=\"test-3\">test 3</h2>\n<p>FIRST -&gt; {json.0}</p>\n<p>LAST -&gt; {json.-1}</p>\n<p>MIDDLE -&gt; {json.1}</p>\n<h2 id=\"test-4\">test 4</h2>\n<p>{expand}</p>\n<p>{[[}{expand}{]]}</p>\n<h2 id=\"test-5\">test 5</h2>\n<p>length of array is {objs.length}</p>\n<p>less than three\n{objs:objs_plate1}</p>\n<p>equal to three\n{objs:objs_plate2}</p>\n<p>more than three\n{objs:objs_plate3}\n<br/>\n<br/></p>\n<h2 id=\"test-6\">test 6</h2>\n<p>{rooted}\n<br/>\n<br/></p>\n<h2 id=\"test-7\">test 7</h2>\n<p>{objs:booltest}\n<br/>\n<br/></p>\n<h2 id=\"test-8\">test 8</h2>\n<p>{looks.1}</p>\n<p>{looks.{looks.index}}</p>\n<h2 id=\"test-9\">test 9</h2>\n<p>{objs}</p>\n<h2 id=\"test-10\">test 10</h2>\n<p>please {do_not:expand_these} {tags}</p>\n",
+  "booltest": "{_it.test&&_it:booltest_and||_it:booltest_or}\n",
+  "booltest_and": "\nAND {_it.test}\n",
+  "booltest_or": "\nOR false\n\n",
+  "data": "DATADATADATA",
+  "expand": "This is {true}",
+  "html": "<html>\n\t<body>{body}</body>\n</html>\n",
+  "json": [
+   "first_item",
+   "middle_item",
+   "last_item"
+  ],
+  "looks": {
+   "1": "#fff",
+   "2": "#ff0",
+   "3": "#f00",
+   "4": "#00f",
+   "index": "2"
+  },
+  "objs": [
+   {
+    "name": "one",
+    "number": 1,
+    "test": 1
+   },
+   {
+    "name": "two",
+    "number": 2,
+    "test": "2"
+   },
+   {
+    "name": "three",
+    "number": 3,
+    "test": true
+   },
+   {
+    "name": "four",
+    "number": 4,
+    "test": false
+   },
+   {
+    "name": "five",
+    "number": 5,
+    "test": 5
+   },
+   {
+    "name": "six",
+    "number": 6,
+    "test": false
+   }
+  ],
+  "objs_plate": "<pre> {_it.number} is {_it.name} </pre>",
+  "objs_plate1": "{_it.number<3&&_it:objs_plate||}",
+  "objs_plate2": "{_it.number==3&&_it:objs_plate||}",
+  "objs_plate3": "{_it.number>3&&_it:objs_plate||}",
+  "rootdata": {
+   "i_am_root": "I am groot"
+  },
+  "rooted": "\nDid you know that \"{i_am_root}\".\n",
+  "true": "true",
+  "wrap_curve": "(( {_it} ))",
+  "wrap_square": "[[ {_it} ]]"
+ },
+ "004-symlinks": {
+  "_dirname": "{_root}004-symlinks",
+  "_filename": "{_root}004-symlinks",
+  "_root": "../",
+  "_site": "{_root}",
+  "_sourcename": "004-symlinks/."
+ },
+ "004-symlinks/index.html": {
+  "_dirname": "{_root}004-symlinks",
+  "_filename": "{_root}004-symlinks/index.html",
+  "_flags": {
+  },
+  "_output_chunkname": "html",
+  "_output_filename": "004-symlinks/index.html",
+  "_root": "../",
+  "_site": "{_root}",
+  "_sourcename": "004-symlinks/index.^.html",
+  "body": "<h1>HELLO WORLD</h1>\n\n",
+  "html": "<html>\n\t<body>{body}</body>\n</html>\n"
+ },
+ "004-symlinks/original": {
+  "_dirname": "{_root}004-symlinks/original",
+  "_filename": "{_root}004-symlinks/original",
+  "_root": "../../",
+  "_site": "{_root}",
+  "_sourcename": "004-symlinks/original/."
+ },
+ "004-symlinks/original/index.html": {
+  "_dirname": "{_root}004-symlinks/original",
+  "_filename": "{_root}004-symlinks/original/index.html",
+  "_flags": {
+  },
+  "_output_chunkname": "html",
+  "_output_filename": "004-symlinks/original/index.html",
+  "_root": "../../",
+  "_site": "{_root}",
+  "_sourcename": "004-symlinks/original/index.^.html",
+  "body": "<h1>HELLO WORLD</h1>\n\n",
+  "html": "<html>\n\t<body>{body}</body>\n</html>\n"
+ },
+ "004-symlinks/symlink": {
+  "_dirname": "{_root}004-symlinks/symlink",
+  "_filename": "{_root}004-symlinks/symlink",
+  "_root": "../../",
+  "_site": "{_root}",
+  "_sourcename": "004-symlinks/symlink/."
+ },
+ "004-symlinks/symlink/index.html": {
+  "_dirname": "{_root}004-symlinks/symlink",
+  "_filename": "{_root}004-symlinks/symlink/index.html",
+  "_flags": {
+  },
+  "_output_chunkname": "html",
+  "_output_filename": "004-symlinks/symlink/index.html",
+  "_root": "../../",
+  "_site": "{_root}",
+  "_sourcename": "004-symlinks/symlink/index.^.html",
+  "body": "<h1>HELLO WORLD</h1>\n\n",
+  "html": "<html>\n\t<body>{body}</body>\n</html>\n"
+ },
+ "005-redirect": {
+  "_dirname": "{_root}005-redirect",
+  "_filename": "{_root}005-redirect",
+  "_flags": {
+  },
+  "_redirect_json": {
+   "files": {
+    "badname.html": "{_dirname}/index.html",
+    "barename/index.html": "{_dirname}/index.html",
+    "redirect.html": "{_dirname}/index.html"
+   }
+  },
+  "_root": "../",
+  "_site": "{_root}",
+  "_sourcename": "005-redirect/.",
+  "html": "<html>\n\t<body>{body}</body>\n</html>\n\n"
+ },
+ "005-redirect/index.html": {
+  "_dirname": "{_root}005-redirect",
+  "_filename": "{_root}005-redirect/index.html",
+  "_flags": {
+  },
+  "_output_chunkname": "html",
+  "_output_filename": "005-redirect/index.html",
+  "_root": "../",
+  "_site": "{_root}",
+  "_sourcename": "005-redirect/index.^.html",
+  "body": "\n<h1>HELLO WORLD</h1>\n\n"
+ },
+ "005-redirect/subdir": {
+  "_dirname": "{_root}005-redirect/subdir",
+  "_filename": "{_root}005-redirect/subdir",
+  "_flags": {
+  },
+  "_redirect_json": {
+   "files": {
+    "badname.html": "{_dirname}/../index.html",
+    "barename/index.html": "{_dirname}/../index.html",
+    "redirect.html": "{_dirname}/../index.html"
+   }
+  },
+  "_root": "../../",
+  "_site": "{_root}",
+  "_sourcename": "005-redirect/subdir/.",
+  "html": "<html>\n\t<body>{body}</body>\n</html>\n\n"
+ },
+ "006-copy": {
+  "_dirname": "{_root}006-copy",
+  "_filename": "{_root}006-copy",
+  "_flags": {
+   "txt_hello_world": {
+    "trim": "ends"
+   },
+   "txt_root": {
+    "trim": "ends"
+   }
+  },
+  "_root": "../",
+  "_site": "{_root}",
+  "_sourcename": "006-copy/.",
+  "html": "<html>\n\t<body>{body}</body>\n</html>\n",
+  "txt_hello_world": "HELLO WORLD",
+  "txt_root": "{_root}"
+ },
+ "006-copy/art": {
+  "_dirname": "{_root}006-copy/art",
+  "_filename": "{_root}006-copy/art",
+  "_root": "../../",
+  "_site": "{_root}",
+  "_sourcename": "006-copy/art/."
+ },
+ "006-copy/fra": {
+  "_copy_json": {
+   "dirname": "006-copy/fra",
+   "exclude": [
+    "fra",
+    "spa"
+   ],
+   "include": [
+    "006-copy/"
+   ]
+  },
+  "_dirname": "{_root}006-copy/fra",
+  "_filename": "{_root}006-copy/fra",
+  "_flags": {
+   "txt_hello_world": {
+    "trim": "ends"
+   },
+   "txt_root": {
+    "trim": "ends"
+   }
+  },
+  "_root": "../../",
+  "_site": "{_root}",
+  "_sourcename": "006-copy/fra/.",
+  "txt_hello_world": "BONJOUR LE MONDE",
+  "txt_root": "{_root}006-copy/fra/"
+ },
+ "006-copy/index.html": {
+  "_dirname": "{_root}006-copy",
+  "_filename": "{_root}006-copy/index.html",
+  "_flags": {
+  },
+  "_output_chunkname": "html",
+  "_output_filename": "006-copy/index.html",
+  "_root": "../",
+  "_site": "{_root}",
+  "_sourcename": "006-copy/index.^.html",
+  "body": "\n<h1>{txt_hello_world}</h1>\n\n<a href=\"{txt_root}subdir\">subdir</a>\n"
+ },
+ "006-copy/spa": {
+  "_copy_json": {
+   "dirname": "006-copy/spa",
+   "exclude": [
+    "fra",
+    "spa"
+   ],
+   "include": [
+    "006-copy/"
+   ]
+  },
+  "_dirname": "{_root}006-copy/spa",
+  "_filename": "{_root}006-copy/spa",
+  "_flags": {
+   "txt_hello_world": {
+    "trim": "ends"
+   },
+   "txt_root": {
+    "trim": "ends"
+   }
+  },
+  "_root": "../../",
+  "_site": "{_root}",
+  "_sourcename": "006-copy/spa/.",
+  "txt_hello_world": "HOLA MUNDO",
+  "txt_root": "{_root}006-copy/spa/"
+ },
+ "006-copy/subdir": {
+  "_dirname": "{_root}006-copy/subdir",
+  "_filename": "{_root}006-copy/subdir",
+  "_root": "../../",
+  "_site": "{_root}",
+  "_sourcename": "006-copy/subdir/."
+ },
+ "007-docs": {
+  "_dirname": "{_root}007-docs",
+  "_docs": [
+   {
+    "count": 2,
+    "name": "example"
+   },
+   {
+    "count": 1,
+    "name": "example.function"
+   },
+   {
+    "count": 2,
+    "name": "other"
+   },
+   {
+    "count": 1,
+    "name": "other.thing"
+   }
+  ],
+  "_docs_json": {
+   "dirname": "{_root}007-docs",
+   "dirs": {
+    "007-docs": ".c"
+   },
+   "ignore": {
+    "node_modules": true
+   },
+   "urlprefix": {
+    "test-source/": "https://github.com/xriss/plated/blob/master/test-source/"
+   }
+  },
+  "_filename": "{_root}007-docs",
+  "_flags": {
+   "menuwrap": {
+    "trim": "ends"
+   },
+   "menuwrap_link": {
+    "trim": "ends"
+   },
+   "title": {
+    "trim": "ends"
+   }
+  },
+  "_list": [
+   {
+    "body": "<p>This is some markdown giving a file overview.</p>\n",
+    "count": 2,
+    "file": "test-source/007-docs/example.c",
+    "line": 3,
+    "name": "example",
+    "url": "https://github.com/xriss/plated/blob/master/test-source/007-docs/example.c"
+   },
+   {
+    "body": "<p>This is some markdown explaining a function and its use</p>\n<pre><code>result = example.function(arguments)\n</code></pre>\n<p>Please remember to pass in arguments or you will not get a result.</p>\n",
+    "count": 1,
+    "file": "test-source/007-docs/example.c",
+    "line": 11,
+    "name": "example.function",
+    "url": "https://github.com/xriss/plated/blob/master/test-source/007-docs/example.c"
+   },
+   {
+    "body": "<p>This is another topic</p>\n",
+    "count": 2,
+    "file": "test-source/007-docs/example.c",
+    "line": 28,
+    "name": "other",
+    "url": "https://github.com/xriss/plated/blob/master/test-source/007-docs/example.c"
+   },
+   {
+    "body": "<p>With another thing.</p>\n",
+    "count": 1,
+    "file": "test-source/007-docs/example.c",
+    "line": 35,
+    "name": "other.thing",
+    "url": "https://github.com/xriss/plated/blob/master/test-source/007-docs/example.c"
+   }
+  ],
+  "_root": "../",
+  "_site": "{_root}",
+  "_sourcename": "007-docs/.",
+  "body": "<div style=\"width:90%;margin:auto;min-width:960px;\"><div style=\"width:30%;display:inline-block;min-width:320px;vertical-align:top;\">\n\n\t<div style=\"margin:32px;\">\n\t<a style=\"display:block;\" href=\"{_docs_json.dirname}\">/</a>\n\t{_docs:menuwrap}\n\t</div>\n\n</div><div style=\"width:60%;display:inline-block;min-width:640px;\">\n\n\t{_list:wrap}\n\n</div></div>\n",
+  "html": "<html>\n\t<head>\n\t\t<title>{title}</title>\n\t\t<link rel='stylesheet' href='{_docs_json.dirname}/docs.css' />\n\t</head>\n\t<body>{body}</body>\n</html>\n",
+  "menuwrap": "{_it.count>1&&_it:menuwrap_link}",
+  "menuwrap_link": "<a style=\"display:block;\" href=\"{_docs_json.dirname}/{_it.name}\">/{_it.name}</a>",
+  "title": "Welcome to docs!",
+  "wrap": "\n<div style=\"margin:32px\">\n<h1><a href=\"{_docs_json.dirname}/{_it.name}\">{_it.name}</a></h1>\n<div><a href=\"{_it.url}#L{_it.line}\">{_it.url}</a></div>\n<div>{[[}{_it.body}{]]}</div>\n</div>\n"
+ },
+ "008-import": {
+  "_dirname": "{_root}008-import",
+  "_filename": "{_root}008-import",
+  "_root": "../",
+  "_site": "{_root}",
+  "_sourcename": "008-import/."
+ },
+ "008-import/index.html": {
+  "_dirname": "{_root}008-import",
+  "_filename": "{_root}008-import/index.html",
+  "_flags": {
+   "body_blog_list": {
+    "import": "002-blog"
+   },
+   "body_test": {
+    "import": "008-import/sub"
+   },
+   "title": {
+    "trim": "ends"
+   }
+  },
+  "_output_chunkname": "html",
+  "_output_filename": "008-import/index.html",
+  "_root": "../",
+  "_site": "{_root}",
+  "_sourcename": "008-import/index.^.html",
+  "blog_plate": "\n<p>\n<h1>{_it._blog_post_json.title}</h1>\n<a href=\"{_it._filename}\"> linky</a>\n{_it._body}\n</p>\n",
+  "body": "\n{body_test.test}\n\n{body_blog_list._blog_export:blog_plate}\n",
+  "body_blog_list": {
+   "_blog_export": [
+    {
+     "_blog_export": [
+      {
+       "_blog_json": {
+        "dir": "002-blog/.",
+        "feed": {
+         "title": "Special Blog Title"
+        },
+        "posts_per_feed": 20,
+        "posts_per_page": 2,
+        "url": "http://feed.blog.com/"
+       },
+       "_blog_page_body": "\n<div>some blog posts</div>\n{_list:blog_list}\n<div> {_blog_page_older:link_older_page||} {_blog_page_newer:link_newer_page||} </div>\n\n",
+       "_blog_post_body": "<h2 id=\"title\">{title}</h2>\n<p>The title is {title} and this is an example blog post number 5.\n<br/>\n<br/></p>\n",
+       "_blog_post_body_many": "\n<a href=\"{_dirname}/\">link</a>\n{_blog_post_body}\n\n",
+       "_blog_post_body_one": "\n{_blog_post_body}\n<div> {_blog_post_older:link_older_post||} {_blog_post_newer:link_newer_post||} </div>\nSome comments belong here\n\n",
+       "_blog_post_json": {
+        "datedash": "2016-12-27",
+        "datetime": [
+         2016,
+         12,
+         27,
+         0,
+         0,
+         0
+        ],
+        "tags": [
+         "odd"
+        ],
+        "title": "This is test post 5",
+        "unixtime": 1482796800
+       },
+       "_blog_post_older": "{_root}002-blog/2016-12-25-this-is-a-test-post-3/",
+       "_body": "\n<a href=\"{_root}002-blog/2016-12-27-this-is-a-test-post-5/\">link</a>\n<h2 id=\"title\">This is test post 5</h2>\n<p>The title is This is test post 5 and this is an example blog post number 5.\n<br/>\n<br/></p>\n\n\n",
+       "_dirname": "{_root}002-blog/2016-12-27-this-is-a-test-post-5",
+       "_filename": "{_root}002-blog/2016-12-27-this-is-a-test-post-5/index.html",
+       "_flags": {
+        "_blog_post_body": {
+         "form": "markdown"
+        },
+        "title": {
+         "trim": "ends"
+        }
+       },
+       "_root": "../../",
+       "_site": "{_root}",
+       "_sourcename": "002-blog/2016-12-27-this-is-a-test-post-5/index.html",
+       "blog_list": "\n<div>item head</div>\n{_it._body}\n<div>item tail</div>\n\n",
+       "body": "{_blog_post_body_one}",
+       "html": "\n<html>\n\t<head>\n\t\t<title>{title}</title>\n\t</head>\n\t<body>{body}</body>\n</html>\n\n",
+       "link_newer_page": "\n<a href=\"{_it}\">newer posts</a>\n\n",
+       "link_newer_post": "\n<a href=\"{_it}\">newer post</a>\n",
+       "link_older_page": "\n<a href=\"{_it}\">older posts</a>\n\n",
+       "link_older_post": "\n<a href=\"{_it}\">older post</a>\n\n",
+       "title": "{_blog_post_json.title}"
+      },
+      {
+       "_blog_json": {
+        "dir": "002-blog/.",
+        "feed": {
+         "title": "Special Blog Title"
+        },
+        "posts_per_feed": 20,
+        "posts_per_page": 2,
+        "url": "http://feed.blog.com/"
+       },
+       "_blog_page_body": "\n<div>some blog posts</div>\n{_list:blog_list}\n<div> {_blog_page_older:link_older_page||} {_blog_page_newer:link_newer_page||} </div>\n\n",
+       "_blog_post_body": "<h2 id=\"title\">{title}</h2>\n<p>The title is {title} and this is an example blog post number 3.\n<br/>\n<br/></p>\n",
+       "_blog_post_body_many": "\n<a href=\"{_dirname}/\">link</a>\n{_blog_post_body}\n\n",
+       "_blog_post_body_one": "\n{_blog_post_body}\n<div> {_blog_post_older:link_older_post||} {_blog_post_newer:link_newer_post||} </div>\nSome comments belong here\n\n",
+       "_blog_post_json": {
+        "datedash": "2016-12-25",
+        "datetime": [
+         2016,
+         12,
+         25,
+         0,
+         0,
+         0
+        ],
+        "tags": [
+         "odd"
+        ],
+        "title": "This is test post 3",
+        "unixtime": 1482624000
+       },
+       "_blog_post_newer": "{_root}002-blog/2016-12-27-this-is-a-test-post-5/",
+       "_blog_post_older": "{_root}002-blog/2016-12-23-this-is-a-test-post-1/",
+       "_body": "\n<a href=\"{_root}002-blog/2016-12-25-this-is-a-test-post-3/\">link</a>\n<h2 id=\"title\">This is test post 3</h2>\n<p>The title is This is test post 3 and this is an example blog post number 3.\n<br/>\n<br/></p>\n\n\n",
+       "_dirname": "{_root}002-blog/2016-12-25-this-is-a-test-post-3",
+       "_filename": "{_root}002-blog/2016-12-25-this-is-a-test-post-3/index.html",
+       "_flags": {
+        "_blog_post_body": {
+         "form": "markdown"
+        },
+        "title": {
+         "trim": "ends"
+        }
+       },
+       "_root": "../../",
+       "_site": "{_root}",
+       "_sourcename": "002-blog/2016-12-25-this-is-a-test-post-3/index.html",
+       "blog_list": "\n<div>item head</div>\n{_it._body}\n<div>item tail</div>\n\n",
+       "body": "{_blog_post_body_one}",
+       "html": "\n<html>\n\t<head>\n\t\t<title>{title}</title>\n\t</head>\n\t<body>{body}</body>\n</html>\n\n",
+       "link_newer_page": "\n<a href=\"{_it}\">newer posts</a>\n\n",
+       "link_newer_post": "\n<a href=\"{_it}\">newer post</a>\n",
+       "link_older_page": "\n<a href=\"{_it}\">older posts</a>\n\n",
+       "link_older_post": "\n<a href=\"{_it}\">older post</a>\n\n",
+       "title": "{_blog_post_json.title}"
+      }
+     ],
+     "_blog_json": {
+      "dir": "002-blog/.",
+      "feed": {
+       "title": "Special Blog Title"
+      },
+      "posts_per_feed": 20,
+      "posts_per_page": 2,
+      "url": "http://feed.blog.com/"
+     },
+     "_blog_page_body": "\n<div>some blog posts</div>\n{_list:blog_list}\n<div> {_blog_page_older:link_older_page||} {_blog_page_newer:link_newer_page||} </div>\n\n",
+     "_blog_post_body": "<h2 id=\"title\">{title}</h2>\n<p>The title is {title} and this is an example blog post number 6.\n<br/>\n<br/></p>\n",
+     "_blog_post_body_many": "\n<a href=\"{_dirname}/\">link</a>\n{_blog_post_body}\n\n",
+     "_blog_post_body_one": "\n{_blog_post_body}\n<div> {_blog_post_older:link_older_post||} {_blog_post_newer:link_newer_post||} </div>\nSome comments belong here\n\n",
+     "_blog_post_json": {
+      "datedash": "2016-12-28",
+      "datetime": [
+       2016,
+       12,
+       28,
+       0,
+       0,
+       0
+      ],
+      "title": "This is test post 6",
+      "unixtime": 1482883200
+     },
+     "_blog_post_older": "{_root}002-blog/2016-12-27-this-is-a-test-post-5/",
+     "_body": "\n<a href=\"{_root}002-blog/2016-12-28-this-is-a-test-post-6/\">link</a>\n<h2 id=\"title\">This is test post 6</h2>\n<p>The title is This is test post 6 and this is an example blog post number 6.\n<br/>\n<br/></p>\n\n\n",
+     "_dirname": "{_root}002-blog/2016-12-28-this-is-a-test-post-6",
+     "_filename": "{_root}002-blog/2016-12-28-this-is-a-test-post-6/index.html",
+     "_flags": {
+      "_blog_post_body": {
+       "form": "markdown"
+      },
+      "title": {
+       "trim": "ends"
+      }
+     },
+     "_root": "../../",
+     "_site": "{_root}",
+     "_sourcename": "002-blog/2016-12-28-this-is-a-test-post-6/index.html",
+     "blog_list": "\n<div>item head</div>\n{_it._body}\n<div>item tail</div>\n\n",
+     "body": "{_blog_post_body_one}",
+     "html": "\n<html>\n\t<head>\n\t\t<title>{title}</title>\n\t</head>\n\t<body>{body}</body>\n</html>\n\n",
+     "link_newer_page": "\n<a href=\"{_it}\">newer posts</a>\n\n",
+     "link_newer_post": "\n<a href=\"{_it}\">newer post</a>\n",
+     "link_older_page": "\n<a href=\"{_it}\">older posts</a>\n\n",
+     "link_older_post": "\n<a href=\"{_it}\">older post</a>\n\n",
+     "title": "{_blog_post_json.title}"
+    },
+    {
+     "_blog_export": [
+      {
+       "_blog_json": {
+        "dir": "002-blog/.",
+        "feed": {
+         "title": "Special Blog Title"
+        },
+        "posts_per_feed": 20,
+        "posts_per_page": 2,
+        "url": "http://feed.blog.com/"
+       },
+       "_blog_page_body": "\n<div>some blog posts</div>\n{_list:blog_list}\n<div> {_blog_page_older:link_older_page||} {_blog_page_newer:link_newer_page||} </div>\n\n",
+       "_blog_post_body": "<h2 id=\"title\">{title}</h2>\n<p>The title is {title} and this is an example blog post number 5.\n<br/>\n<br/></p>\n",
+       "_blog_post_body_many": "\n<a href=\"{_dirname}/\">link</a>\n{_blog_post_body}\n\n",
+       "_blog_post_body_one": "\n{_blog_post_body}\n<div> {_blog_post_older:link_older_post||} {_blog_post_newer:link_newer_post||} </div>\nSome comments belong here\n\n",
+       "_blog_post_json": {
+        "datedash": "2016-12-27",
+        "datetime": [
+         2016,
+         12,
+         27,
+         0,
+         0,
+         0
+        ],
+        "tags": [
+         "odd"
+        ],
+        "title": "This is test post 5",
+        "unixtime": 1482796800
+       },
+       "_blog_post_older": "{_root}002-blog/2016-12-25-this-is-a-test-post-3/",
+       "_body": "\n<a href=\"{_root}002-blog/2016-12-27-this-is-a-test-post-5/\">link</a>\n<h2 id=\"title\">This is test post 5</h2>\n<p>The title is This is test post 5 and this is an example blog post number 5.\n<br/>\n<br/></p>\n\n\n",
+       "_dirname": "{_root}002-blog/2016-12-27-this-is-a-test-post-5",
+       "_filename": "{_root}002-blog/2016-12-27-this-is-a-test-post-5/index.html",
+       "_flags": {
+        "_blog_post_body": {
+         "form": "markdown"
+        },
+        "title": {
+         "trim": "ends"
+        }
+       },
+       "_root": "../../",
+       "_site": "{_root}",
+       "_sourcename": "002-blog/2016-12-27-this-is-a-test-post-5/index.html",
+       "blog_list": "\n<div>item head</div>\n{_it._body}\n<div>item tail</div>\n\n",
+       "body": "{_blog_post_body_one}",
+       "html": "\n<html>\n\t<head>\n\t\t<title>{title}</title>\n\t</head>\n\t<body>{body}</body>\n</html>\n\n",
+       "link_newer_page": "\n<a href=\"{_it}\">newer posts</a>\n\n",
+       "link_newer_post": "\n<a href=\"{_it}\">newer post</a>\n",
+       "link_older_page": "\n<a href=\"{_it}\">older posts</a>\n\n",
+       "link_older_post": "\n<a href=\"{_it}\">older post</a>\n\n",
+       "title": "{_blog_post_json.title}"
+      },
+      {
+       "_blog_json": {
+        "dir": "002-blog/.",
+        "feed": {
+         "title": "Special Blog Title"
+        },
+        "posts_per_feed": 20,
+        "posts_per_page": 2,
+        "url": "http://feed.blog.com/"
+       },
+       "_blog_page_body": "\n<div>some blog posts</div>\n{_list:blog_list}\n<div> {_blog_page_older:link_older_page||} {_blog_page_newer:link_newer_page||} </div>\n\n",
+       "_blog_post_body": "<h2 id=\"title\">{title}</h2>\n<p>The title is {title} and this is an example blog post number 3.\n<br/>\n<br/></p>\n",
+       "_blog_post_body_many": "\n<a href=\"{_dirname}/\">link</a>\n{_blog_post_body}\n\n",
+       "_blog_post_body_one": "\n{_blog_post_body}\n<div> {_blog_post_older:link_older_post||} {_blog_post_newer:link_newer_post||} </div>\nSome comments belong here\n\n",
+       "_blog_post_json": {
+        "datedash": "2016-12-25",
+        "datetime": [
+         2016,
+         12,
+         25,
+         0,
+         0,
+         0
+        ],
+        "tags": [
+         "odd"
+        ],
+        "title": "This is test post 3",
+        "unixtime": 1482624000
+       },
+       "_blog_post_newer": "{_root}002-blog/2016-12-27-this-is-a-test-post-5/",
+       "_blog_post_older": "{_root}002-blog/2016-12-23-this-is-a-test-post-1/",
+       "_body": "\n<a href=\"{_root}002-blog/2016-12-25-this-is-a-test-post-3/\">link</a>\n<h2 id=\"title\">This is test post 3</h2>\n<p>The title is This is test post 3 and this is an example blog post number 3.\n<br/>\n<br/></p>\n\n\n",
+       "_dirname": "{_root}002-blog/2016-12-25-this-is-a-test-post-3",
+       "_filename": "{_root}002-blog/2016-12-25-this-is-a-test-post-3/index.html",
+       "_flags": {
+        "_blog_post_body": {
+         "form": "markdown"
+        },
+        "title": {
+         "trim": "ends"
+        }
+       },
+       "_root": "../../",
+       "_site": "{_root}",
+       "_sourcename": "002-blog/2016-12-25-this-is-a-test-post-3/index.html",
+       "blog_list": "\n<div>item head</div>\n{_it._body}\n<div>item tail</div>\n\n",
+       "body": "{_blog_post_body_one}",
+       "html": "\n<html>\n\t<head>\n\t\t<title>{title}</title>\n\t</head>\n\t<body>{body}</body>\n</html>\n\n",
+       "link_newer_page": "\n<a href=\"{_it}\">newer posts</a>\n\n",
+       "link_newer_post": "\n<a href=\"{_it}\">newer post</a>\n",
+       "link_older_page": "\n<a href=\"{_it}\">older posts</a>\n\n",
+       "link_older_post": "\n<a href=\"{_it}\">older post</a>\n\n",
+       "title": "{_blog_post_json.title}"
+      }
+     ],
+     "_blog_json": {
+      "dir": "002-blog/.",
+      "feed": {
+       "title": "Special Blog Title"
+      },
+      "posts_per_feed": 20,
+      "posts_per_page": 2,
+      "url": "http://feed.blog.com/"
+     },
+     "_blog_page_body": "\n<div>some blog posts</div>\n{_list:blog_list}\n<div> {_blog_page_older:link_older_page||} {_blog_page_newer:link_newer_page||} </div>\n\n",
+     "_blog_post_body": "<h2 id=\"title\">{title}</h2>\n<p>The title is {title} and this is an example blog post number 5.\n<br/>\n<br/></p>\n",
+     "_blog_post_body_many": "\n<a href=\"{_dirname}/\">link</a>\n{_blog_post_body}\n\n",
+     "_blog_post_body_one": "\n{_blog_post_body}\n<div> {_blog_post_older:link_older_post||} {_blog_post_newer:link_newer_post||} </div>\nSome comments belong here\n\n",
+     "_blog_post_json": {
+      "datedash": "2016-12-27",
+      "datetime": [
+       2016,
+       12,
+       27,
+       0,
+       0,
+       0
+      ],
+      "tags": [
+       "odd"
+      ],
+      "title": "This is test post 5",
+      "unixtime": 1482796800
+     },
+     "_blog_post_newer": "{_root}002-blog/2016-12-28-this-is-a-test-post-6/",
+     "_blog_post_older": "{_root}002-blog/2016-12-26-this-is-a-test-post-4/",
+     "_body": "\n<a href=\"{_root}002-blog/2016-12-27-this-is-a-test-post-5/\">link</a>\n<h2 id=\"title\">This is test post 5</h2>\n<p>The title is This is test post 5 and this is an example blog post number 5.\n<br/>\n<br/></p>\n\n\n",
+     "_dirname": "{_root}002-blog/2016-12-27-this-is-a-test-post-5",
+     "_filename": "{_root}002-blog/2016-12-27-this-is-a-test-post-5/index.html",
+     "_flags": {
+      "_blog_post_body": {
+       "form": "markdown"
+      },
+      "title": {
+       "trim": "ends"
+      }
+     },
+     "_root": "../../",
+     "_site": "{_root}",
+     "_sourcename": "002-blog/2016-12-27-this-is-a-test-post-5/index.html",
+     "blog_list": "\n<div>item head</div>\n{_it._body}\n<div>item tail</div>\n\n",
+     "body": "{_blog_post_body_one}",
+     "html": "\n<html>\n\t<head>\n\t\t<title>{title}</title>\n\t</head>\n\t<body>{body}</body>\n</html>\n\n",
+     "link_newer_page": "\n<a href=\"{_it}\">newer posts</a>\n\n",
+     "link_newer_post": "\n<a href=\"{_it}\">newer post</a>\n",
+     "link_older_page": "\n<a href=\"{_it}\">older posts</a>\n\n",
+     "link_older_post": "\n<a href=\"{_it}\">older post</a>\n\n",
+     "title": "{_blog_post_json.title}"
+    }
+   ],
+   "_blog_json": {
+    "dir": "002-blog/.",
+    "feed": {
+     "title": "Special Blog Title"
+    },
+    "posts_per_feed": 20,
+    "posts_per_page": 2,
+    "url": "http://feed.blog.com/"
+   },
+   "_blog_page_body": "\n<div>some blog posts</div>\n{_list:blog_list}\n<div> {_blog_page_older:link_older_page||} {_blog_page_newer:link_newer_page||} </div>\n\n",
+   "_blog_post_body_many": "\n<a href=\"{_dirname}/\">link</a>\n{_blog_post_body}\n\n",
+   "_blog_post_body_one": "\n{_blog_post_body}\n<div> {_blog_post_older:link_older_post||} {_blog_post_newer:link_newer_post||} </div>\nSome comments belong here\n\n",
+   "_dirname": "{_root}002-blog",
+   "_filename": "{_root}002-blog",
+   "_flags": {
+    "title": {
+     "trim": "ends"
+    }
+   },
+   "_root": "../",
+   "_site": "{_root}",
+   "_sourcename": "002-blog/.",
+   "blog_list": "\n<div>item head</div>\n{_it._body}\n<div>item tail</div>\n\n",
+   "html": "\n<html>\n\t<head>\n\t\t<title>{title}</title>\n\t</head>\n\t<body>{body}</body>\n</html>\n\n",
+   "link_newer_page": "\n<a href=\"{_it}\">newer posts</a>\n\n",
+   "link_newer_post": "\n<a href=\"{_it}\">newer post</a>\n",
+   "link_older_page": "\n<a href=\"{_it}\">older posts</a>\n\n",
+   "link_older_post": "\n<a href=\"{_it}\">older post</a>\n\n",
+   "title": "Welcome to blog!"
+  },
+  "body_test": {
+   "_dirname": "{_root}008-import/sub",
+   "_filename": "{_root}008-import/sub",
+   "_flags": {
+    "test": {
+     "form": "markdown"
+    }
+   },
+   "_root": "../../",
+   "_site": "{_root}",
+   "_sourcename": "008-import/sub/.",
+   "test": "<p>This is some text that we will import.</p>\n<p>Note we can only import into a page chunk from a dir chunk. This \nprevents any sort of recursion and we simply make sure that all dir \nlevel chunks are always processed before page level chunks are.</p>\n"
+  },
+  "html": "<html>\n\t<head>\n\t\t<title>{title}</title>\n\t</head>\n\t<body>{body}</body>\n</html>\n",
+  "title": "Welcome to docs!"
+ },
+ "008-import/sub": {
+  "_dirname": "{_root}008-import/sub",
+  "_filename": "{_root}008-import/sub",
+  "_flags": {
+   "test": {
+    "form": "markdown"
+   }
+  },
+  "_root": "../../",
+  "_site": "{_root}",
+  "_sourcename": "008-import/sub/.",
+  "test": "<p>This is some text that we will import.</p>\n<p>Note we can only import into a page chunk from a dir chunk. This \nprevents any sort of recursion and we simply make sure that all dir \nlevel chunks are always processed before page level chunks are.</p>\n"
+ }
+}

@@ -106,6 +106,29 @@ If the opts.dumpjson flag is set then we also output a
 	}
 
 /***************************************************************************
+--[[#js.plated_output.write_map
+
+	plated_output.write_map()
+
+Output plated.map.json which is a concise map of all chunks for all 
+files and directories.
+
+]]*/
+	plated_output.write_map=async function()
+	{
+		if(opts.dumpjson)
+		{
+			let map={}
+			for(let n in plated.paths) { map[n]=plated.paths[n]}
+			for(let n in plated.dirs) { map[n]=plated.dirs[n]}
+			
+			var filename=plated.files.joinpath( opts.output , "plated.map.json" )
+			var data=JSON_stringify(map,{space:1})
+			await plated.files.write( filename , data )
+		}
+	}
+
+/***************************************************************************
 --[[#js.plated_output.write_all
 
 	plated_output.write_all()
@@ -121,6 +144,7 @@ plated_output.write
 			var chunks=plated.output_chunks[n]
 			await plated_output.write(chunks)
 		}
+		await plated_output.write_map()
 	}
 
 	return plated_output

@@ -590,11 +590,13 @@ from source into the output.
 			for(var idx in plated.process_file) { var f=plated.process_file[idx];
 				chunks = await f( chunks ); // adjust and or output special chunks or files
 			}
+			chunks._output_filename=plated.files.filename_to_output(fname)
+			chunks._output_chunkname=fname.split('.').pop()
+
+			plated.paths[ chunks._output_filename ]=chunks;
 
 			var merged_chunks=plated.chunks.merge_namespace(chunks);
 			
-			merged_chunks._output_filename=plated.files.filename_to_output(fname)
-			merged_chunks._output_chunkname=fname.split('.').pop()
 			await plated.output.remember_and_write( merged_chunks )
 
 		}
@@ -623,6 +625,7 @@ Build all files found in the source dir into the output dir.
 		plated_files.empty_cache();
 
 		plated.dirs={};
+		plated.paths={};
 		
 		var dirs = await plated_files.find_dirs(opts.source,"")
 		for(var i in dirs){ var s=dirs[i]

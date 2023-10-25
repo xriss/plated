@@ -64,7 +64,7 @@ available.
 			if(flags && flags.import) // special import 
 			{
 				var dirname=flags.import
-				var dirchunks=plated.dirs[dirname] || plated.files[dirname]
+				var dirchunks=plated.dirs[dirname] || plated.paths[dirname]
 				if( dirname && dirchunks )
 				{
 					chunks[n]=dirchunks
