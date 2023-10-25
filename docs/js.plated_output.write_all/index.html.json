@@ -66,7 +66,7 @@
    "name": "html.plated_plugin.redirect"
   },
   {
-   "count": 74,
+   "count": 75,
    "name": "js"
   },
   {
@@ -278,7 +278,7 @@
    "name": "js.plated_files.write"
   },
   {
-   "count": 5,
+   "count": 6,
    "name": "js.plated_output"
   },
   {
@@ -296,6 +296,10 @@
   {
    "count": 1,
    "name": "js.plated_output.write_all"
+  },
+  {
+   "count": 1,
+   "name": "js.plated_output.write_map"
   },
   {
    "count": 16,
@@ -409,7 +413,7 @@
    "body": "<pre><code>plated_output.write_all()\n</code></pre>\n<p>Go through all the remembered chunks and write each one out using \nplated_output.write</p>\n",
    "count": 1,
    "file": "../js/plated_output.js",
-   "line": 109,
+   "line": 132,
    "name": "js.plated_output.write_all",
    "url": "https://github.com/xriss/plated/blob/master/js/plated_output.js"
   }

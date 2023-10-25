@@ -66,7 +66,7 @@
    "name": "html.plated_plugin.redirect"
   },
   {
-   "count": 74,
+   "count": 75,
    "name": "js"
   },
   {
@@ -278,7 +278,7 @@
    "name": "js.plated_files.write"
   },
   {
-   "count": 5,
+   "count": 6,
    "name": "js.plated_output"
   },
   {
@@ -296,6 +296,10 @@
   {
    "count": 1,
    "name": "js.plated_output.write_all"
+  },
+  {
+   "count": 1,
+   "name": "js.plated_output.write_map"
   },
   {
    "count": 16,
@@ -407,7 +411,7 @@
  "_list": [
   {
    "body": "",
-   "count": 74,
+   "count": 75,
    "name": "js"
   },
   {
@@ -638,7 +642,7 @@
    "body": "<pre><code>plated_files.build()\n</code></pre>\n<p>Build all files found in the source dir into the output dir.</p>\n",
    "count": 1,
    "file": "../js/plated_files.js",
-   "line": 612,
+   "line": 614,
    "name": "js.plated_files.build",
    "url": "https://github.com/xriss/plated/blob/master/js/plated_files.js"
   },
@@ -814,7 +818,7 @@
    "body": "<pre><code>plated_files.watch()\n</code></pre>\n<p>Build all files found in the source dir into the output dir and then \nsit watching for changes to these files that would trigger rebuilds.</p>\n<p>This does not return, instead the user is expected to ctrl+c when \nfinished.</p>\n",
    "count": 1,
    "file": "../js/plated_files.js",
-   "line": 676,
+   "line": 679,
    "name": "js.plated_files.watch",
    "url": "https://github.com/xriss/plated/blob/master/js/plated_files.js"
   },
@@ -828,7 +832,7 @@
   },
   {
    "body": "<p>Manage the chunks of text that are combined into a page.</p>\n<p>This module only exposes one function, which is used to create \nthe actual module with bound state data.</p>\n<pre><code>plated_output = require(&quot;./plated_output.js&quot;).create(opts,plated)\n</code></pre>\n<p>This is called automatically when the plated module is created and the \nreturn value is made available in plated.chunks note that all of these \nmodules are bound together and operate as a group with shared data.</p>\n<p>In the future when we talk about this module and its available \nfunctions we are referring to the return value from this create \nfunction.</p>\n",
-   "count": 5,
+   "count": 6,
    "file": "../js/plated_output.js",
    "line": 3,
    "name": "js.plated_output",
@@ -862,8 +866,16 @@
    "body": "<pre><code>plated_output.write_all()\n</code></pre>\n<p>Go through all the remembered chunks and write each one out using \nplated_output.write</p>\n",
    "count": 1,
    "file": "../js/plated_output.js",
-   "line": 109,
+   "line": 132,
    "name": "js.plated_output.write_all",
+   "url": "https://github.com/xriss/plated/blob/master/js/plated_output.js"
+  },
+  {
+   "body": "<pre><code>plated_output.write_map()\n</code></pre>\n<p>Output plated.map.json which is a concise map of all chunks for all \nfiles and directories.</p>\n",
+   "count": 1,
+   "file": "../js/plated_output.js",
+   "line": 109,
+   "name": "js.plated_output.write_map",
    "url": "https://github.com/xriss/plated/blob/master/js/plated_output.js"
   },
   {

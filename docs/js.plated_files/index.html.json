@@ -66,7 +66,7 @@
    "name": "html.plated_plugin.redirect"
   },
   {
-   "count": 74,
+   "count": 75,
    "name": "js"
   },
   {
@@ -278,7 +278,7 @@
    "name": "js.plated_files.write"
   },
   {
-   "count": 5,
+   "count": 6,
    "name": "js.plated_output"
   },
   {
@@ -296,6 +296,10 @@
   {
    "count": 1,
    "name": "js.plated_output.write_all"
+  },
+  {
+   "count": 1,
+   "name": "js.plated_output.write_map"
   },
   {
    "count": 16,
@@ -425,7 +429,7 @@
    "body": "<pre><code>plated_files.build()\n</code></pre>\n<p>Build all files found in the source dir into the output dir.</p>\n",
    "count": 1,
    "file": "../js/plated_files.js",
-   "line": 612,
+   "line": 614,
    "name": "js.plated_files.build",
    "url": "https://github.com/xriss/plated/blob/master/js/plated_files.js"
   },
@@ -601,7 +605,7 @@
    "body": "<pre><code>plated_files.watch()\n</code></pre>\n<p>Build all files found in the source dir into the output dir and then \nsit watching for changes to these files that would trigger rebuilds.</p>\n<p>This does not return, instead the user is expected to ctrl+c when \nfinished.</p>\n",
    "count": 1,
    "file": "../js/plated_files.js",
-   "line": 676,
+   "line": 679,
    "name": "js.plated_files.watch",
    "url": "https://github.com/xriss/plated/blob/master/js/plated_files.js"
   },
