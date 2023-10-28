@@ -738,7 +738,7 @@ finished.
 				{
 					console.log(timestr()+" FILE "+"/"+s)
 					await plated_files.build_file(s);
-					await plated_output.write_map(); // update map
+					await plated.output.write_map(); // update map
 				}
 
 			}
