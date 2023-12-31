@@ -421,7 +421,7 @@
    "body": "<pre><code>dirs = plated_plugin_blog.process_dirs(dirs)\n</code></pre>\n<p>Tweak all the base chunks grouped by dir name and pre cascaded/merged</p>\n",
    "count": 1,
    "file": "../js/plated_plugin_blog.js",
-   "line": 147,
+   "line": 148,
    "name": "js.plated_plugin.blog.process_dirs",
    "url": "https://github.com/xriss/plated/blob/master/js/plated_plugin_blog.js"
   },
@@ -429,7 +429,7 @@
    "body": "<pre><code>chunks = plated_plugin_blog.process_file(chunks)\n</code></pre>\n<p>Tweak a single file of chunks, only chunks found in this file will be available.</p>\n",
    "count": 1,
    "file": "../js/plated_plugin_blog.js",
-   "line": 427,
+   "line": 475,
    "name": "js.plated_plugin.blog.process_file",
    "url": "https://github.com/xriss/plated/blob/master/js/plated_plugin_blog.js"
   }
