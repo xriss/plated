@@ -92,6 +92,7 @@ contain the _blog_post_body as defined in the blog post directory.
 //var fs = require('fs');
 var util=require('util');
 var watch=require('watch');
+var path=require('path');
 var JSON5=require('json5');
 var JSON_stringify = require('json-stable-stringify');
 var jsonfeedToAtom = require('jsonfeed-to-atom')
@@ -153,6 +154,7 @@ Tweak all the base chunks grouped by dir name and pre cascaded/merged
 ]]*/
 	plated_plugin_blog.process_dirs=async function(dirs){
 		
+		var micros={};
 		var blogs={};
 		var drafts=[];
 		
@@ -181,6 +183,52 @@ Tweak all the base chunks grouped by dir name and pre cascaded/merged
 					}
 				}
 
+			}
+			else // check if dir is a microblog
+			{
+				var s=chunks._filename.split("/"); s=s[s.length-1];
+				if( s.substr(0,6) == "micro-" )
+				{
+					let blogname
+					for( var name in blogs ) // find blog we belong to
+					{
+						if( dirname.substr(0, name.length) == name ) // found
+						{
+							blogname = name
+							break;
+						}
+					}
+					if(blogname)
+					{
+// scan all files in dir and create blogposts based on name
+						let files=await plated.files.find_files(opts.source,chunks._sourcename)
+						for(let i in files){ var s=files[i]
+							let aa=path.basename(s).split(".")
+							if(aa.length==2) // must be date-time . something
+							{
+								let basename=aa[0]
+								let extension=aa[aa.length-1]
+								
+								if( ! micros[blogname] ) { micros[blogname]={} }
+								if( ! micros[blogname][basename] ) { micros[blogname][basename]={} }
+
+								let micro=micros[blogname][basename]
+								if(!micro.exts) { micro.exts={} }
+								micro.exts[extension]=true
+							}
+						}
+					}
+				}
+			}
+		}
+		
+		for( let blogname in micros )
+		{
+			for( let microname in micros[blogname] )
+			{
+				micro = micros[blogname][microname]
+				console.log(timestr()+" BLOG "+blogname+" MICRO "+microname)
+				console.log(micro)
 			}
 		}
 		
