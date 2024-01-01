@@ -89,23 +89,23 @@ contain the _blog_post_body as defined in the blog post directory.
 
 ]]*/
 
-//var fs = require('fs');
-var util=require('util');
-var watch=require('watch');
-var path=require('path');
-var JSON5=require('json5');
-var JSON_stringify = require('json-stable-stringify');
-var jsonfeedToAtom = require('jsonfeed-to-atom')
+//let fs = require('fs');
+let util=require('util');
+let watch=require('watch');
+let path=require('path');
+let JSON5=require('json5');
+let JSON_stringify = require('json-stable-stringify');
+let jsonfeedToAtom = require('jsonfeed-to-atom')
 
 
-var ls=function(a) { console.log(util.inspect(a,{depth:null})); }
+let ls=function(a) { console.log(util.inspect(a,{depth:null})); }
 
 // wrap so we can contain multiple environments without borking
 exports.create=function(opts,plated){
 
-	var timestr=function(){ return new Date().toISOString().replace(/^.+T/, "").replace(/\..+/, ""); }
+	let timestr=function(){ return new Date().toISOString().replace(/^.+T/, "").replace(/\..+/, ""); }
 
-	var plated_plugin_blog={};
+	let plated_plugin_blog={};
 	
 	
 	plated_plugin_blog.config={};
@@ -154,17 +154,96 @@ Tweak all the base chunks grouped by dir name and pre cascaded/merged
 ]]*/
 	plated_plugin_blog.process_dirs=async function(dirs){
 		
-		var micros={};
-		var blogs={};
-		var drafts=[];
+		let micros={};
+		let blogs={};
+		let drafts=[];
 		
-		for( var dirname in dirs ) { var chunks=dirs[dirname];
+		for( let dirname in dirs ) { let chunks=dirs[dirname];
 			
 			if(chunks._blog_json)
 			{
 				blogs[dirname]=[ chunks ];
 			}
 
+			// check if dir is a microblog
+			let blogname
+			let s=chunks._filename.split("/"); s=s[s.length-1];
+			if( s.substr(0,6) == "micro-" ) // dir must begin with micro-
+			{
+				for( let name in blogs ) // find blog we belong to
+				{
+					if( dirname.substr(0, name.length) == name ) // found
+					{
+						blogname = name
+						break;
+					}
+				}
+			}
+			
+			if(blogname) // this is a micro blog for this blogname
+			{
+// scan all files in dir and create blogposts based on name
+				let files=await plated.files.find_files(opts.source,chunks._sourcename)
+				for(let _i in files){ let filename=files[_i]
+					let aa=path.basename(filename).split(".")
+					let basename=aa[0]
+					let extension=aa[aa.length-1]
+					extension=extension.toLowerCase()
+					if( aa.length<2 ) { extension="" }
+					// check basename is year-month-day
+					let idx=0;
+					let dd=[1970,1,0,0,0,0]; // the beginning of time
+					let a=basename.split(/[^0-9]+/); 
+					if( extension && (a.length>=3) ) // must be at least a date with an extension to be a micro blogpost
+					{
+						for(let i=0;i<a.length;i++)
+						{
+							let v=a[i];
+							if(idx==0) // year
+							{
+								if(v.length==4)
+								{
+									dd[idx++]=parseInt(v);
+								}
+							}
+							else
+							if(idx>=3) // time is just one big final number
+							{
+								dd[idx+0]=parseInt(v.substr(0,2)) || 0	// hours
+								dd[idx+1]=parseInt(v.substr(2,4)) || 0	// minutes
+								dd[idx+2]=parseInt(v.substr(4,6)) || 0	// seconds
+								let ff=v.substr(7) // fractions of a second
+								dd[idx+2]+=(parseInt(ff) || 0 ) / 10**ff.length // fractions
+								break
+							}
+							else // month/day
+							{
+								if(v.length==2)
+								{
+									dd[idx++]=parseInt(v);
+								}
+								else
+								{
+									idx=0; // reset
+								}
+							}
+						}
+
+						if( ! micros[blogname] ) { micros[blogname]={} }
+						if( ! micros[blogname][basename] ) { micros[blogname][basename]={} }
+
+						let micro=micros[blogname][basename]
+						if(!micro.files) { micro.files={} } // extension map of files
+						if(!micro.files[extension]) { micro.files[extension]=[] }
+						micro.files[extension].push(filename)
+						micro.datetime=dd
+						micro.unixtime=Date.UTC(dd[0],dd[1]-1,dd[2],dd[3],dd[4],dd[5])/1000;
+						micro.datedash=("0000" + dd[0]).substr(-4,4)+"-"+("00" + dd[1]).substr(-2,2)+"-"+("00" + dd[2]).substr(-2,2);
+						micro.timecolon=("00" + dd[3]).substr(-2,2)+":"+("00" + dd[4]).substr(-2,2)+":"+("00" + dd[5]).substr(-2,2);
+					}
+				}
+			}
+			else
 			if(chunks._blog_post_json)
 			{
 				if(chunks._blog_post_json.draft) //ignore draft posts from lists
@@ -173,7 +252,7 @@ Tweak all the base chunks grouped by dir name and pre cascaded/merged
 				}
 				else
 				{
-					for( var blogname in blogs ) // find blog we belong to
+					for( let blogname in blogs ) // find blog we belong to
 					{
 						if( dirname.substr(0, blogname.length) == blogname ) // found
 						{
@@ -184,42 +263,6 @@ Tweak all the base chunks grouped by dir name and pre cascaded/merged
 				}
 
 			}
-			else // check if dir is a microblog
-			{
-				var s=chunks._filename.split("/"); s=s[s.length-1];
-				if( s.substr(0,6) == "micro-" )
-				{
-					let blogname
-					for( var name in blogs ) // find blog we belong to
-					{
-						if( dirname.substr(0, name.length) == name ) // found
-						{
-							blogname = name
-							break;
-						}
-					}
-					if(blogname)
-					{
-// scan all files in dir and create blogposts based on name
-						let files=await plated.files.find_files(opts.source,chunks._sourcename)
-						for(let i in files){ var s=files[i]
-							let aa=path.basename(s).split(".")
-							if(aa.length==2) // must be date-time . something
-							{
-								let basename=aa[0]
-								let extension=aa[aa.length-1]
-								
-								if( ! micros[blogname] ) { micros[blogname]={} }
-								if( ! micros[blogname][basename] ) { micros[blogname][basename]={} }
-
-								let micro=micros[blogname][basename]
-								if(!micro.exts) { micro.exts={} }
-								micro.exts[extension]=true
-							}
-						}
-					}
-				}
-			}
 		}
 		
 		for( let blogname in micros )
@@ -228,22 +271,22 @@ Tweak all the base chunks grouped by dir name and pre cascaded/merged
 			{
 				micro = micros[blogname][microname]
 				console.log(timestr()+" BLOG "+blogname+" MICRO "+microname)
-				console.log(micro)
+//				console.log(micro)
 			}
 		}
 		
 // write drafts
-		for(var idx=0;idx<drafts.length;idx++) { var post=drafts[idx];
+		for(let idx=0;idx<drafts.length;idx++) { let post=drafts[idx];
 
-			var fname=plated.files.filename_to_dirname(post._sourcename)+"/index.html"
-			var chunks={};
+			let fname=plated.files.filename_to_dirname(post._sourcename)+"/index.html"
+			let chunks={};
 			
 			plated.files.set_source(chunks,fname)
 
 			chunks.body=plated.chunks.delimiter_wrap_str("_blog_post_body_one");
 
 			plated.files.prepare_namespace(fname); // prepare merged namespace
-			var merged_chunks=plated.chunks.merge_namespace(chunks);
+			let merged_chunks=plated.chunks.merge_namespace(chunks);
 
 			merged_chunks._output_filename=plated.files.filename_to_output(fname)
 			merged_chunks._output_chunkname="html"
@@ -252,24 +295,24 @@ Tweak all the base chunks grouped by dir name and pre cascaded/merged
 			console.log(timestr()+" BLOGDRAFT "+fname)
 		}
 
-		for(var blogname in blogs)
+		for(let blogname in blogs)
 		{
-			var blog=blogs[blogname];
+			let blog=blogs[blogname];
 
-			var blog_json=blog[0]._blog_json;
+			let blog_json=blog[0]._blog_json;
 			
 			// assign to tags arrays and all
-			var tags={"":[]}
-			for(var idx=0;idx<blog.length;idx++)
+			let tags={"":[]}
+			for(let idx=0;idx<blog.length;idx++)
 			{
 				if(blog[idx]._blog_post_json) // got a blogpost
 				{
 					tags[""].push(blog[idx])
 					if( blog[idx]._blog_post_json.tags )
 					{
-						for(var tidx=0;tidx<blog[idx]._blog_post_json.tags.length;tidx++)
+						for(let tidx=0;tidx<blog[idx]._blog_post_json.tags.length;tidx++)
 						{
-							var tag=blog[idx]._blog_post_json.tags[tidx]
+							let tag=blog[idx]._blog_post_json.tags[tidx]
 							if(tag)
 							{
 								tags[tag]=tags[tag] || []
@@ -280,14 +323,14 @@ Tweak all the base chunks grouped by dir name and pre cascaded/merged
 				}
 			}
 			
-			var tagnames=Object.keys(tags) //array of tag names
+			let tagnames=Object.keys(tags) //array of tag names
 			
-			for( var tidx=0 ; tidx<=tagnames.length ; tidx++ )
+			for( let tidx=0 ; tidx<=tagnames.length ; tidx++ )
 			{
-				var posts;
-				var posts_body=[];
-				var tagdir=""
-				var tag=tagnames[tidx]
+				let posts;
+				let posts_body=[];
+				let tagdir=""
+				let tag=tagnames[tidx]
 				if(tag)
 				{
 					posts=tags[tag]
@@ -307,30 +350,30 @@ Tweak all the base chunks grouped by dir name and pre cascaded/merged
 					});
 					
 					
-					for(var i=0;i<posts.length;i++) {
+					for(let i=0;i<posts.length;i++) {
 						
-						var post=posts[i];
+						let post=posts[i];
 
-						var post_newer=posts[i-1];
-						var post_older=posts[i+1];
+						let post_newer=posts[i-1];
+						let post_older=posts[i+1];
 						
 						post._blog_post_newer=post_newer && post_newer._filename+"/";
 						post._blog_post_older=post_older && post_older._filename+"/";
 					}
 	// write individual blog posts and cache the merged chunks for paged output
-					for(var idx=0;idx<posts.length;idx++) { var post=posts[idx];
+					for(let idx=0;idx<posts.length;idx++) { let post=posts[idx];
 						
 
-						var fname=plated.files.filename_to_dirname(post._sourcename)+"/index.html"
-	//					var output_filename = plated.files.joinpath( opts.output , plated.files.filename_to_output(fname) );
-						var chunks={};
+						let fname=plated.files.filename_to_dirname(post._sourcename)+"/index.html"
+	//					let output_filename = plated.files.joinpath( opts.output , plated.files.filename_to_output(fname) );
+						let chunks={};
 						
 						plated.files.set_source(chunks,fname)
 
 						chunks.body=plated.chunks.delimiter_wrap_str("_blog_post_body_one");
 
 						plated.files.prepare_namespace(fname); // prepare merged namespace
-						var merged_chunks=plated.chunks.merge_namespace(chunks);
+						let merged_chunks=plated.chunks.merge_namespace(chunks);
 
 						merged_chunks._output_filename=plated.files.filename_to_output(fname)
 						merged_chunks._output_chunkname="html"
@@ -338,7 +381,7 @@ Tweak all the base chunks grouped by dir name and pre cascaded/merged
 						{
 							await plated.output.remember_and_write( merged_chunks )
 						}
-						var cache_root=merged_chunks._root
+						let cache_root=merged_chunks._root
 						delete merged_chunks._root // do not expand_root here, leave it for later so relative path works
 						chunks._body=plated.chunks.replace( plated.chunks.delimiter_wrap_str("_blog_post_body_many"),merged_chunks); // prebuild body
 						posts_body[idx]=plated.chunks.merge_namespace(chunks);
@@ -347,11 +390,11 @@ Tweak all the base chunks grouped by dir name and pre cascaded/merged
 						console.log(timestr()+" BLOGPOST "+fname)
 					}
 
-					var pageidx=1;
-					var pagename=plated.files.filename_to_dirname(blog[0]._sourcename)+tagdir+"/index.html";
-					var pagename_older=undefined;
-					var pagename_newer=undefined;
-					for( var postidx=0 ; postidx<posts.length ; postidx+=blog_json.posts_per_page )
+					let pageidx=1;
+					let pagename=plated.files.filename_to_dirname(blog[0]._sourcename)+tagdir+"/index.html";
+					let pagename_older=undefined;
+					let pagename_newer=undefined;
+					for( let postidx=0 ; postidx<posts.length ; postidx+=blog_json.posts_per_page )
 					{
 						pageidx++;
 						pagename_older=plated.files.filename_to_dirname(blog[0]._sourcename)+tagdir+"/page"+pageidx+".html";
@@ -360,9 +403,9 @@ Tweak all the base chunks grouped by dir name and pre cascaded/merged
 						{
 							pagename_older=undefined;
 						}
-						var list=[];
+						let list=[];
 						
-						for(var i=postidx ; i<postidx+blog_json.posts_per_page ; i++ )
+						for(let i=postidx ; i<postidx+blog_json.posts_per_page ; i++ )
 						{
 							if(posts_body[i])
 							{
@@ -374,8 +417,8 @@ Tweak all the base chunks grouped by dir name and pre cascaded/merged
 							blog[0]._blog_export=list
 						}
 
-						var fname=pagename
-						var chunks={};
+						let fname=pagename
+						let chunks={};
 						
 						plated.files.set_source(chunks,fname)
 
@@ -386,7 +429,7 @@ Tweak all the base chunks grouped by dir name and pre cascaded/merged
 						chunks.body=plated.chunks.delimiter_wrap_str("_blog_page_body");
 
 						plated.files.prepare_namespace(fname); // prepare merged namespace
-						var merged_chunks=plated.chunks.merge_namespace(chunks);
+						let merged_chunks=plated.chunks.merge_namespace(chunks);
 
 						merged_chunks._output_filename=plated.files.filename_to_output(fname)
 						merged_chunks._output_chunkname="html"
@@ -398,7 +441,7 @@ Tweak all the base chunks grouped by dir name and pre cascaded/merged
 						pagename=pagename_older;
 					}
 				
-					var feed={}
+					let feed={}
 
 					feed.version="https://jsonfeed.org/version/1"
 					feed.home_page_url=blog_json.url
@@ -406,22 +449,22 @@ Tweak all the base chunks grouped by dir name and pre cascaded/merged
 
 					if(blog_json.feed)
 					{
-						for(var n in blog_json.feed)
+						for(let n in blog_json.feed)
 						{
 							feed[n]=blog_json.feed[n]
 						}
 					}
 					feed.items=[] // force this to empty just in case
 
-					for(var i=0 ; i<blog_json.posts_per_feed ; i++ )
+					for(let i=0 ; i<blog_json.posts_per_feed ; i++ )
 					{
-						var chunks=posts_body[i]
+						let chunks=posts_body[i]
 						if(chunks)
 						{
-							var cache_root=chunks._root
+							let cache_root=chunks._root
 							chunks._root=blog_json.url
 							
-							var it={};
+							let it={};
 							
 							it.title=chunks._blog_post_json.title
 							if(chunks._blog_post_json.author)
@@ -440,7 +483,7 @@ Tweak all the base chunks grouped by dir name and pre cascaded/merged
 
 							if(chunks._blog_post_json.feed)
 							{
-								for(var n in chunks._blog_post_json.feed)
+								for(let n in chunks._blog_post_json.feed)
 								{
 									it[n]=chunks._blog_post_json.feed[n]
 								}
@@ -451,7 +494,7 @@ Tweak all the base chunks grouped by dir name and pre cascaded/merged
 							chunks._root=cache_root
 						}
 					}
-					var fname=plated.files.filename_to_output(plated.files.filename_to_dirname(blog[0]._sourcename))
+					let fname=plated.files.filename_to_output(plated.files.filename_to_dirname(blog[0]._sourcename))
 
 					console.log(timestr()+" BLOGFEED "+fname+tagdir+"/feed.json")
 
@@ -482,19 +525,19 @@ Tweak a single file of chunks, only chunks found in this file will be available.
 	plated_plugin_blog.process_file=function(chunks){
 		
 // process blog_json
-		var chunk=chunks._blog_json;
-		if( chunk )
+		if( chunks._blog_json )
 		{
+			let chunk=chunks._blog_json;
 			if( "string" == typeof (chunk) ) { chunk=JSON5.parse(chunk) || {}; } // auto json parse
 			chunk.dir            = chunk.dirname        || chunks._sourcename ;
-			for(var n in plated_plugin_blog.config)
+			for(let n in plated_plugin_blog.config)
 			{
 				if( "object" == typeof (plated_plugin_blog.config[n]) ) // one level deep copy
 				{
 					chunk[n] = chunk[n] || {} ;
 					if( "object" == typeof (chunk[n]) ) // sanity
 					{
-						for(var nn in plated_plugin_blog.config[n])
+						for(let nn in plated_plugin_blog.config[n])
 						{
 							chunk[n][nn]=chunk[n][nn] || plated_plugin_blog.config[n][nn]
 						}
@@ -511,14 +554,14 @@ Tweak a single file of chunks, only chunks found in this file will be available.
 		
 
 // process blog_post_json
-		var chunk=chunks._blog_post_json;
-		if( chunk )
+		if( chunks._blog_post_json )
 		{
+			let chunk=chunks._blog_post_json;
 			if( "string" == typeof (chunk) ) { chunk=JSON5.parse(chunk) || {}; } // auto json parse
 
 			if(chunk.draft===undefined)
 			{
-				var s=chunks._filename.split("/"); s=s[s.length-1];
+				let s=chunks._filename.split("/"); s=s[s.length-1];
 				if( s.substr(0,6) == "draft-" )
 				{
 					chunk.draft=true;
@@ -527,16 +570,16 @@ Tweak a single file of chunks, only chunks found in this file will be available.
 			
 			if(!chunk.unixtime)
 			{
-				var s=chunk.datetime || chunks._filename;
+				let s=chunk.datetime || chunks._filename;
 				
+				let dd=[1970,1,0,0,0,0]; // the beginning of time
 				if(typeof(s)=="string") // convert from string to array
 				{
-					var a=s.split(/[^0-9]+/); 
-					var idx=0;
-					var dd=[1970,1,0,0,0,0]; // the beginning of time
-					for(var i=0;i<a.length;i++)
+					let a=s.split(/[^0-9]+/); 
+					let idx=0;
+					for(let i=0;i<a.length;i++)
 					{
-						var v=a[i];
+						let v=a[i];
 						if(idx==0) // year
 						{
 							if(v.length==4)
