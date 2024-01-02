@@ -197,7 +197,7 @@ Tweak all the base chunks grouped by dir name and pre cascaded/merged
 					}
 					// check basename is year-month-day
 					let idx=0;
-					let dd=[1970,1,0,0,0,0]; // the beginning of time
+					let dd=[1970,1,1,0,0,0]; // the beginning of time
 					let a=basename.split(/[^0-9]+/); 
 					if( extension && (a.length>=3) ) // must be at least a date with an extension to be a micro blogpost
 					{
@@ -393,9 +393,14 @@ Tweak all the base chunks grouped by dir name and pre cascaded/merged
 
 						let post_newer=posts[i-1];
 						let post_older=posts[i+1];
-						
-						post._blog_post_newer=post_newer && post_newer._filename+"/";
-						post._blog_post_older=post_older && post_older._filename+"/";
+						let fixlnk=function(s){
+							if(!s) { return s }
+							if(!s.endsWith(".html")) { s+="/" }
+							return s
+						}
+						post._blog_post_newer=post_newer && fixlnk(post_newer._filename);
+						post._blog_post_this =post       && fixlnk(post._filename);
+						post._blog_post_older=post_older && fixlnk(post_older._filename);
 					}
 	// write individual blog posts and cache the merged chunks for paged output
 					for(let idx=0;idx<posts.length;idx++) { let post=posts[idx];
@@ -517,7 +522,7 @@ Tweak all the base chunks grouped by dir name and pre cascaded/merged
 							{
 								it.tags=chunks._blog_post_json.tags
 							}
-							it.url=plated.chunks.replace( plated.chunks.delimiter_wrap_str( "_dirname" ) , chunks )+"/"
+							it.url=plated.chunks.replace( plated.chunks.delimiter_wrap_str( "_blog_post_this" ) , chunks )
 							it.id=it.url // id and url can be the same
 							it.content_html=plated.chunks.replace( plated.chunks.delimiter_wrap_str( "_body" ) , chunks )
 							it.date_published=(new Date(chunks._blog_post_json.unixtime*1000)).toISOString()
@@ -614,7 +619,7 @@ Tweak a single file of chunks, only chunks found in this file will be available.
 			{
 				let s=chunk.datetime || chunks._filename;
 				
-				let dd=[1970,1,0,0,0,0]; // the beginning of time
+				let dd=[1970,1,1,0,0,0]; // the beginning of time
 				if(typeof(s)=="string") // convert from string to array
 				{
 					let a=s.split(/[^0-9]+/); 
