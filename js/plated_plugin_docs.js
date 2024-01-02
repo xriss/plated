@@ -129,7 +129,6 @@ Tweak all the base chunks grouped by dir name and pre cascaded/merged
 									url=fix+url.substring(pre.length)
 								}
 							}
-console.log(fname)
 							var s=await plated.pfs.readFile(fname,'utf8').catch(e=>{})
 							if(s)
 							{

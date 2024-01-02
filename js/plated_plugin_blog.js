@@ -187,9 +187,14 @@ Tweak all the base chunks grouped by dir name and pre cascaded/merged
 				for(let _i in files){ let filename=files[_i]
 					let aa=path.basename(filename).split(".")
 					let basename=aa[0]
-					let extension=aa[aa.length-1]
-					extension=extension.toLowerCase()
-					if( aa.length<2 ) { extension="" }
+					let htmlname=filename+".html"
+					let extension=""
+					if( aa.length>=2 )
+					{
+						extension=aa[aa.length-1].toLowerCase()
+						aa[aa.length-1]="html"
+						htmlname=aa.join(".")
+					}
 					// check basename is year-month-day
 					let idx=0;
 					let dd=[1970,1,0,0,0,0]; // the beginning of time
@@ -235,11 +240,13 @@ Tweak all the base chunks grouped by dir name and pre cascaded/merged
 						let micro=micros[blogname][basename]
 						if(!micro.files) { micro.files={} } // extension map of files
 						if(!micro.files[extension]) { micro.files[extension]=[] }
+						micro.htmlname=path.join( chunks._sourcename , htmlname )
 						micro.files[extension].push(filename)
 						micro.datetime=dd
 						micro.unixtime=Date.UTC(dd[0],dd[1]-1,dd[2],dd[3],dd[4],dd[5])/1000;
 						micro.datedash=("0000" + dd[0]).substr(-4,4)+"-"+("00" + dd[1]).substr(-2,2)+"-"+("00" + dd[2]).substr(-2,2);
 						micro.timecolon=("00" + dd[3]).substr(-2,2)+":"+("00" + dd[4]).substr(-2,2)+":"+("00" + dd[5]).substr(-2,2);
+						micro.title="micro"
 					}
 				}
 			}
@@ -272,6 +279,36 @@ Tweak all the base chunks grouped by dir name and pre cascaded/merged
 				micro = micros[blogname][microname]
 				console.log(timestr()+" BLOG "+blogname+" MICRO "+microname)
 //				console.log(micro)
+				let ablog=blogs[blogname];
+				let chunks={"_flags":{}}
+				chunks._flags._blog_post_body={"form":"markdown"}
+  				plated.files.set_source(chunks, micro.htmlname )
+				chunks._blog_post_json=micro
+
+				chunks._blog_post_body=""
+				for( let i in micro.files["md"] || [] )
+				{
+					let fname=micro.files["md"][i]
+					let pname=plated.files.joinpath(opts.source,fname)
+					let s=await plated.pfs.readFile( pname ,'utf8').catch(e=>{})
+					if( s )
+					{
+						chunks._blog_post_body += "\n"+s 
+					}
+				}
+				for( let x in micro.files || {} )
+				{
+					for( let i in micro.files[x] || [] )
+					{
+						if(x!="md")
+						{
+							let fname=micro.files[x][i]
+							chunks._blog_post_body += "\n<a href=\"{_root}"+fname+"\">"+fname+"</a>\n"
+						}
+					}
+				}
+				chunks._blog_post_body=plated.chunks.markdown(chunks._blog_post_body) // convert markdown
+				blogs[blogname].push(chunks)
 			}
 		}
 		
@@ -364,8 +401,11 @@ Tweak all the base chunks grouped by dir name and pre cascaded/merged
 					for(let idx=0;idx<posts.length;idx++) { let post=posts[idx];
 						
 
-						let fname=plated.files.filename_to_dirname(post._sourcename)+"/index.html"
-	//					let output_filename = plated.files.joinpath( opts.output , plated.files.filename_to_output(fname) );
+						let fname=post._sourcename
+						if( ! fname.endsWith(".html") )
+						{
+							fname=plated.files.filename_to_dirname(post._sourcename)+"/index.html"
+						}
 						let chunks={};
 						
 						plated.files.set_source(chunks,fname)
@@ -373,6 +413,8 @@ Tweak all the base chunks grouped by dir name and pre cascaded/merged
 						chunks.body=plated.chunks.delimiter_wrap_str("_blog_post_body_one");
 
 						plated.files.prepare_namespace(fname); // prepare merged namespace
+						plated.chunks.push_namespace(post) // with main blog
+						
 						let merged_chunks=plated.chunks.merge_namespace(chunks);
 
 						merged_chunks._output_filename=plated.files.filename_to_output(fname)
@@ -466,7 +508,7 @@ Tweak all the base chunks grouped by dir name and pre cascaded/merged
 							
 							let it={};
 							
-							it.title=chunks._blog_post_json.title
+							it.title=chunks._blog_post_json.title || ""
 							if(chunks._blog_post_json.author)
 							{
 								it.author={name:chunks._blog_post_json.author}
