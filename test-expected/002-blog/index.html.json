@@ -14,7 +14,7 @@
      },
      "_blog_page_body": "\n<div>some blog posts</div>\n{_list:blog_list}\n<div> {_blog_page_older:link_older_page||} {_blog_page_newer:link_newer_page||} </div>\n\n",
      "_blog_post_body": "<h2 id=\"title\">{title}</h2>\n<p>The title is {title} and this is an example blog post number 5.\n<br/>\n<br/></p>\n",
-     "_blog_post_body_many": "\n<a href=\"{_dirname}/\">link</a>\n{_blog_post_body}\n\n",
+     "_blog_post_body_many": "\n<a href=\"{_blog_post_this}\">link</a>\n{_blog_post_body}\n\n",
      "_blog_post_body_one": "\n{_blog_post_body}\n<div> {_blog_post_older:link_older_post||} {_blog_post_newer:link_newer_post||} </div>\nSome comments belong here\n\n",
      "_blog_post_json": {
       "datedash": "2016-12-27",
@@ -29,10 +29,12 @@
       "tags": [
        "odd"
       ],
+      "timecolon": "00:00:00",
       "title": "This is test post 5",
       "unixtime": 1482796800
      },
      "_blog_post_older": "{_root}002-blog/2016-12-25-this-is-a-test-post-3/",
+     "_blog_post_this": "{_root}002-blog/2016-12-27-this-is-a-test-post-5/",
      "_body": "\n<a href=\"{_root}002-blog/2016-12-27-this-is-a-test-post-5/\">link</a>\n<h2 id=\"title\">This is test post 5</h2>\n<p>The title is This is test post 5 and this is an example blog post number 5.\n<br/>\n<br/></p>\n\n\n",
      "_dirname": "{_root}002-blog/2016-12-27-this-is-a-test-post-5",
      "_filename": "{_root}002-blog/2016-12-27-this-is-a-test-post-5/index.html",
@@ -68,7 +70,7 @@
      },
      "_blog_page_body": "\n<div>some blog posts</div>\n{_list:blog_list}\n<div> {_blog_page_older:link_older_page||} {_blog_page_newer:link_newer_page||} </div>\n\n",
      "_blog_post_body": "<h2 id=\"title\">{title}</h2>\n<p>The title is {title} and this is an example blog post number 3.\n<br/>\n<br/></p>\n",
-     "_blog_post_body_many": "\n<a href=\"{_dirname}/\">link</a>\n{_blog_post_body}\n\n",
+     "_blog_post_body_many": "\n<a href=\"{_blog_post_this}\">link</a>\n{_blog_post_body}\n\n",
      "_blog_post_body_one": "\n{_blog_post_body}\n<div> {_blog_post_older:link_older_post||} {_blog_post_newer:link_newer_post||} </div>\nSome comments belong here\n\n",
      "_blog_post_json": {
       "datedash": "2016-12-25",
@@ -83,11 +85,13 @@
       "tags": [
        "odd"
       ],
+      "timecolon": "00:00:00",
       "title": "This is test post 3",
       "unixtime": 1482624000
      },
      "_blog_post_newer": "{_root}002-blog/2016-12-27-this-is-a-test-post-5/",
      "_blog_post_older": "{_root}002-blog/2016-12-23-this-is-a-test-post-1/",
+     "_blog_post_this": "{_root}002-blog/2016-12-25-this-is-a-test-post-3/",
      "_body": "\n<a href=\"{_root}002-blog/2016-12-25-this-is-a-test-post-3/\">link</a>\n<h2 id=\"title\">This is test post 3</h2>\n<p>The title is This is test post 3 and this is an example blog post number 3.\n<br/>\n<br/></p>\n\n\n",
      "_dirname": "{_root}002-blog/2016-12-25-this-is-a-test-post-3",
      "_filename": "{_root}002-blog/2016-12-25-this-is-a-test-post-3/index.html",
@@ -122,26 +126,34 @@
     "url": "http://feed.blog.com/"
    },
    "_blog_page_body": "\n<div>some blog posts</div>\n{_list:blog_list}\n<div> {_blog_page_older:link_older_page||} {_blog_page_newer:link_newer_page||} </div>\n\n",
-   "_blog_post_body": "<h2 id=\"title\">{title}</h2>\n<p>The title is {title} and this is an example blog post number 6.\n<br/>\n<br/></p>\n",
-   "_blog_post_body_many": "\n<a href=\"{_dirname}/\">link</a>\n{_blog_post_body}\n\n",
+   "_blog_post_body": "<p>Actually it was a deconstructed watch.</p>\n",
+   "_blog_post_body_many": "\n<a href=\"{_blog_post_this}\">link</a>\n{_blog_post_body}\n\n",
    "_blog_post_body_one": "\n{_blog_post_body}\n<div> {_blog_post_older:link_older_post||} {_blog_post_newer:link_newer_post||} </div>\nSome comments belong here\n\n",
    "_blog_post_json": {
-    "datedash": "2016-12-28",
+    "datedash": "2023-12-30",
     "datetime": [
-     2016,
+     2023,
      12,
-     28,
-     0,
-     0,
+     30,
+     23,
+     40,
      0
     ],
-    "title": "This is test post 6",
-    "unixtime": 1482883200
+    "files": {
+     "md": [
+      "002-blog/micro-2023/2023-12-30-2340.md"
+     ]
+    },
+    "htmlname": "002-blog/micro-2023/2023-12-30-2340.html",
+    "timecolon": "23:40:00",
+    "title": "micro",
+    "unixtime": 1703979600
    },
-   "_blog_post_older": "{_root}002-blog/2016-12-27-this-is-a-test-post-5/",
-   "_body": "\n<a href=\"{_root}002-blog/2016-12-28-this-is-a-test-post-6/\">link</a>\n<h2 id=\"title\">This is test post 6</h2>\n<p>The title is This is test post 6 and this is an example blog post number 6.\n<br/>\n<br/></p>\n\n\n",
-   "_dirname": "{_root}002-blog/2016-12-28-this-is-a-test-post-6",
-   "_filename": "{_root}002-blog/2016-12-28-this-is-a-test-post-6/index.html",
+   "_blog_post_older": "{_root}002-blog/micro-2023/2023-12-30-2335.html",
+   "_blog_post_this": "{_root}002-blog/micro-2023/2023-12-30-2340.html",
+   "_body": "\n<a href=\"{_root}002-blog/micro-2023/2023-12-30-2340.html\">link</a>\n<p>Actually it was a deconstructed watch.</p>\n\n\n",
+   "_dirname": "{_root}002-blog/micro-2023",
+   "_filename": "{_root}002-blog/micro-2023/2023-12-30-2340.html",
    "_flags": {
     "_blog_post_body": {
      "form": "markdown"
@@ -152,7 +164,7 @@
    },
    "_root": "../../",
    "_site": "{_root}",
-   "_sourcename": "002-blog/2016-12-28-this-is-a-test-post-6/index.html",
+   "_sourcename": "002-blog/micro-2023/2023-12-30-2340.html",
    "blog_list": "\n<div>item head</div>\n{_it._body}\n<div>item tail</div>\n\n",
    "body": "{_blog_post_body_one}",
    "html": "\n<html>\n\t<head>\n\t\t<title>{title}</title>\n\t</head>\n\t<body>{body}</body>\n</html>\n\n",
@@ -160,7 +172,7 @@
    "link_newer_post": "\n<a href=\"{_it}\">newer post</a>\n",
    "link_older_page": "\n<a href=\"{_it}\">older posts</a>\n\n",
    "link_older_post": "\n<a href=\"{_it}\">older post</a>\n\n",
-   "title": "{_blog_post_json.title}"
+   "title": "Welcome to blog!"
   },
   {
    "_blog_export": [
@@ -176,7 +188,7 @@
      },
      "_blog_page_body": "\n<div>some blog posts</div>\n{_list:blog_list}\n<div> {_blog_page_older:link_older_page||} {_blog_page_newer:link_newer_page||} </div>\n\n",
      "_blog_post_body": "<h2 id=\"title\">{title}</h2>\n<p>The title is {title} and this is an example blog post number 5.\n<br/>\n<br/></p>\n",
-     "_blog_post_body_many": "\n<a href=\"{_dirname}/\">link</a>\n{_blog_post_body}\n\n",
+     "_blog_post_body_many": "\n<a href=\"{_blog_post_this}\">link</a>\n{_blog_post_body}\n\n",
      "_blog_post_body_one": "\n{_blog_post_body}\n<div> {_blog_post_older:link_older_post||} {_blog_post_newer:link_newer_post||} </div>\nSome comments belong here\n\n",
      "_blog_post_json": {
       "datedash": "2016-12-27",
@@ -191,10 +203,12 @@
       "tags": [
        "odd"
       ],
+      "timecolon": "00:00:00",
       "title": "This is test post 5",
       "unixtime": 1482796800
      },
      "_blog_post_older": "{_root}002-blog/2016-12-25-this-is-a-test-post-3/",
+     "_blog_post_this": "{_root}002-blog/2016-12-27-this-is-a-test-post-5/",
      "_body": "\n<a href=\"{_root}002-blog/2016-12-27-this-is-a-test-post-5/\">link</a>\n<h2 id=\"title\">This is test post 5</h2>\n<p>The title is This is test post 5 and this is an example blog post number 5.\n<br/>\n<br/></p>\n\n\n",
      "_dirname": "{_root}002-blog/2016-12-27-this-is-a-test-post-5",
      "_filename": "{_root}002-blog/2016-12-27-this-is-a-test-post-5/index.html",
@@ -230,7 +244,7 @@
      },
      "_blog_page_body": "\n<div>some blog posts</div>\n{_list:blog_list}\n<div> {_blog_page_older:link_older_page||} {_blog_page_newer:link_newer_page||} </div>\n\n",
      "_blog_post_body": "<h2 id=\"title\">{title}</h2>\n<p>The title is {title} and this is an example blog post number 3.\n<br/>\n<br/></p>\n",
-     "_blog_post_body_many": "\n<a href=\"{_dirname}/\">link</a>\n{_blog_post_body}\n\n",
+     "_blog_post_body_many": "\n<a href=\"{_blog_post_this}\">link</a>\n{_blog_post_body}\n\n",
      "_blog_post_body_one": "\n{_blog_post_body}\n<div> {_blog_post_older:link_older_post||} {_blog_post_newer:link_newer_post||} </div>\nSome comments belong here\n\n",
      "_blog_post_json": {
       "datedash": "2016-12-25",
@@ -245,11 +259,13 @@
       "tags": [
        "odd"
       ],
+      "timecolon": "00:00:00",
       "title": "This is test post 3",
       "unixtime": 1482624000
      },
      "_blog_post_newer": "{_root}002-blog/2016-12-27-this-is-a-test-post-5/",
      "_blog_post_older": "{_root}002-blog/2016-12-23-this-is-a-test-post-1/",
+     "_blog_post_this": "{_root}002-blog/2016-12-25-this-is-a-test-post-3/",
      "_body": "\n<a href=\"{_root}002-blog/2016-12-25-this-is-a-test-post-3/\">link</a>\n<h2 id=\"title\">This is test post 3</h2>\n<p>The title is This is test post 3 and this is an example blog post number 3.\n<br/>\n<br/></p>\n\n\n",
      "_dirname": "{_root}002-blog/2016-12-25-this-is-a-test-post-3",
      "_filename": "{_root}002-blog/2016-12-25-this-is-a-test-post-3/index.html",
@@ -284,30 +300,35 @@
     "url": "http://feed.blog.com/"
    },
    "_blog_page_body": "\n<div>some blog posts</div>\n{_list:blog_list}\n<div> {_blog_page_older:link_older_page||} {_blog_page_newer:link_newer_page||} </div>\n\n",
-   "_blog_post_body": "<h2 id=\"title\">{title}</h2>\n<p>The title is {title} and this is an example blog post number 5.\n<br/>\n<br/></p>\n",
-   "_blog_post_body_many": "\n<a href=\"{_dirname}/\">link</a>\n{_blog_post_body}\n\n",
+   "_blog_post_body": "<p><a href=\"{_root}002-blog/micro-2023/2023-12-30-2335.jpg\">002-blog/micro-2023/2023-12-30-2335.jpg</a></p>\n",
+   "_blog_post_body_many": "\n<a href=\"{_blog_post_this}\">link</a>\n{_blog_post_body}\n\n",
    "_blog_post_body_one": "\n{_blog_post_body}\n<div> {_blog_post_older:link_older_post||} {_blog_post_newer:link_newer_post||} </div>\nSome comments belong here\n\n",
    "_blog_post_json": {
-    "datedash": "2016-12-27",
+    "datedash": "2023-12-30",
     "datetime": [
-     2016,
+     2023,
      12,
-     27,
-     0,
-     0,
+     30,
+     23,
+     35,
      0
     ],
-    "tags": [
-     "odd"
-    ],
-    "title": "This is test post 5",
-    "unixtime": 1482796800
+    "files": {
+     "jpg": [
+      "002-blog/micro-2023/2023-12-30-2335.jpg"
+     ]
+    },
+    "htmlname": "002-blog/micro-2023/2023-12-30-2335.html",
+    "timecolon": "23:35:00",
+    "title": "micro",
+    "unixtime": 1703979300
    },
-   "_blog_post_newer": "{_root}002-blog/2016-12-28-this-is-a-test-post-6/",
-   "_blog_post_older": "{_root}002-blog/2016-12-26-this-is-a-test-post-4/",
-   "_body": "\n<a href=\"{_root}002-blog/2016-12-27-this-is-a-test-post-5/\">link</a>\n<h2 id=\"title\">This is test post 5</h2>\n<p>The title is This is test post 5 and this is an example blog post number 5.\n<br/>\n<br/></p>\n\n\n",
-   "_dirname": "{_root}002-blog/2016-12-27-this-is-a-test-post-5",
-   "_filename": "{_root}002-blog/2016-12-27-this-is-a-test-post-5/index.html",
+   "_blog_post_newer": "{_root}002-blog/micro-2023/2023-12-30-2340.html",
+   "_blog_post_older": "{_root}002-blog/micro-2023/2023-12-30-2331.html",
+   "_blog_post_this": "{_root}002-blog/micro-2023/2023-12-30-2335.html",
+   "_body": "\n<a href=\"{_root}002-blog/micro-2023/2023-12-30-2335.html\">link</a>\n<p><a href=\"{_root}002-blog/micro-2023/2023-12-30-2335.jpg\">002-blog/micro-2023/2023-12-30-2335.jpg</a></p>\n\n\n",
+   "_dirname": "{_root}002-blog/micro-2023",
+   "_filename": "{_root}002-blog/micro-2023/2023-12-30-2335.html",
    "_flags": {
     "_blog_post_body": {
      "form": "markdown"
@@ -318,7 +339,7 @@
    },
    "_root": "../../",
    "_site": "{_root}",
-   "_sourcename": "002-blog/2016-12-27-this-is-a-test-post-5/index.html",
+   "_sourcename": "002-blog/micro-2023/2023-12-30-2335.html",
    "blog_list": "\n<div>item head</div>\n{_it._body}\n<div>item tail</div>\n\n",
    "body": "{_blog_post_body_one}",
    "html": "\n<html>\n\t<head>\n\t\t<title>{title}</title>\n\t</head>\n\t<body>{body}</body>\n</html>\n\n",
@@ -326,7 +347,7 @@
    "link_newer_post": "\n<a href=\"{_it}\">newer post</a>\n",
    "link_older_page": "\n<a href=\"{_it}\">older posts</a>\n\n",
    "link_older_post": "\n<a href=\"{_it}\">older post</a>\n\n",
-   "title": "{_blog_post_json.title}"
+   "title": "Welcome to blog!"
   }
  ],
  "_blog_json": {
@@ -340,7 +361,7 @@
  },
  "_blog_page_body": "\n<div>some blog posts</div>\n{_list:blog_list}\n<div> {_blog_page_older:link_older_page||} {_blog_page_newer:link_newer_page||} </div>\n\n",
  "_blog_page_older": "{_root}002-blog/page2.html",
- "_blog_post_body_many": "\n<a href=\"{_dirname}/\">link</a>\n{_blog_post_body}\n\n",
+ "_blog_post_body_many": "\n<a href=\"{_blog_post_this}\">link</a>\n{_blog_post_body}\n\n",
  "_blog_post_body_one": "\n{_blog_post_body}\n<div> {_blog_post_older:link_older_post||} {_blog_post_newer:link_newer_post||} </div>\nSome comments belong here\n\n",
  "_dirname": "{_root}002-blog",
  "_filename": "{_root}002-blog/index.html",
@@ -364,7 +385,7 @@
      },
      "_blog_page_body": "\n<div>some blog posts</div>\n{_list:blog_list}\n<div> {_blog_page_older:link_older_page||} {_blog_page_newer:link_newer_page||} </div>\n\n",
      "_blog_post_body": "<h2 id=\"title\">{title}</h2>\n<p>The title is {title} and this is an example blog post number 5.\n<br/>\n<br/></p>\n",
-     "_blog_post_body_many": "\n<a href=\"{_dirname}/\">link</a>\n{_blog_post_body}\n\n",
+     "_blog_post_body_many": "\n<a href=\"{_blog_post_this}\">link</a>\n{_blog_post_body}\n\n",
      "_blog_post_body_one": "\n{_blog_post_body}\n<div> {_blog_post_older:link_older_post||} {_blog_post_newer:link_newer_post||} </div>\nSome comments belong here\n\n",
      "_blog_post_json": {
       "datedash": "2016-12-27",
@@ -379,10 +400,12 @@
       "tags": [
        "odd"
       ],
+      "timecolon": "00:00:00",
       "title": "This is test post 5",
       "unixtime": 1482796800
      },
      "_blog_post_older": "{_root}002-blog/2016-12-25-this-is-a-test-post-3/",
+     "_blog_post_this": "{_root}002-blog/2016-12-27-this-is-a-test-post-5/",
      "_body": "\n<a href=\"{_root}002-blog/2016-12-27-this-is-a-test-post-5/\">link</a>\n<h2 id=\"title\">This is test post 5</h2>\n<p>The title is This is test post 5 and this is an example blog post number 5.\n<br/>\n<br/></p>\n\n\n",
      "_dirname": "{_root}002-blog/2016-12-27-this-is-a-test-post-5",
      "_filename": "{_root}002-blog/2016-12-27-this-is-a-test-post-5/index.html",
@@ -418,7 +441,7 @@
      },
      "_blog_page_body": "\n<div>some blog posts</div>\n{_list:blog_list}\n<div> {_blog_page_older:link_older_page||} {_blog_page_newer:link_newer_page||} </div>\n\n",
      "_blog_post_body": "<h2 id=\"title\">{title}</h2>\n<p>The title is {title} and this is an example blog post number 3.\n<br/>\n<br/></p>\n",
-     "_blog_post_body_many": "\n<a href=\"{_dirname}/\">link</a>\n{_blog_post_body}\n\n",
+     "_blog_post_body_many": "\n<a href=\"{_blog_post_this}\">link</a>\n{_blog_post_body}\n\n",
      "_blog_post_body_one": "\n{_blog_post_body}\n<div> {_blog_post_older:link_older_post||} {_blog_post_newer:link_newer_post||} </div>\nSome comments belong here\n\n",
      "_blog_post_json": {
       "datedash": "2016-12-25",
@@ -433,11 +456,13 @@
       "tags": [
        "odd"
       ],
+      "timecolon": "00:00:00",
       "title": "This is test post 3",
       "unixtime": 1482624000
      },
      "_blog_post_newer": "{_root}002-blog/2016-12-27-this-is-a-test-post-5/",
      "_blog_post_older": "{_root}002-blog/2016-12-23-this-is-a-test-post-1/",
+     "_blog_post_this": "{_root}002-blog/2016-12-25-this-is-a-test-post-3/",
      "_body": "\n<a href=\"{_root}002-blog/2016-12-25-this-is-a-test-post-3/\">link</a>\n<h2 id=\"title\">This is test post 3</h2>\n<p>The title is This is test post 3 and this is an example blog post number 3.\n<br/>\n<br/></p>\n\n\n",
      "_dirname": "{_root}002-blog/2016-12-25-this-is-a-test-post-3",
      "_filename": "{_root}002-blog/2016-12-25-this-is-a-test-post-3/index.html",
@@ -472,26 +497,34 @@
     "url": "http://feed.blog.com/"
    },
    "_blog_page_body": "\n<div>some blog posts</div>\n{_list:blog_list}\n<div> {_blog_page_older:link_older_page||} {_blog_page_newer:link_newer_page||} </div>\n\n",
-   "_blog_post_body": "<h2 id=\"title\">{title}</h2>\n<p>The title is {title} and this is an example blog post number 6.\n<br/>\n<br/></p>\n",
-   "_blog_post_body_many": "\n<a href=\"{_dirname}/\">link</a>\n{_blog_post_body}\n\n",
+   "_blog_post_body": "<p>Actually it was a deconstructed watch.</p>\n",
+   "_blog_post_body_many": "\n<a href=\"{_blog_post_this}\">link</a>\n{_blog_post_body}\n\n",
    "_blog_post_body_one": "\n{_blog_post_body}\n<div> {_blog_post_older:link_older_post||} {_blog_post_newer:link_newer_post||} </div>\nSome comments belong here\n\n",
    "_blog_post_json": {
-    "datedash": "2016-12-28",
+    "datedash": "2023-12-30",
     "datetime": [
-     2016,
+     2023,
      12,
-     28,
-     0,
-     0,
+     30,
+     23,
+     40,
      0
     ],
-    "title": "This is test post 6",
-    "unixtime": 1482883200
+    "files": {
+     "md": [
+      "002-blog/micro-2023/2023-12-30-2340.md"
+     ]
+    },
+    "htmlname": "002-blog/micro-2023/2023-12-30-2340.html",
+    "timecolon": "23:40:00",
+    "title": "micro",
+    "unixtime": 1703979600
    },
-   "_blog_post_older": "{_root}002-blog/2016-12-27-this-is-a-test-post-5/",
-   "_body": "\n<a href=\"{_root}002-blog/2016-12-28-this-is-a-test-post-6/\">link</a>\n<h2 id=\"title\">This is test post 6</h2>\n<p>The title is This is test post 6 and this is an example blog post number 6.\n<br/>\n<br/></p>\n\n\n",
-   "_dirname": "{_root}002-blog/2016-12-28-this-is-a-test-post-6",
-   "_filename": "{_root}002-blog/2016-12-28-this-is-a-test-post-6/index.html",
+   "_blog_post_older": "{_root}002-blog/micro-2023/2023-12-30-2335.html",
+   "_blog_post_this": "{_root}002-blog/micro-2023/2023-12-30-2340.html",
+   "_body": "\n<a href=\"{_root}002-blog/micro-2023/2023-12-30-2340.html\">link</a>\n<p>Actually it was a deconstructed watch.</p>\n\n\n",
+   "_dirname": "{_root}002-blog/micro-2023",
+   "_filename": "{_root}002-blog/micro-2023/2023-12-30-2340.html",
    "_flags": {
     "_blog_post_body": {
      "form": "markdown"
@@ -502,7 +535,7 @@
    },
    "_root": "../../",
    "_site": "{_root}",
-   "_sourcename": "002-blog/2016-12-28-this-is-a-test-post-6/index.html",
+   "_sourcename": "002-blog/micro-2023/2023-12-30-2340.html",
    "blog_list": "\n<div>item head</div>\n{_it._body}\n<div>item tail</div>\n\n",
    "body": "{_blog_post_body_one}",
    "html": "\n<html>\n\t<head>\n\t\t<title>{title}</title>\n\t</head>\n\t<body>{body}</body>\n</html>\n\n",
@@ -510,7 +543,7 @@
    "link_newer_post": "\n<a href=\"{_it}\">newer post</a>\n",
    "link_older_page": "\n<a href=\"{_it}\">older posts</a>\n\n",
    "link_older_post": "\n<a href=\"{_it}\">older post</a>\n\n",
-   "title": "{_blog_post_json.title}"
+   "title": "Welcome to blog!"
   },
   {
    "_blog_export": [
@@ -526,7 +559,7 @@
      },
      "_blog_page_body": "\n<div>some blog posts</div>\n{_list:blog_list}\n<div> {_blog_page_older:link_older_page||} {_blog_page_newer:link_newer_page||} </div>\n\n",
      "_blog_post_body": "<h2 id=\"title\">{title}</h2>\n<p>The title is {title} and this is an example blog post number 5.\n<br/>\n<br/></p>\n",
-     "_blog_post_body_many": "\n<a href=\"{_dirname}/\">link</a>\n{_blog_post_body}\n\n",
+     "_blog_post_body_many": "\n<a href=\"{_blog_post_this}\">link</a>\n{_blog_post_body}\n\n",
      "_blog_post_body_one": "\n{_blog_post_body}\n<div> {_blog_post_older:link_older_post||} {_blog_post_newer:link_newer_post||} </div>\nSome comments belong here\n\n",
      "_blog_post_json": {
       "datedash": "2016-12-27",
@@ -541,10 +574,12 @@
       "tags": [
        "odd"
       ],
+      "timecolon": "00:00:00",
       "title": "This is test post 5",
       "unixtime": 1482796800
      },
      "_blog_post_older": "{_root}002-blog/2016-12-25-this-is-a-test-post-3/",
+     "_blog_post_this": "{_root}002-blog/2016-12-27-this-is-a-test-post-5/",
      "_body": "\n<a href=\"{_root}002-blog/2016-12-27-this-is-a-test-post-5/\">link</a>\n<h2 id=\"title\">This is test post 5</h2>\n<p>The title is This is test post 5 and this is an example blog post number 5.\n<br/>\n<br/></p>\n\n\n",
      "_dirname": "{_root}002-blog/2016-12-27-this-is-a-test-post-5",
      "_filename": "{_root}002-blog/2016-12-27-this-is-a-test-post-5/index.html",
@@ -580,7 +615,7 @@
      },
      "_blog_page_body": "\n<div>some blog posts</div>\n{_list:blog_list}\n<div> {_blog_page_older:link_older_page||} {_blog_page_newer:link_newer_page||} </div>\n\n",
      "_blog_post_body": "<h2 id=\"title\">{title}</h2>\n<p>The title is {title} and this is an example blog post number 3.\n<br/>\n<br/></p>\n",
-     "_blog_post_body_many": "\n<a href=\"{_dirname}/\">link</a>\n{_blog_post_body}\n\n",
+     "_blog_post_body_many": "\n<a href=\"{_blog_post_this}\">link</a>\n{_blog_post_body}\n\n",
      "_blog_post_body_one": "\n{_blog_post_body}\n<div> {_blog_post_older:link_older_post||} {_blog_post_newer:link_newer_post||} </div>\nSome comments belong here\n\n",
      "_blog_post_json": {
       "datedash": "2016-12-25",
@@ -595,11 +630,13 @@
       "tags": [
        "odd"
       ],
+      "timecolon": "00:00:00",
       "title": "This is test post 3",
       "unixtime": 1482624000
      },
      "_blog_post_newer": "{_root}002-blog/2016-12-27-this-is-a-test-post-5/",
      "_blog_post_older": "{_root}002-blog/2016-12-23-this-is-a-test-post-1/",
+     "_blog_post_this": "{_root}002-blog/2016-12-25-this-is-a-test-post-3/",
      "_body": "\n<a href=\"{_root}002-blog/2016-12-25-this-is-a-test-post-3/\">link</a>\n<h2 id=\"title\">This is test post 3</h2>\n<p>The title is This is test post 3 and this is an example blog post number 3.\n<br/>\n<br/></p>\n\n\n",
      "_dirname": "{_root}002-blog/2016-12-25-this-is-a-test-post-3",
      "_filename": "{_root}002-blog/2016-12-25-this-is-a-test-post-3/index.html",
@@ -634,30 +671,35 @@
     "url": "http://feed.blog.com/"
    },
    "_blog_page_body": "\n<div>some blog posts</div>\n{_list:blog_list}\n<div> {_blog_page_older:link_older_page||} {_blog_page_newer:link_newer_page||} </div>\n\n",
-   "_blog_post_body": "<h2 id=\"title\">{title}</h2>\n<p>The title is {title} and this is an example blog post number 5.\n<br/>\n<br/></p>\n",
-   "_blog_post_body_many": "\n<a href=\"{_dirname}/\">link</a>\n{_blog_post_body}\n\n",
+   "_blog_post_body": "<p><a href=\"{_root}002-blog/micro-2023/2023-12-30-2335.jpg\">002-blog/micro-2023/2023-12-30-2335.jpg</a></p>\n",
+   "_blog_post_body_many": "\n<a href=\"{_blog_post_this}\">link</a>\n{_blog_post_body}\n\n",
    "_blog_post_body_one": "\n{_blog_post_body}\n<div> {_blog_post_older:link_older_post||} {_blog_post_newer:link_newer_post||} </div>\nSome comments belong here\n\n",
    "_blog_post_json": {
-    "datedash": "2016-12-27",
+    "datedash": "2023-12-30",
     "datetime": [
-     2016,
+     2023,
      12,
-     27,
-     0,
-     0,
+     30,
+     23,
+     35,
      0
     ],
-    "tags": [
-     "odd"
-    ],
-    "title": "This is test post 5",
-    "unixtime": 1482796800
+    "files": {
+     "jpg": [
+      "002-blog/micro-2023/2023-12-30-2335.jpg"
+     ]
+    },
+    "htmlname": "002-blog/micro-2023/2023-12-30-2335.html",
+    "timecolon": "23:35:00",
+    "title": "micro",
+    "unixtime": 1703979300
    },
-   "_blog_post_newer": "{_root}002-blog/2016-12-28-this-is-a-test-post-6/",
-   "_blog_post_older": "{_root}002-blog/2016-12-26-this-is-a-test-post-4/",
-   "_body": "\n<a href=\"{_root}002-blog/2016-12-27-this-is-a-test-post-5/\">link</a>\n<h2 id=\"title\">This is test post 5</h2>\n<p>The title is This is test post 5 and this is an example blog post number 5.\n<br/>\n<br/></p>\n\n\n",
-   "_dirname": "{_root}002-blog/2016-12-27-this-is-a-test-post-5",
-   "_filename": "{_root}002-blog/2016-12-27-this-is-a-test-post-5/index.html",
+   "_blog_post_newer": "{_root}002-blog/micro-2023/2023-12-30-2340.html",
+   "_blog_post_older": "{_root}002-blog/micro-2023/2023-12-30-2331.html",
+   "_blog_post_this": "{_root}002-blog/micro-2023/2023-12-30-2335.html",
+   "_body": "\n<a href=\"{_root}002-blog/micro-2023/2023-12-30-2335.html\">link</a>\n<p><a href=\"{_root}002-blog/micro-2023/2023-12-30-2335.jpg\">002-blog/micro-2023/2023-12-30-2335.jpg</a></p>\n\n\n",
+   "_dirname": "{_root}002-blog/micro-2023",
+   "_filename": "{_root}002-blog/micro-2023/2023-12-30-2335.html",
    "_flags": {
     "_blog_post_body": {
      "form": "markdown"
@@ -668,7 +710,7 @@
    },
    "_root": "../../",
    "_site": "{_root}",
-   "_sourcename": "002-blog/2016-12-27-this-is-a-test-post-5/index.html",
+   "_sourcename": "002-blog/micro-2023/2023-12-30-2335.html",
    "blog_list": "\n<div>item head</div>\n{_it._body}\n<div>item tail</div>\n\n",
    "body": "{_blog_post_body_one}",
    "html": "\n<html>\n\t<head>\n\t\t<title>{title}</title>\n\t</head>\n\t<body>{body}</body>\n</html>\n\n",
@@ -676,7 +718,7 @@
    "link_newer_post": "\n<a href=\"{_it}\">newer post</a>\n",
    "link_older_page": "\n<a href=\"{_it}\">older posts</a>\n\n",
    "link_older_post": "\n<a href=\"{_it}\">older post</a>\n\n",
-   "title": "{_blog_post_json.title}"
+   "title": "Welcome to blog!"
   }
  ],
  "_output_chunkname": "html",

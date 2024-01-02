@@ -124,28 +124,33 @@
   "url": "http://feed.blog.com/"
  },
  "_blog_page_body": "\n<div>some blog posts</div>\n{_list:blog_list}\n<div> {_blog_page_older:link_older_page||} {_blog_page_newer:link_newer_page||} </div>\n\n",
- "_blog_post_body": "<h2 id=\"title\">{title}</h2>\n<p>The title is {title} and this is an example blog post number 4.\n<br/>\n<br/></p>\n",
+ "_blog_post_body": "<p>Actually it was a deconstructed watch.</p>\n",
  "_blog_post_body_many": "\n<a href=\"{_blog_post_this}\">link</a>\n{_blog_post_body}\n\n",
  "_blog_post_body_one": "\n{_blog_post_body}\n<div> {_blog_post_older:link_older_post||} {_blog_post_newer:link_newer_post||} </div>\nSome comments belong here\n\n",
  "_blog_post_json": {
-  "datedash": "2016-12-26",
+  "datedash": "2023-12-30",
   "datetime": [
-   2016,
+   2023,
    12,
-   26,
-   0,
-   0,
+   30,
+   23,
+   40,
    0
   ],
-  "timecolon": "00:00:00",
-  "title": "This is test post 4",
-  "unixtime": 1482710400
+  "files": {
+   "md": [
+    "002-blog/micro-2023/2023-12-30-2340.md"
+   ]
+  },
+  "htmlname": "002-blog/micro-2023/2023-12-30-2340.html",
+  "timecolon": "23:40:00",
+  "title": "micro",
+  "unixtime": 1703979600
  },
- "_blog_post_newer": "{_root}002-blog/2016-12-27-this-is-a-test-post-5/",
- "_blog_post_older": "{_root}002-blog/2016-12-25-this-is-a-test-post-3/",
- "_blog_post_this": "{_root}002-blog/2016-12-26-this-is-a-test-post-4/",
- "_dirname": "{_root}002-blog/2016-12-26-this-is-a-test-post-4",
- "_filename": "{_root}002-blog/2016-12-26-this-is-a-test-post-4/index.html",
+ "_blog_post_older": "{_root}002-blog/micro-2023/2023-12-30-2335.html",
+ "_blog_post_this": "{_root}002-blog/micro-2023/2023-12-30-2340.html",
+ "_dirname": "{_root}002-blog/micro-2023",
+ "_filename": "{_root}002-blog/micro-2023/2023-12-30-2340.html",
  "_flags": {
   "_blog_post_body": {
    "form": "markdown"
@@ -155,10 +160,10 @@
   }
  },
  "_output_chunkname": "html",
- "_output_filename": "002-blog/2016-12-26-this-is-a-test-post-4/index.html",
+ "_output_filename": "002-blog/micro-2023/2023-12-30-2340.html",
  "_root": "../../",
  "_site": "{_root}",
- "_sourcename": "002-blog/2016-12-26-this-is-a-test-post-4/index.html",
+ "_sourcename": "002-blog/micro-2023/2023-12-30-2340.html",
  "blog_list": "\n<div>item head</div>\n{_it._body}\n<div>item tail</div>\n\n",
  "body": "{_blog_post_body_one}",
  "html": "\n<html>\n\t<head>\n\t\t<title>{title}</title>\n\t</head>\n\t<body>{body}</body>\n</html>\n\n",
@@ -166,5 +171,5 @@
  "link_newer_post": "\n<a href=\"{_it}\">newer post</a>\n",
  "link_older_page": "\n<a href=\"{_it}\">older posts</a>\n\n",
  "link_older_post": "\n<a href=\"{_it}\">older post</a>\n\n",
- "title": "{_blog_post_json.title}"
+ "title": "Welcome to blog!"
 }
