@@ -240,6 +240,7 @@ Tweak all the base chunks grouped by dir name and pre cascaded/merged
 						let micro=micros[blogname][basename]
 						if(!micro.files) { micro.files={} } // extension map of files
 						if(!micro.files[extension]) { micro.files[extension]=[] }
+						micro.tags=["micro"]
 						micro.htmlname=path.join( chunks._sourcename , htmlname )
 						micro.files[extension].push(filename)
 						micro.datetime=dd

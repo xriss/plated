@@ -19,6 +19,7 @@
 
 ]]></content>
     <link rel="alternate" href="http://feed.blog.com/002-blog/micro-2023/2023-12-30-2340.html"/>
+    <category term="micro"/>
   </entry>
   <entry>
     <id>http://feed.blog.com/002-blog/micro-2023/2023-12-30-2335.html</id>
@@ -32,6 +33,7 @@
 
 ]]></content>
     <link rel="alternate" href="http://feed.blog.com/002-blog/micro-2023/2023-12-30-2335.html"/>
+    <category term="micro"/>
   </entry>
   <entry>
     <id>http://feed.blog.com/002-blog/micro-2023/2023-12-30-2331.html</id>
@@ -45,6 +47,7 @@
 
 ]]></content>
     <link rel="alternate" href="http://feed.blog.com/002-blog/micro-2023/2023-12-30-2331.html"/>
+    <category term="micro"/>
   </entry>
   <entry>
     <id>http://feed.blog.com/002-blog/micro-2023/2023-12-30-2330.html</id>
@@ -53,11 +56,12 @@
     <published>2023-12-30T23:30:00.000Z</published>
     <content type="html"><![CDATA[
 <a href="http://feed.blog.com/002-blog/micro-2023/2023-12-30-2330.html">link</a>
-<p>I had pancakes for super. They tasted of egg.</p>
+<p>I had pancakes for supper. They tasted of egg.</p>
 
 
 ]]></content>
     <link rel="alternate" href="http://feed.blog.com/002-blog/micro-2023/2023-12-30-2330.html"/>
+    <category term="micro"/>
   </entry>
   <entry>
     <id>http://feed.blog.com/002-blog/2016-12-28-this-is-a-test-post-6/</id>
