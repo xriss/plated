@@ -305,7 +305,7 @@
       "url": "http://feed.blog.com/"
      },
      "_blog_page_body": "\n<div>some blog posts</div>\n{_list:blog_list}\n<div> {_blog_page_older:link_older_page||} {_blog_page_newer:link_newer_page||} </div>\n\n",
-     "_blog_post_body": "<p><a href=\"{_root}002-blog/micro-2023/2023-12-30-2335.jpg\">002-blog/micro-2023/2023-12-30-2335.jpg</a></p>\n",
+     "_blog_post_body": "<p><img src=\"{_root}002-blog/micro-2023/2023-12-30-2335.jpg\"></img></p>\n",
      "_blog_post_body_many": "\n<a href=\"{_blog_post_this}\">link</a>\n{_blog_post_body}\n\n",
      "_blog_post_body_one": "\n{_blog_post_body}\n<div> {_blog_post_older:link_older_post||} {_blog_post_newer:link_newer_post||} </div>\nSome comments belong here\n\n",
      "_blog_post_json": {
@@ -334,7 +334,7 @@
      "_blog_post_newer": "{_root}002-blog/micro-2023/2023-12-30-2340.html",
      "_blog_post_older": "{_root}002-blog/micro-2023/2023-12-30-2331.html",
      "_blog_post_this": "{_root}002-blog/micro-2023/2023-12-30-2335.html",
-     "_body": "\n<a href=\"{_root}002-blog/micro-2023/2023-12-30-2335.html\">link</a>\n<p><a href=\"{_root}002-blog/micro-2023/2023-12-30-2335.jpg\">002-blog/micro-2023/2023-12-30-2335.jpg</a></p>\n\n\n",
+     "_body": "\n<a href=\"{_root}002-blog/micro-2023/2023-12-30-2335.html\">link</a>\n<p><img src=\"{_root}002-blog/micro-2023/2023-12-30-2335.jpg\"></img></p>\n\n\n",
      "_dirname": "{_root}002-blog/micro-2023",
      "_filename": "{_root}002-blog/micro-2023/2023-12-30-2335.html",
      "_flags": {
@@ -724,7 +724,7 @@
       "url": "http://feed.blog.com/"
      },
      "_blog_page_body": "\n<div>some blog posts</div>\n{_list:blog_list}\n<div> {_blog_page_older:link_older_page||} {_blog_page_newer:link_newer_page||} </div>\n\n",
-     "_blog_post_body": "<p><a href=\"{_root}002-blog/micro-2023/2023-12-30-2335.jpg\">002-blog/micro-2023/2023-12-30-2335.jpg</a></p>\n",
+     "_blog_post_body": "<p><img src=\"{_root}002-blog/micro-2023/2023-12-30-2335.jpg\"></img></p>\n",
      "_blog_post_body_many": "\n<a href=\"{_blog_post_this}\">link</a>\n{_blog_post_body}\n\n",
      "_blog_post_body_one": "\n{_blog_post_body}\n<div> {_blog_post_older:link_older_post||} {_blog_post_newer:link_newer_post||} </div>\nSome comments belong here\n\n",
      "_blog_post_json": {
@@ -753,7 +753,7 @@
      "_blog_post_newer": "{_root}002-blog/micro-2023/2023-12-30-2340.html",
      "_blog_post_older": "{_root}002-blog/micro-2023/2023-12-30-2331.html",
      "_blog_post_this": "{_root}002-blog/micro-2023/2023-12-30-2335.html",
-     "_body": "\n<a href=\"{_root}002-blog/micro-2023/2023-12-30-2335.html\">link</a>\n<p><a href=\"{_root}002-blog/micro-2023/2023-12-30-2335.jpg\">002-blog/micro-2023/2023-12-30-2335.jpg</a></p>\n\n\n",
+     "_body": "\n<a href=\"{_root}002-blog/micro-2023/2023-12-30-2335.html\">link</a>\n<p><img src=\"{_root}002-blog/micro-2023/2023-12-30-2335.jpg\"></img></p>\n\n\n",
      "_dirname": "{_root}002-blog/micro-2023",
      "_filename": "{_root}002-blog/micro-2023/2023-12-30-2335.html",
      "_flags": {
@@ -787,7 +787,7 @@
     "url": "http://feed.blog.com/"
    },
    "_blog_page_body": "\n<div>some blog posts</div>\n{_list:blog_list}\n<div> {_blog_page_older:link_older_page||} {_blog_page_newer:link_newer_page||} </div>\n\n",
-   "_blog_post_body": "<p><a href=\"{_root}002-blog/micro-2023/2023-12-30-2335.jpg\">002-blog/micro-2023/2023-12-30-2335.jpg</a></p>\n",
+   "_blog_post_body": "<p><img src=\"{_root}002-blog/micro-2023/2023-12-30-2335.jpg\"></img></p>\n",
    "_blog_post_body_many": "\n<a href=\"{_blog_post_this}\">link</a>\n{_blog_post_body}\n\n",
    "_blog_post_body_one": "\n{_blog_post_body}\n<div> {_blog_post_older:link_older_post||} {_blog_post_newer:link_newer_post||} </div>\nSome comments belong here\n\n",
    "_blog_post_json": {
@@ -816,7 +816,7 @@
    "_blog_post_newer": "{_root}002-blog/micro-2023/2023-12-30-2340.html",
    "_blog_post_older": "{_root}002-blog/micro-2023/2023-12-30-2331.html",
    "_blog_post_this": "{_root}002-blog/micro-2023/2023-12-30-2335.html",
-   "_body": "\n<a href=\"{_root}002-blog/micro-2023/2023-12-30-2335.html\">link</a>\n<p><a href=\"{_root}002-blog/micro-2023/2023-12-30-2335.jpg\">002-blog/micro-2023/2023-12-30-2335.jpg</a></p>\n\n\n",
+   "_body": "\n<a href=\"{_root}002-blog/micro-2023/2023-12-30-2335.html\">link</a>\n<p><img src=\"{_root}002-blog/micro-2023/2023-12-30-2335.jpg\"></img></p>\n\n\n",
    "_dirname": "{_root}002-blog/micro-2023",
    "_filename": "{_root}002-blog/micro-2023/2023-12-30-2335.html",
    "_flags": {
@@ -1166,7 +1166,7 @@
       "url": "http://feed.blog.com/"
      },
      "_blog_page_body": "\n<div>some blog posts</div>\n{_list:blog_list}\n<div> {_blog_page_older:link_older_page||} {_blog_page_newer:link_newer_page||} </div>\n\n",
-     "_blog_post_body": "<p><a href=\"{_root}002-blog/micro-2023/2023-12-30-2335.jpg\">002-blog/micro-2023/2023-12-30-2335.jpg</a></p>\n",
+     "_blog_post_body": "<p><img src=\"{_root}002-blog/micro-2023/2023-12-30-2335.jpg\"></img></p>\n",
      "_blog_post_body_many": "\n<a href=\"{_blog_post_this}\">link</a>\n{_blog_post_body}\n\n",
      "_blog_post_body_one": "\n{_blog_post_body}\n<div> {_blog_post_older:link_older_post||} {_blog_post_newer:link_newer_post||} </div>\nSome comments belong here\n\n",
      "_blog_post_json": {
@@ -1195,7 +1195,7 @@
      "_blog_post_newer": "{_root}002-blog/micro-2023/2023-12-30-2340.html",
      "_blog_post_older": "{_root}002-blog/micro-2023/2023-12-30-2331.html",
      "_blog_post_this": "{_root}002-blog/micro-2023/2023-12-30-2335.html",
-     "_body": "\n<a href=\"{_root}002-blog/micro-2023/2023-12-30-2335.html\">link</a>\n<p><a href=\"{_root}002-blog/micro-2023/2023-12-30-2335.jpg\">002-blog/micro-2023/2023-12-30-2335.jpg</a></p>\n\n\n",
+     "_body": "\n<a href=\"{_root}002-blog/micro-2023/2023-12-30-2335.html\">link</a>\n<p><img src=\"{_root}002-blog/micro-2023/2023-12-30-2335.jpg\"></img></p>\n\n\n",
      "_dirname": "{_root}002-blog/micro-2023",
      "_filename": "{_root}002-blog/micro-2023/2023-12-30-2335.html",
      "_flags": {
@@ -1577,7 +1577,7 @@
       "url": "http://feed.blog.com/"
      },
      "_blog_page_body": "\n<div>some blog posts</div>\n{_list:blog_list}\n<div> {_blog_page_older:link_older_page||} {_blog_page_newer:link_newer_page||} </div>\n\n",
-     "_blog_post_body": "<p><a href=\"{_root}002-blog/micro-2023/2023-12-30-2335.jpg\">002-blog/micro-2023/2023-12-30-2335.jpg</a></p>\n",
+     "_blog_post_body": "<p><img src=\"{_root}002-blog/micro-2023/2023-12-30-2335.jpg\"></img></p>\n",
      "_blog_post_body_many": "\n<a href=\"{_blog_post_this}\">link</a>\n{_blog_post_body}\n\n",
      "_blog_post_body_one": "\n{_blog_post_body}\n<div> {_blog_post_older:link_older_post||} {_blog_post_newer:link_newer_post||} </div>\nSome comments belong here\n\n",
      "_blog_post_json": {
@@ -1606,7 +1606,7 @@
      "_blog_post_newer": "{_root}002-blog/micro-2023/2023-12-30-2340.html",
      "_blog_post_older": "{_root}002-blog/micro-2023/2023-12-30-2331.html",
      "_blog_post_this": "{_root}002-blog/micro-2023/2023-12-30-2335.html",
-     "_body": "\n<a href=\"{_root}002-blog/micro-2023/2023-12-30-2335.html\">link</a>\n<p><a href=\"{_root}002-blog/micro-2023/2023-12-30-2335.jpg\">002-blog/micro-2023/2023-12-30-2335.jpg</a></p>\n\n\n",
+     "_body": "\n<a href=\"{_root}002-blog/micro-2023/2023-12-30-2335.html\">link</a>\n<p><img src=\"{_root}002-blog/micro-2023/2023-12-30-2335.jpg\"></img></p>\n\n\n",
      "_dirname": "{_root}002-blog/micro-2023",
      "_filename": "{_root}002-blog/micro-2023/2023-12-30-2335.html",
      "_flags": {

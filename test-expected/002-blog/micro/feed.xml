@@ -28,7 +28,7 @@
     <published>2023-12-30T23:35:00.000Z</published>
     <content type="html"><![CDATA[
 <a href="http://feed.blog.com/002-blog/micro-2023/2023-12-30-2335.html">link</a>
-<p><a href="http://feed.blog.com/002-blog/micro-2023/2023-12-30-2335.jpg">002-blog/micro-2023/2023-12-30-2335.jpg</a></p>
+<p><img src="http://feed.blog.com/002-blog/micro-2023/2023-12-30-2335.jpg"></img></p>
 
 
 ]]></content>

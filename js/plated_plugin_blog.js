@@ -273,6 +273,10 @@ Tweak all the base chunks grouped by dir name and pre cascaded/merged
 			}
 		}
 		
+		let isimage={ gif:true, png:true, jpg:true, jpeg:true, webp:true, }
+		let isvideo={ avi:true, webm:true, }
+		let isaudio={ mp3:true, ogg:true, }
+		
 		for( let blogname in micros )
 		{
 			for( let microname in micros[blogname] )
@@ -301,10 +305,27 @@ Tweak all the base chunks grouped by dir name and pre cascaded/merged
 				{
 					for( let i in micro.files[x] || [] )
 					{
+						let fname=micro.files[x][i]
 						if(x!="md")
 						{
-							let fname=micro.files[x][i]
-							chunks._blog_post_body += "\n<a href=\"{_root}"+fname+"\">"+fname+"</a>\n"
+							if( isimage[x] )
+							{
+								chunks._blog_post_body += "\n<img src=\"{_root}"+fname+"\"></img>\n"
+							}
+							else
+							if( isvideo[x] )
+							{
+								chunks._blog_post_body += "\n<video><source controls src=\"{_root}"+fname+"\"/></video>\n"
+							}
+							else
+							if( isaudio[x] )
+							{
+								chunks._blog_post_body += "\n<audio controls src=\"{_root}"+fname+"\"></audio>\n"
+							}
+							else
+							{
+								chunks._blog_post_body += "\n<a href=\"{_root}"+fname+"\">"+fname+"</a>\n"
+							}
 						}
 					}
 				}
