@@ -25,10 +25,12 @@
      0,
      0
     ],
+    "timecolon": "00:00:00",
     "title": "More relative than relative",
     "unixtime": 1513036800
    },
    "_blog_post_older": "{_root}blog/2017-01-09-fixing-whilst-using/",
+   "_blog_post_this": "{_root}blog/2017-12-12-more-relative-than-relative/",
    "_body": "<div class=\"blog_wrap\">\n\t<div class=\"blog_info\"><a href=\"{_root}blog/2017-12-12-more-relative-than-relative\">More relative than relative</a> by xix on 2017-12-12</div>\n\t<h2 id=\"_blog_post_jsontitle\">More relative than relative</h2>\n<p>Having attempted to use plated under <a href=\"https://git-for-windows.github.io/\">https://git-for-windows.github.io/</a> \nwhich is currently my goto way of dealing with linuxy stuff on windows. \nI hit a little problem.</p>\n<p>It seems mingw, the thing that runs bash that makes git for windows \nviable gets a little bit carried away when you pass paths starting with \n/ into a command. Or set an environment variable, yeah tried that one.</p>\n<p><a href=\"http://www.mingw.org/wiki/Posix_path_conversion\">http://www.mingw.org/wiki/Posix_path_conversion</a></p>\n<p>It tends to replace / with wherever msys was installed to, probably a \nhorrible path on yout c:\\ drive somewhere.</p>\n<p>This is a bit of a problem if you are passing in a url to a static \nwebsite builder. The current setup ended up replacing all the urls with \nlinks to my C: drive which is a tad inconvenient.</p>\n<p>So I over solved it, a bit of messing around and it is now setup where \nif you do not provide a root for the site then we work it out as a \nrelative path. So for instance if you are a couple of directories down \nthen it would set the _root to ../../ which gets you there from the \ncurrent page. This allows us to include js files or css files from the \nroot using a relative path.</p>\n<p>This works both for site that are built to the root of a domain and \ngithub style sites that get placed inside a sub directory. This can \nstill be replaced with a --root=/whatever/ on the commandline but that \nwont work too well on the windows, but then again, what does?</p>\n\n</div>\n",
    "_dirname": "{_root}blog/2017-12-12-more-relative-than-relative",
    "_filename": "{_root}blog/2017-12-12-more-relative-than-relative/index.html",
@@ -94,11 +96,13 @@
      0,
      0
     ],
+    "timecolon": "00:00:00",
     "title": "Fixing whilst using",
     "unixtime": 1483920000
    },
    "_blog_post_newer": "{_root}blog/2017-12-12-more-relative-than-relative/",
    "_blog_post_older": "{_root}blog/2017-01-01-happy-new-year/",
+   "_blog_post_this": "{_root}blog/2017-01-09-fixing-whilst-using/",
    "_body": "<div class=\"blog_wrap\">\n\t<div class=\"blog_info\"><a href=\"{_root}blog/2017-01-09-fixing-whilst-using\">Fixing whilst using</a> by shi on 2017-01-09</div>\n\t<h2 id=\"_blog_post_jsontitle\">Fixing whilst using</h2>\n<p>Let&#39;s just call this a very mild alpha version of the plated^ system.\nI&#39;ve been using it for under an hour, trying to break things (which it\ndid within the first 10 minutes) but things are moving along and we&#39;re\nalready seeing places to fix and move around.</p>\n<p>So far, this is rather a lot different from the previous iterations, ie.\nPagecake and Bootstrapp, but the changes are improvements suited to fit\nthe needs of all those years of use and this can only be a good thing.</p>\n\n</div>\n",
    "_dirname": "{_root}blog/2017-01-09-fixing-whilst-using",
    "_filename": "{_root}blog/2017-01-09-fixing-whilst-using/index.html",
@@ -164,10 +168,12 @@
      0,
      0
     ],
+    "timecolon": "00:00:00",
     "title": "Happy new year!",
     "unixtime": 1483228800
    },
    "_blog_post_newer": "{_root}blog/2017-01-09-fixing-whilst-using/",
+   "_blog_post_this": "{_root}blog/2017-01-01-happy-new-year/",
    "_body": "<div class=\"blog_wrap\">\n\t<div class=\"blog_info\"><a href=\"{_root}blog/2017-01-01-happy-new-year\">Happy new year!</a> by xix on 2017-01-01</div>\n\t<h2 id=\"_blog_post_jsontitle\">Happy new year!</h2>\n<p>This is the first blog post to test that the blogging system for plated \nis setup and functioning. It was written on the morning of the first \nday of 2017.</p>\n<p>So far we have cascading chunk system setup and working along with a \nsimple plugin management which contains a blog plugin for doing blog type \nthings. Organising a bunch of posts by time and displaying multiple \nposts on index pages.</p>\n<p>I&#39;m not bothering to break the blog system down even further into a \nlist system, I figure that should just be a separate thing and should \nbe built to deal with needs rather than trying to be ultra generic.</p>\n<p>As it is I think we have enough bits working now that this can replace \nthe static site generation in d-portal, which is where this JavaScript \ncode came from originally. Will have to do some tests and see how it \nall goes.</p>\n<p>Right now we are also available on NPM but probably a good idea to wait \na little while for things to settle down as everything is still in a \nstate of flux design wise as I try and take the design lessons from the \nold code and attempt to unify it into something simple.</p>\n\n</div>\n",
    "_dirname": "{_root}blog/2017-01-01-happy-new-year",
    "_filename": "{_root}blog/2017-01-01-happy-new-year/index.html",
@@ -233,10 +239,12 @@
    0,
    0
   ],
+  "timecolon": "00:00:00",
   "title": "More relative than relative",
   "unixtime": 1513036800
  },
  "_blog_post_older": "{_root}blog/2017-01-09-fixing-whilst-using/",
+ "_blog_post_this": "{_root}blog/2017-12-12-more-relative-than-relative/",
  "_dirname": "{_root}blog/2017-12-12-more-relative-than-relative",
  "_filename": "{_root}blog/2017-12-12-more-relative-than-relative",
  "_flags": {

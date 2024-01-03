@@ -23,10 +23,12 @@
    0,
    0
   ],
+  "timecolon": "00:00:00",
   "title": "More relative than relative",
   "unixtime": 1513036800
  },
  "_blog_post_older": "{_root}blog/2017-01-09-fixing-whilst-using/",
+ "_blog_post_this": "{_root}blog/2017-12-12-more-relative-than-relative/",
  "_dirname": "{_root}blog/2017-12-12-more-relative-than-relative",
  "_filename": "{_root}blog/2017-12-12-more-relative-than-relative/index.html",
  "_flags": {

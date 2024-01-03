@@ -23,11 +23,13 @@
    0,
    0
   ],
+  "timecolon": "00:00:00",
   "title": "Fixing whilst using",
   "unixtime": 1483920000
  },
  "_blog_post_newer": "{_root}blog/2017-12-12-more-relative-than-relative/",
  "_blog_post_older": "{_root}blog/2017-01-01-happy-new-year/",
+ "_blog_post_this": "{_root}blog/2017-01-09-fixing-whilst-using/",
  "_dirname": "{_root}blog/2017-01-09-fixing-whilst-using",
  "_filename": "{_root}blog/2017-01-09-fixing-whilst-using/index.html",
  "_flags": {

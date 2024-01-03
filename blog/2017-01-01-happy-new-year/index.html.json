@@ -23,10 +23,12 @@
    0,
    0
   ],
+  "timecolon": "00:00:00",
   "title": "Happy new year!",
   "unixtime": 1483228800
  },
  "_blog_post_newer": "{_root}blog/2017-01-09-fixing-whilst-using/",
+ "_blog_post_this": "{_root}blog/2017-01-01-happy-new-year/",
  "_dirname": "{_root}blog/2017-01-01-happy-new-year",
  "_filename": "{_root}blog/2017-01-01-happy-new-year/index.html",
  "_flags": {
