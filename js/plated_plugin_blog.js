@@ -97,8 +97,6 @@ let JSON5=require('json5');
 let JSON_stringify = require('json-stable-stringify');
 let jsonfeedToAtom = require('jsonfeed-to-atom')
 
-let html_to_text = require('html-to-text').convert
-
 
 
 let ls=function(a) { console.log(util.inspect(a,{depth:null})); }
