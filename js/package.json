@@ -12,7 +12,7 @@
   },
   "main": "./plated.js",
   "bin": {
-    "plated": "./cmd.js"
+    "plated": "cmd.js"
   },
   "dependencies": {
     "json-stable-stringify": "^1.0.1",
