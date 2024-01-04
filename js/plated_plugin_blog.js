@@ -97,6 +97,9 @@ let JSON5=require('json5');
 let JSON_stringify = require('json-stable-stringify');
 let jsonfeedToAtom = require('jsonfeed-to-atom')
 
+let html_to_text = require('html-to-text').convert
+
+
 
 let ls=function(a) { console.log(util.inspect(a,{depth:null})); }
 
@@ -247,7 +250,7 @@ Tweak all the base chunks grouped by dir name and pre cascaded/merged
 						micro.unixtime=Date.UTC(dd[0],dd[1]-1,dd[2],dd[3],dd[4],dd[5])/1000;
 						micro.datedash=("0000" + dd[0]).substr(-4,4)+"-"+("00" + dd[1]).substr(-2,2)+"-"+("00" + dd[2]).substr(-2,2);
 						micro.timecolon=("00" + dd[3]).substr(-2,2)+":"+("00" + dd[4]).substr(-2,2)+":"+("00" + dd[5]).substr(-2,2);
-						micro.title="micro"
+//						micro.title="micro"
 					}
 				}
 			}
@@ -274,15 +277,15 @@ Tweak all the base chunks grouped by dir name and pre cascaded/merged
 		}
 		
 		let isimage={ gif:true, png:true, jpg:true, jpeg:true, webp:true, }
-		let isvideo={ avi:true, webm:true, }
-		let isaudio={ mp3:true, ogg:true, }
+		let isvideo={ avi:true, webm:true, mp4:true, mkv:true, }
+		let isaudio={ mp3:true, ogg:true, wav:true, }
 		
 		for( let blogname in micros )
 		{
 			for( let microname in micros[blogname] )
 			{
 				micro = micros[blogname][microname]
-				console.log(timestr()+" BLOG "+blogname+" MICRO "+microname)
+//				console.log(timestr()+" BLOG "+blogname+" MICRO "+microname)
 //				console.log(micro)
 				let ablog=blogs[blogname];
 				let chunks={"_flags":{}}
@@ -301,6 +304,7 @@ Tweak all the base chunks grouped by dir name and pre cascaded/merged
 						chunks._blog_post_body += "\n"+s 
 					}
 				}
+//				micro.title=(chunks._blog_post_body.split("\n").join(" "))
 				for( let x in micro.files || {} )
 				{
 					for( let i in micro.files[x] || [] )
@@ -315,7 +319,7 @@ Tweak all the base chunks grouped by dir name and pre cascaded/merged
 							else
 							if( isvideo[x] )
 							{
-								chunks._blog_post_body += "\n<video><source controls src=\"{_root}"+fname+"\"/></video>\n"
+								chunks._blog_post_body += "\n<video controls autoplay muted><source src=\"{_root}"+fname+"\"/></video>\n"
 							}
 							else
 							if( isaudio[x] )
@@ -483,7 +487,7 @@ Tweak all the base chunks grouped by dir name and pre cascaded/merged
 						}
 						if(postidx==0) // export the first page of posts to global visibility
 						{
-							blog[0]._blog_export=list
+//							blog[0]._blog_export=list
 						}
 
 						let fname=pagename
