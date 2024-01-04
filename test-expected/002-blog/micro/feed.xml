@@ -9,7 +9,7 @@
   <generator uri="https://github.com/bcomnes/jsonfeed-to-atom#readme" version="1.2.2">jsonfeed-to-atom</generator>
   <entry>
     <id>http://feed.blog.com/002-blog/micro-2023/2023-12-30-2340.html</id>
-    <title>micro</title>
+    <title/>
     <updated>2023-12-30T23:40:00.000Z</updated>
     <published>2023-12-30T23:40:00.000Z</published>
     <content type="html"><![CDATA[
@@ -23,7 +23,7 @@
   </entry>
   <entry>
     <id>http://feed.blog.com/002-blog/micro-2023/2023-12-30-2335.html</id>
-    <title>micro</title>
+    <title/>
     <updated>2023-12-30T23:35:00.000Z</updated>
     <published>2023-12-30T23:35:00.000Z</published>
     <content type="html"><![CDATA[
@@ -37,7 +37,7 @@
   </entry>
   <entry>
     <id>http://feed.blog.com/002-blog/micro-2023/2023-12-30-2331.html</id>
-    <title>micro</title>
+    <title/>
     <updated>2023-12-30T23:31:00.000Z</updated>
     <published>2023-12-30T23:31:00.000Z</published>
     <content type="html"><![CDATA[
@@ -51,7 +51,7 @@
   </entry>
   <entry>
     <id>http://feed.blog.com/002-blog/micro-2023/2023-12-30-2330.html</id>
-    <title>micro</title>
+    <title/>
     <updated>2023-12-30T23:30:00.000Z</updated>
     <published>2023-12-30T23:30:00.000Z</published>
     <content type="html"><![CDATA[
