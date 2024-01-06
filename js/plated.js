@@ -540,6 +540,43 @@ Type words here.
 		}
 
 	};
+/***************************************************************************
+--[[#js.plated.micro
+
+	plated.micro()
+
+Create a starting microblogpost with todays date-time in the main blog directory.
+
+Markdown text is taken from opts._[1] onwards IE the command line.
+
+]]*/
+	plated.micro=async function()
+	{
+		let blogtext=""
+		if( opts._ && opts._[1] )
+		{
+			for( let i=1 ; i<opts._.length ; i++ )
+			{
+				blogtext=blogtext+" "+opts._[i]
+			}
+		}
+		blogtext=blogtext.trim()+"\n"
+		
+		let d=new Date()
+		let dd=[ d.getFullYear() , d.getMonth()+1 , d.getDate() , d.getHours() , d.getMinutes() , d.getSeconds() ]
+
+		let unixtime=Date.UTC(dd[0],dd[1]-1,dd[2],dd[3],dd[4],dd[5])/1000
+		let dateyear=("0000" + dd[0]).substr(-4,4)
+		let datedash=("0000" + dd[0]).substr(-4,4)+"-"+("00" + dd[1]).substr(-2,2)+"-"+("00" + dd[2]).substr(-2,2)
+		let timedash=datedash+"-"+("00" + dd[3]).substr(-2,2)+("00" + dd[4]).substr(-2,2)+("00" + dd[5]).substr(-2,2)
+
+
+		let fname=plated.files.joinpath(opts.source,opts.blog,"micro-"+dateyear,timedash+".md")
+		await plated.files.write( fname, blogtext );
+
+		console.log( fname );
+
+	};
 
 // load default plugins
 

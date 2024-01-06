@@ -151,6 +151,12 @@ if( argv._[0]=="blog" )
 	var plated=require("./plated.js").create(argv);
 	return await plated.blog();
 }
+else
+if( argv._[0]=="micro" )
+{
+	var plated=require("./plated.js").create(argv);
+	return await plated.micro();
+}
 
 // help text
 console.log(
@@ -172,6 +178,10 @@ console.log(
 	"\n"+
 	"> plated blog this is the title of my blog post \n"+
 	"\tCreate an empty blogpost with todays date and the given title in the source blog directory.\n"+
+	"\t\t--blog=blog      -- choose the blog folder. \n"+
+	"\t\t...same options as build\n"+
+	"> plated micro I had buttered scones for tea. \n"+
+	"\tCreate a microblogpost with todays date-time and the given text as markdown content.\n"+
 	"\t\t--blog=blog      -- choose the blog folder. \n"+
 	"\t\t...same options as build\n"+
 	"\n"+
