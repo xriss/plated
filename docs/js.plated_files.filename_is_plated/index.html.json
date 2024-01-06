@@ -66,11 +66,11 @@
    "name": "html.plated_plugin.redirect"
   },
   {
-   "count": 75,
+   "count": 76,
    "name": "js"
   },
   {
-   "count": 6,
+   "count": 7,
    "name": "js.plated"
   },
   {
@@ -80,6 +80,10 @@
   {
    "count": 1,
    "name": "js.plated.build"
+  },
+  {
+   "count": 1,
+   "name": "js.plated.micro"
   },
   {
    "count": 1,
