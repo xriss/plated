@@ -216,8 +216,8 @@ Tweak all the base chunks grouped by dir name and pre cascaded/merged
 							if(idx>=3) // time is just one big final number
 							{
 								dd[idx+0]=parseInt(v.substr(0,2)) || 0	// hours
-								dd[idx+1]=parseInt(v.substr(2,4)) || 0	// minutes
-								dd[idx+2]=parseInt(v.substr(4,6)) || 0	// seconds
+								dd[idx+1]=parseInt(v.substr(2,2)) || 0	// minutes
+								dd[idx+2]=parseInt(v.substr(4,2)) || 0	// seconds
 								let ff=v.substr(7) // fractions of a second
 								dd[idx+2]+=(parseInt(ff) || 0 ) / 10**ff.length // fractions
 								break
