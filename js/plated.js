@@ -386,6 +386,7 @@ away if empty.
 
 //var fs = require('fs');
 var util=require('util');
+var path=require('path');
 
 
 var ls=function(a) { console.log(util.inspect(a,{depth:null})); }
@@ -574,7 +575,10 @@ Markdown text is taken from opts._[1] onwards IE the command line.
 		let fname=plated.files.joinpath(opts.source,opts.blog,"micro-"+dateyear,timedash+".md")
 		await plated.files.write( fname, blogtext );
 
-		console.log( fname );
+		console.log( path.resolve(fname) );
+
+		let iname=path.resolve(plated.files.joinpath(opts.source,opts.blog,"micro-"+dateyear,timedash+".jpg"))
+		console.log( "./create_bsky_post.py --handle $BSKY_HANDLE --password $BSKY_PASSWORD --image "+(iname)+" \""+(blogtext.trim()).replace(/(["'$`\\\n])/g,"\\$1")+"\"" );
 
 	};
 
