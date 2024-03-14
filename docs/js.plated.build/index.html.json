@@ -417,7 +417,7 @@
    "body": "<pre><code>plated.build()\n</code></pre>\n<p>Build all the output files from the inputs.</p>\n",
    "count": 1,
    "file": "../js/plated.js",
-   "line": 459,
+   "line": 460,
    "name": "js.plated.build",
    "url": "https://github.com/xriss/plated/blob/master/js/plated.js"
   }

@@ -417,7 +417,7 @@
    "body": "<pre><code>plated.watch()\n</code></pre>\n<p>Continuously build the output files from the inputs whenever one of the input files changes</p>\n",
    "count": 1,
    "file": "../js/plated.js",
-   "line": 472,
+   "line": 473,
    "name": "js.plated.watch",
    "url": "https://github.com/xriss/plated/blob/master/js/plated.js"
   }

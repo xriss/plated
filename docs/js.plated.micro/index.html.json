@@ -417,7 +417,7 @@
    "body": "<pre><code>plated.micro()\n</code></pre>\n<p>Create a starting microblogpost with todays date-time in the main blog directory.</p>\n<p>Markdown text is taken from opts._[1] onwards IE the command line.</p>\n",
    "count": 1,
    "file": "../js/plated.js",
-   "line": 544,
+   "line": 545,
    "name": "js.plated.micro",
    "url": "https://github.com/xriss/plated/blob/master/js/plated.js"
   }

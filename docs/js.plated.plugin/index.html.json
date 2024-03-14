@@ -417,7 +417,7 @@
    "body": "<pre><code>plated.plugin(it)\n</code></pre>\n<p>Register a plugin, each plugin can provide the following function hooks.</p>\n<pre><code>dirs = it.process_dirs( dirs )\n</code></pre>\n<p>Adjust the registered dirs data and return it.</p>\n<pre><code>file = it.process_file( file )\n</code></pre>\n<p>Adjust or react to the file data and return it.</p>\n<pre><code>it.process_output( chunks )\n</code></pre>\n<p>Adjust a files chunks prior to writing it out, or, output extra data \nassociated with these chunks.</p>\n",
    "count": 1,
    "file": "../js/plated.js",
-   "line": 431,
+   "line": 432,
    "name": "js.plated.plugin",
    "url": "https://github.com/xriss/plated/blob/master/js/plated.js"
   }
