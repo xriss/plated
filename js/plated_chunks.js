@@ -249,7 +249,7 @@ into a html string.
 	plated_chunks.format_chunks=function(chunks)
 	{
 		// apply flags to the formatting
-		for( n in chunks )
+		for( var n in chunks )
 		{
 			var flags=chunks._flags && chunks._flags[n] || {};
 			
