@@ -157,6 +157,12 @@ if( argv._[0]=="micro" )
 	var plated=require("./plated.js").create(argv);
 	return await plated.micro();
 }
+else
+if( argv._[0]=="readme" )
+{
+	var readme=require("./readme.js").create(argv);
+	return await readme.build();
+}
 
 // help text
 console.log(
@@ -180,10 +186,14 @@ console.log(
 	"\tCreate an empty blogpost with todays date and the given title in the source blog directory.\n"+
 	"\t\t--blog=blog      -- choose the blog folder. \n"+
 	"\t\t...same options as build\n"+
+	"\n"+
 	"> plated micro I had buttered scones for tea. \n"+
 	"\tCreate a microblogpost with todays date-time and the given text as markdown content.\n"+
 	"\t\t--blog=blog      -- choose the blog folder. \n"+
 	"\t\t...same options as build\n"+
+	"\n"+
+	"> plated readme dir1 dir2 dir3 ...etc \n"+
+	"\tScan the given dirs recursivly and update each readme.md with all auto comments we can find.\n"+
 	"\n"+
 "");
 
