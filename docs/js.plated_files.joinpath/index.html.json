@@ -417,7 +417,7 @@
    "body": "<pre><code>await plated_files.joinpath(...)\n</code></pre>\n<p>join components into a full path.</p>\n",
    "count": 1,
    "file": "../js/plated_files.js",
-   "line": 79,
+   "line": 81,
    "name": "js.plated_files.joinpath",
    "url": "https://github.com/xriss/plated/blob/master/js/plated_files.js"
   }

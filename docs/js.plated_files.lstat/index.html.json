@@ -417,7 +417,7 @@
    "body": "<pre><code>await plated_files.lstat(path)\n</code></pre>\n<p>Return the lstat of this path</p>\n",
    "count": 1,
    "file": "../js/plated_files.js",
-   "line": 126,
+   "line": 128,
    "name": "js.plated_files.lstat",
    "url": "https://github.com/xriss/plated/blob/master/js/plated_files.js"
   }

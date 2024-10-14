@@ -417,7 +417,7 @@
    "body": "<pre><code>plated_files.empty_cache()\n</code></pre>\n<p>Empty the current file cache, we fill it up as read files.</p>\n",
    "count": 1,
    "file": "../js/plated_files.js",
-   "line": 466,
+   "line": 468,
    "name": "js.plated_files.empty_cache",
    "url": "https://github.com/xriss/plated/blob/master/js/plated_files.js"
   }

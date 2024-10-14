@@ -417,7 +417,7 @@
    "body": "<pre><code>chunks = await plated_files.base_files_to_chunks(fname)\n</code></pre>\n<p>Check this directory and all directories above for generic chunks build \nall of these into the current chunk namespace for this file.</p>\n",
    "count": 1,
    "file": "../js/plated_files.js",
-   "line": 533,
+   "line": 535,
    "name": "js.plated_files.base_files_to_chunks",
    "url": "https://github.com/xriss/plated/blob/master/js/plated_files.js"
   }

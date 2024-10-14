@@ -417,7 +417,7 @@
    "body": "<pre><code>plated_files.build()\n</code></pre>\n<p>Build all files found in the source dir into the output dir.</p>\n",
    "count": 1,
    "file": "../js/plated_files.js",
-   "line": 614,
+   "line": 616,
    "name": "js.plated_files.build",
    "url": "https://github.com/xriss/plated/blob/master/js/plated_files.js"
   }

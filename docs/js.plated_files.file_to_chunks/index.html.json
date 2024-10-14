@@ -417,7 +417,7 @@
    "body": "<pre><code>chunks = plated_files.file_to_chunks(root,fname,chunks)\n</code></pre>\n<p>Load root/fname or get it from the cache and then turn it into chunks \nusing plated_chunks.fill_chunks(date,chunks) chunks is returned.</p>\n",
    "count": 1,
    "file": "../js/plated_files.js",
-   "line": 479,
+   "line": 481,
    "name": "js.plated_files.file_to_chunks",
    "url": "https://github.com/xriss/plated/blob/master/js/plated_files.js"
   }

@@ -417,7 +417,7 @@
    "body": "<pre><code>bool = plated_files.filename_is_basechunk(filename)\n</code></pre>\n<p>Is this filename part of the basechunks for a dir?</p>\n<p>A base chunk is something like ^.html or ^.css all of these files get \nmerged into the base chunks for the directory they are found in. Their \nextension is ignored and just to help syntax highlighting when the file \nis viewed.</p>\n",
    "count": 1,
    "file": "../js/plated_files.js",
-   "line": 307,
+   "line": 309,
    "name": "js.plated_files.filename_is_basechunk",
    "url": "https://github.com/xriss/plated/blob/master/js/plated_files.js"
   }

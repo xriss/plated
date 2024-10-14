@@ -417,7 +417,7 @@
    "body": "<pre><code>plated_files.watch()\n</code></pre>\n<p>Build all files found in the source dir into the output dir and then \nsit watching for changes to these files that would trigger rebuilds.</p>\n<p>This does not return, instead the user is expected to ctrl+c when \nfinished.</p>\n",
    "count": 1,
    "file": "../js/plated_files.js",
-   "line": 679,
+   "line": 681,
    "name": "js.plated_files.watch",
    "url": "https://github.com/xriss/plated/blob/master/js/plated_files.js"
   }

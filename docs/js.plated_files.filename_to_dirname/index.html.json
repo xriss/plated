@@ -417,7 +417,7 @@
    "body": "<pre><code>dirname = plated_files.filename_to_dirname(filename)\n</code></pre>\n<p>Get the dirname of this filename.</p>\n",
    "count": 1,
    "file": "../js/plated_files.js",
-   "line": 280,
+   "line": 282,
    "name": "js.plated_files.filename_to_dirname",
    "url": "https://github.com/xriss/plated/blob/master/js/plated_files.js"
   }

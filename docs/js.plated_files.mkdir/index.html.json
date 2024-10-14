@@ -417,7 +417,7 @@
    "body": "<pre><code>plated_files.mkdir(dir)\n</code></pre>\n<p>Create the given dir and recursively create its parent dirs as well if \nnecessary.</p>\n",
    "count": 1,
    "file": "../js/plated_files.js",
-   "line": 155,
+   "line": 157,
    "name": "js.plated_files.mkdir",
    "url": "https://github.com/xriss/plated/blob/master/js/plated_files.js"
   }

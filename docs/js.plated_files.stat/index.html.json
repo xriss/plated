@@ -417,7 +417,7 @@
    "body": "<pre><code>await plated_files.stat(path)\n</code></pre>\n<p>Return the stat of this path</p>\n",
    "count": 1,
    "file": "../js/plated_files.js",
-   "line": 112,
+   "line": 114,
    "name": "js.plated_files.stat",
    "url": "https://github.com/xriss/plated/blob/master/js/plated_files.js"
   }
