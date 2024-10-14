@@ -19,7 +19,16 @@ exports.create=async function(opts,readme){
 	}
 	opts.head=opts.head||"--[[#"
 	opts.foot=opts.foot||"]]"
-	opts.split="\n# The following documentation extracted from other files in this directory.\n\n"
+	opts.split=`
+
+---
+			
+The following text is automatically extracted from other files in this 
+directory and should not be edited here.
+
+---
+
+`
 
 
 	readme.setup=async function(opts)
@@ -135,6 +144,7 @@ exports.create=async function(opts,readme){
 			if(names.length==0){continue} // nothing to add
 			
 			aa.push(opts.split)
+			
 			for(let name of names)
 			{
 				let s="\n\n\n## "+name+"\n\n"+chunks[name].join("\n")
