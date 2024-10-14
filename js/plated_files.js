@@ -53,6 +53,8 @@ exports.create=function(opts,plated){
 	var timestr=function(){ return new Date().toISOString().replace(/^.+T/, "").replace(/\..+/, ""); }
 
 	var plated_files={};
+	
+	plated_files.stat_isDirectory=stat_isDirectory
 
 /***************************************************************************
 --[[#js.plated_files.trimpath

@@ -160,7 +160,7 @@ if( argv._[0]=="micro" )
 else
 if( argv._[0]=="readme" )
 {
-	var readme=require("./readme.js").create(argv);
+	var readme=await require("./readme.js").create(argv)
 	return await readme.build();
 }
 
