@@ -85,12 +85,11 @@ directory and should not be edited here.
 		let dirs=[]
 		for(let dir of opts.dirs)
 		{
-			let readme=plated_files.joinpath(dir,"readme.md")
-			
-			if( await plated_files.exists(readme) )
-			{
+//			let readme=plated_files.joinpath(dir,"readme.md")
+//			if( await plated_files.exists(readme) )
+//			{
 				dirs.push(dir)
-			}
+//			}
 		}
 
 		for(let dir of dirs)
@@ -113,7 +112,7 @@ directory and should not be edited here.
 					if(line.startsWith(opts.head))
 					{
 						let name=line.substr( opts.head.length ).trim()
-						if( (/^[a-zA-Z_\-\.]+$/).test(name) ) // valid chunk name
+						if( (/^[0-9a-zA-Z_\-\.]+$/).test(name) ) // valid chunk name
 						{
 							chunk=[]
 							chunks[name]=chunk
@@ -135,6 +134,7 @@ directory and should not be edited here.
 
 			let readme=plated_files.joinpath(dir,"readme.md")
 			let d ; try{ d=await pfs.readFile(readme, "utf-8") }catch(e){}
+			d=d || ""
 			let aa=d.split(opts.split)
 			aa=[ aa[0] ]
 			
