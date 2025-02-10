@@ -414,7 +414,7 @@
  },
  "_list": [
   {
-   "body": "<pre><code>newchunks = plated_chunks.remove_underscorechunks(chunks)\n</code></pre>\n<p>Remove any chunks that begin with &quot;_&quot; these are all internal chunks \nused by plated code. The user should not be creating any chunks whose \nnames begin with an underscore. Also none of these chunks should ever \nbubble down through the heirachy, they belong only to the page in \nwhich they are created..</p>\n<p>A new object full of only chunks that do not begin with an underscore \nis returned.</p>\n",
+   "body": "<pre><code>newchunks = plated_chunks.remove_underscorechunks(chunks)\n</code></pre>\n<p>Remove any chunks that begin with &quot;_&quot; these are all internal chunks\nused by plated code. The user should not be creating any chunks whose\nnames begin with an underscore. Also none of these chunks should ever\nbubble down through the heirachy, they belong only to the page in\nwhich they are created..</p>\n<p>A new object full of only chunks that do not begin with an underscore\nis returned.</p>\n",
    "count": 1,
    "file": "../js/plated_chunks.js",
    "line": 383,

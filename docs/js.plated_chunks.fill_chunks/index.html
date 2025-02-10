@@ -120,25 +120,25 @@
 <div class="source"><a href="https://github.com/xriss/plated/blob/master/js/plated_chunks.js#L104">https://github.com/xriss/plated/blob/master/js/plated_chunks.js</a></div>
 <div><pre><code>chunks = plated_chunks.fill_chunks(str,chunks)
 </code></pre>
-<p>break a string into chunks ( can merged with or replace other chunks ) 
-so chunks can be a previously filled list of chunks that we will 
+<p>break a string into chunks ( can merged with or replace other chunks )
+so chunks can be a previously filled list of chunks that we will
 combine any chunks we find in the string with.</p>
-<p>A chunk is defined by a line that begins with #^ this has been chosen 
-so as not to be something that occurs by mistake in any language, but 
-can be altered either inside the chunk file or via the command line 
-opts. Note that any future reference is referring to this default and 
+<p>A chunk is defined by a line that begins with #^ this has been chosen
+so as not to be something that occurs by mistake in any language, but
+can be altered either inside the chunk file or via the command line
+opts. Note that any future reference is referring to this default and
 would work with any other string if this has been changed.</p>
-<p>A line that begins with #^=## would redefine this from one to the other 
-for the remainder of the file and can be changed globally by the option 
+<p>A line that begins with #^=## would redefine this from one to the other
+for the remainder of the file and can be changed globally by the option
 opt.hashchunk</p>
-<p>The first word after this would be the name of the chunk and can then 
-be followed by a number of optional flag arguments like flag=value we 
-store these flags in the chunks table using chunks._flags[name]=value 
-this includes trimming options and request for how chunks should be 
+<p>The first word after this would be the name of the chunk and can then
+be followed by a number of optional flag arguments like flag=value we
+store these flags in the chunks table using chunks._flags[name]=value
+this includes trimming options and request for how chunks should be
 merged.</p>
 <p>A comment begins with #^- and the rest of the line will be ignored.</p>
-<p>The flag same=append will cause future chunks of the same name to be 
-appended to this chunk rather than replace it. This is useful for CSS 
+<p>The flag same=append will cause future chunks of the same name to be
+appended to this chunk rather than replace it. This is useful for CSS
 chunks where we wish to bubble down css values into sub directories.</p>
 </div>
 </div>

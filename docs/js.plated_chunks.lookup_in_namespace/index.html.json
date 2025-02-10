@@ -414,7 +414,7 @@
  },
  "_list": [
   {
-   "body": "<pre><code>chunks = plated_chunks.lookup_in_namespace(str)\n</code></pre>\n<p>lookup the string inside all namespaces using the same rules as \nplated_chunks.lookup</p>\n",
+   "body": "<pre><code>chunks = plated_chunks.lookup_in_namespace(str)\n</code></pre>\n<p>lookup the string inside all namespaces using the same rules as\nplated_chunks.lookup</p>\n",
    "count": 1,
    "file": "../js/plated_chunks.js",
    "line": 496,

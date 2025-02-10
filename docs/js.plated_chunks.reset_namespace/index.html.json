@@ -414,7 +414,7 @@
  },
  "_list": [
   {
-   "body": "<pre><code>plated_chunks.reset_namespace()\n</code></pre>\n<p>clear the namespace, a namespace is a list of chunks that will be \nmerged together as we descend into directories. The lower or later \nchunks replacing or merging with the previous ones.</p>\n",
+   "body": "<pre><code>plated_chunks.reset_namespace()\n</code></pre>\n<p>clear the namespace, a namespace is a list of chunks that will be\nmerged together as we descend into directories. The lower or later\nchunks replacing or merging with the previous ones.</p>\n",
    "count": 1,
    "file": "../js/plated_chunks.js",
    "line": 324,

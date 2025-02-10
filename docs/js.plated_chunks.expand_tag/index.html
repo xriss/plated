@@ -120,17 +120,17 @@
 <div class="source"><a href="https://github.com/xriss/plated/blob/master/js/plated_chunks.js#L654">https://github.com/xriss/plated/blob/master/js/plated_chunks.js</a></div>
 <div><pre><code>value = plated_chunks.expand_tag(v,dat,lastpass)
 </code></pre>
-<p>Do all the magical things that enables a tag to expand, normally we 
+<p>Do all the magical things that enables a tag to expand, normally we
 just lookup the value inside dat but a few operators can be applied.</p>
-<p>if dat is null then we use data pushed into the namespaces otherwise we 
+<p>if dat is null then we use data pushed into the namespaces otherwise we
 will only use data available in dat.</p>
-<p>Operators are applied from left to right so we have no precedence 
+<p>Operators are applied from left to right so we have no precedence
 besides this.</p>
-<p>If we fail to lookup a valid value then we return input string wrapped 
-in delimiters, essentially any values we do not understand will come 
+<p>If we fail to lookup a valid value then we return input string wrapped
+in delimiters, essentially any values we do not understand will come
 out of the process unscathed  exactly as they went in.</p>
 <p>There must be no white space inside {} or we will not process it.</p>
-<p>This combined is why we can safely use {} rather than {{}} and any accidental 
+<p>This combined is why we can safely use {} rather than {{}} and any accidental
 use will survive.</p>
 </div>
 </div>

@@ -119,15 +119,15 @@
 <h1><a href="../../docs/js.plated_chunks">js.plated_chunks</a></h1>
 <div class="source"><a href="https://github.com/xriss/plated/blob/master/js/plated_chunks.js#L3">https://github.com/xriss/plated/blob/master/js/plated_chunks.js</a></div>
 <div><p>Manage the chunks of text that are combined into a page.</p>
-<p>This module only exposes one function, which is used to create 
+<p>This module only exposes one function, which is used to create
 the actual module with bound state data.</p>
 <pre><code>plated_chunks = require(&quot;./plated_chunks.js&quot;).create(opts,plated)
 </code></pre>
-<p>This is called automatically when the plated module is created and the 
-return value is made available in plated.chunks note that all of these 
+<p>This is called automatically when the plated module is created and the
+return value is made available in plated.chunks note that all of these
 modules are bound together and operate as a group with shared data.</p>
-<p>In the future when we talk about this module and its available 
-functions we are referring to the return value from this create 
+<p>In the future when we talk about this module and its available
+functions we are referring to the return value from this create
 function.</p>
 </div>
 </div>
@@ -137,12 +137,12 @@ function.</p>
 <div class="source"><a href="https://github.com/xriss/plated/blob/master/js/plated_chunks.js#L410">https://github.com/xriss/plated/blob/master/js/plated_chunks.js</a></div>
 <div><pre><code>too = plated_chunks.deepmerge(frm,too,_flags)
 </code></pre>
-<p>Merge the object, frm, into an object too. How values merge can be 
-adjusted by _flags the same way _flags works in parsing chunks. 
-same=merge is honoured here so some chunks can be appended rather than 
-replace. We need to keep this separate as the act of merging will break 
+<p>Merge the object, frm, into an object too. How values merge can be
+adjusted by _flags the same way _flags works in parsing chunks.
+same=merge is honoured here so some chunks can be appended rather than
+replace. We need to keep this separate as the act of merging will break
 how such things work.</p>
-<p>This function is called recursively so as not to end up sharing values 
+<p>This function is called recursively so as not to end up sharing values
 with any inputs.</p>
 </div>
 </div>
@@ -179,17 +179,17 @@ with any inputs.</p>
 <div class="source"><a href="https://github.com/xriss/plated/blob/master/js/plated_chunks.js#L654">https://github.com/xriss/plated/blob/master/js/plated_chunks.js</a></div>
 <div><pre><code>value = plated_chunks.expand_tag(v,dat,lastpass)
 </code></pre>
-<p>Do all the magical things that enables a tag to expand, normally we 
+<p>Do all the magical things that enables a tag to expand, normally we
 just lookup the value inside dat but a few operators can be applied.</p>
-<p>if dat is null then we use data pushed into the namespaces otherwise we 
+<p>if dat is null then we use data pushed into the namespaces otherwise we
 will only use data available in dat.</p>
-<p>Operators are applied from left to right so we have no precedence 
+<p>Operators are applied from left to right so we have no precedence
 besides this.</p>
-<p>If we fail to lookup a valid value then we return input string wrapped 
-in delimiters, essentially any values we do not understand will come 
+<p>If we fail to lookup a valid value then we return input string wrapped
+in delimiters, essentially any values we do not understand will come
 out of the process unscathed  exactly as they went in.</p>
 <p>There must be no white space inside {} or we will not process it.</p>
-<p>This combined is why we can safely use {} rather than {{}} and any accidental 
+<p>This combined is why we can safely use {} rather than {{}} and any accidental
 use will survive.</p>
 </div>
 </div>
@@ -199,25 +199,25 @@ use will survive.</p>
 <div class="source"><a href="https://github.com/xriss/plated/blob/master/js/plated_chunks.js#L104">https://github.com/xriss/plated/blob/master/js/plated_chunks.js</a></div>
 <div><pre><code>chunks = plated_chunks.fill_chunks(str,chunks)
 </code></pre>
-<p>break a string into chunks ( can merged with or replace other chunks ) 
-so chunks can be a previously filled list of chunks that we will 
+<p>break a string into chunks ( can merged with or replace other chunks )
+so chunks can be a previously filled list of chunks that we will
 combine any chunks we find in the string with.</p>
-<p>A chunk is defined by a line that begins with #^ this has been chosen 
-so as not to be something that occurs by mistake in any language, but 
-can be altered either inside the chunk file or via the command line 
-opts. Note that any future reference is referring to this default and 
+<p>A chunk is defined by a line that begins with #^ this has been chosen
+so as not to be something that occurs by mistake in any language, but
+can be altered either inside the chunk file or via the command line
+opts. Note that any future reference is referring to this default and
 would work with any other string if this has been changed.</p>
-<p>A line that begins with #^=## would redefine this from one to the other 
-for the remainder of the file and can be changed globally by the option 
+<p>A line that begins with #^=## would redefine this from one to the other
+for the remainder of the file and can be changed globally by the option
 opt.hashchunk</p>
-<p>The first word after this would be the name of the chunk and can then 
-be followed by a number of optional flag arguments like flag=value we 
-store these flags in the chunks table using chunks._flags[name]=value 
-this includes trimming options and request for how chunks should be 
+<p>The first word after this would be the name of the chunk and can then
+be followed by a number of optional flag arguments like flag=value we
+store these flags in the chunks table using chunks._flags[name]=value
+this includes trimming options and request for how chunks should be
 merged.</p>
 <p>A comment begins with #^- and the rest of the line will be ignored.</p>
-<p>The flag same=append will cause future chunks of the same name to be 
-appended to this chunk rather than replace it. This is useful for CSS 
+<p>The flag same=append will cause future chunks of the same name to be
+appended to this chunk rather than replace it. This is useful for CSS
 chunks where we wish to bubble down css values into sub directories.</p>
 </div>
 </div>
@@ -227,11 +227,11 @@ chunks where we wish to bubble down css values into sub directories.</p>
 <div class="source"><a href="https://github.com/xriss/plated/blob/master/js/plated_chunks.js#L235">https://github.com/xriss/plated/blob/master/js/plated_chunks.js</a></div>
 <div><pre><code>chunks = plated_chunks.format_chunks(chunks)
 </code></pre>
-<p>Process the chunks according to their flags, a chunk with trim=ends set 
+<p>Process the chunks according to their flags, a chunk with trim=ends set
 will have white space removed from its beginning and end.</p>
-<p>A chunk with form=json will be parsed as json rather than a string. It 
+<p>A chunk with form=json will be parsed as json rather than a string. It
 can then be referenced inside chunks using chunk.member style lookups.</p>
-<p>A chunk with form=markdown will be processed as markdown and turned 
+<p>A chunk with form=markdown will be processed as markdown and turned
 into a html string.</p>
 </div>
 </div>
@@ -241,10 +241,10 @@ into a html string.</p>
 <div class="source"><a href="https://github.com/xriss/plated/blob/master/js/plated_chunks.js#L517">https://github.com/xriss/plated/blob/master/js/plated_chunks.js</a></div>
 <div><pre><code>chunks = plated_chunks.lookup(str,dat)
 </code></pre>
-<p>lookup the string inside dat, the string can use dot notation such as 
+<p>lookup the string inside dat, the string can use dot notation such as
 parent.member to lookup a value inside an object.</p>
-<p>Numbers can also be used to reverence arrays such as array.0 or array.1 
-and negative indexes such as array.-1 can be used to fetch the last 
+<p>Numbers can also be used to reverence arrays such as array.0 or array.1
+and negative indexes such as array.-1 can be used to fetch the last
 value from the array.</p>
 </div>
 </div>
@@ -254,7 +254,7 @@ value from the array.</p>
 <div class="source"><a href="https://github.com/xriss/plated/blob/master/js/plated_chunks.js#L496">https://github.com/xriss/plated/blob/master/js/plated_chunks.js</a></div>
 <div><pre><code>chunks = plated_chunks.lookup_in_namespace(str)
 </code></pre>
-<p>lookup the string inside all namespaces using the same rules as 
+<p>lookup the string inside all namespaces using the same rules as
 plated_chunks.lookup</p>
 </div>
 </div>
@@ -264,8 +264,8 @@ plated_chunks.lookup</p>
 <div class="source"><a href="https://github.com/xriss/plated/blob/master/js/plated_chunks.js#L892">https://github.com/xriss/plated/blob/master/js/plated_chunks.js</a></div>
 <div><pre><code>html = plated_chunks.markdown(str)
 </code></pre>
-<p>Convert a markdown string to a html string. As a personal quirk We keep 
-newlines a little more eagerly than standard markdown allowing some 
+<p>Convert a markdown string to a html string. As a personal quirk We keep
+newlines a little more eagerly than standard markdown allowing some
 control over the spacing between your text.</p>
 <p>Markdown is hardly a standard thing, after all.</p>
 </div>
@@ -276,11 +276,11 @@ control over the spacing between your text.</p>
 <div class="source"><a href="https://github.com/xriss/plated/blob/master/js/plated_chunks.js#L468">https://github.com/xriss/plated/blob/master/js/plated_chunks.js</a></div>
 <div><pre><code>chunks = plated_chunks.merge_namespace(dat)
 </code></pre>
-<p>Merge all of the namespaces together, along with the dat, then return 
-this new set of chunks for easy lookup it should be safe to modify the 
-output merged chunks without accidentally changing anything in the 
+<p>Merge all of the namespaces together, along with the dat, then return
+this new set of chunks for easy lookup it should be safe to modify the
+output merged chunks without accidentally changing anything in the
 namespace.</p>
-<p>This gives us a final chunks object that we can use to build the output 
+<p>This gives us a final chunks object that we can use to build the output
 page.</p>
 </div>
 </div>
@@ -299,8 +299,8 @@ page.</p>
 <div class="source"><a href="https://github.com/xriss/plated/blob/master/js/plated_chunks.js#L284">https://github.com/xriss/plated/blob/master/js/plated_chunks.js</a></div>
 <div><pre><code>array = plated_chunks.prepare(chunks)
 </code></pre>
-<p>break a string on {data} ready to find the lookup values and do all the 
-templating actions. This just gets us an array of string parts we can 
+<p>break a string on {data} ready to find the lookup values and do all the
+templating actions. This just gets us an array of string parts we can
 easily parse.</p>
 </div>
 </div>
@@ -310,7 +310,7 @@ easily parse.</p>
 <div class="source"><a href="https://github.com/xriss/plated/blob/master/js/plated_chunks.js#L352">https://github.com/xriss/plated/blob/master/js/plated_chunks.js</a></div>
 <div><pre><code>plated_chunks.push_namespace(value)
 </code></pre>
-<p>Add this value into the namespaces, we check this namespace as well as 
+<p>Add this value into the namespaces, we check this namespace as well as
 the current chunk data when filling in chunks.</p>
 </div>
 </div>
@@ -320,12 +320,12 @@ the current chunk data when filling in chunks.</p>
 <div class="source"><a href="https://github.com/xriss/plated/blob/master/js/plated_chunks.js#L383">https://github.com/xriss/plated/blob/master/js/plated_chunks.js</a></div>
 <div><pre><code>newchunks = plated_chunks.remove_underscorechunks(chunks)
 </code></pre>
-<p>Remove any chunks that begin with &quot;_&quot; these are all internal chunks 
-used by plated code. The user should not be creating any chunks whose 
-names begin with an underscore. Also none of these chunks should ever 
-bubble down through the heirachy, they belong only to the page in 
+<p>Remove any chunks that begin with &quot;_&quot; these are all internal chunks
+used by plated code. The user should not be creating any chunks whose
+names begin with an underscore. Also none of these chunks should ever
+bubble down through the heirachy, they belong only to the page in
 which they are created..</p>
-<p>A new object full of only chunks that do not begin with an underscore 
+<p>A new object full of only chunks that do not begin with an underscore
 is returned.</p>
 </div>
 </div>
@@ -335,11 +335,11 @@ is returned.</p>
 <div class="source"><a href="https://github.com/xriss/plated/blob/master/js/plated_chunks.js#L860">https://github.com/xriss/plated/blob/master/js/plated_chunks.js</a></div>
 <div><pre><code>value = plated_chunks.replace(str,dat)
 </code></pre>
-<p>Repeatedly call replace_once until all things that can expand, have 
-expanded, or we ran out of sanity. Sanity is 100 levels of recursion, 
+<p>Repeatedly call replace_once until all things that can expand, have
+expanded, or we ran out of sanity. Sanity is 100 levels of recursion,
 just to be on the safe side.</p>
 <p>We then call a final replace_once with the lastpass flag set.</p>
-<p>if dat is null then we use data pushed into the namespaces otherwise we 
+<p>if dat is null then we use data pushed into the namespaces otherwise we
 will only use data available in dat.</p>
 </div>
 </div>
@@ -349,10 +349,10 @@ will only use data available in dat.</p>
 <div class="source"><a href="https://github.com/xriss/plated/blob/master/js/plated_chunks.js#L564">https://github.com/xriss/plated/blob/master/js/plated_chunks.js</a></div>
 <div><pre><code>chunks = plated_chunks.replace_once(str,dat,lastpass)
 </code></pre>
-<p>Parse the str and replace {} values once only using dat values. 
+<p>Parse the str and replace {} values once only using dat values.
 lastpass is a flag as on the lastpass we allow final expansion and removal.</p>
-<p>We can use {[} {]} around areas of text to prevent further expansion 
-inside. So we can talk about plated inside plated, this is necesary for 
+<p>We can use {[} {]} around areas of text to prevent further expansion
+inside. So we can talk about plated inside plated, this is necesary for
 our documentation.</p>
 </div>
 </div>
@@ -362,8 +362,8 @@ our documentation.</p>
 <div class="source"><a href="https://github.com/xriss/plated/blob/master/js/plated_chunks.js#L324">https://github.com/xriss/plated/blob/master/js/plated_chunks.js</a></div>
 <div><pre><code>plated_chunks.reset_namespace()
 </code></pre>
-<p>clear the namespace, a namespace is a list of chunks that will be 
-merged together as we descend into directories. The lower or later 
+<p>clear the namespace, a namespace is a list of chunks that will be
+merged together as we descend into directories. The lower or later
 chunks replacing or merging with the previous ones.</p>
 </div>
 </div>

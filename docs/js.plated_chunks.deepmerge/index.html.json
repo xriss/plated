@@ -414,7 +414,7 @@
  },
  "_list": [
   {
-   "body": "<pre><code>too = plated_chunks.deepmerge(frm,too,_flags)\n</code></pre>\n<p>Merge the object, frm, into an object too. How values merge can be \nadjusted by _flags the same way _flags works in parsing chunks. \nsame=merge is honoured here so some chunks can be appended rather than \nreplace. We need to keep this separate as the act of merging will break \nhow such things work.</p>\n<p>This function is called recursively so as not to end up sharing values \nwith any inputs.</p>\n",
+   "body": "<pre><code>too = plated_chunks.deepmerge(frm,too,_flags)\n</code></pre>\n<p>Merge the object, frm, into an object too. How values merge can be\nadjusted by _flags the same way _flags works in parsing chunks.\nsame=merge is honoured here so some chunks can be appended rather than\nreplace. We need to keep this separate as the act of merging will break\nhow such things work.</p>\n<p>This function is called recursively so as not to end up sharing values\nwith any inputs.</p>\n",
    "count": 1,
    "file": "../js/plated_chunks.js",
    "line": 410,

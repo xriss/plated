@@ -414,7 +414,7 @@
  },
  "_list": [
   {
-   "body": "<pre><code>plated_chunks.push_namespace(value)\n</code></pre>\n<p>Add this value into the namespaces, we check this namespace as well as \nthe current chunk data when filling in chunks.</p>\n",
+   "body": "<pre><code>plated_chunks.push_namespace(value)\n</code></pre>\n<p>Add this value into the namespaces, we check this namespace as well as\nthe current chunk data when filling in chunks.</p>\n",
    "count": 1,
    "file": "../js/plated_chunks.js",
    "line": 352,

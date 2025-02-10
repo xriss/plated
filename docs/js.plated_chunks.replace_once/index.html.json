@@ -414,7 +414,7 @@
  },
  "_list": [
   {
-   "body": "<pre><code>chunks = plated_chunks.replace_once(str,dat,lastpass)\n</code></pre>\n<p>Parse the str and replace {} values once only using dat values. \nlastpass is a flag as on the lastpass we allow final expansion and removal.</p>\n<p>We can use {[} {]} around areas of text to prevent further expansion \ninside. So we can talk about plated inside plated, this is necesary for \nour documentation.</p>\n",
+   "body": "<pre><code>chunks = plated_chunks.replace_once(str,dat,lastpass)\n</code></pre>\n<p>Parse the str and replace {} values once only using dat values.\nlastpass is a flag as on the lastpass we allow final expansion and removal.</p>\n<p>We can use {[} {]} around areas of text to prevent further expansion\ninside. So we can talk about plated inside plated, this is necesary for\nour documentation.</p>\n",
    "count": 1,
    "file": "../js/plated_chunks.js",
    "line": 564,

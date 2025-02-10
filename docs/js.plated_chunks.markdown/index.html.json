@@ -414,7 +414,7 @@
  },
  "_list": [
   {
-   "body": "<pre><code>html = plated_chunks.markdown(str)\n</code></pre>\n<p>Convert a markdown string to a html string. As a personal quirk We keep \nnewlines a little more eagerly than standard markdown allowing some \ncontrol over the spacing between your text.</p>\n<p>Markdown is hardly a standard thing, after all.</p>\n",
+   "body": "<pre><code>html = plated_chunks.markdown(str)\n</code></pre>\n<p>Convert a markdown string to a html string. As a personal quirk We keep\nnewlines a little more eagerly than standard markdown allowing some\ncontrol over the spacing between your text.</p>\n<p>Markdown is hardly a standard thing, after all.</p>\n",
    "count": 1,
    "file": "../js/plated_chunks.js",
    "line": 892,
