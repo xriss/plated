@@ -659,7 +659,7 @@ Do all the magical things that enables a tag to expand, normally we
 just lookup the value inside dat but a few operators can be applied.
 
 if dat is null then we use data pushed into the namespaces otherwise we
-will only use data available in dat.
+will only use data available in dat but will still lookup plates from namespaces.
 
 Operators are applied from left to right so we have no precedence
 besides this.
@@ -705,7 +705,7 @@ use will survive.
 			if(dat)
 			{
 				it=plated_chunks.lookup(itname,dat)
-				plate=plated_chunks.lookup(platename,dat)
+				plate=plated_chunks.lookup(platename,dat)||plated_chunks.lookup_in_namespace(platename)
 			}
 			else // use namespace
 			{
