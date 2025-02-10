@@ -4,17 +4,17 @@
 
 Manage the chunks of text that are combined into a page.
 
-This module only exposes one function, which is used to create 
+This module only exposes one function, which is used to create
 the actual module with bound state data.
 
 	plated_chunks = require("./plated_chunks.js").create(opts,plated)
 
-This is called automatically when the plated module is created and the 
-return value is made available in plated.chunks note that all of these 
+This is called automatically when the plated module is created and the
+return value is made available in plated.chunks note that all of these
 modules are bound together and operate as a group with shared data.
 
-In the future when we talk about this module and its available 
-functions we are referring to the return value from this create 
+In the future when we talk about this module and its available
+functions we are referring to the return value from this create
 function.
 
 ]]*/
@@ -59,9 +59,9 @@ var ls=function(a) { console.log(util.inspect(a,{depth:null})); }
 
 // wrap so we can contain multiple environments without borking
 exports.create=function(opts,plated){
-	
+
 	var plated_chunks={};
-	
+
 /***************************************************************************
 --[[#js.plated_chunks.delimiter_open_str
 
@@ -85,7 +85,7 @@ Return the last half of the opts.delimiter string.
 	plated_chunks.delimiter_close_str=function(){
 		return opts.delimiter.substr(Math.ceil(opts.delimiter.length/2));
 	};
-	
+
 /***************************************************************************
 --[[#js.plated_chunks.delimiter_wrap_str
 
@@ -105,30 +105,30 @@ Return the given string wrapped in the opts.delimiter string.
 
 	chunks = plated_chunks.fill_chunks(str,chunks)
 
-break a string into chunks ( can merged with or replace other chunks ) 
-so chunks can be a previously filled list of chunks that we will 
+break a string into chunks ( can merged with or replace other chunks )
+so chunks can be a previously filled list of chunks that we will
 combine any chunks we find in the string with.
 
-A chunk is defined by a line that begins with #^ this has been chosen 
-so as not to be something that occurs by mistake in any language, but 
-can be altered either inside the chunk file or via the command line 
-opts. Note that any future reference is referring to this default and 
+A chunk is defined by a line that begins with #^ this has been chosen
+so as not to be something that occurs by mistake in any language, but
+can be altered either inside the chunk file or via the command line
+opts. Note that any future reference is referring to this default and
 would work with any other string if this has been changed.
 
-A line that begins with #^=## would redefine this from one to the other 
-for the remainder of the file and can be changed globally by the option 
+A line that begins with #^=## would redefine this from one to the other
+for the remainder of the file and can be changed globally by the option
 opt.hashchunk
 
-The first word after this would be the name of the chunk and can then 
-be followed by a number of optional flag arguments like flag=value we 
-store these flags in the chunks table using chunks._flags[name]=value 
-this includes trimming options and request for how chunks should be 
+The first word after this would be the name of the chunk and can then
+be followed by a number of optional flag arguments like flag=value we
+store these flags in the chunks table using chunks._flags[name]=value
+this includes trimming options and request for how chunks should be
 merged.
 
 A comment begins with #^- and the rest of the line will be ignored.
 
-The flag same=append will cause future chunks of the same name to be 
-appended to this chunk rather than replace it. This is useful for CSS 
+The flag same=append will cause future chunks of the same name to be
+appended to this chunk rather than replace it. This is useful for CSS
 chunks where we wish to bubble down css values into sub directories.
 
 ]]*/
@@ -165,12 +165,12 @@ chunks where we wish to bubble down css values into sub directories.
 					else
 					{
 						if(name) // we are switching to a new chunk so save current chunk
-						{					
+						{
 							chunks[name]=chunk.join("\n");
 						}
 						var words=l.substring(opts.hashchunk.length).split(/\s+/); // split on whitespace
 						name="";
-						if( (words[0]) && words[0].match(/^[0-9a-zA-Z_\-\.\/\@]+$/) ) // a valid chunk name, 
+						if( (words[0]) && words[0].match(/^[0-9a-zA-Z_\-\.\/\@]+$/) ) // a valid chunk name,
 						{
 							name=words[0];
 						}
@@ -185,7 +185,7 @@ chunks where we wish to bubble down css values into sub directories.
 									chunks._flags[name]=flags;
 									for(var i=1;i<words.length;i++)
 									{
-										var aa=words[i].split("="); // flags must be -> flag=value 
+										var aa=words[i].split("="); // flags must be -> flag=value
 										if(aa[0]&&aa[1])
 										{
 											flags[aa[0]]=aa[1]; // add flags
@@ -224,7 +224,7 @@ chunks where we wish to bubble down css values into sub directories.
 				}
 			});
 		if(name && chunk) // final save if we ended in a chunk
-		{					
+		{
 			chunks[name]=chunk.join("\n");
 		}
 
@@ -236,13 +236,13 @@ chunks where we wish to bubble down css values into sub directories.
 
 	chunks = plated_chunks.format_chunks(chunks)
 
-Process the chunks according to their flags, a chunk with trim=ends set 
+Process the chunks according to their flags, a chunk with trim=ends set
 will have white space removed from its beginning and end.
 
-A chunk with form=json will be parsed as json rather than a string. It 
+A chunk with form=json will be parsed as json rather than a string. It
 can then be referenced inside chunks using chunk.member style lookups.
 
-A chunk with form=markdown will be processed as markdown and turned 
+A chunk with form=markdown will be processed as markdown and turned
 into a html string.
 
 ]]*/
@@ -252,12 +252,12 @@ into a html string.
 		for( var n in chunks )
 		{
 			var flags=chunks._flags && chunks._flags[n] || {};
-			
+
 			if(flags.trim) // trim=ends
 			{
 				chunks[n]=chunks[n].trim(); // remove whitespace from start/end
 			}
-			
+
 			if(flags.form) // special format
 			{
 				if(flags.form=="json")
@@ -270,13 +270,13 @@ into a html string.
 				else
 				if(flags.form=="markdown")
 				{
-					
+
 					chunks[n]=marked.parse(nl_to_br(chunks[n]));
 				}
 			}
 
 		}
-		
+
 		return chunks;
 	}
 
@@ -285,10 +285,10 @@ into a html string.
 
 	array = plated_chunks.prepare(chunks)
 
-break a string on {data} ready to find the lookup values and do all the 
-templating actions. This just gets us an array of string parts we can 
+break a string on {data} ready to find the lookup values and do all the
+templating actions. This just gets us an array of string parts we can
 easily parse.
- 
+
 
 ]]*/
 	plated_chunks.prepare=function(str)
@@ -297,7 +297,7 @@ easily parse.
 
 		var aa=str.split( plated_chunks.delimiter_open_str() );
 		var ar=[];
-		
+
 		ar.push(aa[0]);
 		for(var i=1;i<aa.length;i++)
 		{
@@ -325,8 +325,8 @@ easily parse.
 
 	plated_chunks.reset_namespace()
 
-clear the namespace, a namespace is a list of chunks that will be 
-merged together as we descend into directories. The lower or later 
+clear the namespace, a namespace is a list of chunks that will be
+merged together as we descend into directories. The lower or later
 chunks replacing or merging with the previous ones.
 
 ]]*/
@@ -353,7 +353,7 @@ Set the namespace to the given value.
 
 	plated_chunks.push_namespace(value)
 
-Add this value into the namespaces, we check this namespace as well as 
+Add this value into the namespaces, we check this namespace as well as
 the current chunk data when filling in chunks.
 
 ]]*/
@@ -384,13 +384,13 @@ Remove last namespace from top of the stack.
 
 	newchunks = plated_chunks.remove_underscorechunks(chunks)
 
-Remove any chunks that begin with "_" these are all internal chunks 
-used by plated code. The user should not be creating any chunks whose 
-names begin with an underscore. Also none of these chunks should ever 
-bubble down through the heirachy, they belong only to the page in 
+Remove any chunks that begin with "_" these are all internal chunks
+used by plated code. The user should not be creating any chunks whose
+names begin with an underscore. Also none of these chunks should ever
+bubble down through the heirachy, they belong only to the page in
 which they are created..
 
-A new object full of only chunks that do not begin with an underscore 
+A new object full of only chunks that do not begin with an underscore
 is returned.
 
 ]]*/
@@ -411,13 +411,13 @@ is returned.
 
 	too = plated_chunks.deepmerge(frm,too,_flags)
 
-Merge the object, frm, into an object too. How values merge can be 
-adjusted by _flags the same way _flags works in parsing chunks. 
-same=merge is honoured here so some chunks can be appended rather than 
-replace. We need to keep this separate as the act of merging will break 
+Merge the object, frm, into an object too. How values merge can be
+adjusted by _flags the same way _flags works in parsing chunks.
+same=merge is honoured here so some chunks can be appended rather than
+replace. We need to keep this separate as the act of merging will break
 how such things work.
 
-This function is called recursively so as not to end up sharing values 
+This function is called recursively so as not to end up sharing values
 with any inputs.
 
 ]]*/
@@ -469,24 +469,24 @@ with any inputs.
 
 	chunks = plated_chunks.merge_namespace(dat)
 
-Merge all of the namespaces together, along with the dat, then return 
-this new set of chunks for easy lookup it should be safe to modify the 
-output merged chunks without accidentally changing anything in the 
+Merge all of the namespaces together, along with the dat, then return
+this new set of chunks for easy lookup it should be safe to modify the
+output merged chunks without accidentally changing anything in the
 namespace.
 
-This gives us a final chunks object that we can use to build the output 
+This gives us a final chunks object that we can use to build the output
 page.
 
 ]]*/
 	plated_chunks.merge_namespace=function(dat)
-	{		
+	{
 		var chunks={};
-		
+
 		for(var i=0;i<plated_chunks.namespaces.length;i++) // last added has priority
-		{ 
+		{
 			plated_chunks.deepmerge(plated_chunks.namespaces[i],chunks,plated_chunks.namespaces[i]._flags);
 		}
-		
+
 		plated_chunks.deepmerge(dat,chunks,dat._flags);
 
 		return chunks;
@@ -497,7 +497,7 @@ page.
 
 	chunks = plated_chunks.lookup_in_namespace(str)
 
-lookup the string inside all namespaces using the same rules as 
+lookup the string inside all namespaces using the same rules as
 plated_chunks.lookup
 
 ]]*/
@@ -512,17 +512,17 @@ plated_chunks.lookup
 	}
 
 
-	
+
 /***************************************************************************
 --[[#js.plated_chunks.lookup
 
 	chunks = plated_chunks.lookup(str,dat)
 
-lookup the string inside dat, the string can use dot notation such as 
+lookup the string inside dat, the string can use dot notation such as
 parent.member to lookup a value inside an object.
 
-Numbers can also be used to reverence arrays such as array.0 or array.1 
-and negative indexes such as array.-1 can be used to fetch the last 
+Numbers can also be used to reverence arrays such as array.0 or array.1
+and negative indexes such as array.-1 can be used to fetch the last
 value from the array.
 
 ]]*/
@@ -551,7 +551,7 @@ value from the array.
 		if(i>=0)
 		{
 			var a1=str.substring(0,i);
-			if("object" == typeof dat[a1] ) // try a sub lookup 
+			if("object" == typeof dat[a1] ) // try a sub lookup
 			{
 				var a2=str.substring(i+1);
 				if(a2[0]=="-") { a2=""+(dat[a1].length+Number(a2)); } // so -1 can get last from an array
@@ -565,24 +565,24 @@ value from the array.
 
 	chunks = plated_chunks.replace_once(str,dat,lastpass)
 
-Parse the str and replace {} values once only using dat values. 
+Parse the str and replace {} values once only using dat values.
 lastpass is a flag as on the lastpass we allow final expansion and removal.
 
-We can use {[} {]} around areas of text to prevent further expansion 
-inside. So we can talk about plated inside plated, this is necesary for 
+We can use {[} {]} around areas of text to prevent further expansion
+inside. So we can talk about plated inside plated, this is necesary for
 our documentation.
 
 ]]*/
 	plated_chunks.replace_once=function(str,dat,lastpass)
 	{
 		var aa=plated_chunks.prepare(str);
-		
+
 		if(!aa) { return str; }
-		
+
 		var depth=0
-		
+
 		var r=[];
-		
+
 		for(var i=0;i<aa.length;i++)
 		{
 			var v=aa[i];
@@ -649,28 +649,28 @@ our documentation.
 
 		return r.join("");
 	}
-	
+
 /***************************************************************************
 --[[#js.plated_chunks.expand_tag
 
 	value = plated_chunks.expand_tag(v,dat,lastpass)
 
-Do all the magical things that enables a tag to expand, normally we 
+Do all the magical things that enables a tag to expand, normally we
 just lookup the value inside dat but a few operators can be applied.
 
-if dat is null then we use data pushed into the namespaces otherwise we 
+if dat is null then we use data pushed into the namespaces otherwise we
 will only use data available in dat.
 
-Operators are applied from left to right so we have no precedence 
+Operators are applied from left to right so we have no precedence
 besides this.
 
-If we fail to lookup a valid value then we return input string wrapped 
-in delimiters, essentially any values we do not understand will come 
+If we fail to lookup a valid value then we return input string wrapped
+in delimiters, essentially any values we do not understand will come
 out of the process unscathed  exactly as they went in.
 
 There must be no white space inside {} or we will not process it.
 
-This combined is why we can safely use {} rather than {{}} and any accidental 
+This combined is why we can safely use {} rather than {{}} and any accidental
 use will survive.
 
 ]]*/
@@ -699,7 +699,7 @@ use will survive.
 					return plated_chunks.lookup_in_namespace(a)
 				}
 			}
-			
+
 			var it
 			var plate
 			if(dat)
@@ -712,16 +712,16 @@ use will survive.
 				it=plated_chunks.lookup_in_namespace(itname)
 				plate=plated_chunks.lookup_in_namespace(platename)
 			}
-			
+
 			if(!plate) { return } // plate not found so leave tag in output
 			if(!it) { return } // it is not found but plate was so leave tag in output
-			
+
 			if(isArray(it)) // apply plate to all objects in array
 			{
 				var dp=[];
 				for(var ii=0;ii<it.length;ii++)
 				{
-					var d=Object.create(dat)
+					var d=Object.create(dat||{})
 					d._it=it[ii]
 					d._idx=ii+1
 					if( "function" == typeof plate )
@@ -737,7 +737,7 @@ use will survive.
 			}
 			else // just apply plate to this single object or string
 			{
-				var d=Object.create(dat)
+				var d=Object.create(dat||{})
 				d._it=it
 				d._idx=1
 				if( "function" == typeof plate )
@@ -753,7 +753,7 @@ use will survive.
 
 		var last,next;
 		var opp="replace";
-				
+
 		for(var i=0;i<aa.length;i++)
 		{
 			var a=aa[i];
@@ -838,7 +838,7 @@ use will survive.
 						opp="error";
 					break;
 				}
-				
+
 			}
 			if(opp=="error") { last=null; break; } // giveup
 		}
@@ -861,13 +861,13 @@ use will survive.
 
 	value = plated_chunks.replace(str,dat)
 
-Repeatedly call replace_once until all things that can expand, have 
-expanded, or we ran out of sanity. Sanity is 100 levels of recursion, 
+Repeatedly call replace_once until all things that can expand, have
+expanded, or we ran out of sanity. Sanity is 100 levels of recursion,
 just to be on the safe side.
 
 We then call a final replace_once with the lastpass flag set.
 
-if dat is null then we use data pushed into the namespaces otherwise we 
+if dat is null then we use data pushed into the namespaces otherwise we
 will only use data available in dat.
 
 ]]*/
@@ -881,20 +881,20 @@ will only use data available in dat.
 			str=plated_chunks.replace_once(str,dat,false);
 			if(--sanity<0) { break; }
 		}
-		
+
 // perform a final replace of chunks that should not recurse, these are included like so {^chunkname}
 		str=plated_chunks.replace_once(str,dat,true);
-		
+
 		return str;
 	}
-	
+
 /***************************************************************************
 --[[#js.plated_chunks.markdown
 
 	html = plated_chunks.markdown(str)
 
-Convert a markdown string to a html string. As a personal quirk We keep 
-newlines a little more eagerly than standard markdown allowing some 
+Convert a markdown string to a html string. As a personal quirk We keep
+newlines a little more eagerly than standard markdown allowing some
 control over the spacing between your text.
 
 Markdown is hardly a standard thing, after all.
@@ -904,7 +904,7 @@ Markdown is hardly a standard thing, after all.
 	{
 		return marked.parse(nl_to_br(s));
 	}
-		
+
 
 	return plated_chunks;
 };
