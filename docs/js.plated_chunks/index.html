@@ -182,7 +182,7 @@ with any inputs.</p>
 <p>Do all the magical things that enables a tag to expand, normally we
 just lookup the value inside dat but a few operators can be applied.</p>
 <p>if dat is null then we use data pushed into the namespaces otherwise we
-will only use data available in dat.</p>
+will only use data available in dat but will still lookup plates from namespaces.</p>
 <p>Operators are applied from left to right so we have no precedence
 besides this.</p>
 <p>If we fail to lookup a valid value then we return input string wrapped
