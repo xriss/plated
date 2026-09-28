@@ -121,7 +121,11 @@ Return the stat of this path
 	plated_files.stat = function(path)
 	{
 		path=plated_files.trimpath(path)
-		return plated.pfs.stat(path)
+		let ret
+		try{
+			ret = plated.pfs.stat(path)
+		}catch(e){}
+		return ret
 	}
 
 /***************************************************************************
@@ -135,7 +139,11 @@ Return the lstat of this path
 	plated_files.lstat = function(path)
 	{
 		path=plated_files.trimpath(path)
-		return plated.pfs.lstat(path)
+		let ret
+		try{
+			ret = plated.pfs.lstat(path)
+		}catch(e){}
+		return ret
 	}
 	
 /***************************************************************************
