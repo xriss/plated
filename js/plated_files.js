@@ -121,11 +121,7 @@ Return the stat of this path
 	plated_files.stat = function(path)
 	{
 		path=plated_files.trimpath(path)
-		let ret
-		try{
-			ret = plated.pfs.stat(path)
-		}catch(e){}
-		return ret
+		return plated.pfs.stat(path).catch(e=>{})
 	}
 
 /***************************************************************************
@@ -139,11 +135,7 @@ Return the lstat of this path
 	plated_files.lstat = function(path)
 	{
 		path=plated_files.trimpath(path)
-		let ret
-		try{
-			ret = plated.pfs.lstat(path)
-		}catch(e){}
-		return ret
+		return plated.pfs.lstat(path).catch(e=>{})
 	}
 	
 /***************************************************************************
@@ -174,11 +166,11 @@ necessary.
 	{
 //		if(dir==".") { return }
 
-		if( await plated_files.stat(dir).catch(e=>{}) ) { return } // already done
+		if( await plated_files.stat(dir) ) { return } // already done
 
 		await plated.pfs.mkdir(dir).catch(e=>{}) // create dir
 
-		if( await plated_files.stat(dir).catch(e=>{}) ) { return } // success
+		if( await plated_files.stat(dir) ) { return } // success
 
 		var parent=path.dirname(dir)
 		if(parent && parent!=dir) // sanity
@@ -434,13 +426,16 @@ We follow symlinks into other directories.
 		var files=await plated_files.readdir( plated_files.joinpath(root,name) );
 		for(var i in files){ var v=files[i];
 			var st=await plated_files.stat( plated_files.joinpath(root,name,v) ); // follow links
-			if( stat_isDirectory(st) )
+			if(st)
 			{
-				await plated_files.find_files(root,plated_files.joinpath(name,v),ret);
-			}
-			else
-			{
-				ret.push( plated_files.joinpath(name,v) )
+				if( stat_isDirectory(st) )
+				{
+					await plated_files.find_files(root,plated_files.joinpath(name,v),ret);
+				}
+				else
+				{
+					ret.push( plated_files.joinpath(name,v) )
+				}
 			}
 		}
 		return ret
@@ -462,9 +457,12 @@ directory. We follow symlinks into other directories.
 		var files=await plated_files.readdir( plated_files.joinpath(root,name) ).catch(e=>{});
 		for(var i in files||[]){ var v=files[i];
 			var st=await plated_files.stat( plated_files.joinpath(root,name,v) ); // follow links
-			if( stat_isDirectory(st) )
+			if(st)
 			{
-				await plated_files.find_dirs(root,plated_files.joinpath(name,v),ret);
+				if( stat_isDirectory(st) )
+				{
+					await plated_files.find_dirs(root,plated_files.joinpath(name,v),ret);
+				}
 			}
 		}
 		return ret
