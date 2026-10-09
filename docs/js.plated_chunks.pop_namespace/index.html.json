@@ -66,7 +66,7 @@
    "name": "html.plated_plugin.redirect"
   },
   {
-   "count": 76,
+   "count": 77,
    "name": "js"
   },
   {
@@ -98,7 +98,7 @@
    "name": "js.plated.watch"
   },
   {
-   "count": 20,
+   "count": 21,
    "name": "js.plated_chunks"
   },
   {
@@ -176,6 +176,10 @@
   {
    "count": 1,
    "name": "js.plated_chunks.set_namespace"
+  },
+  {
+   "count": 1,
+   "name": "js.plated_chunks.wiki"
   },
   {
    "count": 26,
@@ -417,7 +421,7 @@
    "body": "<pre><code>plated_chunks.pop_namespace(value)\n</code></pre>\n<p>Remove last namespace from top of the stack.</p>\n",
    "count": 1,
    "file": "../js/plated_chunks.js",
-   "line": 369,
+   "line": 399,
    "name": "js.plated_chunks.pop_namespace",
    "url": "https://github.com/xriss/plated/blob/master/js/plated_chunks.js"
   }
