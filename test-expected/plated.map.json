@@ -857,5 +857,138 @@
   "_site": "{_root}",
   "_sourcename": "008-import/sub/.",
   "test": "<p>This is some text that we will import.</p>\n<p>Note we can only import into a page chunk from a dir chunk. This \nprevents any sort of recursion and we simply make sure that all dir \nlevel chunks are always processed before page level chunks are.</p>\n"
+ },
+ "009-wiki": {
+  "_dirname": "{_root}009-wiki",
+  "_filename": "{_root}009-wiki",
+  "_flags": {
+   "title": {
+    "trim": "ends"
+   }
+  },
+  "_root": "../",
+  "_site": "{_root}",
+  "_sourcename": "009-wiki/.",
+  "html": "<html>\n\t<head>\n\t\t<title>{title}</title>\n\t</head>\n\t<body>{body}</body>\n\t<script>\n\t\t{js_wikilinks}\n\t</script>\n</html>\n",
+  "js_wikilinks": "\n// run at bottom so no need to wait\n\nconsole.log(\"upgrading wiki-link links\")\n\nlet links = document.querySelectorAll('.wiki-link')\nfor( let idx=0 ; idx<links.length ; idx++ )\n{\n\tlet link=links[idx]\n\tlet href=link.href\n\tlet ext=href.match(/\\.([^\\./]+)+$/)\n\text=ext && ext[1] || \"\"\n\n\tconsole.log(ext,link)\n\t\n\tswitch(ext.toLowerCase())\n\t{\n\t\tcase \"png\":\n\t\t\tlink.innerHTML=`<image src=\"${href}\"></image>`\n\t\tbreak;\n\t}\n\t\n}\n",
+  "title": "Welcome to wiki test!"
+ },
+ "009-wiki/index.html": {
+  "_dirname": "{_root}009-wiki",
+  "_filename": "{_root}009-wiki/index.html",
+  "_flags": {
+   "body": {
+    "form": "wiki"
+   }
+  },
+  "_output_chunkname": "html",
+  "_output_filename": "009-wiki/index.html",
+  "_root": "../",
+  "_site": "{_root}",
+  "_sourcename": "009-wiki/index.^.html",
+  "body": "<h1 id=\"title-text\">title text</h1>\n<p>This is a quick link <a class=\"wiki-link\" href=\"page1\">page1</a> this is/not</p>\n<pre><code>pre formated\ncode\ntype stuff <a class=\"wiki-link\" href=\"page2\">page2</a>\n</code></pre>\n<p>anywhere can contain links as they are processed after wiki conversion</p>\n<p>and they can be absolute <a class=\"wiki-link\" href=\"{_root}009-wiki/page3\">page3</a> like so.</p>\n<p>To disable quick links in text just use another chunk with \nform=markdown and include it</p>\n<p>Depending on server configuration we can also link to raw <a class=\"wiki-link\" href=\"page4\">page4</a> html \npages.</p>\n<p>Links to images such as <a class=\"wiki-link\" href=\"test.png\">test.png</a> can be upgraded to inline with some \nsimple javascript.</p>\n<p>All we are doing here is adding a simple way to put obvious quick links \ninto markdown text.\n<br/>\n<br/>\n<br/>\n<br/>\n<br/></p>\n<br/>\n<br/>\n<br/>\n\n"
+ },
+ "009-wiki/page1": {
+  "_dirname": "{_root}009-wiki/page1",
+  "_filename": "{_root}009-wiki/page1",
+  "_flags": {
+   "body": {
+    "form": "wiki"
+   },
+   "title": {
+    "trim": "ends"
+   }
+  },
+  "_root": "../../",
+  "_site": "{_root}",
+  "_sourcename": "009-wiki/page1/.",
+  "body": "<p>this is page1</p>\n",
+  "title": "Welcome to wiki test!"
+ },
+ "009-wiki/page1/index.html": {
+  "_dirname": "{_root}009-wiki/page1",
+  "_filename": "{_root}009-wiki/page1/index.html",
+  "_flags": {
+   "body": {
+    "form": "wiki"
+   },
+   "title": {
+    "trim": "ends"
+   }
+  },
+  "_output_chunkname": "html",
+  "_output_filename": "009-wiki/page1/index.html",
+  "_root": "../../",
+  "_site": "{_root}",
+  "_sourcename": "009-wiki/page1/index.^.html",
+  "body": "<p>this is page1</p>\n",
+  "title": "Welcome to wiki test!"
+ },
+ "009-wiki/page2": {
+  "_dirname": "{_root}009-wiki/page2",
+  "_filename": "{_root}009-wiki/page2",
+  "_root": "../../",
+  "_site": "{_root}",
+  "_sourcename": "009-wiki/page2/."
+ },
+ "009-wiki/page2/index.html": {
+  "_dirname": "{_root}009-wiki/page2",
+  "_filename": "{_root}009-wiki/page2/index.html",
+  "_flags": {
+   "body": {
+    "form": "wiki"
+   },
+   "title": {
+    "trim": "ends"
+   }
+  },
+  "_output_chunkname": "html",
+  "_output_filename": "009-wiki/page2/index.html",
+  "_root": "../../",
+  "_site": "{_root}",
+  "_sourcename": "009-wiki/page2/index.^.html",
+  "body": "<p>this is page2</p>\n",
+  "title": "Welcome to wiki test!"
+ },
+ "009-wiki/page3": {
+  "_dirname": "{_root}009-wiki/page3",
+  "_filename": "{_root}009-wiki/page3",
+  "_root": "../../",
+  "_site": "{_root}",
+  "_sourcename": "009-wiki/page3/."
+ },
+ "009-wiki/page3/index.html": {
+  "_dirname": "{_root}009-wiki/page3",
+  "_filename": "{_root}009-wiki/page3/index.html",
+  "_flags": {
+   "body": {
+    "form": "wiki"
+   },
+   "title": {
+    "trim": "ends"
+   }
+  },
+  "_output_chunkname": "html",
+  "_output_filename": "009-wiki/page3/index.html",
+  "_root": "../../",
+  "_site": "{_root}",
+  "_sourcename": "009-wiki/page3/index.^.html",
+  "body": "<p>this is page3</p>\n",
+  "title": "Welcome to wiki test!"
+ },
+ "009-wiki/page4.html": {
+  "_dirname": "{_root}009-wiki",
+  "_filename": "{_root}009-wiki/page4.html",
+  "_flags": {
+   "body": {
+    "form": "wiki"
+   }
+  },
+  "_output_chunkname": "html",
+  "_output_filename": "009-wiki/page4.html",
+  "_root": "../",
+  "_site": "{_root}",
+  "_sourcename": "009-wiki/page4.^.html",
+  "body": "<p>Single test page no dir associated with it. here is a link back to <a class=\"wiki-link\" href=\"{_root}\">/</a> \nthe root of the site, note how we catch an empty string and use the \nfull path given without the first slash.\n<br/>\n<br/>\n<br/>\n<br/></p>\n<br/>\n<br/>\n<br/>\n\n"
  }
 }

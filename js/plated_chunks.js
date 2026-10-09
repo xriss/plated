@@ -55,6 +55,30 @@ var nl_to_br=function(t) // lets break markdown
 	);
 }
 
+var wiki_links=function(t) // create quick wiki links
+{
+	// very simple quick wiki links path matchin
+	// must be surounded by whitespace and must begin with /
+	// whitespace / path whitespace
+	// whitespace include > < tag chars
+	// path is text or numbers and _ . - /
+	// the last part of the path is text to show in link 
+	return t.replace(/([\s>]{1})\/([a-zA-Z0-9_\.\-\/]+)([\s<]{1})/g,function(full,white1,path,white2)
+		{
+			let parts=path.split("/")
+			let text=parts[parts.length-1]
+			if( text=="" ) { text=path }
+			let url=path
+			if( parts[0]=="" ) // double slash so use root
+			{
+				parts.shift()
+				url="{_root}"+parts.join("/")
+			}
+			return white1+"<a class=\"wiki-link\" href=\""+url+"\">"+text+"</a>"+white2;
+		}
+	);
+}
+
 var ls=function(a) { console.log(util.inspect(a,{depth:null})); }
 
 // wrap so we can contain multiple environments without borking
@@ -271,7 +295,13 @@ into a html string.
 				if(flags.form=="markdown")
 				{
 
-					chunks[n]=marked.parse(nl_to_br(chunks[n]));
+					chunks[n]=plated_chunks.markdown(chunks[n]);
+				}
+				else
+				if(flags.form=="wiki")
+				{
+
+					chunks[n]=plated_chunks.wiki(chunks[n]);
 				}
 			}
 
@@ -905,6 +935,19 @@ Markdown is hardly a standard thing, after all.
 		return marked.parse(nl_to_br(s));
 	}
 
+/***************************************************************************
+--[[#js.plated_chunks.wiki
+
+	html = plated_chunks.wiki(str)
+
+Same as plated_chunks.markdown but with extra processing of quick wiki 
+links.
+
+]]*/
+	plated_chunks.wiki=function(s)
+	{
+		return wiki_links(marked.parse(nl_to_br(s)));
+	}
 
 	return plated_chunks;
 };

@@ -1,0 +1,40 @@
+
+#^title trim=ends
+
+Welcome to wiki test!
+
+#^html
+<html>
+	<head>
+		<title>{title}</title>
+	</head>
+	<body>{body}</body>
+	<script>
+		{js_wikilinks}
+	</script>
+</html>
+
+#^js_wikilinks
+
+// run at bottom so no need to wait
+
+console.log("upgrading wiki-link links")
+
+let links = document.querySelectorAll('.wiki-link')
+for( let idx=0 ; idx<links.length ; idx++ )
+{
+	let link=links[idx]
+	let href=link.href
+	let ext=href.match(/\.([^\./]+)+$/)
+	ext=ext && ext[1] || ""
+
+	console.log(ext,link)
+	
+	switch(ext.toLowerCase())
+	{
+		case "png":
+			link.innerHTML=`<image src="${href}"></image>`
+		break;
+	}
+	
+}

@@ -1,0 +1,21 @@
+{
+ "_dirname": "{_root}009-wiki/page3",
+ "_filename": "{_root}009-wiki/page3/index.html",
+ "_flags": {
+  "body": {
+   "form": "wiki"
+  },
+  "title": {
+   "trim": "ends"
+  }
+ },
+ "_output_chunkname": "html",
+ "_output_filename": "009-wiki/page3/index.html",
+ "_root": "../../",
+ "_site": "{_root}",
+ "_sourcename": "009-wiki/page3/index.^.html",
+ "body": "<p>this is page3</p>\n",
+ "html": "<html>\n\t<head>\n\t\t<title>{title}</title>\n\t</head>\n\t<body>{body}</body>\n\t<script>\n\t\t{js_wikilinks}\n\t</script>\n</html>\n",
+ "js_wikilinks": "\n// run at bottom so no need to wait\n\nconsole.log(\"upgrading wiki-link links\")\n\nlet links = document.querySelectorAll('.wiki-link')\nfor( let idx=0 ; idx<links.length ; idx++ )\n{\n\tlet link=links[idx]\n\tlet href=link.href\n\tlet ext=href.match(/\\.([^\\./]+)+$/)\n\text=ext && ext[1] || \"\"\n\n\tconsole.log(ext,link)\n\t\n\tswitch(ext.toLowerCase())\n\t{\n\t\tcase \"png\":\n\t\t\tlink.innerHTML=`<image src=\"${href}\"></image>`\n\t\tbreak;\n\t}\n\t\n}\n",
+ "title": "Welcome to wiki test!"
+}

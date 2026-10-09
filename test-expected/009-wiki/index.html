@@ -1,0 +1,57 @@
+<html>
+	<head>
+		<title>Welcome to wiki test!</title>
+	</head>
+	<body><h1 id="title-text">title text</h1>
+<p>This is a quick link <a class="wiki-link" href="page1">page1</a> this is/not</p>
+<pre><code>pre formated
+code
+type stuff <a class="wiki-link" href="page2">page2</a>
+</code></pre>
+<p>anywhere can contain links as they are processed after wiki conversion</p>
+<p>and they can be absolute <a class="wiki-link" href="../009-wiki/page3">page3</a> like so.</p>
+<p>To disable quick links in text just use another chunk with 
+form=markdown and include it</p>
+<p>Depending on server configuration we can also link to raw <a class="wiki-link" href="page4">page4</a> html 
+pages.</p>
+<p>Links to images such as <a class="wiki-link" href="test.png">test.png</a> can be upgraded to inline with some 
+simple javascript.</p>
+<p>All we are doing here is adding a simple way to put obvious quick links 
+into markdown text.
+<br/>
+<br/>
+<br/>
+<br/>
+<br/></p>
+<br/>
+<br/>
+<br/>
+
+</body>
+	<script>
+		
+// run at bottom so no need to wait
+
+console.log("upgrading wiki-link links")
+
+let links = document.querySelectorAll('.wiki-link')
+for( let idx=0 ; idx<links.length ; idx++ )
+{
+	let link=links[idx]
+	let href=link.href
+	let ext=href.match(/\.([^\./]+)+$/)
+	ext=ext && ext[1] || ""
+
+	console.log(ext,link)
+	
+	switch(ext.toLowerCase())
+	{
+		case "png":
+			link.innerHTML=`<image src="${href}"></image>`
+		break;
+	}
+	
+}
+
+	</script>
+</html>

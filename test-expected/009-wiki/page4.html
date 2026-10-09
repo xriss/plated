@@ -1,0 +1,43 @@
+<html>
+	<head>
+		<title>Welcome to wiki test!</title>
+	</head>
+	<body><p>Single test page no dir associated with it. here is a link back to <a class="wiki-link" href="../">/</a> 
+the root of the site, note how we catch an empty string and use the 
+full path given without the first slash.
+<br/>
+<br/>
+<br/>
+<br/></p>
+<br/>
+<br/>
+<br/>
+
+</body>
+	<script>
+		
+// run at bottom so no need to wait
+
+console.log("upgrading wiki-link links")
+
+let links = document.querySelectorAll('.wiki-link')
+for( let idx=0 ; idx<links.length ; idx++ )
+{
+	let link=links[idx]
+	let href=link.href
+	let ext=href.match(/\.([^\./]+)+$/)
+	ext=ext && ext[1] || ""
+
+	console.log(ext,link)
+	
+	switch(ext.toLowerCase())
+	{
+		case "png":
+			link.innerHTML=`<image src="${href}"></image>`
+		break;
+	}
+	
+}
+
+	</script>
+</html>
