@@ -4,5 +4,6 @@ cd `dirname $0`
 npm version patch
 ../git-dot
 git push
+npm login
 npm publish
 
