@@ -317,7 +317,7 @@ Tweak all the base chunks grouped by dir name and pre cascaded/merged
 							else
 							if( isvideo[x] )
 							{
-								chunks._blog_post_body += "\n<video controls autoplay muted><source src=\"{_root}"+fname+"\"/></video>\n"
+								chunks._blog_post_body += "\n<video controls autoplay loop muted><source src=\"{_root}"+fname+"\"/></video>\n"
 							}
 							else
 							if( isaudio[x] )
