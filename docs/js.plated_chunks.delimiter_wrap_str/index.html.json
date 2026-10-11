@@ -421,7 +421,7 @@
    "body": "<pre><code>s = plated_chunks.delimiter_wrap_str(s)\n</code></pre>\n<p>Return the given string wrapped in the opts.delimiter string.</p>\n",
    "count": 1,
    "file": "../js/plated_chunks.js",
-   "line": 114,
+   "line": 130,
    "name": "js.plated_chunks.delimiter_wrap_str",
    "url": "https://github.com/xriss/plated/blob/master/js/plated_chunks.js"
   }

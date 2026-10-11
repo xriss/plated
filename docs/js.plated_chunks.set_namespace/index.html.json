@@ -421,7 +421,7 @@
    "body": "<pre><code>plated_chunks.set_namespace(values)\n</code></pre>\n<p>Set the namespace to the given value.</p>\n",
    "count": 1,
    "file": "../js/plated_chunks.js",
-   "line": 369,
+   "line": 385,
    "name": "js.plated_chunks.set_namespace",
    "url": "https://github.com/xriss/plated/blob/master/js/plated_chunks.js"
   }
