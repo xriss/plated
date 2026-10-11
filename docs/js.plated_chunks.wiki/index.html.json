@@ -421,7 +421,7 @@
    "body": "<pre><code>html = plated_chunks.wiki(str)\n</code></pre>\n<p>Same as plated_chunks.markdown but with extra processing of quick wiki \nlinks.</p>\n",
    "count": 1,
    "file": "../js/plated_chunks.js",
-   "line": 955,
+   "line": 958,
    "name": "js.plated_chunks.wiki",
    "url": "https://github.com/xriss/plated/blob/master/js/plated_chunks.js"
   }

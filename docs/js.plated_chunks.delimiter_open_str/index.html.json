@@ -421,7 +421,7 @@
    "body": "<pre><code>s = plated_chunks.delimiter_open_str()\n</code></pre>\n<p>Return the first half of the opts.delimiter string.</p>\n",
    "count": 1,
    "file": "../js/plated_chunks.js",
-   "line": 106,
+   "line": 109,
    "name": "js.plated_chunks.delimiter_open_str",
    "url": "https://github.com/xriss/plated/blob/master/js/plated_chunks.js"
   }
