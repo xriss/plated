@@ -57,12 +57,14 @@ var nl_to_br=function(t) // lets break markdown
 
 var wiki_links=function(t) // create quick wiki links
 {
-	// very simple quick wiki links path matchin
-	// must be surounded by whitespace and must begin with /
+	// very simple quick wiki links path matching
+	// must be surrounded by whitespace and must begin with /
 	// whitespace / path whitespace
-	// whitespace include > < tag chars
+	// whitespace include >...< wrapping tag chars at either end
 	// path is text or numbers and _ . - /
-	// the last part of the path is text to show in link 
+	// the last part of the path is text to show in link
+	// text will be forced lower for link but can contain Uppercase for display
+
 	return t.replace(/([\s>]{1})\/([a-zA-Z0-9_\.\-\/]+)([\s<]{1})/g,function(full,white1,path,white2)
 		{
 			let parts=path.split("/")
@@ -75,19 +77,20 @@ var wiki_links=function(t) // create quick wiki links
 				parts.shift()
 				url="{_root}"
 			}
+			let urlparts=parts.join("/").toLowerCase()
 			if( parts[parts.length-1]=="" ) // dir link ( index.html )
 			{
-				url=url+parts.join("/")
+				url=url+urlparts
 			}
 			else // file link so force .html unless an extension exists
 			{
 				if( parts[parts.length-1].includes(".") )
 				{
-					url=url+parts.join("/")
+					url=url+urlparts
 				}
 				else
 				{
-					url=url+parts.join("/")+".html"
+					url=url+urlparts+".html"
 				}
 			}
 			return white1+"<a class=\"wiki-link\" href=\""+url+"\">"+text+"</a>"+white2;

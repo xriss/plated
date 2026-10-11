@@ -3,7 +3,7 @@
 		<title>Welcome to wiki test!</title>
 	</head>
 	<body><h1 id="title-text">title text</h1>
-<p>This is a quick link to a file <a class="wiki-link" href="page1.html">page1</a> this is/not</p>
+<p>This is a quick link to a file <a class="wiki-link" href="page1.html">Page1</a> this is/not</p>
 <pre><code>pre formated
 code
 type stuff <a class="wiki-link" href="page2.html">page2</a>
@@ -12,9 +12,12 @@ type stuff <a class="wiki-link" href="page2.html">page2</a>
 <p>and they can be absolute <a class="wiki-link" href="../009-wiki/page3.html">page3</a> like so.</p>
 <p>To disable quick links in text just use another chunk with 
 form=markdown and include it</p>
-<p>We can also link to dir <a class="wiki-link" href="page4/">page4</a> which will hit the index.html inside is.</p>
-<p>Links to images such as <a class="wiki-link" href="test.png.html">test.png</a> can be upgraded to inline with some 
-simple javascript.</p>
+<p>We can also link to dir with a trailing slash like <a class="wiki-link" href="page4/">Page4</a> which will 
+of course use the index.html inside the dir.</p>
+<p>Links to images such as <a class="wiki-link" href="test.png">test.png</a> can be upgraded to inline with some 
+simple javascript. See ^.html for example.</p>
+<p>Links are forced to lowercase only, but capitals can be used for 
+display text.</p>
 <p>All we are doing here is adding a simple way to put obvious quick links 
 between pages into markdown text.
 <br/>
