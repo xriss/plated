@@ -67,12 +67,28 @@ var wiki_links=function(t) // create quick wiki links
 		{
 			let parts=path.split("/")
 			let text=parts[parts.length-1]
-			if( text=="" ) { text=path }
-			let url=path
-			if( parts[0]=="" ) // double slash so use root
+			if( (!text) || (text=="") ) { text=parts[parts.length-2] }
+			if( (!text) || (text=="") ) { text=path }
+			let url=""
+			if( parts[0]=="" ) // double slash so use root at start
 			{
 				parts.shift()
-				url="{_root}"+parts.join("/")
+				url="{_root}"
+			}
+			if( parts[parts.length-1]=="" ) // dir link ( index.html )
+			{
+				url=url+parts.join("/")
+			}
+			else // file link so force .html unless an extension exists
+			{
+				if( parts[parts.length-1].includes(".") )
+				{
+					url=url+parts.join("/")
+				}
+				else
+				{
+					url=url+parts.join("/")+".html"
+				}
 			}
 			return white1+"<a class=\"wiki-link\" href=\""+url+"\">"+text+"</a>"+white2;
 		}
