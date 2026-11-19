@@ -1,19 +1,20 @@
 {
- "_dirname": "{_root}006-copy/subdir",
- "_filename": "{_root}006-copy/subdir",
- "_flags": {
-  "txt_hello_world": {
-   "trim": "ends"
-  },
-  "txt_root": {
-   "trim": "ends"
+ "_dirname" : "{_root}006-copy/subdir" ,
+ "_filename" : "{_root}006-copy/subdir" ,
+ "_flags" : {
+  "txt_hello_world" : {
+   "trim" : "ends"
+  } ,
+  "txt_root" : {
+   "trim" : "ends"
   }
- },
- "_output_filename": "006-copy/subdir/",
- "_root": "../../",
- "_site": "{_root}",
- "_sourcename": "006-copy/subdir/.",
- "html": "<html>\n\t<body>{body}</body>\n</html>\n",
- "txt_hello_world": "HELLO WORLD",
- "txt_root": "{_root}"
+ } ,
+ "_output_chunkname" : null ,
+ "_output_filename" : "006-copy/subdir/" ,
+ "_root" : "../../" ,
+ "_site" : "{_root}" ,
+ "_sourcename" : "006-copy/subdir/." ,
+ "html" : "<html>\n\t<body>{body}</body>\n</html>\n" ,
+ "txt_hello_world" : "HELLO WORLD" ,
+ "txt_root" : "{_root}"
 }

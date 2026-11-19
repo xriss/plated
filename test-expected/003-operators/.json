@@ -1,8 +1,9 @@
 {
- "_dirname": "{_root}003-operators",
- "_filename": "{_root}003-operators",
- "_output_filename": "003-operators/",
- "_root": "../",
- "_site": "{_root}",
- "_sourcename": "003-operators/."
+ "_dirname" : "{_root}003-operators" ,
+ "_filename" : "{_root}003-operators" ,
+ "_output_chunkname" : null ,
+ "_output_filename" : "003-operators/" ,
+ "_root" : "../" ,
+ "_site" : "{_root}" ,
+ "_sourcename" : "003-operators/."
 }

@@ -1,8 +1,9 @@
 {
- "_dirname": "{_root}",
- "_filename": "{_root}",
- "_output_filename": "/",
- "_root": "./",
- "_site": "{_root}",
- "_sourcename": ""
+ "_dirname" : "{_root}" ,
+ "_filename" : "{_root}" ,
+ "_output_chunkname" : null ,
+ "_output_filename" : "/" ,
+ "_root" : "./" ,
+ "_site" : "{_root}" ,
+ "_sourcename" : ""
 }

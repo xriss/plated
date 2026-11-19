@@ -1,33 +1,34 @@
 {
- "_dirname": "{_root}001-cascading-chunks",
- "_filename": "{_root}001-cascading-chunks",
- "_flags": {
-  "json": {
-   "form": "json"
-  },
-  "json_merge": {
-   "form": "json",
-   "same": "merge"
-  },
-  "not_json_append": {
-   "same": "append"
+ "_dirname" : "{_root}001-cascading-chunks" ,
+ "_filename" : "{_root}001-cascading-chunks" ,
+ "_flags" : {
+  "json" : {
+   "form" : "json"
+  } ,
+  "json_merge" : {
+   "form" : "json" ,
+   "same" : "merge"
+  } ,
+  "not_json_append" : {
+   "same" : "append"
   }
- },
- "_output_filename": "001-cascading-chunks/",
- "_root": "../",
- "_site": "{_root}",
- "_sourcename": "001-cascading-chunks/.",
- "base": "\nBASE\n",
- "json": {
-  "hello": {
-   "world": true
+ } ,
+ "_output_chunkname" : null ,
+ "_output_filename" : "001-cascading-chunks/" ,
+ "_root" : "../" ,
+ "_site" : "{_root}" ,
+ "_sourcename" : "001-cascading-chunks/." ,
+ "base" : "\nBASE\n" ,
+ "json" : {
+  "hello" : {
+   "world" : true
   }
- },
- "json_merge": {
-  "hello": {
-   "world": true
+ } ,
+ "json_merge" : {
+  "hello" : {
+   "world" : true
   }
- },
- "not_json": "\n{\n\n\t\"hello\":{\n\t\t\"world\":true\n\t}\n\n}\n",
- "not_json_append": "\n{\n\n\t\"hello\":{\n\t\t\"world\":true\n\t}\n\n}\n"
+ } ,
+ "not_json" : "\n{\n\n\t\"hello\":{\n\t\t\"world\":true\n\t}\n\n}\n" ,
+ "not_json_append" : "\n{\n\n\t\"hello\":{\n\t\t\"world\":true\n\t}\n\n}\n"
 }
