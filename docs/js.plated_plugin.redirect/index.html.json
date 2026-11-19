@@ -418,7 +418,7 @@
  },
  "_list": [
   {
-   "body": "<p>A blog plugin.</p>\n<p>This module only exposes one function, which is used to create \nthe actual module with bound state data.</p>\n<pre><code>plated_plugin_redirect = require(&quot;./plated_plugin_redirect.js&quot;).create(opts,plated)\n</code></pre>\n<p>This is called automatically when the plated module is created and the \nreturned plugin functions are added to the plugin call stack. Note that \nall of these modules are bound together and operate as a group with \nshared data.</p>\n",
+   "body": "<p>A blog plugin.</p>\n<p>This module only exposes one function, which is used to create \nthe actual module with bound state data.</p>\n<pre><code>import plated_plugin_redirect_create from &quot;./plated_plugin_redirect.js&quot;\nlet plated_plugin_redirect=await plated_create(opts,plated)\n</code></pre>\n<p>This is called automatically when the plated module is created and the \nreturned plugin functions are added to the plugin call stack. Note that \nall of these modules are bound together and operate as a group with \nshared data.</p>\n",
    "count": 3,
    "file": "../js/plated_plugin_redirect.js",
    "line": 4,
@@ -437,7 +437,7 @@
    "body": "<pre><code>chunks = plated_plugin_redirect.process_file(chunks)\n</code></pre>\n<p>Tweak a single file of chunks, only chunks found in this file will be \navailable.</p>\n<pre><code>#^_redirect_json\n</code></pre>\n<p>Is a special chunk name that we will parse as json and contain \nconfiguration data to setup redirects.</p>\n",
    "count": 1,
    "file": "../js/plated_plugin_redirect.js",
-   "line": 151,
+   "line": 146,
    "name": "js.plated_plugin.redirect.process_file",
    "url": "https://github.com/xriss/plated/blob/master/js/plated_plugin_redirect.js"
   }

@@ -418,7 +418,7 @@
  },
  "_list": [
   {
-   "body": "<p>Plated is a static site generator that uses a cascading chunk system to \ndescribe the output pages.</p>\n<p>Since we are using node we are also able to dynamically build the pages \nin the browser, which is why we include json dumps of the chunk data. \nThis provides enough data to reconstruct pages client side.</p>\n<p>Included are a handful of plugins that do slightly more complicated \nthings to enable extra functionality such as page redirects or \ngenerating blogs.</p>\n<p>This module only exposes one function, which is used to create \nthe actual module with bound state data.</p>\n<pre><code>plated=require(&quot;./plated.js&quot;).create(opts,plated)\n</code></pre>\n<p>opts is an object of options and plated is an optional input if \nprovided it will be modified and returned otherwise a new object will \nbe created and returned.</p>\n<p>We also load and setup this and all the builtin plugins so after \ncalling this we are good to go.</p>\n<p>In the future when we talk about plated and its available functions we \nare referring to the return from this create function.</p>\n<p>The opts is intended to be filled with command line options so take a \nlook at these for a full description of what can be passed in here.</p>\n",
+   "body": "<p>Plated is a static site generator that uses a cascading chunk system to \ndescribe the output pages.</p>\n<p>Since we are using node we are also able to dynamically build the pages \nin the browser, which is why we include json dumps of the chunk data. \nThis provides enough data to reconstruct pages client side.</p>\n<p>Included are a handful of plugins that do slightly more complicated \nthings to enable extra functionality such as page redirects or \ngenerating blogs.</p>\n<p>This module only exposes one function, which is used to create \nthe actual module with bound state data.</p>\n<pre><code>import plated_create from &quot;./plated.js&quot;\nlet plated=await plated_create(opts,plated)\n</code></pre>\n<p>opts is an object of options and plated is an optional input if \nprovided it will be modified and returned otherwise a new object will \nbe created and returned.</p>\n<p>We also load and setup this and all the builtin plugins so after \ncalling this we are good to go.</p>\n<p>In the future when we talk about plated and its available functions we \nare referring to the return from this create function.</p>\n<p>The opts is intended to be filled with command line options so take a \nlook at these for a full description of what can be passed in here.</p>\n<p>In order to disconnect from the fs and allow use in a browser pfs must \nbe passed into this function if you expect want node file system \naccess.</p>\n<pre><code>import pfs from &#39;node:fs/promises&#39;\nlet plated=await plated_create({pfs:pfs})\n</code></pre>\n",
    "count": 7,
    "file": "../js/plated.js",
    "line": 3,
@@ -429,7 +429,7 @@
    "body": "<pre><code>plated.blog()\n</code></pre>\n<p>Create a starting blogpost with todays date in the main blog directory.</p>\n<p>Title is taken from opts._[1] onwards IE the command line.</p>\n",
    "count": 1,
    "file": "../js/plated.js",
-   "line": 486,
+   "line": 502,
    "name": "js.plated.blog",
    "url": "https://github.com/xriss/plated/blob/master/js/plated.js"
   },
@@ -437,7 +437,7 @@
    "body": "<pre><code>plated.build()\n</code></pre>\n<p>Build all the output files from the inputs.</p>\n",
    "count": 1,
    "file": "../js/plated.js",
-   "line": 460,
+   "line": 476,
    "name": "js.plated.build",
    "url": "https://github.com/xriss/plated/blob/master/js/plated.js"
   },
@@ -445,7 +445,7 @@
    "body": "<pre><code>plated.micro()\n</code></pre>\n<p>Create a starting microblogpost with todays date-time in the main blog directory.</p>\n<p>Markdown text is taken from opts._[1] onwards IE the command line.</p>\n",
    "count": 1,
    "file": "../js/plated.js",
-   "line": 545,
+   "line": 561,
    "name": "js.plated.micro",
    "url": "https://github.com/xriss/plated/blob/master/js/plated.js"
   },
@@ -453,15 +453,15 @@
    "body": "<pre><code>plated.plugin(it)\n</code></pre>\n<p>Register a plugin, each plugin can provide the following function hooks.</p>\n<pre><code>dirs = it.process_dirs( dirs )\n</code></pre>\n<p>Adjust the registered dirs data and return it.</p>\n<pre><code>file = it.process_file( file )\n</code></pre>\n<p>Adjust or react to the file data and return it.</p>\n<pre><code>it.process_output( chunks )\n</code></pre>\n<p>Adjust a files chunks prior to writing it out, or, output extra data \nassociated with these chunks.</p>\n",
    "count": 1,
    "file": "../js/plated.js",
-   "line": 432,
+   "line": 448,
    "name": "js.plated.plugin",
    "url": "https://github.com/xriss/plated/blob/master/js/plated.js"
   },
   {
-   "body": "<pre><code>plated.setup(opts)\n</code></pre>\n<p>Initialise plated and require the base plated modules: files, chunks \nand output.</p>\n",
+   "body": "<pre><code>await plated.setup(opts)\n</code></pre>\n<p>Initialise plated and setup the base plated modules: files, chunks \nand output.</p>\n",
    "count": 1,
    "file": "../js/plated.js",
-   "line": 411,
+   "line": 427,
    "name": "js.plated.setup",
    "url": "https://github.com/xriss/plated/blob/master/js/plated.js"
   },
@@ -469,7 +469,7 @@
    "body": "<pre><code>plated.watch()\n</code></pre>\n<p>Continuously build the output files from the inputs whenever one of the input files changes</p>\n",
    "count": 1,
    "file": "../js/plated.js",
-   "line": 473,
+   "line": 489,
    "name": "js.plated.watch",
    "url": "https://github.com/xriss/plated/blob/master/js/plated.js"
   }

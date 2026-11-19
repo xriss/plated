@@ -122,7 +122,8 @@
 <div><p>Manage the chunks of text that are combined into a page.</p>
 <p>This module only exposes one function, which is used to create 
 the actual module with bound state data.</p>
-<pre><code>plated_output = require(&quot;./plated_output.js&quot;).create(opts,plated)
+<pre><code>import plated_output_create from &quot;./plated_output.js&quot;
+let plated_output=await plated_create(opts,plated)
 </code></pre>
 <p>This is called automatically when the plated module is created and the 
 return value is made available in plated.chunks note that all of these 
@@ -135,7 +136,7 @@ function.</p>
 
 <div class="wrap">
 <h1><a href="../../docs/js.plated_output.remember">js.plated_output.remember</a></h1>
-<div class="source"><a href="https://github.com/xriss/plated/blob/master/js/plated_output.js#L37">https://github.com/xriss/plated/blob/master/js/plated_output.js</a></div>
+<div class="source"><a href="https://github.com/xriss/plated/blob/master/js/plated_output.js#L39">https://github.com/xriss/plated/blob/master/js/plated_output.js</a></div>
 <div><pre><code>chunks = plated_output.remember(chunks)
 </code></pre>
 <p>Remember this page, the name is expected to be found in 
@@ -146,7 +147,7 @@ chunks.</p>
 
 <div class="wrap">
 <h1><a href="../../docs/js.plated_output.remember_and_write">js.plated_output.remember_and_write</a></h1>
-<div class="source"><a href="https://github.com/xriss/plated/blob/master/js/plated_output.js#L53">https://github.com/xriss/plated/blob/master/js/plated_output.js</a></div>
+<div class="source"><a href="https://github.com/xriss/plated/blob/master/js/plated_output.js#L55">https://github.com/xriss/plated/blob/master/js/plated_output.js</a></div>
 <div><pre><code>chunks = await plated_output.remember_and_write(chunks)
 </code></pre>
 <p>The same as remember but also instantly write out the chunks using 
@@ -156,7 +157,7 @@ plated_output.write</p>
 
 <div class="wrap">
 <h1><a href="../../docs/js.plated_output.write">js.plated_output.write</a></h1>
-<div class="source"><a href="https://github.com/xriss/plated/blob/master/js/plated_output.js#L69">https://github.com/xriss/plated/blob/master/js/plated_output.js</a></div>
+<div class="source"><a href="https://github.com/xriss/plated/blob/master/js/plated_output.js#L71">https://github.com/xriss/plated/blob/master/js/plated_output.js</a></div>
 <div><pre><code>await plated_output.write(chunks)
 </code></pre>
 <p>Write out the chunks to to _output_filename as its final page like 
@@ -170,7 +171,7 @@ to render into this page, eg &quot;html&quot; </p>
 
 <div class="wrap">
 <h1><a href="../../docs/js.plated_output.write_all">js.plated_output.write_all</a></h1>
-<div class="source"><a href="https://github.com/xriss/plated/blob/master/js/plated_output.js#L132">https://github.com/xriss/plated/blob/master/js/plated_output.js</a></div>
+<div class="source"><a href="https://github.com/xriss/plated/blob/master/js/plated_output.js#L134">https://github.com/xriss/plated/blob/master/js/plated_output.js</a></div>
 <div><pre><code>plated_output.write_all()
 </code></pre>
 <p>Go through all the remembered chunks and write each one out using 
@@ -180,7 +181,7 @@ plated_output.write</p>
 
 <div class="wrap">
 <h1><a href="../../docs/js.plated_output.write_map">js.plated_output.write_map</a></h1>
-<div class="source"><a href="https://github.com/xriss/plated/blob/master/js/plated_output.js#L109">https://github.com/xriss/plated/blob/master/js/plated_output.js</a></div>
+<div class="source"><a href="https://github.com/xriss/plated/blob/master/js/plated_output.js#L111">https://github.com/xriss/plated/blob/master/js/plated_output.js</a></div>
 <div><pre><code>plated_output.write_map()
 </code></pre>
 <p>Output plated.map.json which is a concise map of all chunks for all 

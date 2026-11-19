@@ -418,10 +418,10 @@
  },
  "_list": [
   {
-   "body": "<pre><code>plated.setup(opts)\n</code></pre>\n<p>Initialise plated and require the base plated modules: files, chunks \nand output.</p>\n",
+   "body": "<pre><code>await plated.setup(opts)\n</code></pre>\n<p>Initialise plated and setup the base plated modules: files, chunks \nand output.</p>\n",
    "count": 1,
    "file": "../js/plated.js",
-   "line": 411,
+   "line": 427,
    "name": "js.plated.setup",
    "url": "https://github.com/xriss/plated/blob/master/js/plated.js"
   }

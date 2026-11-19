@@ -122,7 +122,8 @@
 <div><p>Manage the files that we read from and watch or write to.</p>
 <p>This module only exposes one function, which is used to create 
 the actual module with bound state data.</p>
-<pre><code>plated_files = require(&quot;./plated_files.js&quot;).create(opts,plated)
+<pre><code>import plated_files_create from &quot;./plated_files.js&quot;
+let plated_files=await plated_create(opts,plated)
 </code></pre>
 <p>This is called automatically when the plated module is created and the 
 return value is made available in plated.chunks note that all of these 
@@ -135,7 +136,7 @@ function.</p>
 
 <div class="wrap">
 <h1><a href="../../docs/js.plated_files.base_files_to_chunks">js.plated_files.base_files_to_chunks</a></h1>
-<div class="source"><a href="https://github.com/xriss/plated/blob/master/js/plated_files.js#L541">https://github.com/xriss/plated/blob/master/js/plated_files.js</a></div>
+<div class="source"><a href="https://github.com/xriss/plated/blob/master/js/plated_files.js#L544">https://github.com/xriss/plated/blob/master/js/plated_files.js</a></div>
 <div><pre><code>chunks = await plated_files.base_files_to_chunks(fname)
 </code></pre>
 <p>Check this directory and all directories above for generic chunks build 
@@ -145,7 +146,7 @@ all of these into the current chunk namespace for this file.</p>
 
 <div class="wrap">
 <h1><a href="../../docs/js.plated_files.build">js.plated_files.build</a></h1>
-<div class="source"><a href="https://github.com/xriss/plated/blob/master/js/plated_files.js#L622">https://github.com/xriss/plated/blob/master/js/plated_files.js</a></div>
+<div class="source"><a href="https://github.com/xriss/plated/blob/master/js/plated_files.js#L625">https://github.com/xriss/plated/blob/master/js/plated_files.js</a></div>
 <div><pre><code>plated_files.build()
 </code></pre>
 <p>Build all files found in the source dir into the output dir.</p>
@@ -154,7 +155,7 @@ all of these into the current chunk namespace for this file.</p>
 
 <div class="wrap">
 <h1><a href="../../docs/js.plated_files.build_file">js.plated_files.build_file</a></h1>
-<div class="source"><a href="https://github.com/xriss/plated/blob/master/js/plated_files.js#L573">https://github.com/xriss/plated/blob/master/js/plated_files.js</a></div>
+<div class="source"><a href="https://github.com/xriss/plated/blob/master/js/plated_files.js#L576">https://github.com/xriss/plated/blob/master/js/plated_files.js</a></div>
 <div><pre><code>plated_files.build_file(fname)
 </code></pre>
 <p>Build the given source filename, using chunks or maybe just a raw copy 
@@ -164,7 +165,7 @@ from source into the output.</p>
 
 <div class="wrap">
 <h1><a href="../../docs/js.plated_files.empty_cache">js.plated_files.empty_cache</a></h1>
-<div class="source"><a href="https://github.com/xriss/plated/blob/master/js/plated_files.js#L474">https://github.com/xriss/plated/blob/master/js/plated_files.js</a></div>
+<div class="source"><a href="https://github.com/xriss/plated/blob/master/js/plated_files.js#L477">https://github.com/xriss/plated/blob/master/js/plated_files.js</a></div>
 <div><pre><code>plated_files.empty_cache()
 </code></pre>
 <p>Empty the current file cache, we fill it up as read files.</p>
@@ -173,7 +174,7 @@ from source into the output.</p>
 
 <div class="wrap">
 <h1><a href="../../docs/js.plated_files.empty_folder">js.plated_files.empty_folder</a></h1>
-<div class="source"><a href="https://github.com/xriss/plated/blob/master/js/plated_files.js#L375">https://github.com/xriss/plated/blob/master/js/plated_files.js</a></div>
+<div class="source"><a href="https://github.com/xriss/plated/blob/master/js/plated_files.js#L378">https://github.com/xriss/plated/blob/master/js/plated_files.js</a></div>
 <div><pre><code>plated_files.empty_folder(path)
 </code></pre>
 <p>Empty the (output) folder or make it if it does not exist. This is 
@@ -183,7 +184,7 @@ rather dangerous so please be careful.</p>
 
 <div class="wrap">
 <h1><a href="../../docs/js.plated_files.exists">js.plated_files.exists</a></h1>
-<div class="source"><a href="https://github.com/xriss/plated/blob/master/js/plated_files.js#L96">https://github.com/xriss/plated/blob/master/js/plated_files.js</a></div>
+<div class="source"><a href="https://github.com/xriss/plated/blob/master/js/plated_files.js#L99">https://github.com/xriss/plated/blob/master/js/plated_files.js</a></div>
 <div><pre><code>await plated_files.exists(path)
 </code></pre>
 <p>Returns true if a file or dir at the given path exists.</p>
@@ -192,7 +193,7 @@ rather dangerous so please be careful.</p>
 
 <div class="wrap">
 <h1><a href="../../docs/js.plated_files.file_to_chunks">js.plated_files.file_to_chunks</a></h1>
-<div class="source"><a href="https://github.com/xriss/plated/blob/master/js/plated_files.js#L487">https://github.com/xriss/plated/blob/master/js/plated_files.js</a></div>
+<div class="source"><a href="https://github.com/xriss/plated/blob/master/js/plated_files.js#L490">https://github.com/xriss/plated/blob/master/js/plated_files.js</a></div>
 <div><pre><code>chunks = plated_files.file_to_chunks(root,fname,chunks)
 </code></pre>
 <p>Load root/fname or get it from the cache and then turn it into chunks 
@@ -202,7 +203,7 @@ using plated_chunks.fill_chunks(date,chunks) chunks is returned.</p>
 
 <div class="wrap">
 <h1><a href="../../docs/js.plated_files.filename_fixup">js.plated_files.filename_fixup</a></h1>
-<div class="source"><a href="https://github.com/xriss/plated/blob/master/js/plated_files.js#L266">https://github.com/xriss/plated/blob/master/js/plated_files.js</a></div>
+<div class="source"><a href="https://github.com/xriss/plated/blob/master/js/plated_files.js#L269">https://github.com/xriss/plated/blob/master/js/plated_files.js</a></div>
 <div><pre><code>filename = plated_files.filename_fixup(filename)
 </code></pre>
 <p>Fix the filename, so it becomes an empty string rather than a &quot;.&quot; or 
@@ -212,7 +213,7 @@ using plated_chunks.fill_chunks(date,chunks) chunks is returned.</p>
 
 <div class="wrap">
 <h1><a href="../../docs/js.plated_files.filename_is_basechunk">js.plated_files.filename_is_basechunk</a></h1>
-<div class="source"><a href="https://github.com/xriss/plated/blob/master/js/plated_files.js#L309">https://github.com/xriss/plated/blob/master/js/plated_files.js</a></div>
+<div class="source"><a href="https://github.com/xriss/plated/blob/master/js/plated_files.js#L312">https://github.com/xriss/plated/blob/master/js/plated_files.js</a></div>
 <div><pre><code>bool = plated_files.filename_is_basechunk(filename)
 </code></pre>
 <p>Is this filename part of the basechunks for a dir?</p>
@@ -225,7 +226,7 @@ is viewed.</p>
 
 <div class="wrap">
 <h1><a href="../../docs/js.plated_files.filename_is_plated">js.plated_files.filename_is_plated</a></h1>
-<div class="source"><a href="https://github.com/xriss/plated/blob/master/js/plated_files.js#L332">https://github.com/xriss/plated/blob/master/js/plated_files.js</a></div>
+<div class="source"><a href="https://github.com/xriss/plated/blob/master/js/plated_files.js#L335">https://github.com/xriss/plated/blob/master/js/plated_files.js</a></div>
 <div><pre><code>bool = plated_files.filename_is_plated(filename)
 </code></pre>
 <p>Is this filename something we need to run through plated. Returns true 
@@ -236,7 +237,7 @@ by altering opts.hashfile from &quot;^&quot; to something else.</p>
 
 <div class="wrap">
 <h1><a href="../../docs/js.plated_files.filename_to_dirname">js.plated_files.filename_to_dirname</a></h1>
-<div class="source"><a href="https://github.com/xriss/plated/blob/master/js/plated_files.js#L282">https://github.com/xriss/plated/blob/master/js/plated_files.js</a></div>
+<div class="source"><a href="https://github.com/xriss/plated/blob/master/js/plated_files.js#L285">https://github.com/xriss/plated/blob/master/js/plated_files.js</a></div>
 <div><pre><code>dirname = plated_files.filename_to_dirname(filename)
 </code></pre>
 <p>Get the dirname of this filename.</p>
@@ -245,7 +246,7 @@ by altering opts.hashfile from &quot;^&quot; to something else.</p>
 
 <div class="wrap">
 <h1><a href="../../docs/js.plated_files.filename_to_output">js.plated_files.filename_to_output</a></h1>
-<div class="source"><a href="https://github.com/xriss/plated/blob/master/js/plated_files.js#L352">https://github.com/xriss/plated/blob/master/js/plated_files.js</a></div>
+<div class="source"><a href="https://github.com/xriss/plated/blob/master/js/plated_files.js#L355">https://github.com/xriss/plated/blob/master/js/plated_files.js</a></div>
 <div><pre><code>filename = plated_files.filename_to_output(filename)
 </code></pre>
 <p>Work out the output filename from an input filename, the trigger string 
@@ -255,7 +256,7 @@ by altering opts.hashfile from &quot;^&quot; to something else.</p>
 
 <div class="wrap">
 <h1><a href="../../docs/js.plated_files.find_dirs">js.plated_files.find_dirs</a></h1>
-<div class="source"><a href="https://github.com/xriss/plated/blob/master/js/plated_files.js#L445">https://github.com/xriss/plated/blob/master/js/plated_files.js</a></div>
+<div class="source"><a href="https://github.com/xriss/plated/blob/master/js/plated_files.js#L448">https://github.com/xriss/plated/blob/master/js/plated_files.js</a></div>
 <div><pre><code>plated_files.find_dirs(root,name,func)
 </code></pre>
 <p>Call func(name) with every directory we find inside the root/name 
@@ -265,7 +266,7 @@ directory. We follow symlinks into other directories.</p>
 
 <div class="wrap">
 <h1><a href="../../docs/js.plated_files.find_files">js.plated_files.find_files</a></h1>
-<div class="source"><a href="https://github.com/xriss/plated/blob/master/js/plated_files.js#L415">https://github.com/xriss/plated/blob/master/js/plated_files.js</a></div>
+<div class="source"><a href="https://github.com/xriss/plated/blob/master/js/plated_files.js#L418">https://github.com/xriss/plated/blob/master/js/plated_files.js</a></div>
 <div><pre><code>plated_files.find_files(root,name)
 </code></pre>
 <p>REturn an array with every file we find inside the root/name directory. 
@@ -275,7 +276,7 @@ We follow symlinks into other directories.</p>
 
 <div class="wrap">
 <h1><a href="../../docs/js.plated_files.joinpath">js.plated_files.joinpath</a></h1>
-<div class="source"><a href="https://github.com/xriss/plated/blob/master/js/plated_files.js#L81">https://github.com/xriss/plated/blob/master/js/plated_files.js</a></div>
+<div class="source"><a href="https://github.com/xriss/plated/blob/master/js/plated_files.js#L84">https://github.com/xriss/plated/blob/master/js/plated_files.js</a></div>
 <div><pre><code>await plated_files.joinpath(...)
 </code></pre>
 <p>join components into a full path.</p>
@@ -284,7 +285,7 @@ We follow symlinks into other directories.</p>
 
 <div class="wrap">
 <h1><a href="../../docs/js.plated_files.lstat">js.plated_files.lstat</a></h1>
-<div class="source"><a href="https://github.com/xriss/plated/blob/master/js/plated_files.js#L128">https://github.com/xriss/plated/blob/master/js/plated_files.js</a></div>
+<div class="source"><a href="https://github.com/xriss/plated/blob/master/js/plated_files.js#L131">https://github.com/xriss/plated/blob/master/js/plated_files.js</a></div>
 <div><pre><code>await plated_files.lstat(path)
 </code></pre>
 <p>Return the lstat of this path</p>
@@ -293,7 +294,7 @@ We follow symlinks into other directories.</p>
 
 <div class="wrap">
 <h1><a href="../../docs/js.plated_files.mkdir">js.plated_files.mkdir</a></h1>
-<div class="source"><a href="https://github.com/xriss/plated/blob/master/js/plated_files.js#L157">https://github.com/xriss/plated/blob/master/js/plated_files.js</a></div>
+<div class="source"><a href="https://github.com/xriss/plated/blob/master/js/plated_files.js#L160">https://github.com/xriss/plated/blob/master/js/plated_files.js</a></div>
 <div><pre><code>plated_files.mkdir(dir)
 </code></pre>
 <p>Create the given dir and recursively create its parent dirs as well if 
@@ -303,7 +304,7 @@ necessary.</p>
 
 <div class="wrap">
 <h1><a href="../../docs/js.plated_files.prepare_namespace">js.plated_files.prepare_namespace</a></h1>
-<div class="source"><a href="https://github.com/xriss/plated/blob/master/js/plated_files.js#L510">https://github.com/xriss/plated/blob/master/js/plated_files.js</a></div>
+<div class="source"><a href="https://github.com/xriss/plated/blob/master/js/plated_files.js#L513">https://github.com/xriss/plated/blob/master/js/plated_files.js</a></div>
 <div><pre><code>plated_files.prepare_namespace(fname)
 </code></pre>
 <p>Check this directory and all directories above for generic chunks then 
@@ -313,7 +314,7 @@ build all of these into the current chunk namespace for this file.</p>
 
 <div class="wrap">
 <h1><a href="../../docs/js.plated_files.readdir">js.plated_files.readdir</a></h1>
-<div class="source"><a href="https://github.com/xriss/plated/blob/master/js/plated_files.js#L142">https://github.com/xriss/plated/blob/master/js/plated_files.js</a></div>
+<div class="source"><a href="https://github.com/xriss/plated/blob/master/js/plated_files.js#L145">https://github.com/xriss/plated/blob/master/js/plated_files.js</a></div>
 <div><pre><code>await plated_files.readdir(path)
 </code></pre>
 <p>Return the readdir of this path</p>
@@ -322,7 +323,7 @@ build all of these into the current chunk namespace for this file.</p>
 
 <div class="wrap">
 <h1><a href="../../docs/js.plated_files.set_source">js.plated_files.set_source</a></h1>
-<div class="source"><a href="https://github.com/xriss/plated/blob/master/js/plated_files.js#L184">https://github.com/xriss/plated/blob/master/js/plated_files.js</a></div>
+<div class="source"><a href="https://github.com/xriss/plated/blob/master/js/plated_files.js#L187">https://github.com/xriss/plated/blob/master/js/plated_files.js</a></div>
 <div><pre><code>plated_files.set_source(dir)
 </code></pre>
 <p>Fill in _source and related chunks such as.</p>
@@ -341,7 +342,7 @@ get to the right place and can find your files.</p>
 
 <div class="wrap">
 <h1><a href="../../docs/js.plated_files.source_to_output">js.plated_files.source_to_output</a></h1>
-<div class="source"><a href="https://github.com/xriss/plated/blob/master/js/plated_files.js#L295">https://github.com/xriss/plated/blob/master/js/plated_files.js</a></div>
+<div class="source"><a href="https://github.com/xriss/plated/blob/master/js/plated_files.js#L298">https://github.com/xriss/plated/blob/master/js/plated_files.js</a></div>
 <div><pre><code>filename = plated_files.source_to_output(filename)
 </code></pre>
 <p>Convert a source path into an output path.</p>
@@ -350,7 +351,7 @@ get to the right place and can find your files.</p>
 
 <div class="wrap">
 <h1><a href="../../docs/js.plated_files.stat">js.plated_files.stat</a></h1>
-<div class="source"><a href="https://github.com/xriss/plated/blob/master/js/plated_files.js#L114">https://github.com/xriss/plated/blob/master/js/plated_files.js</a></div>
+<div class="source"><a href="https://github.com/xriss/plated/blob/master/js/plated_files.js#L117">https://github.com/xriss/plated/blob/master/js/plated_files.js</a></div>
 <div><pre><code>await plated_files.stat(path)
 </code></pre>
 <p>Return the stat of this path</p>
@@ -359,7 +360,7 @@ get to the right place and can find your files.</p>
 
 <div class="wrap">
 <h1><a href="../../docs/js.plated_files.trimpath">js.plated_files.trimpath</a></h1>
-<div class="source"><a href="https://github.com/xriss/plated/blob/master/js/plated_files.js#L60">https://github.com/xriss/plated/blob/master/js/plated_files.js</a></div>
+<div class="source"><a href="https://github.com/xriss/plated/blob/master/js/plated_files.js#L63">https://github.com/xriss/plated/blob/master/js/plated_files.js</a></div>
 <div><pre><code>plated_files.trimpath(path)
 </code></pre>
 <p>Remove a trailing / from the path</p>
@@ -368,7 +369,7 @@ get to the right place and can find your files.</p>
 
 <div class="wrap">
 <h1><a href="../../docs/js.plated_files.watch">js.plated_files.watch</a></h1>
-<div class="source"><a href="https://github.com/xriss/plated/blob/master/js/plated_files.js#L687">https://github.com/xriss/plated/blob/master/js/plated_files.js</a></div>
+<div class="source"><a href="https://github.com/xriss/plated/blob/master/js/plated_files.js#L690">https://github.com/xriss/plated/blob/master/js/plated_files.js</a></div>
 <div><pre><code>plated_files.watch()
 </code></pre>
 <p>Build all files found in the source dir into the output dir and then 
@@ -380,7 +381,7 @@ finished.</p>
 
 <div class="wrap">
 <h1><a href="../../docs/js.plated_files.write">js.plated_files.write</a></h1>
-<div class="source"><a href="https://github.com/xriss/plated/blob/master/js/plated_files.js#L252">https://github.com/xriss/plated/blob/master/js/plated_files.js</a></div>
+<div class="source"><a href="https://github.com/xriss/plated/blob/master/js/plated_files.js#L255">https://github.com/xriss/plated/blob/master/js/plated_files.js</a></div>
 <div><pre><code>plated_files.write(filename,data)
 </code></pre>
 <p>Create parent dir if necessary and write the data into this file.</p>

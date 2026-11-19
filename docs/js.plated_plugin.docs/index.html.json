@@ -418,7 +418,7 @@
  },
  "_list": [
   {
-   "body": "<p>A docs plugin.</p>\n<p>This module only exposes one function, which is used to create \nthe actual module with bound state data.</p>\n<pre><code>plated_plugin_docs = require(&quot;./plated_plugin_docs.js&quot;).create(opts,plated)\n</code></pre>\n<p>This is called automatically when the plated module is created and the \nreturned plugin functions are added to the plugin call stack. Note that \nall of these modules are bound together and operate as a group with \nshared data.</p>\n",
+   "body": "<p>A docs plugin.</p>\n<p>This module only exposes one function, which is used to create \nthe actual module with bound state data.</p>\n<pre><code>import plated_plugin_docs_create from &quot;./plated_plugin_docs.js&quot;\nlet plated_plugin_docs=await plated_create(opts,plated)\n</code></pre>\n<p>This is called automatically when the plated module is created and the \nreturned plugin functions are added to the plugin call stack. Note that \nall of these modules are bound together and operate as a group with \nshared data.</p>\n",
    "count": 3,
    "file": "../js/plated_plugin_docs.js",
    "line": 3,

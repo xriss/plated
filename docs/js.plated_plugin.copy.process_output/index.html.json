@@ -421,7 +421,7 @@
    "body": "<pre><code>plated_plugin_copy.process_output(chunks)\n</code></pre>\n<p>Compare this output file with cached copy chunks and duplicate it \ninto these directories with slightly tweaked chunks if it matches.</p>\n",
    "count": 1,
    "file": "../js/plated_plugin_copy.js",
-   "line": 136,
+   "line": 137,
    "name": "js.plated_plugin.copy.process_output",
    "url": "https://github.com/xriss/plated/blob/master/js/plated_plugin_copy.js"
   }

@@ -421,7 +421,7 @@
    "body": "<pre><code>await plated_output.write(chunks)\n</code></pre>\n<p>Write out the chunks to to _output_filename as its final page like \nform. chunks._output_chunkname is the name of the chunk that we intend \nto render into this page, eg &quot;html&quot; </p>\n<p>opts.output is the directory we are going to write the file into.</p>\n<p>If the opts.dumpjson flag is set then we also output a \n.json file which contains the chunks used to construct this page.</p>\n",
    "count": 1,
    "file": "../js/plated_output.js",
-   "line": 69,
+   "line": 71,
    "name": "js.plated_output.write",
    "url": "https://github.com/xriss/plated/blob/master/js/plated_output.js"
   }

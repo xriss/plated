@@ -129,7 +129,8 @@ things to enable extra functionality such as page redirects or
 generating blogs.</p>
 <p>This module only exposes one function, which is used to create 
 the actual module with bound state data.</p>
-<pre><code>plated=require(&quot;./plated.js&quot;).create(opts,plated)
+<pre><code>import plated_create from &quot;./plated.js&quot;
+let plated=await plated_create(opts,plated)
 </code></pre>
 <p>opts is an object of options and plated is an optional input if 
 provided it will be modified and returned otherwise a new object will 
@@ -140,12 +141,18 @@ calling this we are good to go.</p>
 are referring to the return from this create function.</p>
 <p>The opts is intended to be filled with command line options so take a 
 look at these for a full description of what can be passed in here.</p>
+<p>In order to disconnect from the fs and allow use in a browser pfs must 
+be passed into this function if you expect want node file system 
+access.</p>
+<pre><code>import pfs from &#39;node:fs/promises&#39;
+let plated=await plated_create({pfs:pfs})
+</code></pre>
 </div>
 </div>
 
 <div class="wrap">
 <h1><a href="../../docs/js.plated.blog">js.plated.blog</a></h1>
-<div class="source"><a href="https://github.com/xriss/plated/blob/master/js/plated.js#L486">https://github.com/xriss/plated/blob/master/js/plated.js</a></div>
+<div class="source"><a href="https://github.com/xriss/plated/blob/master/js/plated.js#L502">https://github.com/xriss/plated/blob/master/js/plated.js</a></div>
 <div><pre><code>plated.blog()
 </code></pre>
 <p>Create a starting blogpost with todays date in the main blog directory.</p>
@@ -155,7 +162,7 @@ look at these for a full description of what can be passed in here.</p>
 
 <div class="wrap">
 <h1><a href="../../docs/js.plated.build">js.plated.build</a></h1>
-<div class="source"><a href="https://github.com/xriss/plated/blob/master/js/plated.js#L460">https://github.com/xriss/plated/blob/master/js/plated.js</a></div>
+<div class="source"><a href="https://github.com/xriss/plated/blob/master/js/plated.js#L476">https://github.com/xriss/plated/blob/master/js/plated.js</a></div>
 <div><pre><code>plated.build()
 </code></pre>
 <p>Build all the output files from the inputs.</p>
@@ -164,7 +171,7 @@ look at these for a full description of what can be passed in here.</p>
 
 <div class="wrap">
 <h1><a href="../../docs/js.plated.micro">js.plated.micro</a></h1>
-<div class="source"><a href="https://github.com/xriss/plated/blob/master/js/plated.js#L545">https://github.com/xriss/plated/blob/master/js/plated.js</a></div>
+<div class="source"><a href="https://github.com/xriss/plated/blob/master/js/plated.js#L561">https://github.com/xriss/plated/blob/master/js/plated.js</a></div>
 <div><pre><code>plated.micro()
 </code></pre>
 <p>Create a starting microblogpost with todays date-time in the main blog directory.</p>
@@ -174,7 +181,7 @@ look at these for a full description of what can be passed in here.</p>
 
 <div class="wrap">
 <h1><a href="../../docs/js.plated.plugin">js.plated.plugin</a></h1>
-<div class="source"><a href="https://github.com/xriss/plated/blob/master/js/plated.js#L432">https://github.com/xriss/plated/blob/master/js/plated.js</a></div>
+<div class="source"><a href="https://github.com/xriss/plated/blob/master/js/plated.js#L448">https://github.com/xriss/plated/blob/master/js/plated.js</a></div>
 <div><pre><code>plated.plugin(it)
 </code></pre>
 <p>Register a plugin, each plugin can provide the following function hooks.</p>
@@ -193,17 +200,17 @@ associated with these chunks.</p>
 
 <div class="wrap">
 <h1><a href="../../docs/js.plated.setup">js.plated.setup</a></h1>
-<div class="source"><a href="https://github.com/xriss/plated/blob/master/js/plated.js#L411">https://github.com/xriss/plated/blob/master/js/plated.js</a></div>
-<div><pre><code>plated.setup(opts)
+<div class="source"><a href="https://github.com/xriss/plated/blob/master/js/plated.js#L427">https://github.com/xriss/plated/blob/master/js/plated.js</a></div>
+<div><pre><code>await plated.setup(opts)
 </code></pre>
-<p>Initialise plated and require the base plated modules: files, chunks 
+<p>Initialise plated and setup the base plated modules: files, chunks 
 and output.</p>
 </div>
 </div>
 
 <div class="wrap">
 <h1><a href="../../docs/js.plated.watch">js.plated.watch</a></h1>
-<div class="source"><a href="https://github.com/xriss/plated/blob/master/js/plated.js#L473">https://github.com/xriss/plated/blob/master/js/plated.js</a></div>
+<div class="source"><a href="https://github.com/xriss/plated/blob/master/js/plated.js#L489">https://github.com/xriss/plated/blob/master/js/plated.js</a></div>
 <div><pre><code>plated.watch()
 </code></pre>
 <p>Continuously build the output files from the inputs whenever one of the input files changes</p>

@@ -122,7 +122,8 @@
 <div><p>A docs plugin.</p>
 <p>This module only exposes one function, which is used to create 
 the actual module with bound state data.</p>
-<pre><code>plated_plugin_docs = require(&quot;./plated_plugin_docs.js&quot;).create(opts,plated)
+<pre><code>import plated_plugin_docs_create from &quot;./plated_plugin_docs.js&quot;
+let plated_plugin_docs=await plated_create(opts,plated)
 </code></pre>
 <p>This is called automatically when the plated module is created and the 
 returned plugin functions are added to the plugin call stack. Note that 

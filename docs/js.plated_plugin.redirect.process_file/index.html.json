@@ -421,7 +421,7 @@
    "body": "<pre><code>chunks = plated_plugin_redirect.process_file(chunks)\n</code></pre>\n<p>Tweak a single file of chunks, only chunks found in this file will be \navailable.</p>\n<pre><code>#^_redirect_json\n</code></pre>\n<p>Is a special chunk name that we will parse as json and contain \nconfiguration data to setup redirects.</p>\n",
    "count": 1,
    "file": "../js/plated_plugin_redirect.js",
-   "line": 151,
+   "line": 146,
    "name": "js.plated_plugin.redirect.process_file",
    "url": "https://github.com/xriss/plated/blob/master/js/plated_plugin_redirect.js"
   }

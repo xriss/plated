@@ -122,7 +122,8 @@
 <div><p>A blog plugin.</p>
 <p>This module only exposes one function, which is used to create 
 the actual module with bound state data.</p>
-<pre><code>plated_plugin_blog = require(&quot;./plated_plugin_blog.js&quot;).create(opts,plated)
+<pre><code>import plated_plugin_blog_create from &quot;./plated_plugin_blog.js&quot;
+let plated_plugin_blog=await plated_create(opts,plated)
 </code></pre>
 <p>This is called automatically when the plated module is created and the 
 returned plugin functions are added to the plugin call stack. Note that 
@@ -133,7 +134,7 @@ shared data.</p>
 
 <div class="wrap">
 <h1><a href="../../docs/js.plated_plugin.blog.process_dirs">js.plated_plugin.blog.process_dirs</a></h1>
-<div class="source"><a href="https://github.com/xriss/plated/blob/master/js/plated_plugin_blog.js#L149">https://github.com/xriss/plated/blob/master/js/plated_plugin_blog.js</a></div>
+<div class="source"><a href="https://github.com/xriss/plated/blob/master/js/plated_plugin_blog.js#L148">https://github.com/xriss/plated/blob/master/js/plated_plugin_blog.js</a></div>
 <div><pre><code>dirs = plated_plugin_blog.process_dirs(dirs)
 </code></pre>
 <p>Tweak all the base chunks grouped by dir name and pre cascaded/merged</p>
@@ -142,7 +143,7 @@ shared data.</p>
 
 <div class="wrap">
 <h1><a href="../../docs/js.plated_plugin.blog.process_file">js.plated_plugin.blog.process_file</a></h1>
-<div class="source"><a href="https://github.com/xriss/plated/blob/master/js/plated_plugin_blog.js#L589">https://github.com/xriss/plated/blob/master/js/plated_plugin_blog.js</a></div>
+<div class="source"><a href="https://github.com/xriss/plated/blob/master/js/plated_plugin_blog.js#L588">https://github.com/xriss/plated/blob/master/js/plated_plugin_blog.js</a></div>
 <div><pre><code>chunks = plated_plugin_blog.process_file(chunks)
 </code></pre>
 <p>Tweak a single file of chunks, only chunks found in this file will be available.</p>

@@ -421,7 +421,7 @@
    "body": "<pre><code>chunks = await plated_output.remember_and_write(chunks)\n</code></pre>\n<p>The same as remember but also instantly write out the chunks using \nplated_output.write</p>\n",
    "count": 1,
    "file": "../js/plated_output.js",
-   "line": 53,
+   "line": 55,
    "name": "js.plated_output.remember_and_write",
    "url": "https://github.com/xriss/plated/blob/master/js/plated_output.js"
   }
