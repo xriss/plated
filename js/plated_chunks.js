@@ -7,7 +7,8 @@ Manage the chunks of text that are combined into a page.
 This module only exposes one function, which is used to create
 the actual module with bound state data.
 
-	plated_chunks = require("./plated_chunks.js").create(opts,plated)
+	import plated_chunks_create from "./plated_chunks.js"
+	let plated_chunks=await plated_create(opts,plated)
 
 This is called automatically when the plated module is created and the
 return value is made available in plated.chunks note that all of these
@@ -20,10 +21,10 @@ function.
 ]]*/
 
 
-var util=require('util');
-var marked=require('marked');
-var JSON5=require('json5');
-var JSON_stringify = require('json-stable-stringify')
+import util from 'node:util'
+import path from 'node:path'
+import { marked } from 'marked'
+import djon from '@xriss/djon'
 
 
 // is this crap global?
@@ -101,7 +102,7 @@ var wiki_links=function(t) // create quick wiki links
 var ls=function(a) { console.log(util.inspect(a,{depth:null})); }
 
 // wrap so we can contain multiple environments without borking
-exports.create=function(opts,plated){
+export default async function plated_chunks_create(opts,plated){
 
 	var plated_chunks={};
 
@@ -307,7 +308,7 @@ into a html string.
 				{
 					if( "string" == typeof (chunks[n]) )
 					{
-						chunks[n]=JSON5.parse(chunks[n]);
+						chunks[n]=djon.load(chunks[n]);
 					}
 				}
 				else
@@ -900,7 +901,7 @@ use will survive.
 		}
 		if(typeof last === "object") // output json text
 		{
-			return JSON_stringify(last,{ space: ' ' })
+			return djon.save(last)
 		}
 		return last
 	}

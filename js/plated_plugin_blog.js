@@ -7,7 +7,8 @@ A blog plugin.
 This module only exposes one function, which is used to create 
 the actual module with bound state data.
 
-	plated_plugin_blog = require("./plated_plugin_blog.js").create(opts,plated)
+	import plated_plugin_blog_create from "./plated_plugin_blog.js"
+	let plated_plugin_blog=await plated_create(opts,plated)
 
 This is called automatically when the plated module is created and the 
 returned plugin functions are added to the plugin call stack. Note that 
@@ -89,20 +90,18 @@ contain the _blog_post_body as defined in the blog post directory.
 
 ]]*/
 
-//let fs = require('fs');
-let util=require('util');
-let watch=require('watch');
-let path=require('path');
-let JSON5=require('json5');
-let JSON_stringify = require('json-stable-stringify');
-let jsonfeedToAtom = require('jsonfeed-to-atom')
-
+import util from 'node:util'
+import path from 'node:path'
+import { marked } from 'marked'
+import djon from '@xriss/djon'
+import watch from 'watch'
+import jsonfeedToAtom from 'jsonfeed-to-atom'
 
 
 let ls=function(a) { console.log(util.inspect(a,{depth:null})); }
 
 // wrap so we can contain multiple environments without borking
-exports.create=function(opts,plated){
+export default async function plated_plugin_blog_create(opts,plated){
 
 	let timestr=function(){ return new Date().toISOString().replace(/^.+T/, "").replace(/\..+/, ""); }
 
@@ -282,7 +281,7 @@ Tweak all the base chunks grouped by dir name and pre cascaded/merged
 		{
 			for( let microname in micros[blogname] )
 			{
-				micro = micros[blogname][microname]
+				let micro = micros[blogname][microname]
 //				console.log(timestr()+" BLOG "+blogname+" MICRO "+microname)
 //				console.log(micro)
 				let ablog=blogs[blogname];
@@ -571,7 +570,7 @@ Tweak all the base chunks grouped by dir name and pre cascaded/merged
 
 					await plated.files.write(
 						plated.files.joinpath( opts.output , fname+tagdir+"/feed.json"),
-						JSON_stringify(feed,{space:1}) )
+						djon.save(feed) )
 					await plated.files.write(
 						plated.files.joinpath( opts.output , fname+tagdir+"/feed.xml") ,
 						jsonfeedToAtom(feed) )
@@ -599,7 +598,7 @@ Tweak a single file of chunks, only chunks found in this file will be available.
 		if( chunks._blog_json )
 		{
 			let chunk=chunks._blog_json;
-			if( "string" == typeof (chunk) ) { chunk=JSON5.parse(chunk) || {}; } // auto json parse
+			if( "string" == typeof (chunk) ) { chunk=djon.load(chunk) || {}; } // auto json parse
 			chunk.dir            = chunk.dirname        || chunks._sourcename ;
 			for(let n in plated_plugin_blog.config)
 			{
@@ -628,7 +627,7 @@ Tweak a single file of chunks, only chunks found in this file will be available.
 		if( chunks._blog_post_json )
 		{
 			let chunk=chunks._blog_post_json;
-			if( "string" == typeof (chunk) ) { chunk=JSON5.parse(chunk) || {}; } // auto json parse
+			if( "string" == typeof (chunk) ) { chunk=djon.load(chunk) || {}; } // auto json parse
 
 			if(chunk.draft===undefined)
 			{

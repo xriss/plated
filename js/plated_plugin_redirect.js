@@ -8,7 +8,8 @@ A blog plugin.
 This module only exposes one function, which is used to create 
 the actual module with bound state data.
 
-	plated_plugin_redirect = require("./plated_plugin_redirect.js").create(opts,plated)
+	import plated_plugin_redirect_create from "./plated_plugin_redirect.js"
+	let plated_plugin_redirect=await plated_create(opts,plated)
 
 This is called automatically when the plated module is created and the 
 returned plugin functions are added to the plugin call stack. Note that 
@@ -29,7 +30,7 @@ shared data.
 	}
 	
 A chunk of this name must be created in a directory scope file for this 
-plugin to parse it. files is a map of redirections we require.
+plugin to parse it. files is a map of redirections we want.
 
 Perform a redirect of files, using simple html javascript redirection, 
 to another url. We mostly make use of the automatic use of an 
@@ -45,16 +46,15 @@ An example can be found in test-source/005-redirect
 
 ]]*/
 
-//var fs = require('fs');
-var util=require('util');
-var JSON5=require('json5');
-var JSON_stringify = require('json-stable-stringify');
+import util from 'node:util'
+import path from 'node:path'
+import djon from '@xriss/djon'
 
 
 var ls=function(a) { console.log(util.inspect(a,{depth:null})); }
 
 // wrap so we can contain multiple environments without borking
-exports.create=function(opts,plated){
+export default async function plated_plugin_redirect_create(opts,plated){
 
 	var timestr=function(){ return new Date().toISOString().replace(/^.+T/, "").replace(/\..+/, ""); }
 
@@ -114,7 +114,7 @@ Tweak all the base chunks grouped by dir name and pre cascaded/merged
 		for( var dirname in dirs ) { var chunks=dirs[dirname];
 			if(chunks._redirect_json)
 			{
-				for( n in ( chunks._redirect_json.files || {} ) )
+				for( let n in ( chunks._redirect_json.files || {} ) )
 				{
 					var v=chunks._redirect_json.files[n]
 					
@@ -130,11 +130,6 @@ Tweak all the base chunks grouped by dir name and pre cascaded/merged
 					merged_chunks._output_filename=merged_chunks._redirect_from
 					merged_chunks._output_chunkname="html"
 					await plated.output.remember_and_write( merged_chunks )
-
-//					plated.files.write( output_filename , plated.chunks.replace( merged_chunks.html , merged_chunks ) );
-//					if(opts.dumpjson){
-//						plated.files.write( output_filename+".json" , JSON_stringify(merged_chunks,{space:1}) );
-//					}
 
 					console.log(timestr()+" REDIRECT "+merged_chunks._redirect_from+" -> "+merged_chunks._redirect_to)
 
@@ -167,7 +162,7 @@ configuration data to setup redirects.
 		var chunk=chunks._redirect_json;
 		if( chunk )
 		{
-			if( "string" == typeof (chunk) ) { chunk=JSON5.parse(chunk) || {}; } // auto json parse
+			if( "string" == typeof (chunk) ) { chunk=djon.load(chunk) || {}; } // auto json parse
 			
 			chunks._redirect_json=chunk;
 		}

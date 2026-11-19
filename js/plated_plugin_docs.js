@@ -7,7 +7,8 @@ A docs plugin.
 This module only exposes one function, which is used to create 
 the actual module with bound state data.
 
-	plated_plugin_docs = require("./plated_plugin_docs.js").create(opts,plated)
+	import plated_plugin_docs_create from "./plated_plugin_docs.js"
+	let plated_plugin_docs=await plated_create(opts,plated)
 
 This is called automatically when the plated module is created and the 
 returned plugin functions are added to the plugin call stack. Note that 
@@ -53,17 +54,16 @@ in source/docs for an example of how this can be themed and presented.
 
 ]]*/
 
-//var fs = require('fs');
-var util=require('util');
-var watch=require('watch');
-var JSON5=require('json5');
-var JSON_stringify = require('json-stable-stringify');
+import util from 'node:util'
+import path from 'node:path'
+import { marked } from 'marked'
+import djon from '@xriss/djon'
 
 
 var ls=function(a) { console.log(util.inspect(a,{depth:null})); }
 
 // wrap so we can contain multiple environments without borking
-exports.create=function(opts,plated){
+export default async function plated_plugin_docs_create(opts,plated){
 	
 	var plated_chunks=plated.chunks
 	var plated_files=plated.files
@@ -309,7 +309,7 @@ Tweak a single file of chunks, only chunks found in this file will be available.
 		var chunk=chunks._docs_json;
 		if( chunk )
 		{
-			if( "string" == typeof (chunk) ) { chunk=JSON5.parse(chunk) || {}; } // auto json parse
+			if( "string" == typeof (chunk) ) { chunk=djon.load(chunk) || {}; } // auto json parse
 			
 			chunks._docs_json=chunk;
 		}		

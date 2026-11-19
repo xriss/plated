@@ -16,7 +16,8 @@ generating blogs.
 This module only exposes one function, which is used to create 
 the actual module with bound state data.
 
-	plated=require("./plated.js").create(opts,plated)
+	import plated_create from "./plated.js"
+	let plated=await plated_create(opts,plated)
 
 opts is an object of options and plated is an optional input if 
 provided it will be modified and returned otherwise a new object will 
@@ -30,6 +31,13 @@ are referring to the return from this create function.
 
 The opts is intended to be filled with command line options so take a 
 look at these for a full description of what can be passed in here.
+
+In order to disconnect from the fs and allow use in a browser pfs must 
+be passed into this function if you expect want node file system 
+access.
+
+	import pfs from 'node:fs/promises'
+	let plated=await plated_create({pfs:pfs})
 
 ]]*/
 
@@ -384,17 +392,22 @@ away if empty.
 
 ]]*/
 
-//var fs = require('fs');
-var util=require('util');
-var path=require('path');
+import util from 'node:util'
+import path from 'node:path'
 
+import plated_files_create           from './plated_files.js'
+import plated_chunks_create          from './plated_chunks.js'
+import plated_output_create          from './plated_output.js'
+import plated_plugin_docs_create     from './plated_plugin_docs.js'
+import plated_plugin_blog_create     from './plated_plugin_blog.js'
+import plated_plugin_redirect_create from './plated_plugin_redirect.js'
+import plated_plugin_import_create   from './plated_plugin_import.js'
+import plated_plugin_copy_create     from './plated_plugin_copy.js'
 
 var ls=function(a) { console.log(util.inspect(a,{depth:null})); }
 
-exports.create=function(opts,plated){
+export default async function plated_create(opts,plated){
 	plated=plated || {};
-	 // allow any custom promise based file system
-	plated.pfs=plated.pfs || 	(require("pify"))(require('fs'))
 	
 // force defaults if they are missing
 	opts = opts || {} 
@@ -407,22 +420,25 @@ exports.create=function(opts,plated){
 	opts.hashfile  = opts.hashfile  || "^" 
 	opts.blog      = opts.blog      || "blog";
 
+// allow any custom promise based file system
+	plated.pfs=plated.pfs || opts.pfs
+
 /***************************************************************************
 --[[#js.plated.setup
 
-	plated.setup(opts)
+	await plated.setup(opts)
 
-Initialise plated and require the base plated modules: files, chunks 
+Initialise plated and setup the base plated modules: files, chunks 
 and output.
 
 ]]*/
-	plated.setup=function(opts)
+	plated.setup=async function(opts)
 	{
 		plated.output_chunks={};
 
-		plated.files =require("./plated_files.js" ).create(opts,plated);
-		plated.chunks=require("./plated_chunks.js").create(opts,plated);
-		plated.output=require("./plated_output.js").create(opts,plated);
+		plated.files =await plated_files_create(opts,plated);
+		plated.chunks=await plated_chunks_create(opts,plated);
+		plated.output=await plated_output_create(opts,plated);
 		plated.process_dirs=[];
 		plated.process_file=[];
 		plated.process_output=[];
@@ -582,12 +598,12 @@ Markdown text is taken from opts._[1] onwards IE the command line.
 
 // load default plugins
 
-	plated.setup(opts);
-	plated.plugin(require("./plated_plugin_docs.js"    ).create(opts,plated));
-	plated.plugin(require("./plated_plugin_blog.js"    ).create(opts,plated));
-	plated.plugin(require("./plated_plugin_redirect.js").create(opts,plated));
-	plated.plugin(require("./plated_plugin_import.js"  ).create(opts,plated));
-	plated.plugin(require("./plated_plugin_copy.js"    ).create(opts,plated));
+	await plated.setup(opts);
+	plated.plugin(await plated_plugin_docs_create(opts,plated));
+	plated.plugin(await plated_plugin_blog_create(opts,plated));
+	plated.plugin(await plated_plugin_redirect_create(opts,plated));
+	plated.plugin(await plated_plugin_import_create(opts,plated));
+	plated.plugin(await plated_plugin_copy_create(opts,plated));
 
 	return plated;
 }

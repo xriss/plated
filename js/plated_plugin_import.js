@@ -8,7 +8,8 @@ A way of importing chunks from another page.
 This module only exposes one function, which is used to create 
 the actual module with bound state data.
 
-	plated_plugin_import = require("./plated_plugin_import.js").create(opts,plated)
+	import plated_plugin_import_create from "./plated_plugin_import.js"
+	let plated_plugin_import=await plated_create(opts,plated)
 
 This is called automatically when the plated module is created and the 
 returned plugin functions are added to the plugin call stack. Note that 
@@ -28,16 +29,16 @@ chunk referenced from another file via the import=dir flag.
 
 ]]*/
 
-//var fs = require('fs');
-var util=require('util');
-var JSON5=require('json5');
-var JSON_stringify = require('json-stable-stringify');
+
+import util from 'node:util'
+import path from 'node:path'
+import djon from '@xriss/djon'
 
 
 var ls=function(a) { console.log(util.inspect(a,{depth:null})); }
 
 // wrap so we can contain multiple environments without borking
-exports.create=function(opts,plated){
+export default async function plated_plugin_import_create(opts,plated){
 
 	var timestr=function(){ return new Date().toISOString().replace(/^.+T/, "").replace(/\..+/, ""); }
 
@@ -58,7 +59,7 @@ available.
 		
 // process import flag
 
-		for( n in chunks )
+		for( let n in chunks )
 		{
 			var flags=chunks._flags && chunks._flags[n]
 			if(flags && flags.import) // special import 

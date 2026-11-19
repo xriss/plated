@@ -1,18 +1,20 @@
 
-var util=require('util');
-var path=require('path');
+import util from 'node:util';
+import path from 'node:path';
 
+import plated_files_create           from './plated_files.js'
 
 var ls=function(a) { console.log(util.inspect(a,{depth:null})); }
 
-exports.create=async function(opts,readme){
+export default async function readme_create(opts,readme){
 	readme=readme || {};
-	 // allow any custom promise based file system
-	readme.pfs=readme.pfs || 	(require("pify"))(require('fs'))
 	
-// force defaults if they are missing
+	// force defaults if they are missing
 	opts = opts || {} 
 	
+	 // allow any custom promise based file system
+	readme.pfs=readme.pfs || opts.pfs
+
 	opts.ignore=opts.ignore || {
 		"node_modules":true,
 		"readme.md":true,
@@ -33,7 +35,7 @@ directory and should not be edited here.
 
 	readme.setup=async function(opts)
 	{
-		readme.plated_files=require("./plated_files.js" ).create(opts,readme)
+		readme.plated_files=plated_files_create(opts,readme)
 
 		let plated_files=readme.plated_files
 		

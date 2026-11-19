@@ -7,7 +7,8 @@ Manage the chunks of text that are combined into a page.
 This module only exposes one function, which is used to create 
 the actual module with bound state data.
 
-	plated_output = require("./plated_output.js").create(opts,plated)
+	import plated_output_create from "./plated_output.js"
+	let plated_output=await plated_create(opts,plated)
 
 This is called automatically when the plated module is created and the 
 return value is made available in plated.chunks note that all of these 
@@ -19,15 +20,16 @@ function.
 
 ]]*/
 
-//var fs = require('fs')
-var util=require('util')
-var watch=require('watch')
-var JSON_stringify = require('json-stable-stringify')
+import util from 'node:util'
+import path from 'node:path'
+import { marked } from 'marked'
+import djon from '@xriss/djon'
+import watch from 'watch'
 
 var ls=function(a) { console.log(util.inspect(a,{depth:null})) }
 
 // wrap so we can contain multiple environments without borking
-exports.create=function(opts,plated){
+export default async function plated_output_create(opts,plated){
 	
 	var timestr=function(){ return new Date().toISOString().replace(/^.+T/, "").replace(/\..+/, "") }
 
@@ -99,7 +101,7 @@ If the opts.dumpjson flag is set then we also output a
 		if(opts.dumpjson)
 		{
 			var filename=plated.files.joinpath( opts.output , output_filename ) + ".json"
-			var data=JSON_stringify(chunks,{space:1})
+			var data=djon.save(chunks)
 			await plated.files.write( filename , data )
 		}
 		
@@ -123,7 +125,7 @@ files and directories.
 			for(let n in plated.dirs) { map[n]=plated.dirs[n]}
 			
 			var filename=plated.files.joinpath( opts.output , "plated.map.json" )
-			var data=JSON_stringify(map,{space:1})
+			var data=djon.save(map)
 			await plated.files.write( filename , data )
 		}
 	}

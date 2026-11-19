@@ -7,7 +7,8 @@ Manage the files that we read from and watch or write to.
 This module only exposes one function, which is used to create 
 the actual module with bound state data.
 
-	plated_files = require("./plated_files.js").create(opts,plated)
+	import plated_files_create from "./plated_files.js"
+	let plated_files=await plated_create(opts,plated)
 
 This is called automatically when the plated module is created and the 
 return value is made available in plated.chunks note that all of these 
@@ -20,10 +21,12 @@ function.
 ]]*/
 
 
-//var fs = require('fs');
-var util=require('util');
-var path=require('path');
-var JSON_stringify = require('json-stable-stringify');
+import util from 'node:util'
+import path from 'node:path'
+import { marked } from 'marked'
+import djon from '@xriss/djon'
+import watch from 'watch'
+
 
 var ls=function(a) { console.log(util.inspect(a,{depth:null})); }
 
@@ -48,7 +51,7 @@ var stat_isDirectory=function(stat)
 }
 
 // wrap so we can contain multiple environments without borking
-exports.create=function(opts,plated){
+export default async function plated_files_create(opts,plated){
 	
 	var timestr=function(){ return new Date().toISOString().replace(/^.+T/, "").replace(/\..+/, ""); }
 
@@ -698,7 +701,6 @@ finished.
 ]]*/
 	plated_files.watch=async function()
 	{
-		var watch=require('watch');
 
 		await plated_files.build(); // build once
 

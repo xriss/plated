@@ -110,16 +110,23 @@ descriptions of all available options there.
 ]]*/
 
 
-var cmd=exports;
+import util from 'node:util';
 
-var util=require('util');
+
+import minimist     from "minimist"
+const argv = minimist( process.argv.slice(2) )
+global.argv=argv;
+
+import pfs from 'node:fs/promises'
+// must pass in pfs so plated can work easily without fs access
+argv.pfs=pfs
+
+
+import plated_create from "./plated.js"
+import readme_create from "./readme.js"
+
 
 var ls=function(a) { console.log(util.inspect(a,{depth:null})); }
-
-
-var yargs = require('yargs/yargs')(process.argv.slice(2))
-var argv = yargs.argv ; global.argv=argv;
-
 
 var env=process.env
 
@@ -132,38 +139,40 @@ argv.hashchunk = argv.hashchunk || env.PLATED_HASHCHUNK || "#^";
 argv.delimiter = argv.delimiter || env.PLATED_DELIMITER || "{}";
 argv.dumpjson  = argv.dumpjson  || env.PLATED_DUMPJSON  ;
 
-(async()=>{
+//(async()=>{
 	
 if( argv._[0]=="build" )
 {
-	var plated=require("./plated.js").create(argv);
-	return await plated.build();
+	let plated=await plated_create(argv);
+	await plated.build();
 }
 else
 if( argv._[0]=="watch" )
 {
-	var plated=require("./plated.js").create(argv);
-	return await plated.watch();
+	let plated=await plated_create(argv);
+	await plated.watch();
 }
 else
 if( argv._[0]=="blog" )
 {
-	var plated=require("./plated.js").create(argv);
-	return await plated.blog();
+	let plated=await plated_create(argv);
+	await plated.blog();
 }
 else
 if( argv._[0]=="micro" )
 {
-	var plated=require("./plated.js").create(argv);
-	return await plated.micro();
+	let plated=await plated_create(argv);
+	await plated.micro();
 }
 else
 if( argv._[0]=="readme" )
 {
-	var readme=await require("./readme.js").create(argv)
-	return await readme.build();
+	let readme=await readme_create(argv);
+	await readme.build();
 }
-
+else
+{
+	
 // help text
 console.log(
 	"\n"+
@@ -197,4 +206,6 @@ console.log(
 	"\n"+
 "");
 
-})()
+}
+
+//})()
