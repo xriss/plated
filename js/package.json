@@ -16,7 +16,7 @@
     "plated": "./cmd.js"
   },
   "dependencies": {
-    "@xriss/djon": "1",
+    "@xriss/djon": "^1.261119.1",
     "jsonfeed-to-atom": "1",
     "marked": "4",
     "minimist": "1",
